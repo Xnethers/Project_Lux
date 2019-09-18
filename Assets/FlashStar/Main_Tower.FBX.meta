@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: 55366317174e46c418709efa18e0bac7
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Body_Low001
+    100002: french_fries001
+    100004: french_fries002
+    100006: french_fries003
+    100008: french_fries004
+    100010: french_fries005
+    100012: french_fries006
+    100014: french_fries007
+    100016: french_fries008
+    100018: french_fries009
+    100020: french_fries010
+    100022: french_fries011
+    100024: french_fries012
+    100026: french_fries013
+    100028: french_fries014
+    100030: french_fries015
+    100032: french_fries016
+    100034: french_fries017
+    100036: french_fries018
+    100038: french_fries019
+    100040: french_fries020
+    100042: french_fries021
+    100044: french_fries022
+    100046: french_fries023
+    100048: french_fries024
+    100050: Group001
+    100052: Group002
+    100054: //RootNode
+    100056: roof
+    100058: tower
+    400000: Body_Low001
+    400002: french_fries001
+    400004: french_fries002
+    400006: french_fries003
+    400008: french_fries004
+    400010: french_fries005
+    400012: french_fries006
+    400014: french_fries007
+    400016: french_fries008
+    400018: french_fries009
+    400020: french_fries010
+    400022: french_fries011
+    400024: french_fries012
+    400026: french_fries013
+    400028: french_fries014
+    400030: french_fries015
+    400032: french_fries016
+    400034: french_fries017
+    400036: french_fries018
+    400038: french_fries019
+    400040: french_fries020
+    400042: french_fries021
+    400044: french_fries022
+    400046: french_fries023
+    400048: french_fries024
+    400050: Group001
+    400052: Group002
+    400054: //RootNode
+    400056: roof
+    400058: tower
+    2100000: No Name
+    2300000: Body_Low001
+    2300002: french_fries001
+    2300004: french_fries002
+    2300006: french_fries003
+    2300008: french_fries004
+    2300010: french_fries005
+    2300012: french_fries006
+    2300014: french_fries007
+    2300016: french_fries008
+    2300018: french_fries009
+    2300020: french_fries010
+    2300022: french_fries011
+    2300024: french_fries012
+    2300026: french_fries013
+    2300028: french_fries014
+    2300030: french_fries015
+    2300032: french_fries016
+    2300034: french_fries017
+    2300036: french_fries018
+    2300038: french_fries019
+    2300040: french_fries020
+    2300042: french_fries021
+    2300044: french_fries022
+    2300046: french_fries023
+    2300048: french_fries024
+    2300050: roof
+    2300052: tower
+    3300000: Body_Low001
+    3300002: french_fries001
+    3300004: french_fries002
+    3300006: french_fries003
+    3300008: french_fries004
+    3300010: french_fries005
+    3300012: french_fries006
+    3300014: french_fries007
+    3300016: french_fries008
+    3300018: french_fries009
+    3300020: french_fries010
+    3300022: french_fries011
+    3300024: french_fries012
+    3300026: french_fries013
+    3300028: french_fries014
+    3300030: french_fries015
+    3300032: french_fries016
+    3300034: french_fries017
+    3300036: french_fries018
+    3300038: french_fries019
+    3300040: french_fries020
+    3300042: french_fries021
+    3300044: french_fries022
+    3300046: french_fries023
+    3300048: french_fries024
+    3300050: roof
+    3300052: tower
+    4300000: Body_Low001
+    4300002: tower
+    4300004: roof
+    4300006: french_fries013
+    4300008: french_fries014
+    4300010: french_fries015
+    4300012: french_fries016
+    4300014: french_fries017
+    4300016: french_fries018
+    4300018: french_fries019
+    4300020: french_fries020
+    4300022: french_fries021
+    4300024: french_fries022
+    4300026: french_fries023
+    4300028: french_fries024
+    4300030: french_fries001
+    4300032: french_fries002
+    4300034: french_fries003
+    4300036: french_fries004
+    4300038: french_fries005
+    4300040: french_fries006
+    4300042: french_fries007
+    4300044: french_fries008
+    4300046: french_fries009
+    4300048: french_fries010
+    4300050: french_fries011
+    4300052: french_fries012
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

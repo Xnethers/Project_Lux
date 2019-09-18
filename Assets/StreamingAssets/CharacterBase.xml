@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ArrayOfCharacterData>
+    <CharacterData>
+        <Name>"Enid"</Name>
+        <NormalAttack>"45"</NormalAttack>
+        <SecondAttack>"70"</SecondAttack>
+        <ThirdAttack>"25"</ThirdAttack>
+        <RushAttack>"45"</RushAttack>
+        <RushAddAttack>" "</RushAddAttack>
+        <AirAttack>""</AirAttack>
+        <ForceAttack>""</ForceAttack>
+        <ForceDifference>""</ForceDifference>
+    </CharacterData>
+    <CharacterData>
+        <Name>"Enid"</Name>
+        <NormalAttack>"45"</NormalAttack>
+        <SecondAttack>"70"</SecondAttack>
+        <ThirdAttack>"25"</ThirdAttack>
+        <RushAttack>"45"</RushAttack>
+        <RushAddAttack>" "</RushAddAttack>
+        <AirAttack>""</AirAttack>
+        <ForceAttack>""</ForceAttack>
+        <ForceDifference>""</ForceDifference>
+    </CharacterData>
+</ArrayOfCharacterData>

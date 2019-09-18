@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ArrayOfCharacterData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<CharacterData>
+		<Name>Adela</Name>
+	</CharacterData>
+	<CharacterData>
+		<Name>Dan</Name>
+	</CharacterData>
+	<CharacterData>
+		<Name>Enid</Name>
+		<NormalAttack>45</NormalAttack>
+		<SecondAttack>70</SecondAttack>
+		<ThirdAttack>25</ThirdAttack>
+		<RushAttack>45</RushAttack>
+	</CharacterData>
+	<CharacterData>
+		<Name>Ivan</Name>
+	</CharacterData>
+	<CharacterData>
+		<Name>Lena</Name>
+		<NormalAttack>9</NormalAttack>
+		<SecondAttack>9</SecondAttack>
+		<ThirdAttack>25</ThirdAttack>
+		<RushAttack>20</RushAttack>
+		<RushAddAttack>3</RushAddAttack>
+		<ForceAttack>10</ForceAttack>
+		<ForceDifference>2</ForceDifference>
+	</CharacterData>
+	<CharacterData>
+		<Name>Mignon</Name>
+	</CharacterData>
+</ArrayOfCharacterData>
