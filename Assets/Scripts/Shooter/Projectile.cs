@@ -15,16 +15,16 @@ public class Projectile : MonoBehaviourPunCallbacks
     [SerializeField] bool isBullet = false;
 
     [Header("===== DeBuff Settings =====")]
-    [SerializeField] bool isBlind;
-    [SerializeField] bool isRepel;
-    [SerializeField] bool isMark;
+    [SerializeField]protected bool isBlind;
+    [SerializeField]protected bool isRepel;
+    [SerializeField]protected bool isMark;
     
     [Header("===== Damage Settings =====")]
     [SerializeField] float baseATK = 1f;
     [SerializeField] float rangeBuff = 1f;
     [SerializeField] float headBuff = 1f;
     [SerializeField] float comboBuff = 1f;
-    [SerializeField] float timeToLive = 3f;
+    [SerializeField] protected float timeToLive = 3f;
     protected ActorManager am;//子彈發射者
     protected ActorManager targetAm;//攻擊對象
     protected Collider col;//攻擊對象
@@ -48,14 +48,9 @@ public class Projectile : MonoBehaviourPunCallbacks
         rb.velocity = rb.transform.forward * speed;
         //this.speed=speed;
     }
-    void Awake()
+    public virtual void Awake()
     {
-
-
-        Destroy(transform.parent.gameObject, timeToLive);
-        if (transform.parent != null)
-            Destroy(this.transform.parent.gameObject, timeToLive);
-
+        Destroy(transform.root.gameObject, timeToLive);
     }
 
     void Update()
@@ -141,7 +136,7 @@ public class Projectile : MonoBehaviourPunCallbacks
         col.SendMessageUpwards("TryDoDamage", GetATK());
         isHit = true;
     }
-    void SetRangeBuff(Collider col)
+    protected void SetRangeBuff(Collider col)
     {
         float rangeDistance = Vector3.Distance(originVec3, col.transform.position);
         if (rangeDistance <= 10)

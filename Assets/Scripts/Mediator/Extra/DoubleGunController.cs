@@ -114,7 +114,6 @@ public class DoubleGunController : ICareerController
             {
                 UseSkill(3, careerValue.RushDamage);
                 StartCD(skillQ, careerValue.RushingCD);
-                photonView.RPC("PS_creatQEffect", RpcTarget.All);
                 ac.am.sm.RP = 0;
             }
 
@@ -188,7 +187,7 @@ public class DoubleGunController : ICareerController
         photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[2].position, RayAim(), 0f);
     }
 
-    public override void RushAttack()
+    public override void RushAttack()//Q
     {
         CreateGunFire();
         if (!photonView.IsMine)
@@ -204,8 +203,8 @@ public class DoubleGunController : ICareerController
         { return; }
         else
         {
-            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[0].position, transform.rotation * new Vector3(0, 0, 20), ThrowerPower);
-            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[1].position, transform.rotation * new Vector3(0, 0, 20), ThrowerPower);
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[0].position, RayAim(), ThrowerPower);
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[1].position, RayAim(), ThrowerPower);
         }
     }
 
