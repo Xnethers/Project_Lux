@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour {
 
     private GameObject playerHandle;
     public GameObject cameraHandle;
-    private float tempEulerX;
+    public float tempEulerX;
     private GameObject model;
     private GameObject mainCamera;
     private ChangeIgnoreRayLayer mainCamCollider;

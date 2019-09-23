@@ -21,6 +21,7 @@ public class KeyboardInput : IUserInput
     public string keyF = "f";
     public string keyQ = "q";
     public string keyR = "r";
+    public string keyE = "e";
     public string keyESC = "escape";
     public MyButton buttonUp = new MyButton();
     public MyButton buttonDown = new MyButton();
@@ -33,7 +34,7 @@ public class KeyboardInput : IUserInput
     public MyButton buttonF = new MyButton();
     public MyButton buttonQ = new MyButton();
     public MyButton buttonR = new MyButton();
-
+    public MyButton buttonE = new MyButton();
     public MyButton buttonESC = new MyButton();
 
     [Header("===== Mouse settings =====")]
@@ -56,6 +57,7 @@ public class KeyboardInput : IUserInput
         buttonF.Tick(Input.GetKey(keyF));
         buttonQ.Tick(Input.GetKey(keyQ));
         buttonR.Tick(Input.GetKey(keyR));
+        buttonE.Tick(Input.GetKey(keyE));
 
         buttonESC.Tick(Input.GetKey(keyESC));
 
@@ -88,14 +90,20 @@ public class KeyboardInput : IUserInput
         float Dup2 = tempDAxis.y;
 
         Dmag = Mathf.Sqrt(Dup2 * Dup2 + Dright2 * Dright2);
-        Dvec = Dright2 * transform.right + Dup2 * transform.forward;
+        if(!isLatent)
+            Dvec = Dright2 * transform.right + Dup2 * transform.forward;
+        else{
+            //潛光移動軸向為up,right
+            Dvec = Dright2 * transform.right + Dup2 * transform.up;
+        }
+            
 
         run = buttonRun.IsPressing;
 
         jump = buttonJump.OnPressed;
 
         esc = buttonESC.OnPressed;
-
+        latent = buttonE.OnPressed;
     }
 
 }

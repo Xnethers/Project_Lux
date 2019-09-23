@@ -65,10 +65,39 @@ public class ActorController : IActorManagerInterface {
 
     // Update is called once per frame
     protected void Update() {
+        if(pi.isAI)
+            return;
         if(!photonView.IsMine)
             return;
+            
         if(pi.esc)
             camcon.isCursorVisible = ! camcon.isCursorVisible;
+        if(pi.latent){//按下潛光按鍵(暫定e鍵)
+            pi.isLatent = ! pi.isLatent;//是否潛光中
+            SetBool("lock",pi.isLatent);//鎖人物動作狀態
+            camcon.tempEulerX= 0;//攝影機UpDown角度歸零
+            pi.inputMouseEnabled = !pi.inputMouseEnabled;//鎖攝影機操作
+            //人與潛光平行(轉角度)
+            //InteractionManager im為偵測有無潛光物件(物件帶有EventCasterManager)
+            //言靈提的
+            Vector3.RotateTowards(transform.forward,am.im.overlapEcastms[0].transform.parent.forward,10,0);
+
+            
+            //失敗的
+            /* 
+            am.im.overlapEcastms[0].transform.parent.Translate(am.im.overlapEcastms[0].transform.parent.forward * Time.deltaTime) ;
+            
+            transform.localRotation = Quaternion.Euler(0,am.im.overlapEcastms[0].transform.parent.localRotation.y,0);
+            if(transform.localRotation.y>0 && transform.localRotation.y<180)
+                transform.localRotation = Quaternion.Euler(0,am.im.overlapEcastms[0].transform.parent.localRotation.y+90,0);
+            else 
+                transform.localRotation = Quaternion.Euler(0,am.im.overlapEcastms[0].transform.parent.localRotation.y-90,0);
+            if(am.im.overlapEcastms.Count!=0)
+                transform.LookAt(am.im.overlapEcastms[0].transform.parent,Vector3.up);
+            transform.localRotation = am.im.overlapEcastms[0].transform.parent.localRotation;*/
+            
+        }
+
         if (trackDirection == false){
             model.transform.forward = transform.forward;
         }
@@ -105,6 +134,7 @@ public class ActorController : IActorManagerInterface {
     }
     protected void FixedUpdate()
     {
+        
         if(!photonView.IsMine)
             return;
         //cc.position += deltaPos;
@@ -116,15 +146,23 @@ public class ActorController : IActorManagerInterface {
         //重力
         // if (anim.GetBool("isGround") && _velocity.y < 0)
         // { _velocity.y = 0f; }
-        if(_velocity.y > -25f)
-            _velocity.y += gravity * Physics.gravity.y * Time.fixedDeltaTime;
-        if(am.sm.isDie)
-            _velocity.y=0;
-        //移動
-        if (lockPlanar == false && !isBounce)
-            chacon.Move((new Vector3(planarVec.x, _velocity.y, planarVec.z) + thrustVec) * Time.fixedDeltaTime);
+        if(!pi.isLatent){
+            if(_velocity.y > -25f)
+                _velocity.y += gravity * Physics.gravity.y * Time.fixedDeltaTime;
+            if(am.sm.isDie)
+                _velocity.y=0;
+            //移動
+            if (lockPlanar == false && !isBounce)
+                chacon.Move((new Vector3(planarVec.x, _velocity.y, planarVec.z) + thrustVec) * Time.fixedDeltaTime);
+            else{}
+                chacon.Move((new Vector3(planarVec.x/2f, _velocity.y, planarVec.z/2f) + thrustVec) * Time.fixedDeltaTime);
+        }
         else
-            chacon.Move((new Vector3(planarVec.x/2f, _velocity.y, planarVec.z/2f) + thrustVec) * Time.fixedDeltaTime);
+        {//潛光移動
+            chacon.Move(planarVec * Time.fixedDeltaTime);
+            // Debug.Log(planarVec);
+        }
+        
         thrustVec = Vector3.zero;
         deltaPos = Vector3.zero;
     }
@@ -167,6 +205,9 @@ public class ActorController : IActorManagerInterface {
     ///
     ///Message processing block 
     /// 
+    public void OnLockEnter(){
+
+    }
     public void OnBounceEnter(){
         pi.inputEnabled = true;
         pi.inputMouseEnabled = true;
