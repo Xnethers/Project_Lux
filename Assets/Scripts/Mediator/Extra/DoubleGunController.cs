@@ -13,7 +13,6 @@ public class DoubleGunController : ICareerController
     private KIDoubleGun ki;
 
     new protected Transform[] muzzle = new Transform[3];
-
     private bool isleft = true;
 
     [Space(10)]
@@ -25,13 +24,13 @@ public class DoubleGunController : ICareerController
     [SerializeField] GameObject Magazine;
 
     [SerializeField] GameObject Obj_magazine;
-    [SerializeField] Transform[] magazinePos;
-    //[0]==槍,[1]==手
+    public Transform[] magazinePos = new Transform[3];
+    //[0]==左,[1]==右,[2]==F
     public bool isFill;
     public int magazine = 40;
 
-    // [Header("===== Rush Settings =====")]
-    // public Collider target;
+    [Header("===== Force Settings =====")]
+    public GameObject[] Beam = new GameObject[2];
     // public List<BodyCollider> APIV = new List<BodyCollider>(); //All Player In View 
     // public List<Collider> allbodycollider;
     // private BattleController[] allbc_obj;
@@ -53,6 +52,8 @@ public class DoubleGunController : ICareerController
         muzzle[2] = transform.DeepFind("MuzzleF");
         ac = GetComponent<ActorController>();
         ki = GetComponent<KIDoubleGun>();
+        foreach (var item in Beam)
+        { item.SetActive(false); }
         //StartCoroutine("Timer_Forcing");
 
     }
@@ -146,12 +147,12 @@ public class DoubleGunController : ICareerController
         {
             if (ac.CheckState("forcing", "attack"))
             {
-                Debug.Log("發動蓄力攻擊!!!!!!!!!!!!!!");
                 UseSkill(5, ac.am.sm.ATK);
                 StartCD(skillForce, careerValue.ForceCD);
                 ac.am.sm.isForcingAim = false;
             }
         }
+
         if (ki.attackML)
             isForce = false;
 
@@ -210,7 +211,12 @@ public class DoubleGunController : ICareerController
 
     public override void ForceAttack()//蓄力(0.7s)
     {
-
+        foreach (var item in Beam)
+        {
+            item.SetActive(true);
+            Projectile p = item.GetComponentInChildren<Projectile>();
+            p.Initialize(ac.am, 0, RayAim());
+        }
     }
 
     public void magazineOperation() //確認是否填彈

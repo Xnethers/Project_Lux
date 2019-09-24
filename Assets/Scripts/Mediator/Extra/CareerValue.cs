@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum attackType
 {
-    NormalDamage, FirstDamage, SecondDamage, RushDamage, RushAddDamage, AirDamage, ForceMinDamage, ForceDifferenceDamage
+    NoDamage, NormalDamage, FirstDamage, SecondDamage, RushDamage, RushAddDamage, AirDamage, ForceMinDamage, ForceDifferenceDamage
 }
 
 [CreateAssetMenu]
@@ -44,6 +44,8 @@ public class CareerValue : ScriptableObject
     public float GetDamageByString(attackType type)
     {
         float value = 1;
+        if (type == attackType.NoDamage)
+        { value = 0; }
         if (type == attackType.NormalDamage)
         { value = NormalDamage; }
         else if (type == attackType.FirstDamage)
