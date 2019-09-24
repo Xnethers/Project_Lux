@@ -4379,6 +4379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAI: 0
+  isLatent: 0
   Dup: 0
   Dright: 0
   Dmag: 0
@@ -4390,6 +4391,7 @@ MonoBehaviour:
   jump: 0
   roll: 0
   esc: 0
+  latent: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -4403,6 +4405,7 @@ MonoBehaviour:
   keyF: f
   keyQ: q
   keyR: r
+  keyE: e
   keyESC: escape
   mouseSensitivityX: 1
   mouseSensitivityY: 1
@@ -5845,6 +5848,7 @@ MonoBehaviour:
   bm: {fileID: 114972626576213886}
   wm: {fileID: 114538213829231866}
   sm: {fileID: 114376165227488104}
+  im: {fileID: 0}
 --- !u!114 &114837657032193652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5882,6 +5886,7 @@ MonoBehaviour:
   doAim: 0
   isCursorVisible: 0
   cameraHandle: {fileID: 0}
+  tempEulerX: 0
   rayHit: 0
   radius: 0
   layerMask:

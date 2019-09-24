@@ -5,6 +5,7 @@ using Photon.Pun;
 /*處理實體輸入端狀態 */
 public abstract class IUserInput : MonoBehaviourPunCallbacks {
     public bool isAI;
+    public bool isLatent = false;
     [Header("===== Output signals =====")]
     public float Dup;
     public float Dright;
@@ -22,7 +23,7 @@ public abstract class IUserInput : MonoBehaviourPunCallbacks {
     public bool jump;
     public bool roll;
     public bool esc;
-
+    public bool latent;
     //double trigger
 
     [Header("===== Others =====")]

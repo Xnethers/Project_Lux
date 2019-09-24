@@ -15,7 +15,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
     public BattleManager bm;
     public WeaponManager wm;
     public StateManager sm;
-    
+    public InteractionManager im;
 
 
 	// Use this for initialization
@@ -27,7 +27,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         bm = Bind<BattleManager>(sensor);
         wm = Bind<WeaponManager>(model);
         sm = Bind<StateManager>(gameObject);
-
+        im = Bind<InteractionManager>(sensor);
         
 	}
     void Start()
@@ -70,6 +70,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
 		// if(Input.GetKeyDown(KeyCode.K)){
         //     Die();
         // } 
+        
 	}
     public void TryDoDamage(float damage) {
         //sm.HP -= 5;

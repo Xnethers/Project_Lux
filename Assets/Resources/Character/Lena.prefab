@@ -3021,7 +3021,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1182434462568386}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5038,7 +5038,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114390830118841258}
   viewIdField: 0
-  InstantiationId: 2
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114138841047279624
 MonoBehaviour:
@@ -5195,6 +5195,7 @@ MonoBehaviour:
   bm: {fileID: 114445020578505010}
   wm: {fileID: 114868639743358552}
   sm: {fileID: 114563665013848676}
+  im: {fileID: 0}
 --- !u!114 &114204423067409420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5354,7 +5355,7 @@ MonoBehaviour:
   - {fileID: 114548938312941780}
   - {fileID: 114563665013848676}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114332887461408078
 MonoBehaviour:
@@ -5602,7 +5603,6 @@ MonoBehaviour:
   targetAir: {x: 0, y: 0, z: 0}
   airDamp: 0.3
   airLimitTime: 0.5
-  airTime: 0
   isForce: 0
   obj: {fileID: 0}
   VFX_Lena_SwordTrail: {fileID: 4895030102389646}
@@ -6519,6 +6519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAI: 0
+  isLatent: 0
   Dup: 0
   Dright: 0
   Dmag: 0
@@ -6530,6 +6531,7 @@ MonoBehaviour:
   jump: 0
   roll: 0
   esc: 0
+  latent: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -6543,6 +6545,7 @@ MonoBehaviour:
   keyF: f
   keyQ: q
   keyR: r
+  keyE: e
   keyESC: escape
   mouseSensitivityX: 1
   mouseSensitivityY: 1
@@ -6633,6 +6636,7 @@ MonoBehaviour:
   doAim: 0
   isCursorVisible: 0
   cameraHandle: {fileID: 1161652597936932}
+  tempEulerX: 0
   rayHit: 0
   radius: 0
   layerMask:
