@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class NeedlerController : ICareerController
 {
-    private KINeedler ki;
+    private KICareer ki;
 
     [Space(10)]
     [Header("===== Shooter Settings =====")]
@@ -46,7 +46,7 @@ public class NeedlerController : ICareerController
         airLine = transform.DeepFind("AirLine");
         drawLine = airLine.GetComponent<DrawLine>();
         ac = GetComponent<ActorController>();
-        ki = GetComponent<KINeedler>();
+        ki = GetComponent<KICareer>();
         VFX_Lena_SwordTrail = transform.DeepFind("VFX_Lena_SwordTrail");
         NeedleWaist();
     }
@@ -105,7 +105,7 @@ public class NeedlerController : ICareerController
                     }
                 }
                     
-                if (ki.attackMR){//群攻
+                if (ki.auxiliaryMR){//群攻
                     UseSkill(1,careerValue.FirstDamage);
                 }
                     

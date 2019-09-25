@@ -1170,6 +1170,7 @@ GameObject:
   - component: {fileID: 4998320556664788}
   - component: {fileID: 114762222179309870}
   - component: {fileID: 114047082610048996}
+  - component: {fileID: 65042913940833260}
   m_Layer: 12
   m_Name: sensor
   m_TagString: Untagged
@@ -1611,7 +1612,7 @@ GameObject:
   - component: {fileID: 4981881710410914}
   - component: {fileID: 143068386977253044}
   - component: {fileID: 54905389274661690}
-  - component: {fileID: 114939407106454202}
+  - component: {fileID: 114169305147270890}
   - component: {fileID: 114989263693163878}
   - component: {fileID: 114377532691968370}
   - component: {fileID: 114856973316791092}
@@ -4199,6 +4200,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65042913940833260
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1465304738487232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.8, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &65892443454800296
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4639,6 +4652,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dffa04cde93d524aab75370f833889d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114169305147270890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595332062839686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07720ed908bfefc498d23986424ff89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAI: 0
+  isLatent: 0
+  Dup: 0
+  Dright: 0
+  Dmag: 0
+  Dvec: {x: 0, y: 0, z: 0}
+  Jup: 0
+  Jright: 0
+  run: 0
+  isMove: 0
+  jump: 0
+  roll: 0
+  esc: 0
+  latent: 0
+  inputEnabled: 1
+  inputMouseEnabled: 1
+  keyUp: w
+  keyDown: s
+  keyLeft: a
+  keyRight: d
+  keyRun: left shift
+  keyJump: space
+  keyML: mouse 0
+  keyMR: mouse 1
+  keyF: f
+  keyQ: q
+  keyR: r
+  keyE: e
+  keyESC: escape
+  mouseSensitivityX: 1
+  mouseSensitivityY: 1
+  attackML: 0
+  auxiliaryMR: 0
+  attackF: 0
+  attackQ: 0
+  forcingML: 0
+  forceReleaseML: 0
+  aimingMR: 0
+  unAimMR: 0
+  R: 0
 --- !u!114 &114172351663372012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4723,6 +4787,7 @@ MonoBehaviour:
   doAim: 0
   isCursorVisible: 0
   cameraHandle: {fileID: 0}
+  tempEulerX: 0
   rayHit: 0
   radius: 0
   layerMask:
@@ -4933,6 +4998,7 @@ MonoBehaviour:
   bm: {fileID: 114047082610048996}
   wm: {fileID: 114555812811854302}
   sm: {fileID: 114856973316791092}
+  im: {fileID: 0}
 --- !u!114 &114377589382035380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5565,6 +5631,7 @@ MonoBehaviour:
   - {fileID: 1635933095200362, guid: d093453e0cf409a4398a69c839a3a75e, type: 2}
   - {fileID: 1834539410345922, guid: f27cbf94535fb004ea69e88e052994a0, type: 2}
   - {fileID: 1834539410345922, guid: f27cbf94535fb004ea69e88e052994a0, type: 2}
+  comboParticle: []
   rayhitAirWall: 0
   VFX_Adela_Q: {fileID: 0}
   VFX_Adela_gunFire: {fileID: 0}
@@ -6053,52 +6120,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
---- !u!114 &114939407106454202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1595332062839686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d384ec09ba3e540add5b72acdca106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAI: 0
-  Dup: 0
-  Dright: 0
-  Dmag: 0
-  Dvec: {x: 0, y: 0, z: 0}
-  Jup: 0
-  Jright: 0
-  run: 0
-  isMove: 0
-  jump: 0
-  roll: 0
-  esc: 0
-  inputEnabled: 1
-  inputMouseEnabled: 1
-  keyUp: w
-  keyDown: s
-  keyLeft: a
-  keyRight: d
-  keyRun: left shift
-  keyJump: space
-  keyML: mouse 0
-  keyMR: mouse 1
-  keyF: f
-  keyQ: q
-  keyR: r
-  keyESC: escape
-  mouseSensitivityX: 1
-  mouseSensitivityY: 1
-  attackML: 0
-  attackMR: 0
-  forcingML: 0
-  forceReleaseML: 0
-  attackF: 0
-  attackQ: 0
-  R: 0
 --- !u!114 &114950418750204376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6157,17 +6178,18 @@ MonoBehaviour:
   camcon: {fileID: 114182085725495520}
   pi: {fileID: 0}
   careercon: {fileID: 114706801060354566}
-  walkSpeed: 2.4
+  walkSpeed: 2.7
   runMultiplier: 2
-  jumpVelocity: 5.5
+  jumpVelocity: 7
   frictionOne: {fileID: 13400000, guid: f47f0e9112f27dd4ea7de3e513678cf2, type: 2}
   frictionZero: {fileID: 13400000, guid: fe660f39232da0840b4b3af9c6ffffce, type: 2}
   anim: {fileID: 95900101623098914}
   canAttack: 1
   chacon: {fileID: 143068386977253044}
-  gravityConstant: 1
+  gravityConstant: 1.5
   gravity: 1
-  _velocity: {x: 0, y: -0.163827, z: 0}
+  _velocity: {x: 0, y: 0, z: 0}
+  thrustVec: {x: 0, y: 0, z: 0}
   attackerVec: {x: 0, y: 0, z: 0}
   lerpTarget: 0
   isBounce: 0

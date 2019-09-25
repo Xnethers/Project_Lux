@@ -4410,13 +4410,13 @@ MonoBehaviour:
   mouseSensitivityX: 1
   mouseSensitivityY: 1
   attackML: 0
-  aimMR: 0
+  auxiliaryMR: 0
+  attackF: 0
+  attackQ: 0
   forcingML: 0
   forceReleaseML: 0
   aimingMR: 0
   unAimMR: 0
-  attackF: 0
-  attackQ: 0
   R: 0
 --- !u!114 &114107661021169936
 MonoBehaviour:
@@ -4620,7 +4620,7 @@ MonoBehaviour:
   - {fileID: 114719799792810466}
   - {fileID: 114376165227488104}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114218383465573066
 MonoBehaviour:
@@ -4743,6 +4743,7 @@ MonoBehaviour:
   - {fileID: 1994053614765338, guid: f853b8127d35d9348a6798a5d516ff6e, type: 2}
   - {fileID: 1346079744782778, guid: 4bd6b5c680ef92344b7cb3f8f4db06cc, type: 2}
   - {fileID: 1994053614765338, guid: e9d034cd59ad4fe4a86fa26b1e999cf4, type: 2}
+  comboParticle: []
   rayhitAirWall: 0
   VFX_Enid_Q: {fileID: 1473852843827524, guid: cebd77e0accc8cc4690c3124287bf13b, type: 2}
   VFX_Enid_gunFire: {fileID: 1450329326372822, guid: ba057cfeda4073b48bdeaac9d5dded5d,
@@ -5215,7 +5216,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114678461351947774}
   viewIdField: 0
-  InstantiationId: 4
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114513486353133422
 MonoBehaviour:
@@ -5485,7 +5486,7 @@ MonoBehaviour:
   model: {fileID: 1800482163856152}
   camcon: {fileID: 114858256881184256}
   pi: {fileID: 114086331316121956}
-  careercon: {fileID: 0}
+  careercon: {fileID: 114351684755625412}
   walkSpeed: 2.7
   runMultiplier: 2
   jumpVelocity: 7
@@ -5496,7 +5497,8 @@ MonoBehaviour:
   chacon: {fileID: 143499012118435864}
   gravityConstant: 1.5
   gravity: 1
-  _velocity: {x: 0, y: -0.163827, z: 0}
+  _velocity: {x: 0, y: 0, z: 0}
+  thrustVec: {x: 0, y: 0, z: 0}
   attackerVec: {x: 0, y: 0, z: 0}
   lerpTarget: 0
   isBounce: 0

@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 //Enid
-public class KISniper : KeyboardInput
+public class KICareer : KeyboardInput
 {
     [Space(10)]
-    [Header("===== Career Output signals =====")]
+    [Header("===== Basic Output signals =====")]
     public bool attackML;
-    public bool aimMR;
+    public bool auxiliaryMR;
+    public bool attackF;
+    public bool attackQ;
     public bool forcingML;
     public bool forceReleaseML;//forcetest
+    [Space(10)]
+    [Header("===== Others Career Output signals =====")]
     public bool aimingMR;
     public bool unAimMR;
-    public bool attackF;
-
-    public bool attackQ;
     public bool R;
 
     void Start()
@@ -34,22 +35,25 @@ public class KISniper : KeyboardInput
             attackML = false;
             forcingML = false;
             forceReleaseML = false;
-            aimMR=false;
+            auxiliaryMR=false;
             aimingMR = false;
             unAimMR = false;
             attackF = false;
             attackQ = false;
             R = false;
         }
-
+        //基本操作
         attackML = buttonML.OnReleased;
         forcingML = buttonML.IsPressing && !buttonML.IsDelaying;
         forceReleaseML = buttonML.OnReleased && !buttonML.IsDelaying;
-        aimMR = buttonMR.OnPressed;
-        aimingMR = buttonMR.IsPressing;
-        unAimMR = buttonMR.OnReleased;
+        auxiliaryMR = buttonMR.OnPressed;
+        
         attackF = buttonF.OnPressed;
         attackQ = buttonQ.OnPressed;
+        //補彈
         R = buttonR.OnPressed;
+        //狙擊瞄準
+        aimingMR = buttonMR.IsPressing;
+        unAimMR = buttonMR.OnReleased;
     }
 }

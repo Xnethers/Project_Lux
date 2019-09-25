@@ -9,6 +9,7 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 	public LayerMask ignoreLayerMask;
 	public CareerValue careerValue;
 	public GameObject[] projectile;
+	public GameObject[] comboParticle;
     protected Transform muzzle;
 	protected Transform muzzleR;
 	public bool rayhitAirWall;
@@ -36,12 +37,13 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 
 	public virtual void ForceAttack()//蓄力
 	{ }
-	protected void UseSkill(int attackSkill,float ATK,string triggerName = "attack"){//動作+無CD技能
+	protected void UseSkill(int attackSkill,float ATK,string triggerName = "attack",bool comboAttack = false){//動作+無CD技能
 		ac.am.sm.ATK = ATK;
         photonView.RPC("RPC_SetTrigger", RpcTarget.All, triggerName);
         ac.anim.SetInteger("attackSkill", attackSkill);
-		ac.canAttack = false;
+		ac.canAttack = comboAttack;
     }
+
     // protected void UseSkill(int attackSkill,float ATK, MySkillTimer timer, float duration){//動作+有CD的技能
     //     //Check CD time.
     //     if (timer.FinishedCD)
@@ -118,6 +120,14 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
         foreach (Projectile projectile in bullet.GetComponentsInChildren<Projectile>())
         {
             projectile.Initialize(ac.am,throwerPower,targetPoint);
+        }
+    }
+	[PunRPC]
+    public void RPC_NearProjectile(Vector3 originVec3,int combo){//生成近戰combo具體攻擊(特效)
+        GameObject bullet = Instantiate(comboParticle[combo], originVec3, transform.rotation) as GameObject;
+        foreach (Projectile projectile in bullet.GetComponentsInChildren<Projectile>())
+        {
+            projectile.Initialize(ac.am,0,Vector3.zero);
         }
     }
 	#endregion

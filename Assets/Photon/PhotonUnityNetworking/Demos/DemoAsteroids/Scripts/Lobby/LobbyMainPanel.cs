@@ -79,6 +79,7 @@ namespace Photon.Pun.Demo.Asteroids
         }
         public void Start()
         {
+            //角色陣列物件
             myCharacter = new GameObject[charactersCount];
             myCharacterUI = new GameObject[charactersCount];
             lockCharacterUI = new GameObject[charactersCount];
@@ -261,9 +262,9 @@ namespace Photon.Pun.Demo.Asteroids
         public override void OnRoomPropertiesUpdate(Hashtable changedProps)
         {
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.red)
-                ObjVisiable((bool[])changedProps["Red"]);
+                ObjVisiable((bool[])changedProps["Red"]);//顯示紅隊角色選擇資訊
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.blue)
-                ObjVisiable((bool[])changedProps["Blue"]);
+                ObjVisiable((bool[])changedProps["Blue"]);//顯示藍隊角色選擇資訊
         }
 
         #endregion
@@ -353,8 +354,9 @@ namespace Photon.Pun.Demo.Asteroids
         }
 
         public void OnClickCamp(int whichCamp)
-        {
+        {//選擇隊伍
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
+            //顯示所選隊伍(角色)
             ObjVisiable(myAllCamps, whichCamp);
             PlayerInfo.PI.mySelectedCamp = whichCamp;
         }
@@ -382,9 +384,9 @@ namespace Photon.Pun.Demo.Asteroids
         #region CHOOSE CHARACTERS
         private void UpdateCharacterObj()
         {
-            int tempVisible = PhotonNetwork.LocalPlayer.GetCharacter();
-            ObjSclae(myCharacterUI, tempVisible);
-            ObjVisiable(myCharacter, tempVisible);
+            int tempVisible = PhotonNetwork.LocalPlayer.GetCharacter();//玩家所選角色
+            ObjSclae(myCharacterUI, tempVisible);//放大所選角色
+            ObjVisiable(myCharacter, tempVisible);//顯示3D角色模型
             PlayerInfo.PI.mySelectedCharacter = tempVisible;
         }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*偵測Trigger，有無物件(帶有EventCasterManager)*/
 public class InteractionManager : IActorManagerInterface {
 
     private CapsuleCollider interCol;

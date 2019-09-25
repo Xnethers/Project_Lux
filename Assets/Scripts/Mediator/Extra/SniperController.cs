@@ -9,7 +9,7 @@ public class SniperController : ICareerController
     public GameObject VFX_Enid_Q; 
     public GameObject VFX_Enid_gunFire; 
     public GameObject DrawLine;
-    private KISniper ki;
+    private KICareer ki;
 
     [Space(10)]
     [Header("===== Shooter Settings =====")]
@@ -44,7 +44,7 @@ public class SniperController : ICareerController
     {
         muzzle = transform.DeepFind("Muzzle");
         ac = GetComponent<ActorController>();
-        ki = GetComponent<KISniper>();
+        ki = GetComponent<KICareer>();
         mask = LayerMask.NameToLayer("Body");
         mainCamera = Camera.main;
         Concentric = mainCamera.rect.center;
@@ -170,7 +170,7 @@ public class SniperController : ICareerController
         }
         if (ki.attackML)
             isForce = false;
-        if (ki.aimMR)
+        if (ki.auxiliaryMR)
         {
             ac.camcon.DoAim();
             ac.anim.SetBool("aim", true);

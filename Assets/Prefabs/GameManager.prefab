@@ -290,9 +290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab:
-  - {fileID: 1595332062839686, guid: b965aba08cb0f9a4e8f00a13438a3d01, type: 2}
+  - {fileID: 1028935420427188, guid: 45092992c8e82cb4499645a10c89cb69, type: 2}
   - {fileID: 1664428161481376, guid: 506d54d3568634443a7a7f03529465ac, type: 2}
-  - {fileID: 1803578620778070, guid: 567b8d7793ac3c14885a9c1753abcfe9, type: 2}
+  - {fileID: 1595332062839686, guid: b965aba08cb0f9a4e8f00a13438a3d01, type: 2}
   - {fileID: 1725939108334052, guid: 4c9ed069364e58646b609901a9b90e3b, type: 2}
   - {fileID: 1585588866025934, guid: 89302a5020232404183faa253088e3a3, type: 2}
   RedRelivePoint: {fileID: 114884986812210802}
