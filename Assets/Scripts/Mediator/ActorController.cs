@@ -207,7 +207,7 @@ public class ActorController : IActorManagerInterface {
         //pi.inputEnabled = false;
         lockPlanar = true;
         //thrustVec = new Vector3(0, jumpVelocity, 0);
-        _velocity.y = 1f;//0
+        _velocity.y = 1f;//0有飄浮感
         _velocity.y += Mathf.Sqrt(jumpVelocity * -0.5f * Physics.gravity.y);
         //trackDirection = true;
     }

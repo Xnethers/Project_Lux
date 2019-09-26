@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class TankController : ICareerController {
 	private KICareer ki;
+	private FieldOfView fov;
 	[Header("===== Weapon Settings =====")]
     public Transform handBone;
 	
@@ -14,6 +15,7 @@ public class TankController : ICareerController {
 		muzzleR = transform.DeepFind("MuzzleR");
 		ac = GetComponent<ActorController>();
 		ki = GetComponent<KICareer>();
+		fov = GetComponent<FieldOfView>();
 		NeedleHand();
 	}
 	
@@ -26,6 +28,9 @@ public class TankController : ICareerController {
 		if (ac.canAttack){
 			if (ki.attackML){
 				if (ac.anim.GetBool("isHighFall") && !ac.anim.GetBool("isGround")){ //空攻
+					ac.gravity = ac.gravityConstant *2 ;
+					ac._velocity.y = -ac.gravity;
+					UseSkill(4,careerValue.AirDamage);
 					// RayAim();
 					// if(!rayhitAirWall){
 					// 	if(CheckCD(skillAir)){
@@ -70,5 +75,12 @@ public class TankController : ICareerController {
 	public void Three(){
 		Debug.Log("第三連擊");
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position,2);
+	}
+	public override void AirAttack()//空技
+	{
+		foreach(ActorManager targetAm in fov.visibleTargets){
+			targetAm.TryDoDamage(ac.am.sm.ATK);
+		}
+		
 	}
 }
