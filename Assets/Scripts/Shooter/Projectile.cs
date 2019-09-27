@@ -84,7 +84,7 @@ public class Projectile : MonoBehaviourPunCallbacks
         }
 
         if (col.tag == this.tag){
-            Debug.Log("col.tag == this.tag"+col.name);
+            // Debug.Log("col.tag == this.tag"+col.name);
             // isHit=true;
             return;
         }

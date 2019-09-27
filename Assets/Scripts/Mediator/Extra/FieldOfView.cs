@@ -16,9 +16,10 @@ public class FieldOfView : MonoBehaviour {
     void Start()
     {
         StartCoroutine(FindTargetsWithDelay(.2f));
+        Debug.Log("?????????????????????????????????????????????");
     }
 
-    IEnumerator FindTargetsWithDelay(float delay)
+    public virtual IEnumerator FindTargetsWithDelay(float delay)
     {
         while (true)
         {
@@ -27,7 +28,7 @@ public class FieldOfView : MonoBehaviour {
         }
     }
 
-    void FindVisibleTargets()
+    public void FindVisibleTargets()
     {
         visibleTargets.Clear();
         Transform target=null;

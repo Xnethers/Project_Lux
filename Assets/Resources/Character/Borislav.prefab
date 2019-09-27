@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 114214462689860372}
   - component: {fileID: 114755861551432556}
   - component: {fileID: 114001033017985356}
+  - component: {fileID: 114744709889141228}
   - component: {fileID: 82737368540915398}
-  - component: {fileID: 114382526417519304}
   m_Layer: 11
   m_Name: Borislav
   m_TagString: Untagged
@@ -5038,7 +5038,7 @@ MonoBehaviour:
   - {fileID: 114214462689860372}
   - {fileID: 114414971300417562}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &114073282809841540
 MonoBehaviour:
@@ -5505,26 +5505,6 @@ MonoBehaviour:
   m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114382526417519304
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1028935420427188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 716aa68620ae2244985d7483a82e6bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 5
-  viewAngle: 360
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  visibleTargets: []
 --- !u!114 &114390659945933576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5654,7 +5634,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114036157675850052}
   viewIdField: 0
-  InstantiationId: 2
+  InstantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114431957560450570
 MonoBehaviour:
@@ -6210,6 +6190,27 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: RP:0
+--- !u!114 &114744709889141228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028935420427188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2991584d1c34bb743a187238863c5655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 5
+  viewAngle: 360
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
+  sameHeightTargets: []
 --- !u!114 &114747934086611542
 MonoBehaviour:
   m_ObjectHideFlags: 1
