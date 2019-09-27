@@ -79,6 +79,7 @@ public class TankController : ICareerController {
 	public override void AirAttack()//空技
 	{
 		foreach(ActorManager targetAm in fov.visibleTargets){
+			Debug.Log(targetAm.gameObject.name);
 			targetAm.TryDoDamage(ac.am.sm.ATK);
 		}
 		
