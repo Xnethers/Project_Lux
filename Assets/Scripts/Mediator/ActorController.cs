@@ -31,10 +31,10 @@ public class ActorController : IActorManagerInterface {
     public float gravity = 1f;
     public Vector3 _velocity;
     private Vector3 planarVec;
-    private Vector3 thrustVec;
+    public Vector3 thrustVec;
     public Vector3 attackerVec;
     
-    private bool lockPlanar = false;
+    public bool lockPlanar = false;
     private bool trackDirection = false;
     //private CapsuleCollider col;
     
@@ -72,32 +72,17 @@ public class ActorController : IActorManagerInterface {
             
         if(pi.esc)
             camcon.isCursorVisible = ! camcon.isCursorVisible;
-        if(pi.latent){//按下潛光按鍵(暫定e鍵)
+        if(pi.latent && am.im.overlapEcastms.Count!=0){//按下潛光按鍵(暫定e鍵)
             pi.isLatent = ! pi.isLatent;//是否潛光中
             SetBool("lock",pi.isLatent);//鎖人物動作狀態
             camcon.tempEulerX= 0;//攝影機UpDown角度歸零
             pi.inputMouseEnabled = !pi.inputMouseEnabled;//鎖攝影機操作
             //人與潛光平行(轉角度)
-            //InteractionManager im為偵測有無潛光物件(物件帶有EventCasterManager)
-            //言靈提的
-            Vector3.RotateTowards(transform.forward,am.im.overlapEcastms[0].transform.parent.forward,10,0);
-
-            
-            //失敗的
-            /* 
-            am.im.overlapEcastms[0].transform.parent.Translate(am.im.overlapEcastms[0].transform.parent.forward * Time.deltaTime) ;
-            
-            transform.localRotation = Quaternion.Euler(0,am.im.overlapEcastms[0].transform.parent.localRotation.y,0);
-            if(transform.localRotation.y>0 && transform.localRotation.y<180)
-                transform.localRotation = Quaternion.Euler(0,am.im.overlapEcastms[0].transform.parent.localRotation.y+90,0);
-            else 
-                transform.localRotation = Quaternion.Euler(0,am.im.overlapEcastms[0].transform.parent.localRotation.y-90,0);
-            if(am.im.overlapEcastms.Count!=0)
-                transform.LookAt(am.im.overlapEcastms[0].transform.parent,Vector3.up);
-            transform.localRotation = am.im.overlapEcastms[0].transform.parent.localRotation;*/
-            
+            // Debug.Log(am.im.overlapEcastms[0].transform.eulerAngles.y);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x,am.im.overlapEcastms[0].transform.eulerAngles.y-180f,transform.eulerAngles.z);
+            //InteractionManager im為偵測有無物件(帶有EventCasterManager)
         }
-
+        
         if (trackDirection == false){
             model.transform.forward = transform.forward;
         }
@@ -154,7 +139,7 @@ public class ActorController : IActorManagerInterface {
             //移動
             if (lockPlanar == false && !isBounce)
                 chacon.Move((new Vector3(planarVec.x, _velocity.y, planarVec.z) + thrustVec) * Time.fixedDeltaTime);
-            else{}
+            else//有問題
                 chacon.Move((new Vector3(planarVec.x/2f, _velocity.y, planarVec.z/2f) + thrustVec) * Time.fixedDeltaTime);
         }
         else
@@ -206,7 +191,8 @@ public class ActorController : IActorManagerInterface {
     ///Message processing block 
     /// 
     public void OnLockEnter(){
-
+        // pi.inputEnabled = false;
+        // planarVec = Vector3.zero;//速度清0
     }
     public void OnBounceEnter(){
         pi.inputEnabled = true;
@@ -222,7 +208,7 @@ public class ActorController : IActorManagerInterface {
         //pi.inputEnabled = false;
         lockPlanar = true;
         //thrustVec = new Vector3(0, jumpVelocity, 0);
-        _velocity.y = 1f;//0
+        _velocity.y = 1f;//0有飄浮感
         _velocity.y += Mathf.Sqrt(jumpVelocity * -0.5f * Physics.gravity.y);
         //trackDirection = true;
     }
@@ -242,8 +228,11 @@ public class ActorController : IActorManagerInterface {
         anim.SetBool("isHighFall", false);
     }
     public void OnGroundEnter() {
-        pi.inputEnabled = true;
-        pi.inputMouseEnabled = true;
+        if(CheckState("attackIdle","attack")){
+            pi.inputEnabled = true;
+            pi.inputMouseEnabled = true;
+        }
+        
         lockPlanar = false;
         canAttack = true;
         am.bm.bcB.defCol.material = frictionOne;
@@ -280,6 +269,7 @@ public class ActorController : IActorManagerInterface {
     public void OnAttackIdleEnter() {
         lerpTarget = 0f;
         pi.inputEnabled = true;
+        pi.inputMouseEnabled = true;
         canAttack=true;
     }
     public void OnAttackIdleUpdate() {

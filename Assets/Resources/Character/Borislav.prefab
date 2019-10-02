@@ -1819,7 +1819,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4956543312662116}
-  - component: {fileID: 114937629618559640}
   - component: {fileID: 114424409068672122}
   m_Layer: 0
   m_Name: cameraHandle
@@ -5042,7 +5041,7 @@ MonoBehaviour:
   - {fileID: 114214462689860372}
   - {fileID: 114414971300417562}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114073282809841540
 MonoBehaviour:
@@ -5638,7 +5637,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114036157675850052}
   viewIdField: 0
-  InstantiationId: 2
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114424409068672122
 MonoBehaviour:
@@ -5897,7 +5896,7 @@ MonoBehaviour:
   VerticalSpeed: 40
   minVerAngle: -50
   maxVerAngle: 50
-  offsetXDistanceConstant: 17
+  offsetXDistanceConstant: 20
   offsetZDistance: 2.5
   offsetXDistance: 0.6
   offestDampValue: 0.16
@@ -6259,13 +6258,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294327806
   careerValue: {fileID: 11400000, guid: 0a68634fbae381d47962d310795eae85, type: 2}
-  projectile:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  projectile: []
   comboParticle:
   - {fileID: 1819154459570706, guid: c6cf6e5859a11f349aef92b95ff7e51a, type: 2}
   - {fileID: 1419159141858600, guid: b001e9eddc21a074fae9188ad4ad8712, type: 2}
@@ -6585,17 +6578,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dffa04cde93d524aab75370f833889d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114937629618559640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1673827102966642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 768d7e93178d005499c5602891fc2d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114951232522059180

@@ -4621,7 +4621,7 @@ MonoBehaviour:
   - {fileID: 114719799792810466}
   - {fileID: 114376165227488104}
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114218383465573066
 MonoBehaviour:
@@ -5219,7 +5219,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114678461351947774}
   viewIdField: 0
-  InstantiationId: 9
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114513486353133422
 MonoBehaviour:
@@ -5901,7 +5901,7 @@ MonoBehaviour:
   VerticalSpeed: 40
   minVerAngle: -50
   maxVerAngle: 50
-  offsetXDistanceConstant: 17
+  offsetXDistanceConstant: 20
   offsetZDistance: 2.5
   offsetXDistance: 0.6
   offestDampValue: 0.16
