@@ -1819,6 +1819,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4956543312662116}
+  - component: {fileID: 114937629618559640}
+  - component: {fileID: 114424409068672122}
   m_Layer: 0
   m_Name: cameraHandle
   m_TagString: Untagged
@@ -4787,12 +4789,14 @@ MonoBehaviour:
   isBlind: 0
   isRepel: 0
   isMark: 0
+  isShake: 0
   thunderflash: {fileID: 1882964446458064, guid: 2ea53e01558fb06439c8ff9ea5ee237f,
     type: 2}
   Markeffect: {fileID: 1322962361262802, guid: 4d045978da1712d46b819c867355cc7d, type: 2}
   OutlineScript:
   - {fileID: 114014874434356584}
   MarkTime: 5
+  playerCamShaker: {fileID: 0}
 --- !u!114 &114014874434356584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5038,7 +5042,7 @@ MonoBehaviour:
   - {fileID: 114214462689860372}
   - {fileID: 114414971300417562}
   viewIdField: 0
-  InstantiationId: 2
+  InstantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114073282809841540
 MonoBehaviour:
@@ -5634,8 +5638,23 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114036157675850052}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 2
   isRuntimeInstantiated: 0
+--- !u!114 &114424409068672122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673827102966642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
+  DefaultRotInfluence: {x: 1, y: 1, z: 1}
+  RestPositionOffset: {x: 0.6, y: 1.6, z: 0}
+  RestRotationOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114431957560450570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5878,15 +5897,15 @@ MonoBehaviour:
   VerticalSpeed: 40
   minVerAngle: -50
   maxVerAngle: 50
+  offsetXDistanceConstant: 17
   offsetZDistance: 2.5
   offsetXDistance: 0.6
-  offestDampValue: 0.2
+  offestDampValue: 0.16
   doAim: 0
   isCursorVisible: 0
   cameraHandle: {fileID: 1673827102966642}
   tempEulerX: 0
   rayHit: 0
-  radius: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 66049
@@ -5948,6 +5967,7 @@ MonoBehaviour:
   _velocity: {x: 0, y: 0, z: 0}
   thrustVec: {x: 0, y: 0, z: 0}
   attackerVec: {x: 0, y: 0, z: 0}
+  lockPlanar: 0
   lerpTarget: 0
   isBounce: 0
 --- !u!114 &114587599819806300
@@ -6251,6 +6271,7 @@ MonoBehaviour:
   - {fileID: 1419159141858600, guid: b001e9eddc21a074fae9188ad4ad8712, type: 2}
   - {fileID: 1693539984120346, guid: b0af4149a15b2fb4dbdd74d9c9c1f1b4, type: 2}
   rayhitAirWall: 0
+  cameraShake: {fileID: 0}
   handBone: {fileID: 4812393223154992}
 --- !u!114 &114757544558630126
 MonoBehaviour:
@@ -6564,6 +6585,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dffa04cde93d524aab75370f833889d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114937629618559640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673827102966642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768d7e93178d005499c5602891fc2d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114951232522059180

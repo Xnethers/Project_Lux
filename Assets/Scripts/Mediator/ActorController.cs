@@ -34,7 +34,7 @@ public class ActorController : IActorManagerInterface {
     public Vector3 thrustVec;
     public Vector3 attackerVec;
     
-    private bool lockPlanar = false;
+    public bool lockPlanar = false;
     private bool trackDirection = false;
     //private CapsuleCollider col;
     
@@ -139,7 +139,7 @@ public class ActorController : IActorManagerInterface {
             //移動
             if (lockPlanar == false && !isBounce)
                 chacon.Move((new Vector3(planarVec.x, _velocity.y, planarVec.z) + thrustVec) * Time.fixedDeltaTime);
-            else
+            else//有問題
                 chacon.Move((new Vector3(planarVec.x/2f, _velocity.y, planarVec.z/2f) + thrustVec) * Time.fixedDeltaTime);
         }
         else
@@ -191,7 +191,8 @@ public class ActorController : IActorManagerInterface {
     ///Message processing block 
     /// 
     public void OnLockEnter(){
-
+        pi.inputEnabled = false;
+        planarVec = Vector3.zero;//速度清0
     }
     public void OnBounceEnter(){
         pi.inputEnabled = true;
@@ -227,8 +228,11 @@ public class ActorController : IActorManagerInterface {
         anim.SetBool("isHighFall", false);
     }
     public void OnGroundEnter() {
-        pi.inputEnabled = true;
-        pi.inputMouseEnabled = true;
+        if(CheckState("attackIdle","attack")){
+            pi.inputEnabled = true;
+            pi.inputMouseEnabled = true;
+        }
+        
         lockPlanar = false;
         canAttack = true;
         am.bm.bcB.defCol.material = frictionOne;
@@ -265,6 +269,7 @@ public class ActorController : IActorManagerInterface {
     public void OnAttackIdleEnter() {
         lerpTarget = 0f;
         pi.inputEnabled = true;
+        pi.inputMouseEnabled = true;
         canAttack=true;
     }
     public void OnAttackIdleUpdate() {

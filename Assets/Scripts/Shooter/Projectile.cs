@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviourPunCallbacks
     [SerializeField]protected bool isBlind;
     [SerializeField]protected bool isRepel;
     [SerializeField]protected bool isMark;
+    [SerializeField]protected bool isShake;
     
     [Header("===== Damage Settings =====")]
     [SerializeField] float baseATK = 1f;
@@ -130,7 +131,7 @@ public class Projectile : MonoBehaviourPunCallbacks
         {
             // InstantiateVFX(col,new Vector3(col.transform.position.x,transform.position.y,col.transform.position.z));
             col.SendMessageUpwards("SetTargetAm", am);
-            col.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark));
+            col.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark,isShake));
         }
         AdditionalAttack(col);
         col.SendMessageUpwards("TryDoDamage", GetATK());
@@ -166,10 +167,12 @@ public class DamageBuff
     public bool isBlind;
     public bool isRepel;
     public bool isMark;
-    public DamageBuff(bool isBlind, bool isRepel, bool isMark)
+    public bool isShake;
+    public DamageBuff(bool isBlind, bool isRepel, bool isMark,bool isShake)
     {
         this.isBlind = isBlind;
         this.isRepel = isRepel;
         this.isMark = isMark;
+        this.isShake = isShake;
     }
 }

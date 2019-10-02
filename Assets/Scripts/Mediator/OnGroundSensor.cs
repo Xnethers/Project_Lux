@@ -25,7 +25,7 @@ public class OnGroundSensor : MonoBehaviour {
         point1 = transform.position + transform.up * (radius - offset);
         point2 = transform.position + transform.up * (chacon.height - offset) - transform.up * radius;
 
-        Collider[] outputCols = Physics.OverlapCapsule(point1, point2, radius, LayerMask.GetMask("Ground","Wall"));
+        Collider[] outputCols = Physics.OverlapCapsule(point1, point2, radius, LayerMask.GetMask("Ground","Wall"));//踩到別的玩家頭上會FALL卡住
         if (outputCols.Length != 0)
         {
             /*foreach (var col in outputCols)

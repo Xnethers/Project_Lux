@@ -19,6 +19,10 @@ public class FieldOfViewHeight : FieldOfView {
 	public void StopFind(){
 		StopCoroutine(FindTargetsWithDelay(.2f));
 	}
+	public void TargetsListClear(){
+		sameHeightTargets.Clear();
+		visibleTargets.Clear();
+	}
 	public override IEnumerator FindTargetsWithDelay(float delay)
     {
         while (true)

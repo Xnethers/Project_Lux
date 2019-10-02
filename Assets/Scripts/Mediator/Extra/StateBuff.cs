@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
-
+using EZCameraShake;
 
 public class StateBuff : MonoBehaviourPunCallbacks
 {
@@ -14,6 +14,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
     public bool isBlind;
     public bool isRepel;
     public bool isMark;
+    public bool isShake;
     public GameObject thunderflash;
     public GameObject Markeffect;
     public OutlineObject[] OutlineScript;
@@ -23,7 +24,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
     public float MarkTime = 5;
 
     public List<Player> OtherTeam = new List<Player>();
-
+    public CameraShaker playerCamShaker;
 
 
     // Use this for initialization
@@ -46,6 +47,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
             OtherTeam = PunTeams.PlayersPerTeam[redteam];
             OtherTeam.AddRange(PunTeams.PlayersPerTeam[buleteam]);
         }
+        playerCamShaker = sm.am.ac.camcon.GetComponentInParent<CameraShaker>();
 
     }
 
@@ -60,7 +62,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
         Timer_mark.Tick();
         if (sm.isDie)
         {
-            SetAllDeBuff(new DamageBuff(false, false, false));
+            SetAllDeBuff(new DamageBuff(false, false, false,false));
         }
         if (isRepel)
         {
@@ -86,6 +88,11 @@ public class StateBuff : MonoBehaviourPunCallbacks
             StartCoroutine(Mark());
             isMark = false;
         }
+        if(isShake){
+            playerCamShaker.ShakeOnce(2f,2f,.1f,1f);
+            // Debug.Log(gameObject.name+":Y");
+            isShake = false;
+        }
 
     }
     public void SetAllDeBuff(DamageBuff buff)
@@ -94,6 +101,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
         this.isBlind = buff.isBlind;
         this.isRepel = buff.isRepel;
         this.isMark = buff.isMark;
+        this.isShake = buff.isShake;
     }
     void SetDeBuff()
     {

@@ -45,7 +45,7 @@ public class RangeProjectile : Projectile
             {
                 // InstantiateVFX(col,new Vector3(col.transform.position.x,transform.position.y,col.transform.position.z));
                 col.SendMessageUpwards("SetTargetAm", am);
-                col.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark));
+                col.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark,isShake));
             }
             col.SendMessageUpwards("TryDoDamage", GetATK());
         }

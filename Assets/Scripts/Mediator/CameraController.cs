@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour {
     public ActorController ac;
     public IUserInput pi;
     public Image lockDot;
+    
     public float HorizontalSpeed=100f;
     public float VerticalSpeed = 80f;
     public float minVerAngle = -30f;
@@ -17,7 +18,9 @@ public class CameraController : MonoBehaviour {
     // public float camDampYValue=0.01f;
     [Space(10)]
     [Header("===== Offest Settings =====")]
+    public float offsetXDistanceConstant=20f;
     public float offsetZDistance =2.5f;
+
     public float offsetXDistance =0.6f;
     public float offestDampValue = 0.2f;
 
@@ -39,7 +42,7 @@ public class CameraController : MonoBehaviour {
     private float offestX;
     private float offestZ;
     public bool rayHit;
-    public float radius =0.1f;
+    // public float radius =0.1f;
     private float tempHitDistance = -2.0f;
     //no
     public LayerMask layerMask;
@@ -104,7 +107,8 @@ public class CameraController : MonoBehaviour {
         else {
             offestZ = Mathf.SmoothDamp(transform.localPosition.z, -tempHitDistance, ref offestZDampVelocity, offestDampValue);
         }
-        offestZ = Mathf.Clamp(offestZ, -offsetZDistance, 0f);
+        offestZ = Mathf.Clamp(offestZ, -offsetZDistance, 0);
+
         transform.localPosition = new Vector3(0, 0, offestZ);
         
         if(ac.am.sm.isDie){
@@ -151,16 +155,18 @@ public class CameraController : MonoBehaviour {
         }
     }
     private void SetOffsetX(){//改變看向目標點的位置
-        Collider[] hitColliders = Physics.OverlapBox(playerHandle.transform.position +transform.up, new Vector3(1,.1f,1),Quaternion.identity, layerMask);
-        if(hitColliders.Length>0){
-            //camDampYValue=Mathf.Lerp(camDampYValue,0.001f,.7f);
-            offestX = Mathf.Lerp(offestX,0.001f,offestDampValue);
-        }
+        // Collider[] hitColliders = Physics.OverlapBox(playerHandle.transform.position +transform.up, new Vector3(1,.1f,1),Quaternion.identity, layerMask);
+        // if(hitColliders.Length>0){
+        //     //camDampYValue=Mathf.Lerp(camDampYValue,0.001f,.7f);
+        //     offestX = Mathf.Lerp(offestX,0.001f,offestDampValue);
+        // }
             
-        else {
-            //camDampYValue=camDampXZValue;
-            offestX = Mathf.Lerp(offestX,offsetXDistance,offestDampValue);
-        }
+        // else {
+        //     //camDampYValue=camDampXZValue;
+        //     offestX = Mathf.Lerp(offestX,offsetXDistance,offestDampValue);
+        // }
+        offestX=(offsetZDistance/offsetXDistance)*tempHitDistance/offsetXDistanceConstant;//Mathf.Abs(offestZ)/17
+        // Debug.Log(offestX);
         offestX = Mathf.Clamp(offestX,0,offsetXDistance);
         cameraHandle.transform.localPosition = new Vector3(Mathf.SmoothDamp(cameraHandle.transform.localPosition.x, offestX, ref offestXDampVelocity, offestDampValue), cameraHandle.transform.localPosition.y, cameraHandle.transform.localPosition.z);
     }
@@ -169,8 +175,11 @@ public class CameraController : MonoBehaviour {
         //LayerMask mask = 1<<LayerMask.NameToLayer("Default")|1<<LayerMask.NameToLayer("Wall")|1<<LayerMask.NameToLayer("Ground");
         // Debug.Log("mask"+mask);
         // Debug.Log("layermask"+layerMask);
+        Vector3 playerHead=ac.transform.position+new Vector3(0,ac.chacon.height,0);
+        Vector3 dir = transform.position - playerHead;
         RaycastHit hit;
-        if (Physics.Raycast(cameraHandle.transform.position, mainCamera.transform.TransformDirection(-Vector3.forward)* 100, out hit,100, layerMask)){
+        if (Physics.Raycast(playerHead, dir * 100, out hit,100, layerMask))//cameraHandle.transform.position, mainCamera.transform.TransformDirection(-Vector3.forward)
+        {
             tempHitDistance = hit.distance / 2;
             rayHit = true;
         }
@@ -183,7 +192,7 @@ public class CameraController : MonoBehaviour {
         {
             rayHit = false;
         }
-        Debug.DrawRay(cameraHandle.transform.position, mainCamera.transform.TransformDirection(-Vector3.forward) * 100,Color.green);
+        Debug.DrawRay(playerHead, dir * 100,Color.green);
         
     }
     public void DieSmoothCam(){

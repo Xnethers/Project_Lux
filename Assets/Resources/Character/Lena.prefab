@@ -440,6 +440,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4389125722243876}
+  - component: {fileID: 114207240183725844}
   m_Layer: 0
   m_Name: cameraHandle
   m_TagString: Untagged
@@ -5038,7 +5039,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114390830118841258}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114138841047279624
 MonoBehaviour:
@@ -5216,6 +5217,21 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 332d1bad6b6c8a146a2b4278f0e98865, type: 2}
   subMeshIndex: 0
   eraseRenderer: 0
+--- !u!114 &114207240183725844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1161652597936932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
+  DefaultRotInfluence: {x: 1, y: 1, z: 1}
+  RestPositionOffset: {x: 0.6, y: 1.6, z: 0}
+  RestRotationOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114209497130568546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5355,7 +5371,7 @@ MonoBehaviour:
   - {fileID: 114548938312941780}
   - {fileID: 114563665013848676}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114332887461408078
 MonoBehaviour:
@@ -6317,12 +6333,14 @@ MonoBehaviour:
   isBlind: 0
   isRepel: 0
   isMark: 0
+  isShake: 0
   thunderflash: {fileID: 1882964446458064, guid: 2ea53e01558fb06439c8ff9ea5ee237f,
     type: 2}
   Markeffect: {fileID: 1322962361262802, guid: 4d045978da1712d46b819c867355cc7d, type: 2}
   OutlineScript:
   - {fileID: 114204423067409420}
   MarkTime: 5
+  playerCamShaker: {fileID: 0}
 --- !u!114 &114838464164210278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6588,6 +6606,7 @@ MonoBehaviour:
   _velocity: {x: 0, y: 0, z: 0}
   thrustVec: {x: 0, y: 0, z: 0}
   attackerVec: {x: 0, y: 0, z: 0}
+  lockPlanar: 0
   lerpTarget: 0
   isBounce: 0
 --- !u!114 &114926318356447440
@@ -6635,15 +6654,15 @@ MonoBehaviour:
   VerticalSpeed: 40
   minVerAngle: -50
   maxVerAngle: 50
+  offsetXDistanceConstant: 17
   offsetZDistance: 2.5
   offsetXDistance: 0.6
-  offestDampValue: 0.2
+  offestDampValue: 0.16
   doAim: 0
   isCursorVisible: 0
   cameraHandle: {fileID: 1161652597936932}
   tempEulerX: 0
   rayHit: 0
-  radius: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 66049

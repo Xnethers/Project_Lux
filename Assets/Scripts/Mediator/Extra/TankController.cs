@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using EZCameraShake;
 
 public class TankController : ICareerController {
 	private KICareer ki;
 	private FieldOfViewHeight fovh;
+	public CameraShake cameraShake;
 	[Header("===== Weapon Settings =====")]
     public Transform handBone;
 	
@@ -16,6 +18,7 @@ public class TankController : ICareerController {
 		ac = GetComponent<ActorController>();
 		ki = GetComponent<KICareer>();
 		fovh = GetComponent<FieldOfViewHeight>();
+		cameraShake = ac.camcon.GetComponentInParent<CameraShake>();
 		NeedleHand();
 	}
 	
@@ -30,7 +33,7 @@ public class TankController : ICareerController {
 				if (ac.anim.GetBool("isHighFall") && !ac.anim.GetBool("isGround")){ //空攻
 					ac.gravity = ac.gravityConstant *2 ;
 					ac._velocity.y = -ac.gravity;
-					fovh.StartFind();
+					
 					UseSkill(4,careerValue.AirDamage);
 					// RayAim();
 					// if(!rayhitAirWall){
@@ -57,6 +60,7 @@ public class TankController : ICareerController {
     }
 	public void OnAttack1hAEnter() {
         ki.inputEnabled = false;
+		// ki.inputMouseEnabled = false;
         //lockPlanar = true;
         //lerpTarget = 1.0f;
         
@@ -65,24 +69,33 @@ public class TankController : ICareerController {
         ac.thrustVec = ac.model.transform.forward * ac.anim.GetFloat("attack1hAVelocity");
         //anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, 0.4f));
     }
-	public void One(){
+	public void OneAttack(){
 		Debug.Log("第一連擊");
-		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position,0);
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 0);
 	}
-	public void Two(){
+	public void TwoAttack(){
 		Debug.Log("第二連擊");
-		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position,1);
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 1);
 	}
-	public void Three(){
+	public void ThreeAttack(){
 		Debug.Log("第三連擊");
-		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position,2);
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 2);
+	}
+	//AirAtk
+	public void OnAirAttackEnter(){
+		fovh.TargetsListClear();
+		fovh.StartFind();
+		ki.inputEnabled = false;
+		// ki.inputMouseEnabled = false;
 	}
 	public override void AirAttack()//空技
 	{
-		
+		// CameraShaker.Instance.ShakeOnce(4f,4f,.1f,1f);
+		// StartCoroutine(cameraShake.Shake(.15f,.4f));
 		foreach(ActorManager targetAm in fovh.sameHeightTargets){
 			// Debug.Log(targetAm.gameObject.name);
 			targetAm.TryDoDamage(ac.am.sm.ATK);
+			targetAm.SendMessage("SetAllDeBuff", new DamageBuff(false, false, false,true));
 		}
 		
 	}
