@@ -279,7 +279,7 @@ MonoBehaviour:
   timeToLive: 3
   SecondProjectile: {fileID: 1318987123019488, guid: 5330e2fd875f16745ab1961741412dbf,
     type: 2}
-  attackType: 5
+  attackType: 6
   Damage: 0
 --- !u!114 &114741470056446262
 MonoBehaviour:

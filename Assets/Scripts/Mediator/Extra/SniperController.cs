@@ -234,7 +234,7 @@ public class SniperController : ICareerController
         photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), 0f);
     }
 
-    public void RushingAttack()
+    public override void RushAttack()
     {
         CreateGunFire();
         if (!photonView.IsMine)

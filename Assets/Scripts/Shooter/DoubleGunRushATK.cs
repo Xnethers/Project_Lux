@@ -9,8 +9,9 @@ public class DoubleGunRushATK : Projectile
 
     public float range = 5;//範圍
     public float duration = 3;//持續時間
+    public int frequency = 30; //次數
     public float Intervals = 0.1f;//間隔時間
-    public float DelayedLaunch = 0.0f;
+    public float DelayedLaunch = 0.0f;//延遲發動時間
     public LayerMask mask;//目標對象layer
     Collider[] cols;//目標對象collider
     public GameObject RushZoneVFX;
@@ -24,7 +25,11 @@ public class DoubleGunRushATK : Projectile
     void Start()
     {
         Destroy(this, duration);
-        InvokeRepeating("Invoke_DoMultiDamage", DelayedLaunch, Intervals);
+        for (int i = 0; i < frequency + 1; i++)
+        {
+            Invoke("Invoke_DoMultiDamage", Intervals * i);
+        }
+
     }
 
     void Update()
@@ -40,7 +45,7 @@ public class DoubleGunRushATK : Projectile
                 // isHit=true;
                 return;
             }
-            col.SendMessageUpwards("TryDoDamage", am.ac.careercon.careerValue.NormalDamage);
+            col.SendMessageUpwards("TryDoDamage", GetATK());
         }
     }
 

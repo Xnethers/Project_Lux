@@ -129,6 +129,8 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 180736
+  attackType: 6
+  Damage: 0
 --- !u!135 &135544606357257680
 SphereCollider:
   m_ObjectHideFlags: 1

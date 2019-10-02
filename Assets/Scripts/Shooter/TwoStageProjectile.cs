@@ -27,6 +27,7 @@ public class TwoStageProjectile : Projectile
         if (col.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             GameObject sp = Instantiate(SecondProjectile, transform.position, Quaternion.identity) as GameObject;
+            sp.GetComponent<Projectile>().Initialize(am,0,targetPoint);
             Destroy(transform.root.gameObject);
         }
     }

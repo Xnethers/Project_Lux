@@ -9,17 +9,14 @@ public class RangeProjectile : Projectile
     public float range = 5;
     public LayerMask mask;
     Collider[] cols;
-
-    public override void Awake()
-    {
-        base.Awake();
-        cols = Physics.OverlapSphere(transform.position, range, mask);
-    }
-
+    public attackType attackType;
+    public float Damage;
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
+        cols = Physics.OverlapSphere(transform.position, range, mask);
+        Damage = am.ac.careercon.careerValue.GetDamageByString(attackType);
         Invoke("Invoke_RangeDamage", 0);
     }
 
@@ -47,7 +44,7 @@ public class RangeProjectile : Projectile
                 col.SendMessageUpwards("SetTargetAm", am);
                 col.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark,isShake));
             }
-            col.SendMessageUpwards("TryDoDamage", GetATK());
+            col.SendMessageUpwards("TryDoDamage", Damage);
         }
     }
 }
