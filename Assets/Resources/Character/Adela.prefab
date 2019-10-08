@@ -1697,7 +1697,7 @@ GameObject:
   - component: {fileID: 4981881710410914}
   - component: {fileID: 143068386977253044}
   - component: {fileID: 54905389274661690}
-  - component: {fileID: 114939407106454202}
+  - component: {fileID: 114447966967074834}
   - component: {fileID: 114989263693163878}
   - component: {fileID: 114377532691968370}
   - component: {fileID: 114856973316791092}
@@ -5464,7 +5464,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114127430574322348}
   viewIdField: 0
-  InstantiationId: 4
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114415996733126602
 MonoBehaviour:
@@ -5547,6 +5547,57 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114447966967074834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595332062839686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07720ed908bfefc498d23986424ff89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAI: 0
+  isLatent: 0
+  Dup: 0
+  Dright: 0
+  Dmag: 0
+  Dvec: {x: 0, y: 0, z: 0}
+  Jup: 0
+  Jright: 0
+  run: 0
+  isMove: 0
+  jump: 0
+  roll: 0
+  esc: 0
+  latent: 0
+  inputEnabled: 1
+  inputMouseEnabled: 1
+  keyUp: w
+  keyDown: s
+  keyLeft: a
+  keyRight: d
+  keyRun: left shift
+  keyJump: space
+  keyML: mouse 0
+  keyMR: mouse 1
+  keyF: f
+  keyQ: q
+  keyR: r
+  keyE: e
+  keyESC: escape
+  mouseSensitivityX: 1
+  mouseSensitivityY: 1
+  attackML: 0
+  auxiliaryMR: 0
+  attackF: 0
+  attackQ: 0
+  forcingML: 0
+  forceReleaseML: 0
+  aimingMR: 0
+  unAimMR: 0
+  R: 0
 --- !u!114 &114454459947424976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5635,7 +5686,7 @@ MonoBehaviour:
   - {fileID: 114502605480114190}
   - {fileID: 114856973316791092}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114502605480114190
 MonoBehaviour:
@@ -5867,6 +5918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5b8926b444a5c42806a410b588388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Buffs: []
   isBlind: 0
   isRepel: 0
   isMark: 0
@@ -6578,55 +6630,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
---- !u!114 &114939407106454202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1595332062839686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d384ec09ba3e540add5b72acdca106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAI: 0
-  isLatent: 0
-  Dup: 0
-  Dright: 0
-  Dmag: 0
-  Dvec: {x: 0, y: 0, z: 0}
-  Jup: 0
-  Jright: 0
-  run: 0
-  isMove: 0
-  jump: 0
-  roll: 0
-  esc: 0
-  latent: 0
-  inputEnabled: 1
-  inputMouseEnabled: 1
-  keyUp: w
-  keyDown: s
-  keyLeft: a
-  keyRight: d
-  keyRun: left shift
-  keyJump: space
-  keyML: mouse 0
-  keyMR: mouse 1
-  keyF: f
-  keyQ: q
-  keyR: r
-  keyE: e
-  keyESC: escape
-  mouseSensitivityX: 1
-  mouseSensitivityY: 1
-  attackML: 0
-  attackMR: 0
-  forcingML: 0
-  forceReleaseML: 0
-  attackF: 0
-  attackQ: 0
-  R: 0
 --- !u!114 &114950418750204376
 MonoBehaviour:
   m_ObjectHideFlags: 1

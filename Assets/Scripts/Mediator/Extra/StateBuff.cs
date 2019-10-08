@@ -11,6 +11,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
     private StateManager sm;
 
     [Header("DeBuff")]
+    public Buff[] Buffs;
     public bool isBlind;
     public bool isRepel;
     public bool isMark;
@@ -27,11 +28,11 @@ public class StateBuff : MonoBehaviourPunCallbacks
     [Header("=== Camera Shake Setting ===")]
     public CameraShake cameraShake;
     // public CameraShaker playerCamShaker;
-	// public float magnitude = 4f;
+    // public float magnitude = 4f;
     // public float roughness = 5f;
     // public float fadeIn = 0.1f;
     // public float fadeOut = 1.5f;
-    
+
 
     // Use this for initialization
     void Start()
@@ -72,7 +73,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
         Timer_mark.Tick();
         if (sm.isDie)
         {
-            SetAllDeBuff(new DamageBuff(false, false, false,false));
+            SetAllDeBuff(new DamageBuff(false, false, false, false));
         }
         if (isRepel)
         {
@@ -98,17 +99,17 @@ public class StateBuff : MonoBehaviourPunCallbacks
             StartCoroutine(Mark());
             isMark = false;
         }
-        if(isShake){
+        if (isShake)
+        {
             // playerCamShaker.ShakeOnce(magnitude,roughness,fadeIn,fadeOut);
             // Debug.Log(gameObject.name+":Y");
-            StartCoroutine(cameraShake.Shake(cameraShake.duration,cameraShake.magnitude));
+            StartCoroutine(cameraShake.Shake(cameraShake.duration, cameraShake.magnitude));
             isShake = false;
         }
 
     }
     public void SetAllDeBuff(DamageBuff buff)
     {
-
         this.isBlind = buff.isBlind;
         this.isRepel = buff.isRepel;
         this.isMark = buff.isMark;
@@ -182,4 +183,30 @@ public class StateBuff : MonoBehaviourPunCallbacks
         Instantiate(Markeffect, transform);
 
     }
+
+    public void SeteBuff(Buff[] message)
+    {
+        foreach (var item in message)
+        {
+        //     if (item.isopen)
+        //     { Buffs.GetHashCode();}
+        }
+    }
+}
+
+[System.Serializable]
+public class Buff
+{
+    public string BuffName;
+    public bool isopen;
+    public Buff(string BuffName, bool isopen)
+    {
+        this.BuffName = BuffName;
+        this.isopen = isopen;
+    }
+
+    public void GetBuffName()
+    {}
+
+
 }
