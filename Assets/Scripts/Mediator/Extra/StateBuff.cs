@@ -24,8 +24,14 @@ public class StateBuff : MonoBehaviourPunCallbacks
     public float MarkTime = 5;
 
     public List<Player> OtherTeam = new List<Player>();
-    public CameraShaker playerCamShaker;
-
+    [Header("=== Camera Shake Setting ===")]
+    public CameraShake cameraShake;
+    // public CameraShaker playerCamShaker;
+	// public float magnitude = 4f;
+    // public float roughness = 5f;
+    // public float fadeIn = 0.1f;
+    // public float fadeOut = 1.5f;
+    
 
     // Use this for initialization
     void Start()
@@ -47,8 +53,12 @@ public class StateBuff : MonoBehaviourPunCallbacks
             OtherTeam = PunTeams.PlayersPerTeam[redteam];
             OtherTeam.AddRange(PunTeams.PlayersPerTeam[buleteam]);
         }
-        playerCamShaker = sm.am.ac.camcon.GetComponentInParent<CameraShaker>();
-
+        // playerCamShaker = sm.am.ac.camcon.GetComponentInParent<CameraShaker>();
+        // if (photonView.IsMine && !sm.am.ac.pi.isAI)
+        // {
+        //     playerCamShaker = sm.am.ac.camcon.transform.parent.gameObject.AddComponent<CameraShaker>();
+        // }
+        cameraShake = sm.am.ac.camcon.GetComponentInParent<CameraShake>();
     }
 
     private new void OnEnable()
@@ -89,8 +99,9 @@ public class StateBuff : MonoBehaviourPunCallbacks
             isMark = false;
         }
         if(isShake){
-            playerCamShaker.ShakeOnce(2f,2f,.1f,1f);
+            // playerCamShaker.ShakeOnce(magnitude,roughness,fadeIn,fadeOut);
             // Debug.Log(gameObject.name+":Y");
+            StartCoroutine(cameraShake.Shake(cameraShake.duration,cameraShake.magnitude));
             isShake = false;
         }
 

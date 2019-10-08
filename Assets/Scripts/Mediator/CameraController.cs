@@ -113,7 +113,10 @@ public class CameraController : MonoBehaviour {
         
         if(ac.am.sm.isDie){
             if(!isDieChange){
-                Invoke("DieSmoothCam",1f);//2
+                if(ac.am.sm.isGround)
+                    Invoke("DieSmoothCam",1f);//2
+                else
+                    Invoke("DieSmoothCam",2f);
                 isDieChange=true;
             }
             if(isDieInvoke)
@@ -175,7 +178,7 @@ public class CameraController : MonoBehaviour {
         //LayerMask mask = 1<<LayerMask.NameToLayer("Default")|1<<LayerMask.NameToLayer("Wall")|1<<LayerMask.NameToLayer("Ground");
         // Debug.Log("mask"+mask);
         // Debug.Log("layermask"+layerMask);
-        Vector3 playerHead=ac.transform.position+new Vector3(0,ac.chacon.height,0);
+        Vector3 playerHead=ac.transform.position+new Vector3(0,ac.chacon.height,0);//ac.am.bm.OriginColValue[2]
         Vector3 dir = transform.position - playerHead;
         RaycastHit hit;
         if (Physics.Raycast(playerHead, dir * 100, out hit,100, layerMask))//cameraHandle.transform.position, mainCamera.transform.TransformDirection(-Vector3.forward)

@@ -13,7 +13,11 @@ public class StateManager : IActorManagerInterface, IPunObservable
     public float HP = 100f;
     public float RPMax = 100f;//RushPoint
     public float RP = 0f;
-    public float ATK = 10.0f;
+    public float ATK = 10.0f;//base
+    public float HOT = 1.0f;
+    public float ATKBuff = 1.0f;//Attack
+    public float DEFBuff = 1.0f;//Defense
+    public float HOTBuff = 1.0f;//Heal Over Time
 
     [Header("1st order state flags")]
     public bool isGround;
@@ -80,10 +84,17 @@ public class StateManager : IActorManagerInterface, IPunObservable
 
         if (HP <= 0 && !isDie)
         {
-            Die();
+            if(am.ac.pi.isLatent){
+                photonView.RPC("RPC_SetLatent", RpcTarget.All);
+            }
+            // Die();
             isDie = true;
             if (am.targetAm != null)
             { am.targetAm.sm.AddRP(2); }
+            
+        }
+        if(isDie && isGround){
+            Die();
         }
         if (!photonView.IsMine)
             return;
@@ -116,10 +127,14 @@ public class StateManager : IActorManagerInterface, IPunObservable
             }
         }
     }
+    public float GetATK(float baseATK){
+        return baseATK * ATKBuff;
+    }
     public void Die()
     {
         am.ac.RPC_SetTrigger("die");
-        am.ac.pi.inputMouseEnabled = false;
+        // am.ac.pi.inputMouseEnabled = false;
+        // am.ac.pi.inputEnabled = false;
         //am.ac.camcon.enabled = false;
         AddRP(3);
     }
@@ -156,7 +171,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
             RP = Mathf.Clamp(RP, 0, RPMax);
         }
     }
-    public void StartAddHp()
+    public void StartAddHp(float hpValue,float waitTime = 1f)
     {
         if (!photonView.IsMine)
             return;
@@ -164,20 +179,23 @@ public class StateManager : IActorManagerInterface, IPunObservable
         {
             StopCoroutine(hpCoroutine);
         }
-        hpCoroutine = StartCoroutine(GroundHp(-5f));
+        hpCoroutine = StartCoroutine(GroundHp(hpValue,waitTime));
     }
-    IEnumerator GroundHp(float hpValue)
+    IEnumerator GroundHp(float hpValue,float waitTime)
     {
         isHPing = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(waitTime);
         AddHP(hpValue);
         isHPing = false;
     }
+    
     public void AddHP(float value)
     {
-        HP += value;
-        HP = Mathf.Clamp(HP, 0, HPMax);
-
+        if(!isDie){
+            HP += value;
+            HP = Mathf.Clamp(HP, 0, HPMax);
+        }
+        
     }
     #endregion
     #region PUN Callbacks
@@ -187,6 +205,8 @@ public class StateManager : IActorManagerInterface, IPunObservable
         photonView.RPC("RPC_SetTrigger", RpcTarget.All, "reLife");
         HP = HPMax;
         isDie = false;
+        if (am.ac.pi.isAI)
+            return;
         transform.localPosition = new Vector3(x, mylivezone.Y, z);
         // if (am.ac.pi.isAI)
         //     return;

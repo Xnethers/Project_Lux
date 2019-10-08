@@ -34,12 +34,12 @@ public class TwoStageProjectile : Projectile
 
     public override void AdditionalAttack(Collider col)
     {
-        col.SendMessageUpwards("TryDoDamage", Damage);
+        col.SendMessageUpwards("TryDoDamage", Damage * atkBuff);
     }
 
     public void Invoke_TryDoDamage()
     {
-        col.SendMessageUpwards("TryDoDamage", Damage);
+        col.SendMessageUpwards("TryDoDamage", Damage * atkBuff);
     }
 
 }

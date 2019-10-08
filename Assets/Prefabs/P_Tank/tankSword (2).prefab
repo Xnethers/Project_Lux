@@ -149,10 +149,11 @@ MonoBehaviour:
   isBlind: 0
   isRepel: 0
   isMark: 0
+  isShake: 0
   baseATK: 1
   rangeBuff: 1
   headBuff: 1
-  comboBuff: 3
+  comboBuff: 1.4
   timeToLive: 3
 --- !u!114 &114911312329510070
 MonoBehaviour:

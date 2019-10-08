@@ -85,7 +85,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         if(sm.isDie)
             return;
         //可以加targetAm狀態來判定要不要扣血
-        sm.AddHP(-1 * damage);
+        sm.AddHP(-(damage*(2-sm.DEFBuff)));
         sm.AddRP(0.3f);
     }
     private void SetTag(Player p,ActorManager am){

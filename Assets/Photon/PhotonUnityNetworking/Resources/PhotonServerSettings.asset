@@ -93,4 +93,7 @@ MonoBehaviour:
   - RPC_SetTargetLine
   - RPC_MaxRP
   - RPC_NearProjectile
+  - SetLatent
+  - RPC_SetLatent
+  - RPC_ShakeAttack
   DisableAutoOpenWizard: 1

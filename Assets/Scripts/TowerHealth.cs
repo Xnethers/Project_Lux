@@ -21,6 +21,7 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject resultUI;
     public Text tempText;
     public OccupiedTest occupied;
+    public float enemyHpValue = -5f;
     // Use this for initialization
     void Start()
     {
@@ -55,7 +56,7 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
                 foreach (ActorManager am in fov.visibleTargets)
                 {
                     if (!am.sm.isHPing)
-                        am.sm.StartAddHp();
+                        am.sm.StartAddHp(enemyHpValue);
                 }
             }
         }

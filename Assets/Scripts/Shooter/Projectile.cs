@@ -22,6 +22,7 @@ public class Projectile : MonoBehaviourPunCallbacks
     
     [Header("===== Damage Settings =====")]
     [SerializeField] float baseATK = 1f;
+    public float atkBuff = 1f;
     [SerializeField] float rangeBuff = 1f;
     [SerializeField] float headBuff = 1f;
     [SerializeField] float comboBuff = 1f;
@@ -43,6 +44,7 @@ public class Projectile : MonoBehaviourPunCallbacks
         this.tag = am.tag;
 
         this.baseATK = am.sm.ATK;
+        this.atkBuff = am.sm.ATKBuff;
         this.originVec3 = transform.position;
         this.targetPoint = targetPoint;
         rb = GetComponent<Rigidbody>();
@@ -152,8 +154,8 @@ public class Projectile : MonoBehaviourPunCallbacks
     }
     public float GetATK()
     {
-        Debug.Log("ATK:" + baseATK * rangeBuff * comboBuff * headBuff);
-        return baseATK * rangeBuff * headBuff * comboBuff;
+        Debug.Log("ATK:" + baseATK * rangeBuff * comboBuff * headBuff *atkBuff);
+        return baseATK * rangeBuff * headBuff * comboBuff  *atkBuff;
     }
     public virtual void AdditionalAttack(Collider col)
     {

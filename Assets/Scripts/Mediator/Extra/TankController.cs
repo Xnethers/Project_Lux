@@ -28,6 +28,12 @@ public class TankController : ICareerController {
             return;
         if (!photonView.IsMine)
             return;
+		if(ac.am.sm.isDie){
+			skillQ.atkTimer.state=MyTimer.STATE.IDLE;
+            return;
+		}
+		if(ac.pi.isLatent)
+			return;
 		if (ac.canAttack){
 			if (ki.attackML){
 				if (ac.anim.GetBool("isHighFall") && !ac.anim.GetBool("isGround")){ //空攻
@@ -71,14 +77,20 @@ public class TankController : ICareerController {
     }
 	public void OneAttack(){
 		Debug.Log("第一連擊");
+		if (!photonView.IsMine)
+            return;
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 0);
 	}
 	public void TwoAttack(){
 		Debug.Log("第二連擊");
+		if (!photonView.IsMine)
+            return;
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 1);
 	}
 	public void ThreeAttack(){
 		Debug.Log("第三連擊");
+		if (!photonView.IsMine)
+            return;
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 2);
 	}
 	//AirAtk
@@ -90,16 +102,21 @@ public class TankController : ICareerController {
 	}
 	public override void AirAttack()//空技
 	{
-		// CameraShaker.Instance.ShakeOnce(4f,4f,.1f,1f);
-		// StartCoroutine(cameraShake.Shake(.15f,.4f));
-		foreach(ActorManager targetAm in fovh.sameHeightTargets){
-			// Debug.Log(targetAm.gameObject.name);
-			targetAm.TryDoDamage(ac.am.sm.ATK);
-			targetAm.SendMessage("SetAllDeBuff", new DamageBuff(false, false, false,true));
-		}
-		
+		if (!photonView.IsMine)
+            return;
+		photonView.RPC("RPC_ShakeAttack", RpcTarget.All);
 	}
 	public void OnAirAttackExit(){
 		fovh.StopFind();
+	}
+	[PunRPC]
+	public void RPC_ShakeAttack(){
+		// CameraShaker.Instance.ShakeOnce(4f,5f,.1f,1f);
+		// StartCoroutine(cameraShake.Shake(cameraShake.duration,cameraShake.magnitude));//.15 .4
+		foreach(ActorManager targetAm in fovh.sameHeightTargets){
+			// Debug.Log(targetAm.gameObject.name);
+			targetAm.TryDoDamage(ac.am.sm.GetATK(ac.am.sm.ATK));
+			targetAm.SendMessage("SetAllDeBuff", new DamageBuff(false, false, false,true));
+		}
 	}
 }
