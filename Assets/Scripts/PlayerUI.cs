@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using Photon.Pun;
+using System.Text;
 
 public class PlayerUI : MonoBehaviourPunCallbacks
 {
@@ -29,6 +30,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     public Image OccupiedBlue;
     public OccupiedTest occupied;
     public Text ReLiveTime;
+    public Text Buff;
 
     #endregion
 
@@ -78,8 +80,14 @@ public class PlayerUI : MonoBehaviourPunCallbacks
             playerHealthSlider.value = sm.HP/sm.HPMax;
         }
         textRP.text ="RP:" + sm.RP.ToString();
-        if(textTag !=null)
-            textTag.text ="Team:" + transform.tag.ToString();
+        if(textTag !=null){//red = Yellow , blue = Purple
+            if(transform.tag == "Red")
+                textTag.text ="Team:Yellow";
+            if(transform.tag == "Blue")
+                textTag.text ="Team:Purple";
+            //textTag.text ="Team:" + transform.tag.ToString();
+        }
+            
         if(sm.am.ac.pi.isAI)
             return;
         if(!photonView.IsMine)
@@ -98,6 +106,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         }
         else
             ReLiveTime.gameObject.SetActive(false);
+        Buff.text="ATKBuff:"+sm.ATKBuff+"\r\nDEFBuff:"+sm.DEFBuff+"\r\nHOTBuff:"+sm.HOTBuff;
     }
 
     #endregion

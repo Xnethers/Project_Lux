@@ -89,6 +89,8 @@ public class SniperController : ICareerController
             skillQ.atkTimer.state=MyTimer.STATE.IDLE;
             return;
         }
+		if(ac.pi.isLatent)
+			return;
         //Debug.Log(skillML.atkTimer.elapsedTime);
         if (ac.canAttack && !isFill)
         {

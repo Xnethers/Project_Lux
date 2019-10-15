@@ -13,10 +13,12 @@ public class FieldOfView : MonoBehaviour {
 
     //[HideInInspector]
     public List<ActorManager> visibleTargets = new List<ActorManager>();
+    public List<ActorManager> useTargets = new List<ActorManager>();
     void Start()
     {
-        StartCoroutine(FindTargetsWithDelay(.2f));
-        Debug.Log("?????????????????????????????????????????????");
+        StartFind();
+        // StartCoroutine(FindTargetsWithDelay(.2f));
+        // Debug.Log("?????????????????????????????????????????????");
     }
 
     public virtual IEnumerator FindTargetsWithDelay(float delay)
@@ -25,6 +27,7 @@ public class FieldOfView : MonoBehaviour {
         {
             yield return new WaitForSeconds(delay);
             FindVisibleTargets();
+            FindUseTargets();
         }
     }
 
@@ -42,11 +45,8 @@ public class FieldOfView : MonoBehaviour {
                 float dsToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics.Raycast((transform.position), dirToTarget, dsToTarget, obstacleMask))
                 {
-                    if(target.tag != this.tag){
-                        ActorManager tempAm=target.GetComponent<ActorManager>();
-                        visibleTargets.Add(tempAm);
-                    }
-                        
+                    ActorManager tempAm=target.GetComponent<ActorManager>();
+                    visibleTargets.Add(tempAm);
                 }
             }
         }
@@ -59,4 +59,18 @@ public class FieldOfView : MonoBehaviour {
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
+    public virtual void FindUseTargets(){
+        
+    }
+    public virtual void StartFind(){
+		StartCoroutine(FindTargetsWithDelay(.2f));
+	}
+	public virtual void StopFind(){
+		StopCoroutine(FindTargetsWithDelay(.2f));
+	}
+	public virtual void TargetsListClear(){
+		visibleTargets.Clear();
+        useTargets.Clear();
+	}
+
 }

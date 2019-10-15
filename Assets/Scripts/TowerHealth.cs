@@ -51,9 +51,9 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            if (fov.visibleTargets.Count > 0)
+            if (fov.useTargets.Count > 0)
             {
-                foreach (ActorManager am in fov.visibleTargets)
+                foreach (ActorManager am in fov.useTargets)
                 {
                     if (!am.sm.isHPing)
                         am.sm.StartAddHp(enemyHpValue);

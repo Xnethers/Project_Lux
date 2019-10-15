@@ -3,20 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using EZCameraShake;
-
+using UnityEngine.UI;
 public class TankController : ICareerController {
 	private KICareer ki;
 	private FieldOfViewHeight fovh;
 	public CameraShake cameraShake;
 	[Header("===== Weapon Settings =====")]
     public Transform handBone;
-	
+	[Header("===== Buff Settings =====")]
+	public GameObject buffObj;
+	public float atkBuff = 1.5f;//Attack
+    public float detBuff = 1.5f;//Defense
+    public float hotBuff = 2.0f;//Heal Over Time
+	public enum BuffType
+	{
+		ATKBuff, DEFBuff,HOTBuff 
+	}
+	public BuffType buffType;
+	private TankController tankController;
+	public Text buffText;
 
 	// Use this for initialization
 	void Start () {
 		muzzleR = transform.DeepFind("MuzzleR");
 		ac = GetComponent<ActorController>();
 		ki = GetComponent<KICareer>();
+		tankController = GetComponent<TankController>();
 		fovh = GetComponent<FieldOfViewHeight>();
 		cameraShake = ac.camcon.GetComponentInParent<CameraShake>();
 		NeedleHand();
@@ -28,6 +40,11 @@ public class TankController : ICareerController {
             return;
         if (!photonView.IsMine)
             return;
+		skillF.Tick();
+        skillQ.Tick();
+        skillAir.Tick();
+        skillForce.Tick();
+        forcingTimer.Tick();
 		if(ac.am.sm.isDie){
 			skillQ.atkTimer.state=MyTimer.STATE.IDLE;
             return;
@@ -53,6 +70,16 @@ public class TankController : ICareerController {
 					// if(!isForce)//普攻
 						UseSkill(0,careerValue.NormalDamage,"attack",true);
 				}
+			}
+			if (ki.auxiliaryMR){//群攻
+				photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
+				buffText.text = buffType.ToString();
+			}
+			if (ki.attackF){//擊退攻
+				if(CheckCD(skillF)){
+					photonView.RPC("RPC_Buff", RpcTarget.All);
+					StartCD(skillF,careerValue.SecondCD);
+				}  
 			}
 		}
 	}
@@ -94,7 +121,7 @@ public class TankController : ICareerController {
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 2);
 	}
 	//AirAtk
-	public void OnAirAttackEnter(){
+	public void OnAirJumpEnter(){
 		fovh.TargetsListClear();
 		fovh.StartFind();
 		ki.inputEnabled = false;
@@ -113,10 +140,27 @@ public class TankController : ICareerController {
 	public void RPC_ShakeAttack(){
 		// CameraShaker.Instance.ShakeOnce(4f,5f,.1f,1f);
 		// StartCoroutine(cameraShake.Shake(cameraShake.duration,cameraShake.magnitude));//.15 .4
-		foreach(ActorManager targetAm in fovh.sameHeightTargets){
+		foreach(ActorManager targetAm in fovh.useTargets){
 			// Debug.Log(targetAm.gameObject.name);
 			targetAm.TryDoDamage(ac.am.sm.GetATK(ac.am.sm.ATK));
 			targetAm.SendMessage("SetAllDeBuff", new DamageBuff(false, false, false,true));
 		}
+	}
+	[PunRPC]
+	public void RPC_ChangeBuffType(){
+		int type = (int)buffType;
+		type++;
+		if(type>System.Enum.GetNames (buffType.GetType ()).Length-1){
+			type=0; 
+		} 
+		Debug.Log(type);
+		buffType = (BuffType)type;
+	}
+	[PunRPC]
+	public void RPC_Buff(){
+		GameObject buff = Instantiate(buffObj, transform.position, transform.rotation) as GameObject;
+		buff.transform.parent=transform;
+		FieldOfViewBuff fovb = buff.GetComponent<FieldOfViewBuff>();
+		fovb.Initialize(tankController);
 	}
 }

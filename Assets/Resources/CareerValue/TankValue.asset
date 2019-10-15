@@ -19,7 +19,7 @@ MonoBehaviour:
   airDamage: 15
   forceMinDamage: 10
   forceDifferenceDamage: 1
-  secondCD: 3
+  secondCD: 15
   rushingCD: 6
   airCD: 6
   forceCD: 3

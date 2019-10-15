@@ -96,4 +96,6 @@ MonoBehaviour:
   - SetLatent
   - RPC_SetLatent
   - RPC_ShakeAttack
+  - RPC_Buff
+  - RPC_ChangeBuffType
   DisableAutoOpenWizard: 1

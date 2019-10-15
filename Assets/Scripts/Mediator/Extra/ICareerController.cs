@@ -130,6 +130,7 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
             projectile.Initialize(ac.am,0,Vector3.zero);
         }
     }
+	
 	#endregion
 }
  public class MySkillTimer{//技能CD計時器

@@ -11,6 +11,8 @@ public class OnGroundSensor : MonoBehaviour {
     private Vector3 point1;
     private Vector3 point2;
     private float radius;
+    public Collider[] outputCols;
+    public int count = 0;
 
 	// Use this for initialization
 	void Awake () {
@@ -21,18 +23,24 @@ public class OnGroundSensor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-
         point1 = transform.position + transform.up * (radius - offset);
         point2 = transform.position + transform.up * (chacon.height - offset) - transform.up * radius;
 
-        Collider[] outputCols = Physics.OverlapCapsule(point1, point2, radius, LayerMask.GetMask("Ground","Wall"));//踩到別的玩家頭上會FALL卡住
+        outputCols = Physics.OverlapCapsule(point1, point2, radius, LayerMask.GetMask("Ground","Wall","Sensor"));//踩到別的玩家頭上會FALL卡住
+        count = outputCols.Length;
         if (outputCols.Length != 0)
         {
-            /*foreach (var col in outputCols)
+            
+            foreach (var col in outputCols)
             {
-                print("collision : "+col.name );
-            }*/
-            SendMessageUpwards("IsGround");//Send to ac
+                if(col == transform.GetComponent<Collider>())
+                    count--;
+                // print("collision : "+col.name );
+            }
+            if(count!=0)
+                SendMessageUpwards("IsGround");//Send to ac
+            else
+                SendMessageUpwards("IsNotGround");
         }
         else {
             SendMessageUpwards("IsNotGround");
@@ -41,6 +49,10 @@ public class OnGroundSensor : MonoBehaviour {
             SendMessageUpwards("IsHighFall");
         else
             SendMessageUpwards("IsNotHighFall");
+        // if(GetGroundDistance()<offset)//0.15
+        //     SendMessageUpwards("IsGround");//Send to ac
+        // else 
+        //     SendMessageUpwards("IsNotGround");
     }
     public float GetGroundDistance(){//取得玩家與下方地面的距離
 		Vector3 targetPoint;

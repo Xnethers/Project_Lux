@@ -7,6 +7,7 @@ public class EventCasterManager : IActorManagerInterface {
     // public string eventName;
     // public bool active;
 	// public Vector3 offset = new Vector3(0,0,0.5f);
+	public float offset=0.2f;
 	//// Use this for initialization
 	void Start () {
         if (am == null) {

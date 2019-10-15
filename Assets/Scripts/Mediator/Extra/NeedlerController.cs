@@ -66,6 +66,9 @@ public class NeedlerController : ICareerController
             skillQ.atkTimer.state=MyTimer.STATE.IDLE;
             return;
         }
+        
+		if(ac.pi.isLatent)
+			return;
         if(Input.GetKeyDown(KeyCode.Z)){
             RayAim();
             if(!rayhitAirWall){

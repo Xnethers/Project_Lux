@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 33640951}
   m_Layer: 14
   m_Name: headHandle
-  m_TagString: Red
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1178,9 +1178,6 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: jump
-  - Type: 9
-    SynchronizeType: 0
-    Name: roll
   - Type: 9
     SynchronizeType: 0
     Name: attack
@@ -2840,7 +2837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &89459521
 Transform:
   m_ObjectHideFlags: 0
@@ -4833,30 +4830,6 @@ Transform:
   m_Father: {fileID: 649947794}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &196712748
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/KawaseBlurPostProcess
-  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &198669095
 GameObject:
   m_ObjectHideFlags: 0
@@ -6322,13 +6295,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.3
+  m_Height: 1.4
   m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.65, z: 0}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &263708179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6353,6 +6326,10 @@ MonoBehaviour:
   rayhitAirWall: 0
   cameraShake: {fileID: 905959025}
   handBone: {fileID: 655667769}
+  atkBuff: 1.5
+  detBuff: 1.5
+  hotBuff: 2
+  buffType: 0
 --- !u!114 &263708180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6449,7 +6426,6 @@ MonoBehaviour:
   isGround: 0
   isJump: 0
   isFall: 1
-  isRoll: 0
   isJab: 0
   isAttack: 0
   isRushAttack: 0
@@ -6599,7 +6575,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   visibleTargets: []
-  sameHeightTargets: []
+  useTargets: []
 --- !u!114 &263708186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7087,9 +7063,9 @@ MonoBehaviour:
   interation: 1
   offset: 1
   colorIntensity: 3
-  postMat: {fileID: 947881116}
-  flatColor: {fileID: 1747428395}
-  blur: {fileID: 196712748}
+  postMat: {fileID: 1660359350}
+  flatColor: {fileID: 374506536}
+  blur: {fileID: 394855366}
   bufferEvent: 17
 --- !u!114 &282840816
 MonoBehaviour:
@@ -9384,6 +9360,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 374404928}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &374506536
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/FlatColor
+  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &376640469
 GameObject:
   m_ObjectHideFlags: 0
@@ -9648,6 +9648,30 @@ RectTransform:
   m_AnchoredPosition: {x: 2.5, y: 0}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &394855366
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/KawaseBlurPostProcess
+  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &396003756
 GameObject:
   m_ObjectHideFlags: 0
@@ -10485,7 +10509,6 @@ MonoBehaviour:
   isGround: 1
   isJump: 0
   isFall: 0
-  isRoll: 0
   isJab: 0
   isAttack: 0
   isRushAttack: 0
@@ -13167,6 +13190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
+  offset: 0.2
 --- !u!1 &547264805
 GameObject:
   m_ObjectHideFlags: 0
@@ -14068,6 +14092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
+  offset: 0.2
 --- !u!1 &604598440
 GameObject:
   m_ObjectHideFlags: 0
@@ -18096,19 +18121,20 @@ MonoBehaviour:
   bcL: {fileID: 1099271611}
   OriginColValue: []
   latentCol: {fileID: 0}
---- !u!65 &713969686
-BoxCollider:
+--- !u!136 &713969686
+CapsuleCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65863274723329718, guid: b965aba08cb0f9a4e8f00a13438a3d01,
+  m_PrefabParentObject: {fileID: 136515320517921362, guid: b965aba08cb0f9a4e8f00a13438a3d01,
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 713969684}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.45, z: 0.5}
-  m_Center: {x: 0, y: 0.67, z: 0}
+  m_Radius: 0.25
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &713969687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18123,6 +18149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chacon: {fileID: 728112608}
   offset: 0.1
+  outputCols: []
+  count: 0
 --- !u!4 &713969688
 Transform:
   m_ObjectHideFlags: 0
@@ -18423,7 +18451,7 @@ Transform:
   m_Children:
   - {fileID: 1184893608}
   m_Father: {fileID: 1399344886}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &723892104
 CapsuleCollider:
@@ -18877,7 +18905,6 @@ MonoBehaviour:
   isGround: 1
   isJump: 0
   isFall: 0
-  isRoll: 0
   isJab: 0
   isAttack: 0
   isRushAttack: 0
@@ -21645,19 +21672,20 @@ MonoBehaviour:
   bcL: {fileID: 1655321195}
   OriginColValue: []
   latentCol: {fileID: 0}
---- !u!65 &855601855
-BoxCollider:
+--- !u!136 &855601855
+CapsuleCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65958863790415796, guid: 89302a5020232404183faa253088e3a3,
+  m_PrefabParentObject: {fileID: 136815257075828088, guid: 89302a5020232404183faa253088e3a3,
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 855601853}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.45, z: 0.5}
-  m_Center: {x: 0, y: 0.67, z: 0}
+  m_Radius: 0.25
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &855601856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21672,6 +21700,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chacon: {fileID: 1156280035}
   offset: 0.1
+  outputCols: []
+  count: 0
 --- !u!4 &855601857
 Transform:
   m_ObjectHideFlags: 0
@@ -23878,30 +23908,6 @@ Transform:
   m_Father: {fileID: 217202864}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &947881116
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/OutlineCommandBuffer
-  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &955365160
 GameObject:
   m_ObjectHideFlags: 0
@@ -26198,7 +26204,7 @@ GameObject:
   - component: {fileID: 1068477376}
   m_Layer: 14
   m_Name: headHandle
-  m_TagString: Red
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28228,8 +28234,8 @@ Transform:
   - {fileID: 593406464}
   - {fileID: 1579570128}
   - {fileID: 343821321}
-  - {fileID: 1655321193}
   - {fileID: 1271543455}
+  - {fileID: 1655321193}
   m_Father: {fileID: 758264397}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28425,7 +28431,6 @@ MonoBehaviour:
   isGround: 0
   isJump: 0
   isFall: 1
-  isRoll: 0
   isJab: 0
   isAttack: 0
   isRushAttack: 0
@@ -31005,19 +31010,20 @@ MonoBehaviour:
   bcL: {fileID: 723892105}
   OriginColValue: []
   latentCol: {fileID: 0}
---- !u!65 &1261115033
-BoxCollider:
+--- !u!136 &1261115033
+CapsuleCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65958863790415796, guid: 89302a5020232404183faa253088e3a3,
+  m_PrefabParentObject: {fileID: 136815257075828088, guid: 89302a5020232404183faa253088e3a3,
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1261115031}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.45, z: 0.5}
-  m_Center: {x: 0, y: 0.67, z: 0}
+  m_Radius: 0.25
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &1261115034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31032,6 +31038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chacon: {fileID: 1399344885}
   offset: 0.1
+  outputCols: []
+  count: 0
 --- !u!4 &1261115035
 Transform:
   m_ObjectHideFlags: 0
@@ -31317,7 +31325,7 @@ RectTransform:
   - {fileID: 1927865430}
   - {fileID: 1051470375}
   m_Father: {fileID: 1156280033}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -33552,7 +33560,7 @@ RectTransform:
   - {fileID: 1442016077}
   - {fileID: 1843108818}
   m_Father: {fileID: 1399344886}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -35129,7 +35137,6 @@ MonoBehaviour:
   isGround: 0
   isJump: 0
   isFall: 1
-  isRoll: 0
   isJab: 0
   isAttack: 0
   isRushAttack: 0
@@ -35292,8 +35299,8 @@ Transform:
   - {fileID: 778401105}
   - {fileID: 208062968}
   - {fileID: 1340509583}
-  - {fileID: 723892103}
   - {fileID: 1338252942}
+  - {fileID: 723892103}
   m_Father: {fileID: 758264397}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37310,6 +37317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
+  offset: 0.2
 --- !u!65 &1501925018
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40322,7 +40330,7 @@ Transform:
   m_Children:
   - {fileID: 1822917060}
   m_Father: {fileID: 1156280033}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1655321194
 CapsuleCollider:
@@ -40383,6 +40391,30 @@ Transform:
   m_Father: {fileID: 1433127043}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1660359350
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/OutlineCommandBuffer
+  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1661004995
 GameObject:
   m_ObjectHideFlags: 0
@@ -42645,30 +42677,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1747011632}
---- !u!21 &1747428395
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/FlatColor
-  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1749068450
 GameObject:
   m_ObjectHideFlags: 0
@@ -43983,19 +43991,20 @@ MonoBehaviour:
   bcL: {fileID: 89459523}
   OriginColValue: []
   latentCol: {fileID: 0}
---- !u!65 &1809554735
-BoxCollider:
+--- !u!136 &1809554735
+CapsuleCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65768674604480830, guid: 45092992c8e82cb4499645a10c89cb69,
+  m_PrefabParentObject: {fileID: 136615804804936626, guid: 45092992c8e82cb4499645a10c89cb69,
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1809554733}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.45, z: 0.5}
-  m_Center: {x: 0, y: 0.67, z: 0}
+  m_Radius: 0.25
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &1809554736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44010,6 +44019,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chacon: {fileID: 263708178}
   offset: 0.1
+  outputCols: []
+  count: 0
 --- !u!4 &1809554737
 Transform:
   m_ObjectHideFlags: 0
@@ -44084,6 +44095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
+  offset: 0.2
 --- !u!65 &1814241498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44183,7 +44195,7 @@ GameObject:
   - component: {fileID: 1820558052}
   - component: {fileID: 1820558051}
   - component: {fileID: 1820558050}
-  - component: {fileID: 1820558049}
+  - component: {fileID: 1820558048}
   m_Layer: 0
   m_Name: BTower
   m_TagString: Blue
@@ -44209,7 +44221,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1820558049
+--- !u!114 &1820558048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -44217,7 +44229,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1820558046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 716aa68620ae2244985d7483a82e6bd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 946ee5457b8c69b42b245e071fddf593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 10
@@ -44229,6 +44241,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 66048
   visibleTargets: []
+  useTargets: []
 --- !u!114 &1820558050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44768,6 +44781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
+  offset: 0.2
 --- !u!1 &1841828342
 GameObject:
   m_ObjectHideFlags: 0
@@ -45789,7 +45803,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1886605161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 716aa68620ae2244985d7483a82e6bd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 946ee5457b8c69b42b245e071fddf593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 10
@@ -45801,6 +45815,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 66048
   visibleTargets: []
+  useTargets: []
 --- !u!114 &1886605164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48026,7 +48041,7 @@ GameObject:
   - component: {fileID: 1974721027}
   m_Layer: 14
   m_Name: headHandle
-  m_TagString: Red
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48944,19 +48959,20 @@ MonoBehaviour:
   bcL: {fileID: 1248668647}
   OriginColValue: []
   latentCol: {fileID: 0}
---- !u!65 &2001974899
-BoxCollider:
+--- !u!136 &2001974899
+CapsuleCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65883116538050460, guid: 506d54d3568634443a7a7f03529465ac,
+  m_PrefabParentObject: {fileID: 136769271157354626, guid: 506d54d3568634443a7a7f03529465ac,
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2001974897}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.45, z: 0.5}
-  m_Center: {x: 0, y: 0.67, z: 0}
+  m_Radius: 0.25
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &2001974900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48971,6 +48987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chacon: {fileID: 416289094}
   offset: 0.1
+  outputCols: []
+  count: 0
 --- !u!4 &2001974901
 Transform:
   m_ObjectHideFlags: 0

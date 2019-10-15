@@ -86,6 +86,8 @@ public class ActorController : IActorManagerInterface {
                 //人與潛光平行(轉角度)
                 // Debug.Log(am.im.overlapEcastms[0].transform.eulerAngles.y);
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x,am.im.overlapEcastms[0].transform.eulerAngles.y-180f,transform.eulerAngles.z);
+                if(pi.isLatent)
+                    transform.position -= am.im.overlapEcastms[0].transform.forward*am.im.overlapEcastms[0].offset;
                 //InteractionManager im為偵測有無物件(帶有EventCasterManager)
             }
         }
@@ -129,6 +131,7 @@ public class ActorController : IActorManagerInterface {
         
         if(!photonView.IsMine)
             return;
+        
         //cc.position += deltaPos;
         // //rigid.position += planarVec * Time.fixedDeltaTime;
         // rigid.velocity = new Vector3(planarVec.x, rigid.velocity.y, planarVec.z) + thrustVec;
@@ -171,27 +174,27 @@ public class ActorController : IActorManagerInterface {
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer!=LayerMask.NameToLayer("Bounce") && other.gameObject.layer!=LayerMask.NameToLayer("Occupied")){
-            _velocity.y = 0f;
-            // Debug.Log("no bounce=fall:"+other.name);
-        }
+        //撞到空中走廊
+        // if(other.gameObject.layer!=LayerMask.NameToLayer("Bounce") && other.gameObject.layer!=LayerMask.NameToLayer("Occupied")){
+        //     _velocity.y = 0f;
+        //     Debug.Log("no bounce=fall:"+other.name);
+        // }
         //anim.SetBool("isHighFall", true);
         // Collider[] outputCols = Physics.OverlapBox(am.bm.transform.position , new Vector3(.5f,.2f,.5f),Quaternion.identity, LayerMask.GetMask("Bounce"));
         // if(!pi.jump && outputCols.Length==0){
             
         // }
             
-            
     }
     void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.layer==LayerMask.NameToLayer("Ground") || other.gameObject.layer==LayerMask.NameToLayer("Wall")){
-            if(_velocity.y<0){
-                _velocity.y = 0f;
-                Debug.Log("fall:"+other.name);
-            }
+        // if(other.gameObject.layer==LayerMask.NameToLayer("Ground") || other.gameObject.layer==LayerMask.NameToLayer("Wall")){
+        //     if(_velocity.y<0){
+        //         _velocity.y = 0f;
+        //         Debug.Log("fall:"+other.name);
+        //     }
                 
-        }
+        // }
     }
 
     ///
