@@ -11,6 +11,7 @@ public class ActorController : IActorManagerInterface {
     public IUserInput pi;
     public ICareerController careercon;
     public float walkSpeed = 2.4f;
+    public float upSpeed = 1;
     public float runMultiplier = 2.0f;
     public float jumpVelocity = 5.5f;
     public float popUpVelocity = 1.5f;
@@ -107,7 +108,7 @@ public class ActorController : IActorManagerInterface {
             }
         }
         if (lockPlanar == false) {
-            planarVec = pi.Dvec * walkSpeed * runMultiplier ;//((pi.run) ? runMultiplier : 1.0f
+            planarVec = pi.Dvec * walkSpeed * runMultiplier * upSpeed ;//((pi.run) ? runMultiplier : 1.0f
         }
         else{
             //planarVec = (pi.Dvec * walkSpeed * runMultiplier)/1.2f ;
@@ -126,6 +127,12 @@ public class ActorController : IActorManagerInterface {
             photonView.RPC("RPC_SetTrigger",RpcTarget.All,"jump");
         }
     }
+
+    public void SetSpeedup(float upvalue)
+    {
+        upSpeed = upvalue;
+    } 
+
     protected void FixedUpdate()
     {
         
