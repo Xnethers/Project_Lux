@@ -16,6 +16,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
     public bool isRepel;
     public bool isMark;
     public bool isShake;
+    public bool isSpeedup;
     public GameObject thunderflash;
     public GameObject Markeffect;
     public OutlineObject[] OutlineScript;
@@ -43,7 +44,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
             foreach (var item in OutlineScript)
             { item.enabled = false; }
         }
-        StartCoroutine(Mark());
+        //StartCoroutine(Mark());
         PunTeams.Team team = PhotonNetwork.LocalPlayer.GetOtherTeam();
         OtherTeam = PunTeams.PlayersPerTeam[team];
 
@@ -96,7 +97,8 @@ public class StateBuff : MonoBehaviourPunCallbacks
             foreach (var item in OtherTeam)
             { photonView.RPC("openOutline", item); }
             Instantiate(Markeffect, transform);
-            StartCoroutine(Mark());
+            Invoke("Invoke_closeOutline", MarkTime);
+            //StartCoroutine(Mark());
             isMark = false;
         }
         if (isShake)
@@ -106,8 +108,19 @@ public class StateBuff : MonoBehaviourPunCallbacks
             StartCoroutine(cameraShake.Shake(cameraShake.duration, cameraShake.magnitude));
             isShake = false;
         }
-
+        if (isSpeedup)
+        {
+            sm.am.ac.SetSpeedup(2.0f);
+            sm.am.ac.anim.speed = 2;
+            Invoke("notSpeedup", 3.0f);
+        }
+        else
+        { sm.am.ac.SetSpeedup(1.0f);sm.am.ac.anim.speed = 1; }
     }
+
+    void notSpeedup() { isSpeedup = false; }
+
+
     public void SetAllDeBuff(DamageBuff buff)
     {
         this.isBlind = buff.isBlind;
@@ -177,19 +190,22 @@ public class StateBuff : MonoBehaviourPunCallbacks
         Timer_mark.state = MyTimer.STATE.IDLE;
     }
 
+    void Invoke_closeOutline()
+    {
+        foreach (var item in OtherTeam)
+        { photonView.RPC("closeOutline", item); }
+    }
+
     [PunRPC]
     void PS_creatMarkeffect()
-    {
-        Instantiate(Markeffect, transform);
-
-    }
+    { Instantiate(Markeffect, transform); }
 
     public void SeteBuff(Buff[] message)
     {
         foreach (var item in message)
         {
-        //     if (item.isopen)
-        //     { Buffs.GetHashCode();}
+            //     if (item.isopen)
+            //     { Buffs.GetHashCode();}
         }
     }
 }
@@ -206,7 +222,7 @@ public class Buff
     }
 
     public void GetBuffName()
-    {}
+    { }
 
 
 }

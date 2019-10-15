@@ -177,7 +177,16 @@ public class DoubleGunController : ICareerController
             magazine--;
             isleft = !isleft;
         }
+    }
 
+    public override void FirstAttack()//
+    {
+        //SoundManager.Instance.PlayEffectSound(gunFire);
+        ac.am.sm.sb.isSpeedup = true;
+        ac.anim.speed *=2;
+        
+        if (!photonView.IsMine)
+            return;
     }
 
     public override void SecondAttack()//F
