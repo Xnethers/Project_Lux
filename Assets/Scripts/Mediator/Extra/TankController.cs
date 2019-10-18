@@ -53,7 +53,7 @@ public class TankController : ICareerController {
 			return;
 		if (ac.canAttack){
 			if (ki.attackML){
-				if (ac.anim.GetBool("isHighFall") && !ac.anim.GetBool("isGround")){ //空攻
+				if (ac.height>3 && !ac.am.sm.isGround){ //空攻
 					ac.gravity = ac.gravityConstant *2 ;
 					ac._velocity.y = -ac.gravity;
 					
@@ -72,11 +72,13 @@ public class TankController : ICareerController {
 				}
 			}
 			if (ki.auxiliaryMR){//群攻
+				// UseSkill(1,careerValue.FirstDamage);
 				photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
 				buffText.text = buffType.ToString();
 			}
 			if (ki.attackF){//擊退攻
 				if(CheckCD(skillF)){
+					UseSkill(2,careerValue.SecondDamage);
 					photonView.RPC("RPC_Buff", RpcTarget.All);
 					StartCD(skillF,careerValue.SecondCD);
 				}  
@@ -121,17 +123,11 @@ public class TankController : ICareerController {
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 2);
 	}
 	//AirAtk
-	public void OnAirJumpEnter(){
-		fovh.TargetsListClear();
-		fovh.StartFind();
+	/*public void OnAirJumpEnter(){
+		// fovh.TargetsListClear();
+		// fovh.StartFind();
 		ki.inputEnabled = false;
 		// ki.inputMouseEnabled = false;
-	}
-	public override void AirAttack()//空技
-	{
-		if (!photonView.IsMine)
-            return;
-		photonView.RPC("RPC_ShakeAttack", RpcTarget.All);
 	}
 	public void OnAirAttackExit(){
 		fovh.StopFind();
@@ -145,7 +141,17 @@ public class TankController : ICareerController {
 			targetAm.TryDoDamage(ac.am.sm.GetATK(ac.am.sm.ATK));
 			targetAm.SendMessage("SetAllDeBuff", new DamageBuff(false, false, false,true));
 		}
+	}*/
+	public override void AirAttack()//空技
+	{
+		ki.inputEnabled = false;
+		if (!photonView.IsMine)
+            return;
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position, ac.anim.GetInteger("attackSkill"));//4
+		// photonView.RPC("RPC_ShakeAttack", RpcTarget.All);
+		
 	}
+	
 	[PunRPC]
 	public void RPC_ChangeBuffType(){
 		int type = (int)buffType;

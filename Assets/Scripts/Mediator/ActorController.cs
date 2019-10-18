@@ -30,6 +30,7 @@ public class ActorController : IActorManagerInterface {
     public CharacterController chacon;
     public float gravityConstant = 1.5f;
     public float gravity = 1f;
+    public float height=0f;
     public Vector3 _velocity;
     private Vector3 planarVec;
     public Vector3 thrustVec;
@@ -250,12 +251,16 @@ public class ActorController : IActorManagerInterface {
     {
         anim.SetBool("isGround", false);
     }
-    public void IsHighFall(){
-        anim.SetBool("isHighFall", true);
+    public void SetHeight(float h){
+        height = h;
+        anim.SetFloat("height",height);
     }
-    public void IsNotHighFall(){
-        anim.SetBool("isHighFall", false);
-    }
+    // public void IsHighFall(){
+    //     anim.SetBool("isHighFall", true);
+    // }
+    // public void IsNotHighFall(){
+    //     anim.SetBool("isHighFall", false);
+    // }
     public void OnGroundEnter() {
         if(CheckState("attackIdle","attack")){//攻擊完才可操作
             pi.inputEnabled = true;

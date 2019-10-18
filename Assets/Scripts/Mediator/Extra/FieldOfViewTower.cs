@@ -5,7 +5,7 @@ using UnityEngine;
 public class FieldOfViewTower : FieldOfView {
 	// Use this for initialization
 	void Start () {
-		StartFind();
+		StartFind(.2f);
 	}
 	public override void FindUseTargets(){
 		useTargets.Clear();

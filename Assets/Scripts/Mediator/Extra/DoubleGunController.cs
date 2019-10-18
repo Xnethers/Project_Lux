@@ -89,7 +89,7 @@ public class DoubleGunController : ICareerController
             //canAttack限制狀態機行為
             if (ki.attackML)
             {
-                if (ac.anim.GetBool("isHighFall") && !ac.anim.GetBool("isGround"))
+                if (ac.height>3 && !ac.am.sm.isGround)
                 {
                     if (CheckCD(skillAir))
                     {

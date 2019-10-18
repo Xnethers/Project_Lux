@@ -9,10 +9,11 @@ public class FieldOfViewBuff : FieldOfView {
 		
 		tankController=tank;
 		tag=tankController.tag;
-		StartFind();
+		StartFind(.2f);
 		Invoke("Disable",timeToLive);
 	}
 	public override void FindUseTargets(){
+		BuffInitialize();
 		useTargets.Clear();
 		for (int i = 0; i < visibleTargets.Count; i++){
 			ActorManager tempAm=visibleTargets[i];
@@ -30,11 +31,14 @@ public class FieldOfViewBuff : FieldOfView {
 			}
 		}
 	}
-	public void Disable(){
+	public void BuffInitialize(){
 		foreach(ActorManager tempAm in useTargets)
 		{
 			tempAm.sm.SetBuff(1,1,1);
 		}
+	}
+	public void Disable(){
+		BuffInitialize();
 		Destroy(gameObject);
 	}
 }

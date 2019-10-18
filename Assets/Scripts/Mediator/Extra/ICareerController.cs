@@ -9,7 +9,6 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 	public LayerMask ignoreLayerMask;
 	public CareerValue careerValue;
 	public GameObject[] projectile;
-	public GameObject[] comboParticle;
     protected Transform muzzle;
 	protected Transform muzzleR;
 	public bool rayhitAirWall;
@@ -124,7 +123,8 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
     }
 	[PunRPC]
     public void RPC_NearProjectile(Vector3 originVec3,int combo){//生成近戰combo具體攻擊(特效)
-        GameObject bullet = Instantiate(comboParticle[combo], originVec3, transform.rotation) as GameObject;
+        GameObject bullet = Instantiate(projectile[combo], originVec3, transform.rotation) as GameObject;
+		bullet.transform.parent=transform;
         foreach (Projectile projectile in bullet.GetComponentsInChildren<Projectile>())
         {
             projectile.Initialize(ac.am,0,Vector3.zero);

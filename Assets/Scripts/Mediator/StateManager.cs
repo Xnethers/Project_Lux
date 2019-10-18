@@ -90,8 +90,10 @@ public class StateManager : IActorManagerInterface, IPunObservable
             { am.targetAm.sm.AddRP(2); }
             
         }
-        if(isDie && isGround){//在高處降落至地才死亡動畫
-            Die();
+        if(isDie){//在高處降落至地才死亡動畫
+            am.ac.OnDieEnter();//不能行動
+            if(isGround && !am.ac.CheckState("die"))
+                Die();
         }
         if (!photonView.IsMine)
             return;

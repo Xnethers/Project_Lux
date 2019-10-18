@@ -79,8 +79,8 @@ GameObject:
   - component: {fileID: 114214462689860372}
   - component: {fileID: 114755861551432556}
   - component: {fileID: 114001033017985356}
-  - component: {fileID: 114744709889141228}
   - component: {fileID: 82737368540915398}
+  - component: {fileID: 114165953138927612}
   m_Layer: 11
   m_Name: Borislav
   m_TagString: Untagged
@@ -5117,9 +5117,6 @@ MonoBehaviour:
     Name: reLife
   - Type: 4
     SynchronizeType: 1
-    Name: isHighFall
-  - Type: 4
-    SynchronizeType: 1
     Name: force
   - Type: 9
     SynchronizeType: 0
@@ -5136,6 +5133,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: upVelocity
+  - Type: 1
+    SynchronizeType: 1
+    Name: height
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -5207,7 +5207,7 @@ MonoBehaviour:
   - {fileID: 114214462689860372}
   - {fileID: 114414971300417562}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114073282809841540
 MonoBehaviour:
@@ -5375,6 +5375,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114165953138927612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028935420427188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2991584d1c34bb743a187238863c5655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 3
+  viewAngle: 360
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
+  useTargets: []
 --- !u!114 &114201008231279428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5798,7 +5819,6 @@ MonoBehaviour:
   isGround: 1
   isJump: 0
   isFall: 0
-  isJab: 0
   isAttack: 0
   isRushAttack: 0
   isForcingAim: 0
@@ -5825,7 +5845,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114036157675850052}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114431957560450570
 MonoBehaviour:
@@ -5967,6 +5987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d4c9dfcb51fc54bb256745b882f644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStuck: 0
   chacon: {fileID: 143719698661088156}
   offset: 0.1
   outputCols: []
@@ -6173,6 +6194,7 @@ MonoBehaviour:
   chacon: {fileID: 143719698661088156}
   gravityConstant: 1.5
   gravity: 1
+  height: 0
   _velocity: {x: 0, y: 0, z: 0}
   thrustVec: {x: 0, y: 0, z: 0}
   attackerVec: {x: 0, y: 0, z: 0}
@@ -6454,27 +6476,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: RP:0
---- !u!114 &114744709889141228
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1028935420427188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2991584d1c34bb743a187238863c5655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 3
-  viewAngle: 360
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  visibleTargets: []
-  useTargets: []
 --- !u!114 &114747934086611542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6503,11 +6504,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294327806
   careerValue: {fileID: 11400000, guid: 0a68634fbae381d47962d310795eae85, type: 2}
-  projectile: []
-  comboParticle:
+  projectile:
   - {fileID: 1819154459570706, guid: c6cf6e5859a11f349aef92b95ff7e51a, type: 2}
   - {fileID: 1419159141858600, guid: b001e9eddc21a074fae9188ad4ad8712, type: 2}
   - {fileID: 1693539984120346, guid: b0af4149a15b2fb4dbdd74d9c9c1f1b4, type: 2}
+  - {fileID: 0}
+  - {fileID: 1213438088144474, guid: 25686f7801b8a3846b31f944221c9329, type: 2}
+  - {fileID: 0}
   rayhitAirWall: 0
   cameraShake: {fileID: 114716862390784616}
   handBone: {fileID: 4888874180651054}
@@ -7194,10 +7197,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.2
   m_Height: 1.4
   m_Direction: 1
-  m_Center: {x: 0, y: 0.7, z: 0}
+  m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!136 &136907099804968482
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -7207,7 +7210,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.24
+  m_Radius: 0.2
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: -0.15, z: 0}
@@ -7438,7 +7441,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.4
-  m_Radius: 0.25
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

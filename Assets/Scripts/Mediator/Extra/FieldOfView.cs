@@ -16,7 +16,7 @@ public class FieldOfView : MonoBehaviour {
     public List<ActorManager> useTargets = new List<ActorManager>();
     void Start()
     {
-        StartFind();
+        StartFind(.2f);
         // StartCoroutine(FindTargetsWithDelay(.2f));
         // Debug.Log("?????????????????????????????????????????????");
     }
@@ -62,11 +62,11 @@ public class FieldOfView : MonoBehaviour {
     public virtual void FindUseTargets(){
         
     }
-    public virtual void StartFind(){
-		StartCoroutine(FindTargetsWithDelay(.2f));
+    public virtual void StartFind(float delay){
+		StartCoroutine(FindTargetsWithDelay(delay));
 	}
-	public virtual void StopFind(){
-		StopCoroutine(FindTargetsWithDelay(.2f));
+	public virtual void StopFind(float delay){
+		StopCoroutine(FindTargetsWithDelay(delay));
 	}
 	public virtual void TargetsListClear(){
 		visibleTargets.Clear();

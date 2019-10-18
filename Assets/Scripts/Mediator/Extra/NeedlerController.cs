@@ -92,7 +92,7 @@ public class NeedlerController : ICareerController
             else
             {//其他攻
                 if (ki.attackML){
-                    if (ac.anim.GetBool("isHighFall") && !ac.anim.GetBool("isGround")){ //空攻
+                    if (ac.height>3 && !ac.am.sm.isGround){ //空攻
                         RayAim();
                         if(!rayhitAirWall){
                             if(CheckCD(skillAir)){

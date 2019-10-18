@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     public GameObject normalhitVFX;
     public GameObject specialhitVFX;
-    [SerializeField] bool isHit;
+    [SerializeField]protected bool isHit;
     public bool isVFX = false;
 
     [Header("===== Kind Settings =====")]
