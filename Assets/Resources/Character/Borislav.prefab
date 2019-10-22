@@ -5136,12 +5136,15 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 1
     Name: height
+  - Type: 4
+    SynchronizeType: 1
+    Name: fullBody
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
   - SynchronizeType: 1
     LayerIndex: 1
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 2
 --- !u!114 &114038160050062314
 MonoBehaviour:

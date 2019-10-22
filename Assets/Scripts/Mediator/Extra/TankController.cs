@@ -56,7 +56,7 @@ public class TankController : ICareerController {
 				if (ac.height>3 && !ac.am.sm.isGround){ //空攻
 					ac.gravity = ac.gravityConstant *2 ;
 					ac._velocity.y = -ac.gravity;
-					
+					ac.SetBool("fullBody",true);
 					UseSkill(4,careerValue.AirDamage);
 					// RayAim();
 					// if(!rayhitAirWall){
@@ -68,6 +68,7 @@ public class TankController : ICareerController {
 				}
 				else{
 					// if(!isForce)//普攻
+						ac.SetBool("fullBody",false);
 						UseSkill(0,careerValue.NormalDamage,"attack",true);
 				}
 			}
@@ -78,6 +79,7 @@ public class TankController : ICareerController {
 			}
 			if (ki.attackF){//擊退攻
 				if(CheckCD(skillF)){
+					ac.SetBool("fullBody",true);
 					UseSkill(2,careerValue.SecondDamage);
 					photonView.RPC("RPC_Buff", RpcTarget.All);
 					StartCD(skillF,careerValue.SecondCD);
@@ -151,6 +153,9 @@ public class TankController : ICareerController {
 		// photonView.RPC("RPC_ShakeAttack", RpcTarget.All);
 		
 	}
+	public void OnRunUpdate() {
+        ac.anim.SetLayerWeight(ac.anim.GetLayerIndex("run"), ac.anim.GetLayerWeight(ac.anim.GetLayerIndex("attack")));
+    }
 	
 	[PunRPC]
 	public void RPC_ChangeBuffType(){
