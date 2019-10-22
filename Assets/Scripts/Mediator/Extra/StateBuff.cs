@@ -11,10 +11,12 @@ public class StateBuff : MonoBehaviourPunCallbacks
     private StateManager sm;
 
     [Header("DeBuff")]
+    public Buff[] Buffs;
     public bool isBlind;
     public bool isRepel;
     public bool isMark;
     public bool isShake;
+    public bool isSpeedup;
     public GameObject thunderflash;
     public GameObject Markeffect;
     public OutlineObject[] OutlineScript;
@@ -27,11 +29,11 @@ public class StateBuff : MonoBehaviourPunCallbacks
     [Header("=== Camera Shake Setting ===")]
     public CameraShake cameraShake;
     // public CameraShaker playerCamShaker;
-	// public float magnitude = 4f;
+    // public float magnitude = 4f;
     // public float roughness = 5f;
     // public float fadeIn = 0.1f;
     // public float fadeOut = 1.5f;
-    
+
 
     // Use this for initialization
     void Start()
@@ -42,7 +44,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
             foreach (var item in OutlineScript)
             { item.enabled = false; }
         }
-        StartCoroutine(Mark());
+        //StartCoroutine(Mark());
         PunTeams.Team team = PhotonNetwork.LocalPlayer.GetOtherTeam();
         OtherTeam = PunTeams.PlayersPerTeam[team];
 
@@ -72,7 +74,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
         Timer_mark.Tick();
         if (sm.isDie)
         {
-            SetAllDeBuff(new DamageBuff(false, false, false,false));
+            SetAllDeBuff(new DamageBuff(false, false, false, false));
         }
         if (isRepel)
         {
@@ -95,20 +97,32 @@ public class StateBuff : MonoBehaviourPunCallbacks
             foreach (var item in OtherTeam)
             { photonView.RPC("openOutline", item); }
             Instantiate(Markeffect, transform);
-            StartCoroutine(Mark());
+            Invoke("Invoke_closeOutline", MarkTime);
+            //StartCoroutine(Mark());
             isMark = false;
         }
-        if(isShake){
+        if (isShake)
+        {
             // playerCamShaker.ShakeOnce(magnitude,roughness,fadeIn,fadeOut);
             // Debug.Log(gameObject.name+":Y");
-            StartCoroutine(cameraShake.Shake(cameraShake.duration,cameraShake.magnitude));
+            StartCoroutine(cameraShake.Shake(cameraShake.duration, cameraShake.magnitude));
             isShake = false;
         }
-
+        if (isSpeedup)
+        {
+            sm.am.ac.SetSpeedup(2.0f);
+            sm.am.ac.anim.speed = 2;
+            Invoke("notSpeedup", 3.0f);
+        }
+        else
+        { sm.am.ac.SetSpeedup(1.0f);sm.am.ac.anim.speed = 1; }
     }
+
+    void notSpeedup() { isSpeedup = false; }
+
+
     public void SetAllDeBuff(DamageBuff buff)
     {
-
         this.isBlind = buff.isBlind;
         this.isRepel = buff.isRepel;
         this.isMark = buff.isMark;
@@ -176,10 +190,39 @@ public class StateBuff : MonoBehaviourPunCallbacks
         Timer_mark.state = MyTimer.STATE.IDLE;
     }
 
+    void Invoke_closeOutline()
+    {
+        foreach (var item in OtherTeam)
+        { photonView.RPC("closeOutline", item); }
+    }
+
     [PunRPC]
     void PS_creatMarkeffect()
-    {
-        Instantiate(Markeffect, transform);
+    { Instantiate(Markeffect, transform); }
 
+    public void SeteBuff(Buff[] message)
+    {
+        foreach (var item in message)
+        {
+            //     if (item.isopen)
+            //     { Buffs.GetHashCode();}
+        }
     }
+}
+
+[System.Serializable]
+public class Buff
+{
+    public string BuffName;
+    public bool isopen;
+    public Buff(string BuffName, bool isopen)
+    {
+        this.BuffName = BuffName;
+        this.isopen = isopen;
+    }
+
+    public void GetBuffName()
+    { }
+
+
 }

@@ -15,6 +15,8 @@ public class Projectile : MonoBehaviourPunCallbacks
     [SerializeField] bool isBullet = false;
 
     [Header("===== DeBuff Settings =====")]
+
+    public DamageBuff[] BuffList;
     [SerializeField]protected bool isBlind;
     [SerializeField]protected bool isRepel;
     [SerializeField]protected bool isMark;

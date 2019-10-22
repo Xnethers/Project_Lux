@@ -6,8 +6,8 @@ using Photon.Pun;
 using Photon.Realtime;
 public class SniperController : ICareerController
 {
-    public GameObject VFX_Enid_Q; 
-    public GameObject VFX_Enid_gunFire; 
+    public GameObject VFX_Enid_Q;
+    public GameObject VFX_Enid_gunFire;
     public GameObject DrawLine;
     private KICareer ki;
 
@@ -69,7 +69,7 @@ public class SniperController : ICareerController
     }
     void FixedUpdate()
     {
-        //target = FindTargetPoint().transform.position;
+        FindTargetPoint();
     }
     void Update()
     {
@@ -86,7 +86,7 @@ public class SniperController : ICareerController
         {
             ac.camcon.DoUnAim();
             ac.anim.SetBool("aim", false);
-            skillQ.atkTimer.state=MyTimer.STATE.IDLE;
+            skillQ.atkTimer.state = MyTimer.STATE.IDLE;
             return;
         }
 		if(ac.pi.isLatent)
@@ -187,7 +187,7 @@ public class SniperController : ICareerController
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            StartCoroutine(RushFindTarget());
+            RushFindTarget();
             for (int i = 0; i < APIV.Count; i++)
             {
                 Debug.Log("NO." + i + ":" + APIV[i].collider.transform.root.name);
@@ -223,7 +223,7 @@ public class SniperController : ICareerController
         // DrawLine.DrawLine(RayAim());
         if (!photonView.IsMine)
             return;
-        photonView.RPC("RPC_SetTargetLine", RpcTarget.All,RayAim());
+        photonView.RPC("RPC_SetTargetLine", RpcTarget.All, RayAim());
         photonView.RPC("RPC_Projectile", RpcTarget.All, RayAim(), RayAim(), 0f);
         magazine--;
     }
@@ -256,7 +256,11 @@ public class SniperController : ICareerController
 
     public override void ForceAttack()//蓄力(0.7s)
     {
-
+        CreateGunFire();
+        if (!photonView.IsMine)
+        { return; }
+        photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), ThrowerPower);
+        magazine--;
     }
 
     public void magazineOperation() //確認是否填彈
@@ -269,7 +273,7 @@ public class SniperController : ICareerController
         }
         else
         {
-            if(ac!=null)
+            if (ac != null)
                 ac.canAttack = true;
         }
     }
@@ -310,15 +314,18 @@ public class SniperController : ICareerController
     {
         Obj_magazine.SetActive(true);
     }
-    public void SniperIdle(){
-        if(ac != null)
-            ac.lerpTarget=1.0f;
+    public void SniperIdle()
+    {
+        if (ac != null)
+            ac.lerpTarget = 1.0f;
     }
-    public void CreateGunFire(){
-        if(VFX_Enid_gunFire !=null){
-			GameObject vfx = Instantiate(VFX_Enid_gunFire,muzzle.transform.position,transform.rotation) as GameObject;
-			vfx.transform.SetParent(muzzle.transform);
-		}
+    public void CreateGunFire()
+    {
+        if (VFX_Enid_gunFire != null)
+        {
+            GameObject vfx = Instantiate(VFX_Enid_gunFire, muzzle.transform.position, transform.rotation) as GameObject;
+            vfx.transform.SetParent(muzzle.transform);
+        }
         SoundManager.Instance.PlayEffectSound(gunFire);
     }
     #endregion
@@ -335,7 +342,7 @@ public class SniperController : ICareerController
     [PunRPC]
     void PS_creatQEffect()
     {
-        Instantiate(VFX_Enid_Q,transform);
+        Instantiate(VFX_Enid_Q, transform);
     }
 
     #endregion
@@ -353,16 +360,17 @@ public class SniperController : ICareerController
             Vector3 dir = (item.transform.position - mainCamera.transform.position).normalized;
             float dot = Vector3.Dot(mainCamera.transform.forward, dir); //判断物体是否在相机前面
             if (Physics.Linecast(transform.position, item.transform.position, ~ignoreMask))//如果射線碰撞到物體
-            {
-
-            }
+            { }
             else
             {
-                if (!item.transform.root.GetComponent<ActorManager>().sm.isDie &&
-                 dot > 0 && viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1)
+                if (item.transform.root.GetComponent<ActorManager>() != null)
                 {
-                    BodyCollider i = new BodyCollider(item, Vector2.Distance(viewPos, Concentric));
-                    APIV.Add(i);
+                    if (!item.transform.root.GetComponent<ActorManager>().sm.isDie &&
+                    dot > 0 && viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1)
+                    {
+                        BodyCollider i = new BodyCollider(item, Vector2.Distance(viewPos, Concentric));
+                        APIV.Add(i);
+                    }
                 }
             }
         }
@@ -384,7 +392,7 @@ public class SniperController : ICareerController
         {
             APIV.Clear();
         }
-        
+
     }
 
     IEnumerator RushFindTarget()
@@ -404,12 +412,13 @@ public class SniperController : ICareerController
         }
     }
     [PunRPC]
-    public void RPC_SetTargetLine(Vector3 targetPoint){
-        GameObject drawLine = Instantiate(DrawLine,muzzle.transform.position,transform.rotation) as GameObject;
+    public void RPC_SetTargetLine(Vector3 targetPoint)
+    {
+        GameObject drawLine = Instantiate(DrawLine, muzzle.transform.position, transform.rotation) as GameObject;
         drawLine.SetActive(true);
-        drawLine.transform.LookAt( targetPoint);
+        drawLine.transform.LookAt(targetPoint);
         drawLine.GetComponent<_DrawLine>().DrawLine(targetPoint);
-        
+
     }
 
 

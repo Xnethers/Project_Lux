@@ -10,7 +10,7 @@ public class DoubleGunController : ICareerController
 {
     public GameObject VFX_Adela_Q;
     public GameObject VFX_Adela_gunFire;
-    private KIDoubleGun ki;
+    private KICareer ki;
 
     new protected Transform[] muzzle = new Transform[3];
     private bool isleft = true;
@@ -51,7 +51,7 @@ public class DoubleGunController : ICareerController
         muzzle[1] = transform.DeepFind("MuzzleR");
         muzzle[2] = transform.DeepFind("MuzzleF");
         ac = GetComponent<ActorController>();
-        ki = GetComponent<KIDoubleGun>();
+        ki = GetComponent<KICareer>();
         foreach (var item in Beam)
         { item.SetActive(false); }
         //StartCoroutine("Timer_Forcing");
@@ -134,7 +134,7 @@ public class DoubleGunController : ICareerController
         }
 
 
-        if (ki.attackMR)
+        if (ki.auxiliaryMR)
         {
             UseSkill(1, careerValue.FirstDamage);
         }
@@ -179,7 +179,16 @@ public class DoubleGunController : ICareerController
             magazine--;
             isleft = !isleft;
         }
+    }
 
+    public override void FirstAttack()//
+    {
+        //SoundManager.Instance.PlayEffectSound(gunFire);
+        ac.am.sm.sb.isSpeedup = true;
+        ac.anim.speed *=2;
+        
+        if (!photonView.IsMine)
+            return;
     }
 
     public override void SecondAttack()//F

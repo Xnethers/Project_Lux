@@ -5191,6 +5191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5b8926b444a5c42806a410b588388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Buffs: []
   isBlind: 0
   isRepel: 0
   isMark: 0
