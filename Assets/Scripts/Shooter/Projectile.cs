@@ -96,7 +96,7 @@ public class Projectile : MonoBehaviourPunCallbacks
             
         if (col.GetComponent<DamageHandler>() == null)
         {
-            Debug.Log("col.GetComponent<DamageHandler>() == null"+col.name);
+            // Debug.Log("col.GetComponent<DamageHandler>() == null"+col.name);
             // isHit=true;
             // Destroy(transform.gameObject);
             return;

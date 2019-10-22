@@ -5196,6 +5196,7 @@ MonoBehaviour:
   isRepel: 0
   isMark: 0
   isShake: 0
+  isSpeedup: 0
   thunderflash: {fileID: 1882964446458064, guid: 2ea53e01558fb06439c8ff9ea5ee237f,
     type: 2}
   Markeffect: {fileID: 1322962361262802, guid: 4d045978da1712d46b819c867355cc7d, type: 2}
@@ -5699,6 +5700,7 @@ MonoBehaviour:
   pi: {fileID: 114086331316121956}
   careercon: {fileID: 114351684755625412}
   walkSpeed: 2.7
+  upSpeed: 1
   runMultiplier: 2
   jumpVelocity: 7
   popUpVelocity: 1.5

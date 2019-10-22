@@ -329,6 +329,7 @@ public class ActorController : IActorManagerInterface {
 
     public void OnAttackExit() {
         canAttack=true;
+        pi.inputEnabled = true;
     }
 
     public void OnHitEnter(){

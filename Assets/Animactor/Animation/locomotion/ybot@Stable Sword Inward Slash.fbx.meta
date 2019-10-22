@@ -193,14 +193,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.26261
+      - time: 0.25500542
         functionName: OnSendMsg
         data: TwoAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.29547313
+      - time: 0.30688
         functionName: ResetTrigger
         data: attack
         objectReferenceParameter: {instanceID: 0}

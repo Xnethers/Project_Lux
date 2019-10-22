@@ -65,7 +65,8 @@ public class DoubleGunController : ICareerController
     }
     void Update()
     {
-
+        if (ac.pi.isAI)
+        { return; }
         if (!photonView.IsMine)
         { return; }
 

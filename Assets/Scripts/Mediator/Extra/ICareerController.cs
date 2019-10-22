@@ -93,7 +93,7 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 		if (Physics.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 2f)),Camera.main.transform.TransformDirection(Vector3.forward), out hit, 100,~ignoreLayerMask))//如果射線碰撞到物體
 		{
 			targetPoint = hit.point;//記錄碰撞的目標點
-			Debug.Log(hit.collider.name);
+			// Debug.Log(hit.collider.name);
 			if(hit.collider.gameObject.layer == LayerMask.NameToLayer("AirWall"))
 			{rayhitAirWall = true;}
 			else

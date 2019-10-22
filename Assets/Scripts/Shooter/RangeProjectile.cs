@@ -36,6 +36,10 @@ public class RangeProjectile : Projectile
                 // isHit=true;
                 return;
             }
+            if (col.GetComponent<DamageHandler>() == null)
+            {
+                return;
+            }
             SetRangeBuff(col);
             BattleController bc = col.GetComponent<BattleController>();
             if (bc != null)
@@ -44,7 +48,8 @@ public class RangeProjectile : Projectile
                 col.SendMessageUpwards("SetTargetAm", am);
                 col.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark,isShake));
             }
-            col.SendMessageUpwards("TryDoDamage", Damage);
+            
+            col.SendMessageUpwards("TryDoDamage", Damage * atkBuff);
         }
     }
 }

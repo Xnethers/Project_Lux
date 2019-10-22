@@ -73,7 +73,8 @@ public class SniperController : ICareerController
     }
     void Update()
     {
-
+        if (ac.pi.isAI)
+        { return; }
         if (!photonView.IsMine)
         { return; }
 

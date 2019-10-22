@@ -218,16 +218,16 @@ ModelImporter:
           postInfinity: 3
           rotationOrder: 0
       events:
-      - time: 0.46388888
-        functionName: ResetTrigger
-        data: attack
+      - time: 0.35725743
+        functionName: OnSendMsg
+        data: OneAttack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.39528024
-        functionName: OnSendMsg
-        data: OneAttack
+      - time: 0.40685466
+        functionName: ResetTrigger
+        data: attack
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
