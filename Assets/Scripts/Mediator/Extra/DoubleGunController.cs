@@ -81,15 +81,15 @@ public class DoubleGunController : ICareerController
             skillQ.atkTimer.state = MyTimer.STATE.IDLE;
             return;
         }
-		if(ac.pi.isLatent)
-			return;
+        if (ac.pi.isLatent)
+            return;
         //Debug.Log(skillML.atkTimer.elapsedTime);
         if (ac.canAttack && !isFill)
         {
             //canAttack限制狀態機行為
             if (ki.attackML)
             {
-                if (ac.height>3 && !ac.am.sm.isGround)
+                if (ac.height > 3 && !ac.am.sm.isGround)
                 {
                     if (CheckCD(skillAir))
                     {
@@ -136,7 +136,10 @@ public class DoubleGunController : ICareerController
 
         if (ki.auxiliaryMR)
         {
-            UseSkill(1, careerValue.FirstDamage);
+            if (ac.CheckState("forcing", "attack"))
+            {
+                UseSkill(1, careerValue.FirstDamage);
+            }
         }
 
 
@@ -185,8 +188,8 @@ public class DoubleGunController : ICareerController
     {
         //SoundManager.Instance.PlayEffectSound(gunFire);
         ac.am.sm.sb.isSpeedup = true;
-        ac.anim.speed *=2;
-        
+        ac.anim.speed *= 2;
+
         if (!photonView.IsMine)
             return;
     }
