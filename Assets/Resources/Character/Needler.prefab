@@ -6732,13 +6732,16 @@ MonoBehaviour:
   RPMax: 100
   RP: 100
   ATK: 0.03
+  HOT: 1
+  ATKBuff: 1
+  DEFBuff: 1
+  HOTBuff: 1
   isGround: 1
   isJump: 0
   isFall: 0
-  isRoll: 0
-  isJab: 0
   isAttack: 0
   isRushAttack: 0
+  isForcingAim: 0
   isHit: 0
   isDie: 0
   isHPing: 0
@@ -6782,8 +6785,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d4c9dfcb51fc54bb256745b882f644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStuck: 0
   chacon: {fileID: 143840878289499108}
   offset: 0.1
+  outputCols: []
+  count: 0
 --- !u!114 &114359186330237904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6818,18 +6824,20 @@ MonoBehaviour:
   VerticalSpeed: 40
   minVerAngle: -30
   maxVerAngle: 30
-  camDampXZValue: 0.1
-  camDampYValue: 0.01
+  offsetXDistanceConstant: 20
   offsetZDistance: 2.5
   offsetXDistance: 0.6
-  offestXDampValue: 0.2
+  offestDampValue: 0.2
   doAim: 0
   isCursorVisible: 0
+  cameraHandle: {fileID: 0}
+  tempEulerX: 0
   rayHit: 0
-  radius: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 4294508745
+  isDieChange: 0
+  isDieInvoke: 0
 --- !u!114 &114370140991655336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6905,8 +6913,16 @@ MonoBehaviour:
   textRP: {fileID: 114258054314887564}
   playerNameText: {fileID: 114217023123261828}
   playerHealthSlider: {fileID: 114119912343333554}
-  target: {fileID: 0}
-  starget: {fileID: 114283902543755470}
+  careercon: {fileID: 0}
+  sm: {fileID: 0}
+  ScreenCanvas: {fileID: 0}
+  skill: []
+  forcingAim: {fileID: 0}
+  OccupiedRed: {fileID: 0}
+  OccupiedBlue: {fileID: 0}
+  occupied: {fileID: 0}
+  ReLiveTime: {fileID: 0}
+  Buff: {fileID: 0}
 --- !u!114 &114468419917204170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7044,17 +7060,24 @@ MonoBehaviour:
   pi: {fileID: 114700765760602484}
   careercon: {fileID: 0}
   walkSpeed: 2.4
+  upSpeed: 1
   runMultiplier: 2
   jumpVelocity: 5.5
-  jabVelocity: 2.5
+  popUpVelocity: 1.5
   frictionOne: {fileID: 0}
   frictionZero: {fileID: 0}
   anim: {fileID: 95444842765781524}
   canAttack: 1
   chacon: {fileID: 143840878289499108}
   gravityConstant: 1
+  gravity: 1
+  height: 0
   _velocity: {x: 0, y: -0.163827, z: 0}
+  thrustVec: {x: 0, y: 0, z: 0}
   attackerVec: {x: 0, y: 0, z: 0}
+  lockPlanar: 0
+  lerpTarget: 0
+  isBounce: 0
 --- !u!114 &114574395802704578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7146,6 +7169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAI: 0
+  isLatent: 0
   Dup: 0
   Dright: 0
   Dmag: 0
@@ -7157,6 +7181,7 @@ MonoBehaviour:
   jump: 0
   roll: 0
   esc: 0
+  latent: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -7170,6 +7195,7 @@ MonoBehaviour:
   keyF: f
   keyQ: q
   keyR: r
+  keyE: e
   keyESC: escape
   mouseSensitivityX: 1
   mouseSensitivityY: 1
@@ -7218,6 +7244,9 @@ MonoBehaviour:
   am: {fileID: 114898837456056466}
   bcH: {fileID: 114832058243408678}
   bcB: {fileID: 114681005512767544}
+  bcL: {fileID: 0}
+  OriginColValue: []
+  latentCol: {fileID: 0}
 --- !u!114 &114714909031608838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7254,6 +7283,7 @@ MonoBehaviour:
   - {fileID: 1063396252668178, guid: 8caf070791c3b424ca2aea7dcc44d6b5, type: 2}
   - {fileID: 1177234100281160, guid: 9cecba6542891b5448e5537047685331, type: 2}
   - {fileID: 1994053614765338, guid: f853b8127d35d9348a6798a5d516ff6e, type: 2}
+  rayhitAirWall: 0
   ThrowerPower: 150
   target: {fileID: 4068670591187640}
   curve_point: {fileID: 4754015506883088}
@@ -7262,10 +7292,16 @@ MonoBehaviour:
   isAirAttack: 0
   targetAir: {x: 0, y: 0, z: 0}
   airDamp: 0.2
+  airLimitTime: 0.5
   isForce: 0
   obj: {fileID: 0}
+  VFX_Lena_SwordTrail: {fileID: 0}
   waistBone: {fileID: 0}
   handBone: {fileID: 0}
+  AccumulateVFX: {fileID: 0}
+  VFX_Lena_Q: {fileID: 0}
+  gunFire: {fileID: 0}
+  repelAttack: {fileID: 0}
 --- !u!114 &114726018128892438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7311,14 +7347,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5b8926b444a5c42806a410b588388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Buffs: []
   isBlind: 0
   isRepel: 0
   isMark: 0
+  isShake: 0
+  isSpeedup: 0
   thunderflash: {fileID: 1882964446458064, guid: 2ea53e01558fb06439c8ff9ea5ee237f,
     type: 2}
+  Markeffect: {fileID: 0}
   OutlineScript:
   - {fileID: 114979389946995580}
   MarkTime: 5
+  cameraShake: {fileID: 0}
 --- !u!114 &114807447337325962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7481,6 +7522,7 @@ MonoBehaviour:
   bm: {fileID: 114714775977132966}
   wm: {fileID: 114359186330237904}
   sm: {fileID: 114283902543755470}
+  im: {fileID: 0}
 --- !u!114 &114914660746430088
 MonoBehaviour:
   m_ObjectHideFlags: 1
