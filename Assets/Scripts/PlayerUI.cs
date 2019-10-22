@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     public ICareerController careercon;
     [SerializeField] private StateManager sm;
     public GameObject ScreenCanvas;
-    public Image[] skill; 
+    public Image[] skill;
     public Image forcingAim;
     public Image OccupiedRed;
     public Image OccupiedBlue;
@@ -48,7 +48,8 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         // {
         //     playerNameText.text = photonView.Owner.NickName;
         // }
-        if(sm.am.ac.pi.isAI){
+        if (sm.am.ac.pi.isAI)
+        {
             ScreenCanvas.SetActive(false);
             return;
         }
@@ -56,16 +57,16 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         {
             playerNameText.text = photonView.Owner.NickName;
         }
-        if(!photonView.IsMine)
+        if (!photonView.IsMine)
         {
             ScreenCanvas.SetActive(false);
-           return;
+            return;
         }
-        foreach(Image image in skill)  
-            image.enabled=false;
-        skill[1].enabled=true;//rush
-        occupied =FindObjectOfType<OccupiedTest>();
+        occupied = FindObjectOfType<OccupiedTest>();
         ReLiveTime.text = sm.deadTime.ToString();
+        foreach (Image image in skill)
+        { image.enabled = false; }
+        skill[1].enabled = true;//rush
     }
 
     public virtual void Update()
@@ -77,36 +78,41 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         // }
         if (sm != null && playerHealthSlider != null)
         {
-            playerHealthSlider.value = sm.HP/sm.HPMax;
+            playerHealthSlider.value = sm.HP / sm.HPMax;
         }
-        textRP.text ="RP:" + sm.RP.ToString();
-        if(textTag !=null){//red = Yellow , blue = Purple
-            if(transform.tag == "Red")
-                textTag.text ="Team:Yellow";
-            if(transform.tag == "Blue")
-                textTag.text ="Team:Purple";
+        textRP.text = "RP:" + sm.RP.ToString();
+        if (textTag != null)
+        {//red = Yellow , blue = Purple
+            if (transform.tag == "Red")
+                textTag.text = "Team:Yellow";
+            if (transform.tag == "Blue")
+                textTag.text = "Team:Purple";
             //textTag.text ="Team:" + transform.tag.ToString();
         }
-            
-        if(sm.am.ac.pi.isAI)
+
+        if (sm.am.ac.pi.isAI)
             return;
-        if(!photonView.IsMine)
+        if (!photonView.IsMine)
             return;
-        skill[0].enabled= !careercon.CheckCD(careercon.skillF);
-        skill[2].enabled= !careercon.CheckCD(careercon.skillAir);
-        skill[3].enabled= !careercon.CheckCD(careercon.skillForce);
-        skill[1].fillAmount = sm.RP/sm.RPMax;
+        if (skill.Length > 0)
+        {
+            skill[0].enabled = !careercon.CheckCD(careercon.skillF);
+            skill[2].enabled = !careercon.CheckCD(careercon.skillAir);
+            skill[3].enabled = !careercon.CheckCD(careercon.skillForce);
+            skill[1].fillAmount = sm.RP / sm.RPMax;
+        }
         forcingAim.enabled = sm.isForcingAim;
-        forcingAim.fillAmount=careercon.forcingTimer.elapsedTime/careercon.careerValue.ForcingCD;
-        OccupiedRed.fillAmount = occupied.redValue/100;
-        OccupiedBlue.fillAmount = occupied.blueValue/100;
-        if(sm.dieTimer.state == MyTimer.STATE.RUN){
+        forcingAim.fillAmount = careercon.forcingTimer.elapsedTime / careercon.careerValue.ForcingCD;
+        OccupiedRed.fillAmount = occupied.redValue / 100;
+        OccupiedBlue.fillAmount = occupied.blueValue / 100;
+        if (sm.dieTimer.state == MyTimer.STATE.RUN)
+        {
             ReLiveTime.gameObject.SetActive(true);
-            ReLiveTime.text = Mathf.Ceil(sm.deadTime-sm.dieTimer.elapsedTime).ToString();
+            ReLiveTime.text = Mathf.Ceil(sm.deadTime - sm.dieTimer.elapsedTime).ToString();
         }
         else
             ReLiveTime.gameObject.SetActive(false);
-        Buff.text="ATKBuff:"+sm.ATKBuff+"\r\nDEFBuff:"+sm.DEFBuff+"\r\nHOTBuff:"+sm.HOTBuff;
+        Buff.text = "ATKBuff:" + sm.ATKBuff + "\r\nDEFBuff:" + sm.DEFBuff + "\r\nHOTBuff:" + sm.HOTBuff;
     }
 
     #endregion
