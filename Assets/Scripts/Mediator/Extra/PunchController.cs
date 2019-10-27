@@ -8,32 +8,41 @@ using Photon.Realtime;
 //Adela
 public class PunchController : ICareerController
 {
+    public bool isForce;
+    private KICareer ki;
+
+    [Header("===== Punch Settings =====")]
     public GameObject[] Punches = new GameObject[2];
     private Rigidbody[] Punches_rb = new Rigidbody[2];
     public Transform[] CurvePoint = new Transform[2];
     public Transform[] origLocPos = new Transform[2];
-    public GameObject VFX_Adela_Q;
-    public GameObject VFX_Adela_gunFire;
-    private KICareer ki;
-
-    new protected Transform[] muzzle = new Transform[3];
     private bool isleft = true;
-
-    [Header("===== Punch Settings =====")]
-    public bool ispunching;
-    public bool isreturn;
-    public float speed = 1.5f;
-    [SerializeField] private float returnTime;
     private Vector3 targetPos;
+
+    //------NomalAttack------
+    public bool ispunching;
+    private bool isreturn;
+    public float speed = 1.5f;
+    private float returnTime;
+
+    //------FirstAttack------
+    private bool isrotate = false;
+    public float rotateSpeed = 10f;
+    public float angled = 0; // set this to the maximum angle in degrees
+
 
     [Space(10)]
     [Header("===== Shooter Settings =====")]
     [SerializeField] float ThrowerPower;
 
-    public bool isForce;
+
     [Header("===== AudioClip Settings =====")]
     public AudioClip gunFire;
     public AudioClip repelAttack;
+
+    [Header("===== VFX Settings =====")]
+    public GameObject VFX_Adela_Q;
+    public GameObject VFX_Adela_gunFire;
 
     void Start()
     {
@@ -50,8 +59,17 @@ public class PunchController : ICareerController
 
     }
 
+    #region Fixed Update
     void FixedUpdate()
     {
+        if (isrotate)
+        {
+            Punches[0].GetComponent<Animator>().SetTrigger("rotate");
+            Punches[1].GetComponent<Animator>().SetTrigger("rotate");
+            isrotate = false;
+            //rotate_around();
+        }
+
         if (ispunching)
         {
             if (isreturn && IfReurn())
@@ -104,9 +122,11 @@ public class PunchController : ICareerController
                 }
                 PunchStartReturn();
             }
-
         }
+
     }
+    #endregion
+
     void Update()
     {
 
@@ -180,10 +200,7 @@ public class PunchController : ICareerController
 
         if (ki.auxiliaryMR)
         {
-            if (ac.CheckState("forcing", "attack"))
-            {
-                UseSkill(1, careerValue.FirstDamage);
-            }
+            UseSkill(1, careerValue.FirstDamage);
         }
 
 
@@ -210,28 +227,7 @@ public class PunchController : ICareerController
 
     }
 
-    bool IfReurn()
-    {
-        float d;
-        if (!isleft)
-        { d = Vector3.Distance(Punches_rb[0].position, origLocPos[0].position); }
-        else
-        { d = Vector3.Distance(Punches_rb[1].position, origLocPos[1].position); }
-        if (d > 0)
-        { return false; }
-        else
-        { return true; }
-    }
 
-    public void PunchStartReturn()
-    {
-        // pullPosition = weapon.position;
-        // weaponRb.Sleep();
-        // weaponRb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
-        // weaponRb.isKinematic = true;
-        isreturn = true;
-        returnTime = 0;
-    }
 
 
     #region animator skill events
@@ -249,12 +245,21 @@ public class PunchController : ICareerController
 
     public override void FirstAttack()//
     {
-        //SoundManager.Instance.PlayEffectSound(gunFire);
-        ac.am.sm.sb.isSpeedup = true;
-        ac.anim.speed *= 2;
-
         if (!photonView.IsMine)
             return;
+        // photonView.RPC("RPC_Projectile", RpcTarget.All, Punches_rb[0].position, Punches_rb[0].position, 0);
+        // photonView.RPC("RPC_Projectile", RpcTarget.All, Punches_rb[1].position, Punches_rb[0].position, 0);
+        GameObject[] bullet = new GameObject[2];
+        bullet[0] = Instantiate(projectile[ac.anim.GetInteger("attackSkill")], Punches_rb[0].position, transform.rotation) as GameObject;
+        bullet[0].transform.parent = Punches_rb[0].transform;
+        bullet[1] = Instantiate(projectile[ac.anim.GetInteger("attackSkill")], Punches_rb[1].position, transform.rotation) as GameObject;
+        bullet[1].transform.parent = Punches_rb[1].transform;
+        foreach (var item in bullet)
+        {
+            foreach (Projectile projectile in item.GetComponentsInChildren<Projectile>())
+            { projectile.Initialize(ac.am, 0, RayAim()); }
+        }
+        isrotate = true;
     }
 
     public override void SecondAttack()//F
@@ -262,7 +267,7 @@ public class PunchController : ICareerController
         SoundManager.Instance.PlayEffectSound(repelAttack);
         if (!photonView.IsMine)
             return;
-        photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[2].position, RayAim(), 0f);
+        photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), 0f);
     }
 
     public override void RushAttack()//Q
@@ -278,8 +283,8 @@ public class PunchController : ICareerController
         { return; }
         else
         {
-            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[0].position, RayAim(), ThrowerPower);
-            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[1].position, RayAim(), ThrowerPower);
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), ThrowerPower);
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), ThrowerPower);
         }
     }
 
@@ -299,32 +304,7 @@ public class PunchController : ICareerController
     {
     }
 
-    // public void CreatFallMagazine()
-    // {
-    //     GameObject _magazine = (GameObject)Instantiate(Magazine, magazinePos[0].position, magazinePos[0].rotation);
-    // }
 
-    // public void ChangeMagazinPos()
-    // {
-    //     if (Obj_magazine.transform.parent == magazinePos[0])
-    //     {
-    //         Obj_magazine.SetActive(false);
-    //         Obj_magazine.transform.SetParent(magazinePos[1]);
-    //         Obj_magazine.transform.localPosition = Vector3.zero;
-    //         Obj_magazine.transform.localRotation = Quaternion.identity;
-    //     }
-    //     else if (Obj_magazine.transform.parent == magazinePos[1])
-    //     {
-    //         Obj_magazine.transform.SetParent(magazinePos[0]);
-    //         Obj_magazine.transform.localPosition = Vector3.zero;
-    //         Obj_magazine.transform.localRotation = Quaternion.identity;
-    //     }
-    // }
-
-    // public void MagazinAppear()
-    // {
-    //     Obj_magazine.SetActive(true);
-    // }
     public void SniperIdle()
     {
         if (ac != null)
@@ -364,14 +344,14 @@ public class PunchController : ICareerController
         if (stream.IsWriting)
         {
             // We own this player: send the others our data
-            stream.SendNext(Punches[0].transform.position);
-            stream.SendNext(Punches[1].transform.position);
+            stream.SendNext(ispunching);
+            stream.SendNext(isreturn);
         }
         else
         {
             // Network player, receive data
-            this.Punches[0].transform.position = (Vector3)stream.ReceiveNext();
-            this.Punches[1].transform.position = (Vector3)stream.ReceiveNext();
+            this.ispunching = (bool)stream.ReceiveNext();
+            this.isreturn = (bool)stream.ReceiveNext();
         }
     }
     #endregion
@@ -379,15 +359,41 @@ public class PunchController : ICareerController
 
     #region other method
 
-    // [PunRPC]
-    // public void RPC_SetTargetLine(Vector3 targetPoint)
-    // {
-    //     GameObject drawLine = Instantiate(DrawLine, muzzle[0].transform.position, transform.rotation) as GameObject;
-    //     drawLine.SetActive(true);
-    //     drawLine.transform.LookAt(targetPoint);
-    //     drawLine.GetComponent<_DrawLine>().DrawLine(targetPoint);
-    // }
+    bool IfReurn()
+    {
+        float d;
+        if (!isleft)
+        { d = Vector3.Distance(Punches_rb[0].position, origLocPos[0].position); }
+        else
+        { d = Vector3.Distance(Punches_rb[1].position, origLocPos[1].position); }
+        if (d > 0)
+        { return false; }
+        else
+        { return true; }
+    }
 
+    public void PunchStartReturn()
+    {
+        // pullPosition = weapon.position;
+        // weaponRb.Sleep();
+        // weaponRb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+        // weaponRb.isKinematic = true;
+        isreturn = true;
+        returnTime = 0;
+    }
+
+    void rotate_around()
+    {
+        if (angled > 360)
+        { isrotate = false; angled = 0; }
+        else
+        {
+            Punches_rb[0].transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
+            Punches_rb[1].transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
+            angled += ((int)rotateSpeed * Time.deltaTime) % 360;///累加轉過的角度
+            Debug.Log(angled);
+        }
+    }
 
     #endregion
 }

@@ -281,7 +281,7 @@ MonoBehaviour:
   rangeBuff: 1
   headBuff: 1
   comboBuff: 1
-  timeToLive: 3
+  timeToLive: 1
 --- !u!114 &114806541875983444
 MonoBehaviour:
   m_ObjectHideFlags: 1

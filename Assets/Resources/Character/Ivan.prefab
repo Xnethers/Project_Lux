@@ -1174,6 +1174,8 @@ GameObject:
   - component: {fileID: 54692455411198104}
   - component: {fileID: 114211621104466414}
   - component: {fileID: 114655459702682302}
+  - component: {fileID: 95435872193930540}
+  - component: {fileID: 114597036001680072}
   m_Layer: 10
   m_Name: Punch (1)
   m_TagString: Untagged
@@ -2143,7 +2145,7 @@ GameObject:
   m_Layer: 0
   m_Name: curvepoint (0)
   m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2334,7 +2336,7 @@ GameObject:
   m_Layer: 0
   m_Name: curvepoint (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2442,6 +2444,8 @@ GameObject:
   - component: {fileID: 54330449196402606}
   - component: {fileID: 114125785196014762}
   - component: {fileID: 114949266359565430}
+  - component: {fileID: 95650099970041590}
+  - component: {fileID: 114845696600923064}
   m_Layer: 10
   m_Name: Punch (0)
   m_TagString: Untagged
@@ -3068,13 +3072,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402443125459728}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: -1}
   m_LocalPosition: {x: -0.8, y: 1, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.6}
   m_Children: []
   m_Father: {fileID: 4083014449823450}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
 --- !u!4 &4162387661152262
 Transform:
   m_ObjectHideFlags: 1
@@ -4714,6 +4718,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95435872193930540
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402443125459728}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 602730a8f59b44b4db5f28e1de5b7044, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95650099970041590
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913950016920808}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: af724ca6efbe2a8439f34a6e7731c178, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95802951760217196
 Animator:
   serializedVersion: 3
@@ -4752,7 +4792,7 @@ MonoBehaviour:
   - {fileID: 114150772588133968}
   - {fileID: 114707027252949322}
   viewIdField: 0
-  InstantiationId: 10
+  InstantiationId: 13
   isRuntimeInstantiated: 0
 --- !u!114 &114047698886280978
 MonoBehaviour:
@@ -4807,12 +4847,13 @@ MonoBehaviour:
   careerValue: {fileID: 11400000, guid: 6bf994b5cdffa574884735801de6a063, type: 2}
   projectile:
   - {fileID: 1671934531511608, guid: 93be2b3f55a81be498ad6e2a4f1b58e9, type: 2}
-  - {fileID: 0}
+  - {fileID: 1671934531511608, guid: 93be2b3f55a81be498ad6e2a4f1b58e9, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   rayhitAirWall: 0
+  isForce: 0
   Punches:
   - {fileID: 1913950016920808}
   - {fileID: 1402443125459728}
@@ -4822,16 +4863,15 @@ MonoBehaviour:
   origLocPos:
   - {fileID: 4647001500114254}
   - {fileID: 4839410767800314}
-  VFX_Adela_Q: {fileID: 0}
-  VFX_Adela_gunFire: {fileID: 0}
   ispunching: 0
-  isreturn: 0
   speed: 10
-  returnTime: 0
+  rotateSpeed: 500
+  angled: 0
   ThrowerPower: 0
-  isForce: 0
   gunFire: {fileID: 0}
   repelAttack: {fileID: 0}
+  VFX_Adela_Q: {fileID: 0}
+  VFX_Adela_gunFire: {fileID: 0}
 --- !u!114 &114085005455678482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5428,7 +5468,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114896299942052946}
   viewIdField: 0
-  InstantiationId: 11
+  InstantiationId: 12
   isRuntimeInstantiated: 0
 --- !u!114 &114408497414426628
 MonoBehaviour:
@@ -5910,6 +5950,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tessellationSize: 30
+--- !u!114 &114597036001680072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402443125459728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: rotate
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!114 &114598838820548432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5995,8 +6055,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114211621104466414}
+  - {fileID: 114597036001680072}
   viewIdField: 0
-  InstantiationId: 12
+  InstantiationId: 11
   isRuntimeInstantiated: 0
 --- !u!114 &114659728391947564
 MonoBehaviour:
@@ -6466,6 +6527,26 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114845696600923064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913950016920808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: rotate
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!114 &114893954115124922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6693,8 +6774,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114125785196014762}
+  - {fileID: 114845696600923064}
   viewIdField: 0
-  InstantiationId: 13
+  InstantiationId: 10
   isRuntimeInstantiated: 0
 --- !u!114 &114952398460573516
 MonoBehaviour:

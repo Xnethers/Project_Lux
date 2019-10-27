@@ -111,11 +111,12 @@ public class StateBuff : MonoBehaviourPunCallbacks
         if (isSpeedup)
         {
             sm.am.ac.SetSpeedup(2.0f);
-            sm.am.ac.anim.speed = 2;
             Invoke("notSpeedup", 3.0f);
         }
         else
-        { sm.am.ac.SetSpeedup(1.0f);sm.am.ac.anim.speed = 1; }
+        {
+            sm.am.ac.SetSpeedup(1.0f);
+        }
     }
 
     void notSpeedup() { isSpeedup = false; }
