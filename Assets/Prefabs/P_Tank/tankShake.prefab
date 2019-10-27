@@ -102,10 +102,8 @@ MonoBehaviour:
   isHit: 0
   isVFX: 0
   isBullet: 0
-  isBlind: 0
-  isRepel: 0
-  isMark: 0
-  isShake: 1
+  buffsName:
+  - isShake
   baseATK: 1
   atkBuff: 1
   rangeBuff: 1

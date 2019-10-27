@@ -21,11 +21,11 @@ public class TankAirATK : Projectile {
 	}
 	public override void OnTriggerEnter(Collider col){}
 	public void ShakeAttack(){
-		am.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark,isShake));
+		AddBuffs(am.gameObject);
 		foreach(ActorManager targetAm in fovh.useTargets){
 			// Debug.Log(targetAm.gameObject.name);
-			targetAm.SendMessageUpwards("TryDoDamage",am.ac.careercon.careerValue.AirDamage*atkBuff);
-			targetAm.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark,isShake));
+			targetAm.SendMessage("TryDoDamage",GetATK());
+			AddBuffs(targetAm.gameObject);
 		}
 	}
 }

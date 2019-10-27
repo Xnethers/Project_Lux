@@ -16,11 +16,7 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     [Header("===== DeBuff Settings =====")]
 
-    public DamageBuff[] BuffList;
-    [SerializeField]protected bool isBlind;
-    [SerializeField]protected bool isRepel;
-    [SerializeField]protected bool isMark;
-    [SerializeField]protected bool isShake;
+    [SerializeField] string[] buffsName;
     
     [Header("===== Damage Settings =====")]
     [SerializeField] float baseATK = 1f;
@@ -122,11 +118,18 @@ public class Projectile : MonoBehaviourPunCallbacks
         {
             // InstantiateVFX(col,new Vector3(col.transform.position.x,transform.position.y,col.transform.position.z));
             col.SendMessageUpwards("SetTargetAm", am);
-            col.SendMessageUpwards("SetAllDeBuff", new DamageBuff(isBlind, isRepel, isMark,isShake));
+            AddBuffs(col.gameObject);
         }
         AdditionalAttack(col);
         col.SendMessageUpwards("TryDoDamage", GetATK());
         isHit = true;
+    }
+    protected void AddBuffs(GameObject obj){
+        if(buffsName.Length==0)
+            return;
+        foreach(string buff in buffsName){
+            obj.SendMessageUpwards("AddBuff",buff);
+        }
     }
     protected void SetRangeBuff(Collider col)
     {
@@ -166,19 +169,5 @@ public class Projectile : MonoBehaviourPunCallbacks
 
         // if(isBullet)
         // 	transform.GetChild(0).gameObject.SetActive(false);
-    }
-}
-public class DamageBuff
-{
-    public bool isBlind;
-    public bool isRepel;
-    public bool isMark;
-    public bool isShake;
-    public DamageBuff(bool isBlind, bool isRepel, bool isMark,bool isShake)
-    {
-        this.isBlind = isBlind;
-        this.isRepel = isRepel;
-        this.isMark = isMark;
-        this.isShake = isShake;
     }
 }

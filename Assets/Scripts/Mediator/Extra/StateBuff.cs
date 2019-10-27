@@ -10,13 +10,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
 {
     private StateManager sm;
 
-    [Header("DeBuff")]
-    public Buff[] Buffs;
-    public bool isBlind;
-    public bool isRepel;
-    public bool isMark;
-    public bool isShake;
-    public bool isSpeedup;
+    public Dictionary<string,bool> mBuffDictionary =new Dictionary<string,bool>();
     public GameObject thunderflash;
     public GameObject Markeffect;
     public OutlineObject[] OutlineScript;
@@ -72,43 +66,39 @@ public class StateBuff : MonoBehaviourPunCallbacks
     void Update()
     {
         Timer_mark.Tick();
-        if (sm.isDie)
-        {
-            SetAllDeBuff(new DamageBuff(false, false, false, false));
-        }
-        if (isRepel)
+        if(FindBuff("isRepel"))
         {
             //photonView.RPC("RPC_SetTrigger", RpcTarget.All, "hit");
             if (!sm.isDie)
                 sm.am.ac.RPC_SetTrigger("hit");
-            isRepel = false;
+            mBuffDictionary.Remove("isRepel");
         }
         if (!photonView.IsMine)
         { return; }
 
-        if (isBlind)
+        if(FindBuff("isBlind"))
         {
             GameObject flash = (GameObject)Instantiate(thunderflash, Camera.main.transform.GetChild(0));
             flash.transform.position = flash.transform.parent.position;
-            isBlind = false;
+            mBuffDictionary.Remove("isBlind");
         }
-        if (isMark)
+        if(FindBuff("isMark"))
         {
             foreach (var item in OtherTeam)
             { photonView.RPC("openOutline", item); }
             Instantiate(Markeffect, transform);
             Invoke("Invoke_closeOutline", MarkTime);
             //StartCoroutine(Mark());
-            isMark = false;
+            mBuffDictionary.Remove("isMark");
         }
-        if (isShake)
+        if(FindBuff("isShake"))
         {
             // playerCamShaker.ShakeOnce(magnitude,roughness,fadeIn,fadeOut);
             // Debug.Log(gameObject.name+":Y");
             StartCoroutine(cameraShake.Shake(cameraShake.duration, cameraShake.magnitude));
-            isShake = false;
+            mBuffDictionary.Remove("isShake");
         }
-        if (isSpeedup)
+        if(FindBuff("isSpeedup"))
         {
             sm.am.ac.SetSpeedup(2.0f);
             sm.am.ac.anim.speed = 2;
@@ -117,41 +107,20 @@ public class StateBuff : MonoBehaviourPunCallbacks
         else
         { sm.am.ac.SetSpeedup(1.0f);sm.am.ac.anim.speed = 1; }
     }
-
-    void notSpeedup() { isSpeedup = false; }
-
-
-    public void SetAllDeBuff(DamageBuff buff)
-    {
-        this.isBlind = buff.isBlind;
-        this.isRepel = buff.isRepel;
-        this.isMark = buff.isMark;
-        this.isShake = buff.isShake;
-    }
-    void SetDeBuff()
-    {
-
-    }
-
-    #region PUN Callbacks
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            // We own this player: send the others our data
-            stream.SendNext(isBlind);
-            stream.SendNext(isRepel);
-            stream.SendNext(isMark);
-        }
-        else
-        {
-            // Network player, receive data
-            this.isBlind = (bool)stream.ReceiveNext();
-            this.isRepel = (bool)stream.ReceiveNext();
-            this.isMark = (bool)stream.ReceiveNext();
-        }
-    }
-    #endregion
+    public void AddBuff(string buffName){
+		mBuffDictionary.Add(buffName,true);
+	}
+	public bool FindBuff(string buffName){
+		if(mBuffDictionary.ContainsKey(buffName))
+		{
+			return mBuffDictionary[buffName];
+		}
+		else
+		{
+			return false;
+		}
+	}
+    void notSpeedup() { mBuffDictionary.Remove("isSpeedup"); }
 
     IEnumerator Mark()
     {
@@ -199,30 +168,4 @@ public class StateBuff : MonoBehaviourPunCallbacks
     [PunRPC]
     void PS_creatMarkeffect()
     { Instantiate(Markeffect, transform); }
-
-    public void SeteBuff(Buff[] message)
-    {
-        foreach (var item in message)
-        {
-            //     if (item.isopen)
-            //     { Buffs.GetHashCode();}
-        }
-    }
-}
-
-[System.Serializable]
-public class Buff
-{
-    public string BuffName;
-    public bool isopen;
-    public Buff(string BuffName, bool isopen)
-    {
-        this.BuffName = BuffName;
-        this.isopen = isopen;
-    }
-
-    public void GetBuffName()
-    { }
-
-
 }

@@ -147,10 +147,11 @@ MonoBehaviour:
   isHit: 0
   isVFX: 0
   isBullet: 0
-  isBlind: 1
-  isRepel: 1
-  isMark: 0
+  buffsName:
+  - isRepel
+  - isBlind
   baseATK: 1
+  atkBuff: 1
   rangeBuff: 1
   headBuff: 1
   comboBuff: 1

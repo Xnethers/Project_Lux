@@ -185,7 +185,7 @@ public class DoubleGunController : ICareerController
     public override void FirstAttack()//
     {
         //SoundManager.Instance.PlayEffectSound(gunFire);
-        ac.am.sm.sb.isSpeedup = true;
+        SendMessage("AddBuff","isSpeedup");
         ac.anim.speed *= 2;
 
         if (!photonView.IsMine)

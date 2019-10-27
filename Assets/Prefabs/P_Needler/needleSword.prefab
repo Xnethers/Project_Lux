@@ -221,13 +221,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalhitVFX: {fileID: 0}
+  specialhitVFX: {fileID: 0}
   isHit: 0
   isVFX: 0
   isBullet: 0
-  isBlind: 0
-  isRepel: 1
-  isMark: 0
+  buffsName:
+  - isRepel
   baseATK: 1
+  atkBuff: 1
   rangeBuff: 1
   headBuff: 1
   comboBuff: 1

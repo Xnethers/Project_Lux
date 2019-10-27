@@ -4956,12 +4956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5b8926b444a5c42806a410b588388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Buffs: []
-  isBlind: 0
-  isRepel: 0
-  isMark: 0
-  isShake: 0
-  isSpeedup: 0
   thunderflash: {fileID: 1882964446458064, guid: 2ea53e01558fb06439c8ff9ea5ee237f,
     type: 2}
   Markeffect: {fileID: 1322962361262802, guid: 4d045978da1712d46b819c867355cc7d, type: 2}
