@@ -515,6 +515,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onExitMessages:
   - OnPopUpExit
+--- !u!114 &114767866086743566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be6c93ddb36a3c48a2463d52672907d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnterMessages:
+  - OnForcingEnter
 --- !u!114 &114778451899241170
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2379,7 +2392,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101341014064785290}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114767866086743566}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

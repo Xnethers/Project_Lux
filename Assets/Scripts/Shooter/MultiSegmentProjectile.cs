@@ -56,7 +56,10 @@ public class MultiSegmentProjectile : Projectile
     }
 
     void close()
-    { transform.parent.gameObject.SetActive(false); }
+    { 
+        transform.parent.gameObject.SetActive(false); 
+        am.SendMessage("OnForceAttackExit");
+    }
     public void find()
     {
         cols = Physics.OverlapBox(transform.position, col_range.size / 2, Quaternion.identity, mask);

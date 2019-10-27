@@ -5212,7 +5212,7 @@ MonoBehaviour:
   - {fileID: 114214462689860372}
   - {fileID: 114414971300417562}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114073282809841540
 MonoBehaviour:
@@ -5850,7 +5850,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114036157675850052}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114431957560450570
 MonoBehaviour:
@@ -6145,6 +6145,7 @@ MonoBehaviour:
     m_Bits: 66049
   isDieChange: 0
   isDieInvoke: 0
+  isHorizontalView: 0
 --- !u!114 &114568255459027422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6516,7 +6517,7 @@ MonoBehaviour:
   - {fileID: 1693539984120346, guid: b0af4149a15b2fb4dbdd74d9c9c1f1b4, type: 2}
   - {fileID: 0}
   - {fileID: 1213438088144474, guid: 25686f7801b8a3846b31f944221c9329, type: 2}
-  - {fileID: 0}
+  - {fileID: 1604299404585526, guid: 2f5f2a9148e1077479b9ae5164944760, type: 2}
   rayhitAirWall: 0
   cameraShake: {fileID: 114716862390784616}
   handBone: {fileID: 4888874180651054}
@@ -6526,6 +6527,8 @@ MonoBehaviour:
   hotBuff: 2
   buffType: 0
   buffText: {fileID: 114038160050062314}
+  ThrowerPower: 100
+  isForce: 0
 --- !u!114 &114757544558630126
 MonoBehaviour:
   m_ObjectHideFlags: 1

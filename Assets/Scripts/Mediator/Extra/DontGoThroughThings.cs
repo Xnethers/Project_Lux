@@ -47,7 +47,7 @@ public class DontGoThroughThings : MonoBehaviour
             {
                 //myRigidbody.velocity=Vector3.zero;
                 
-                myRigidbody.isKinematic=true;
+                // myRigidbody.isKinematic=true;
                 myCollider.SendMessage("OnTriggerEnter", hitInfo.collider);
                 // if (!hitInfo.collider)
                 //     return;

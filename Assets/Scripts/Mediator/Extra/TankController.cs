@@ -22,6 +22,10 @@ public class TankController : ICareerController {
 	public BuffType buffType;
 	private TankController tankController;
 	public Text buffText;
+	[Space(10)]
+    [Header("===== Shooter Settings =====")]
+    [SerializeField] float ThrowerPower;
+	public bool isForce;
 
 	// Use this for initialization
 	void Start () {
@@ -67,9 +71,11 @@ public class TankController : ICareerController {
 					// }
 				}
 				else{
-					// if(!isForce)//普攻
+					if(!isForce){//普攻
 						ac.SetBool("fullBody",false);
 						UseSkill(0,careerValue.NormalDamage,"attack",true);
+					}
+						
 				}
 			}
 			if (ki.auxiliaryMR){//群攻
@@ -85,7 +91,32 @@ public class TankController : ICareerController {
 					StartCD(skillF,careerValue.SecondCD);
 				}  
 			}
+			//蓄力
+			if(ki.forcingML){
+				if(CheckCD(skillForce)){
+					ac.SetBool("fullBody",true);
+					UseSkill(5,careerValue.ForceMinDamage,"force");
+					forcingTimer.Go(careerValue.ForcingCD);
+					isForce=true;
+					ac.am.sm.isForcingAim=true;
+				}
+			}
 		}
+		//自動發射蓄力
+        if(forcingTimer.state == MyTimer.STATE.FINISHED){
+            ki.forceReleaseML=true;
+            forcingTimer.state = MyTimer.STATE.IDLE;
+        }
+        if(ki.forceReleaseML)
+        {
+            if(ac.CheckState("forcing")){
+                UseSkill(5,ac.am.sm.ATK);
+                StartCD(skillForce,careerValue.ForceCD);
+                ac.am.sm.isForcingAim=false;
+            }
+        } 
+		if(ki.attackML)
+            isForce=false;
 	}
 	public void NeedleHand() {
         BigNeedleSetParent(handBone);
@@ -95,13 +126,7 @@ public class TankController : ICareerController {
         ac.am.wm.wcR.wdata[0].transform.localPosition = Vector3.zero;
         ac.am.wm.wcR.wdata[0].transform.localRotation = Quaternion.identity;
     }
-	public void OnAttack1hAEnter() {
-        ki.inputEnabled = false;
-		// ki.inputMouseEnabled = false;
-        //lockPlanar = true;
-        //lerpTarget = 1.0f;
-        
-    }
+	
     public void OnAttack1hAUpdate() {
         ac.thrustVec = ac.model.transform.forward * ac.anim.GetFloat("attack1hAVelocity");
         //anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, 0.4f));
@@ -153,6 +178,28 @@ public class TankController : ICareerController {
 		// photonView.RPC("RPC_ShakeAttack", RpcTarget.All);
 		
 	}
+	public void OnForcingEnter() {
+        ki.inputEnabled = false;
+		ac.camcon.isHorizontalView=true;
+		// ki.inputMouseEnabled = false;
+        //lockPlanar = true;
+        //lerpTarget = 1.0f;
+        
+    }
+	public void LockInput(){
+		ac.pi.inputEnabled=false;
+		ac.pi.inputMouseEnabled=false;
+	}
+	public override void ForceAttack()//蓄力
+	{
+		if (!photonView.IsMine)
+            return;
+		photonView.RPC("RPC_Projectile", RpcTarget.All,muzzleR.position,new Vector3(RayAim().x,muzzleR.position.y,RayAim().z) ,ThrowerPower);//muzzleR.position, RayAim()
+    }
+	public void OnForceAttackExit(){
+		ac.camcon.isHorizontalView=false;
+	}
+	
 	public void OnRunUpdate() {
         ac.anim.SetLayerWeight(ac.anim.GetLayerIndex("run"), ac.anim.GetLayerWeight(ac.anim.GetLayerIndex("attack")));
     }

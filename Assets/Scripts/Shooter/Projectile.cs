@@ -30,7 +30,6 @@ public class Projectile : MonoBehaviourPunCallbacks
     [SerializeField] float comboBuff = 1f;
     [SerializeField] protected float timeToLive = 3f;
     protected ActorManager am;//子彈發射者
-    protected ActorManager targetAm;//攻擊對象
     protected Collider col;//攻擊對象
     protected TowerHealth towerHealth;
     protected Vector3 originVec3;
@@ -105,19 +104,7 @@ public class Projectile : MonoBehaviourPunCallbacks
         if (isBullet)
         {
             SetRangeBuff(col);
-            if (col.gameObject.layer == LayerMask.NameToLayer("Head"))
-            {
-                headBuff = 1.7f;
-                Debug.Log("Head");
-                //return;
-            }
-
-            if (col.gameObject.layer == LayerMask.NameToLayer("Body"))
-            {
-                headBuff = 1f;
-                Debug.Log("Body");
-                //return;
-            }
+            SetHeadBuff(col);
             if (specialhitVFX != null && !isVFX){//蜂窩火花
                 GameObject vfx = Instantiate(specialhitVFX, targetPoint, transform.rotation) as GameObject;
                 isVFX=true;
@@ -153,6 +140,21 @@ public class Projectile : MonoBehaviourPunCallbacks
         else if (rangeDistance > 30)
             rangeBuff = 0.5f;
 
+    }
+    protected void SetHeadBuff(Collider col){
+        if (col.gameObject.layer == LayerMask.NameToLayer("Head"))
+        {
+            headBuff = 1.7f;
+            // Debug.Log("Head");
+            //return;
+        }
+
+        if (col.gameObject.layer == LayerMask.NameToLayer("Body"))
+        {
+            headBuff = 1f;
+            // Debug.Log("Body");
+            //return;
+        }
     }
     public float GetATK()
     {

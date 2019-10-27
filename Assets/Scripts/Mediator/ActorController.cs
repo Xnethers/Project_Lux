@@ -83,7 +83,8 @@ public class ActorController : IActorManagerInterface {
                 
                 photonView.RPC("RPC_SetLatent", RpcTarget.All);
                 lockPlanar = false;
-                camcon.tempEulerX= 0;//攝影機UpDown角度歸零
+                //camcon.tempEulerX= 0;//攝影機UpDown角度歸零
+                
                 pi.inputMouseEnabled = !pi.inputMouseEnabled;//鎖攝影機操作
                 //人與潛光平行(轉角度)
                 // Debug.Log(am.im.overlapEcastms[0].transform.eulerAngles.y);
@@ -269,11 +270,9 @@ public class ActorController : IActorManagerInterface {
     //     anim.SetBool("isHighFall", false);
     // }
     public void OnGroundEnter() {
-        if(CheckState("attackIdle","attack")){//攻擊完才可操作
-            pi.inputEnabled = true;
-            pi.inputMouseEnabled = true;
-        }
-        
+        pi.inputEnabled = true;
+        pi.inputMouseEnabled = true;
+
         lockPlanar = false;
         canAttack = true;
         am.bm.bcB.defCol.material = frictionOne;
@@ -312,6 +311,7 @@ public class ActorController : IActorManagerInterface {
         pi.inputEnabled = true;
         pi.inputMouseEnabled = true;
         canAttack=true;
+        // Debug.Log("OnAttackIdleEnter");
     }
     public void OnAttackIdleUpdate() {
         anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, .1f));
@@ -371,6 +371,7 @@ public class ActorController : IActorManagerInterface {
     public void RPC_SetLatent(){
         pi.isLatent = ! pi.isLatent;//是否潛光中
         SetBool("lock",pi.isLatent);//鎖人物動作狀態
+        camcon.isHorizontalView=pi.isLatent;
         am.bm.bcL.gameObject.SetActive(pi.isLatent);
         am.bm.SetChacontrollerSize(pi.isLatent);
         model.transform.GetChild(0).gameObject.SetActive(!pi.isLatent);

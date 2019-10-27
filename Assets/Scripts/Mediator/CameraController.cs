@@ -49,6 +49,7 @@ public class CameraController : MonoBehaviour {
     //Die
     public bool isDieChange = false;
     public bool isDieInvoke = false;
+    public bool isHorizontalView = false; 
     
 	// Use this for initialization
 	void Start () {
@@ -84,7 +85,10 @@ public class CameraController : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible=false;
         }
-
+        if(isHorizontalView){
+            pi.Jup = 0f;
+            tempEulerX =Mathf.Lerp(tempEulerX,0,.1f);
+        }
         //攝影機旋轉
         playerHandle.transform.Rotate(Vector3.up, pi.Jright * HorizontalSpeed * Time.fixedDeltaTime);//直接旋轉玩家水平角度
         if(!ac.am.sm.isDie){//isDieChange
@@ -92,6 +96,7 @@ public class CameraController : MonoBehaviour {
             tempEulerX = Mathf.Clamp(tempEulerX, minVerAngle, maxVerAngle);
         }
         else{
+            isHorizontalView=false;
             tempEulerX =Mathf.Lerp(tempEulerX,90,.1f);
             tempEulerX = Mathf.Clamp(tempEulerX, minVerAngle, 90);
         }

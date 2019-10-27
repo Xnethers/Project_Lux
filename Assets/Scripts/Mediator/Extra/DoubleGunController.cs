@@ -220,7 +220,10 @@ public class DoubleGunController : ICareerController
             photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[1].position, RayAim(), ThrowerPower);
         }
     }
-
+    public void OnForcingEnter() {
+        ki.inputEnabled = false;
+		ac.camcon.isHorizontalView=true;
+    }
     public override void ForceAttack()//蓄力(0.7s)
     {
         foreach (var item in Beam)
@@ -230,7 +233,10 @@ public class DoubleGunController : ICareerController
             p.Initialize(ac.am, 0, RayAim());
         }
     }
-
+    public void OnForceAttackExit(){
+		ac.camcon.isHorizontalView=false;
+        ki.inputEnabled = true;
+	}
     public void magazineOperation() //確認是否填彈
     {
         if (magazine <= 0 && !isFill)

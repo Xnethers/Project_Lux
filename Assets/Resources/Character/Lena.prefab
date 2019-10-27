@@ -6920,6 +6920,7 @@ MonoBehaviour:
     m_Bits: 66049
   isDieChange: 0
   isDieInvoke: 0
+  isHorizontalView: 0
 --- !u!114 &114963329356812066
 MonoBehaviour:
   m_ObjectHideFlags: 1
