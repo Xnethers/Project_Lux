@@ -809,7 +809,6 @@ GameObject:
   - component: {fileID: 114076924849842602}
   - component: {fileID: 114538950638241038}
   - component: {fileID: 82749916980104562}
-  - component: {fileID: 114934271366437500}
   m_Layer: 11
   m_Name: Ivan
   m_TagString: Untagged
@@ -1174,8 +1173,6 @@ GameObject:
   - component: {fileID: 54692455411198104}
   - component: {fileID: 114211621104466414}
   - component: {fileID: 114655459702682302}
-  - component: {fileID: 95435872193930540}
-  - component: {fileID: 114597036001680072}
   m_Layer: 10
   m_Name: Punch (1)
   m_TagString: Untagged
@@ -2444,8 +2441,6 @@ GameObject:
   - component: {fileID: 54330449196402606}
   - component: {fileID: 114125785196014762}
   - component: {fileID: 114949266359565430}
-  - component: {fileID: 95650099970041590}
-  - component: {fileID: 114845696600923064}
   m_Layer: 10
   m_Name: Punch (0)
   m_TagString: Untagged
@@ -4718,42 +4713,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &95435872193930540
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1402443125459728}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 602730a8f59b44b4db5f28e1de5b7044, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95650099970041590
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1913950016920808}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: af724ca6efbe2a8439f34a6e7731c178, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95802951760217196
 Animator:
   serializedVersion: 3
@@ -4792,7 +4751,7 @@ MonoBehaviour:
   - {fileID: 114150772588133968}
   - {fileID: 114707027252949322}
   viewIdField: 0
-  InstantiationId: 13
+  InstantiationId: 10
   isRuntimeInstantiated: 0
 --- !u!114 &114047698886280978
 MonoBehaviour:
@@ -4843,7 +4802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreLayerMask:
     serializedVersion: 2
-    m_Bits: 4294327807
+    m_Bits: 4294327806
   careerValue: {fileID: 11400000, guid: 6bf994b5cdffa574884735801de6a063, type: 2}
   projectile:
   - {fileID: 1671934531511608, guid: 93be2b3f55a81be498ad6e2a4f1b58e9, type: 2}
@@ -4863,9 +4822,10 @@ MonoBehaviour:
   origLocPos:
   - {fileID: 4647001500114254}
   - {fileID: 4839410767800314}
+  punchState: 0
   ispunching: 0
   speed: 10
-  rotateSpeed: 500
+  rotateSpeed: 800
   angled: 0
   ThrowerPower: 0
   gunFire: {fileID: 0}
@@ -5468,7 +5428,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114896299942052946}
   viewIdField: 0
-  InstantiationId: 12
+  InstantiationId: 11
   isRuntimeInstantiated: 0
 --- !u!114 &114408497414426628
 MonoBehaviour:
@@ -5670,6 +5630,7 @@ MonoBehaviour:
     m_Bits: 66049
   isDieChange: 0
   isDieInvoke: 0
+  isHorizontalView: 0
 --- !u!114 &114514447109062414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5782,12 +5743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5b8926b444a5c42806a410b588388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Buffs: []
-  isBlind: 0
-  isRepel: 0
-  isMark: 0
-  isShake: 0
-  isSpeedup: 0
   thunderflash: {fileID: 1882964446458064, guid: 2ea53e01558fb06439c8ff9ea5ee237f,
     type: 2}
   Markeffect: {fileID: 1322962361262802, guid: 4d045978da1712d46b819c867355cc7d, type: 2}
@@ -5950,26 +5905,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tessellationSize: 30
---- !u!114 &114597036001680072
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1402443125459728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 9
-    SynchronizeType: 1
-    Name: rotate
-  m_SynchronizeLayers:
-  - SynchronizeType: 1
-    LayerIndex: 0
 --- !u!114 &114598838820548432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6055,9 +5990,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114211621104466414}
-  - {fileID: 114597036001680072}
+  - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 11
+  InstantiationId: 12
   isRuntimeInstantiated: 0
 --- !u!114 &114659728391947564
 MonoBehaviour:
@@ -6527,26 +6462,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114845696600923064
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1913950016920808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 9
-    SynchronizeType: 1
-    Name: rotate
-  m_SynchronizeLayers:
-  - SynchronizeType: 1
-    LayerIndex: 0
 --- !u!114 &114893954115124922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6702,27 +6617,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114934271366437500
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1287390371873622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b154883273c2845f39445c8015d81639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points:
-  - {x: 0.6901152, y: 0, z: -0.78326917}
-  - {x: 1.9278836, y: 0, z: -0.28848338}
-  - {x: 2.3802047, y: 0, z: 1.0692935}
-  - {x: 1.2417536, y: 0, z: 1.743557}
-  lengths: []
-  lengthsTime: []
-  TotalLength: 0
-  modes: 0000000000000000
-  loop: 0
 --- !u!114 &114945771414666226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6774,9 +6668,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114125785196014762}
-  - {fileID: 114845696600923064}
+  - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 10
+  InstantiationId: 13
   isRuntimeInstantiated: 0
 --- !u!114 &114952398460573516
 MonoBehaviour:
@@ -7017,7 +6911,7 @@ CapsuleCollider:
   m_Radius: 0.2
   m_Height: 1.4
   m_Direction: 1
-  m_Center: {x: 0, y: 0.65, z: 0}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!137 &137423320227576298
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

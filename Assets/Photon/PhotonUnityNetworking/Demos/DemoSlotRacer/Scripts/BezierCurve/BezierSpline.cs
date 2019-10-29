@@ -13,8 +13,7 @@ using UnityEngine;
 
 using System;
 
-namespace Photon.Pun.Demo.SlotRacer.Utils
-{
+
 	public class BezierSpline : MonoBehaviour
 	{
 		[SerializeField]
@@ -329,4 +328,3 @@ namespace Photon.Pun.Demo.SlotRacer.Utils
 		//	return Vector3.Lerp(points[index-1], points[index], amount);
 		}
 	}
-}
