@@ -5,7 +5,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-//Adela
+//Ivan
 public enum PunchState { Idle, NomalAttack, FirstAttack, SecondAttack }
 public class PunchController : ICareerController
 {
@@ -33,7 +33,9 @@ public class PunchController : ICareerController
     public float angled = 0; // set this to the maximum angle in degrees
 
     //------SecondAttack------
-    private bool shield;
+    private ShieldHealth shield;
+    [SerializeField] private BattleController body_battlectrl;
+    private Animator anim;
 
 
     [Space(10)]
@@ -60,6 +62,8 @@ public class PunchController : ICareerController
 
         ac = GetComponent<ActorController>();
         ki = GetComponent<KICareer>();
+        shield = GetComponentInChildren<ShieldHealth>();
+        anim = GetComponent<Animator>();
         //StartCoroutine("Timer_Forcing");
 
     }
@@ -71,6 +75,7 @@ public class PunchController : ICareerController
         {
             case PunchState.NomalAttack:
                 {
+                    anim.enabled = false;
                     if (isreturn && IfReurn())
                     {
                         isleft = !isleft;
@@ -79,6 +84,7 @@ public class PunchController : ICareerController
                         returnTime = 0;
                         Punches_rb[0].transform.parent = transform;
                         Punches_rb[1].transform.parent = transform;
+                        anim.enabled = true;
                     }
                     else if (!isreturn && returnTime < 1)
                     {
@@ -182,6 +188,8 @@ public class PunchController : ICareerController
             if (ki.attackF && CheckCD(skillF) && !ac.CheckState("shielding", "attack"))
             {
                 ac.SetBool("shield", true);
+                punchState = PunchState.SecondAttack;
+                anim.SetBool("SecondAttack", true);
                 // UseSkill(2, careerValue.SecondDamage);
             }
 
@@ -208,8 +216,12 @@ public class PunchController : ICareerController
         {
             if (ki.attackF && ac.CheckState("shielding", "attack"))
             {
-                StartCD(skillF, 5);
+                //StartCD(skillF, 5);
+                shield.gameObject.SetActive(false);
+                punchState = PunchState.Idle;
                 ac.SetBool("shield", false);
+                anim.SetBool("SecondAttack", false);
+                body_battlectrl.defCol.enabled = true;
             }
         }
 
@@ -261,7 +273,6 @@ public class PunchController : ICareerController
             return;
         photonView.RPC("RPC_CreatFristAttackDamege", RpcTarget.All);
         // photonView.RPC("RPC_Projectile", RpcTarget.All, Punches_rb[1].position, Punches_rb[0].position, 0);
-
         punchState = PunchState.FirstAttack;
     }
 
@@ -270,6 +281,8 @@ public class PunchController : ICareerController
         SoundManager.Instance.PlayEffectSound(repelAttack);
         if (!photonView.IsMine)
             return;
+        shield.gameObject.SetActive(true);
+        body_battlectrl.defCol.enabled = false;
         //photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), 0f);
     }
 
@@ -405,12 +418,14 @@ public class PunchController : ICareerController
         {
             punchState = PunchState.Idle;
             angled = 0;
+            anim.enabled = true;
         }
         else
         {
+            anim.enabled = false;
             Punches_rb[0].transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
             Punches_rb[1].transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
-            Debug.Log(angled);
+            //Debug.Log(angled);
         }
     }
 

@@ -152,6 +152,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 224000734243092476, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000734243092476, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224277217815467866, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -177,25 +187,30 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114042182497402970, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
+    - target: {fileID: 114321694931563886, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
         type: 2}
       propertyPath: viewIdField
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114404612294885346, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
+    - target: {fileID: 114042182497402970, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
         type: 2}
       propertyPath: viewIdField
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 114655459702682302, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
+    - target: {fileID: 114404612294885346, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
         type: 2}
       propertyPath: viewIdField
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114949266359565430, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
+    - target: {fileID: 114655459702682302, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
         type: 2}
       propertyPath: viewIdField
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114949266359565430, guid: 6ca37b8b3ffc541409c05e9347ca9ecb,
+        type: 2}
+      propertyPath: viewIdField
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1287390371873622, guid: 6ca37b8b3ffc541409c05e9347ca9ecb, type: 2}
       propertyPath: m_IsActive
