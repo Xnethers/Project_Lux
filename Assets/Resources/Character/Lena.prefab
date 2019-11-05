@@ -6067,6 +6067,7 @@ MonoBehaviour:
   isFall: 0
   isAttack: 0
   isRushAttack: 0
+  isForce: 0
   isForcingAim: 0
   isHit: 0
   isDie: 0
@@ -6542,6 +6543,7 @@ MonoBehaviour:
   - {fileID: 114601759419081448}
   MarkTime: 5
   cameraShake: {fileID: 0}
+  AbsorbAm: {fileID: 0}
 --- !u!114 &114832292895840918
 MonoBehaviour:
   m_ObjectHideFlags: 1

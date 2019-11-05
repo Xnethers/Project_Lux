@@ -359,6 +359,9 @@ public class ActorController : IActorManagerInterface {
         }
         
     }
+    public bool GetBool(string boolName) {
+        return anim.GetBool(boolName);
+    }
     [PunRPC]
     public void SetBool(string boolName, bool value) {
         anim.SetBool(boolName, value);

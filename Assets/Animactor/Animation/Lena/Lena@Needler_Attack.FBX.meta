@@ -186,7 +186,7 @@ ModelImporter:
     400178: Bone030
     400180: //RootNode
     7400000: Needler_Attack
-    7400002: Tank_Force
+    7400002: Supporter_Force
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -533,10 +533,10 @@ ModelImporter:
       maskSource: {fileID: 31900000, guid: deb51944a82701b41b470d53276b15ba, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Tank_Force
+      name: Supporter_Force
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 53
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

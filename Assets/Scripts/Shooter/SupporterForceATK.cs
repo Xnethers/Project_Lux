@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankForceATK : Projectile {
+public class SupporterForceATK : Projectile {
 
 	public override void OnTriggerEnter(Collider col)
 	{

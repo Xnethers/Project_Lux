@@ -6,14 +6,14 @@ public class FieldOfViewHeight : FieldOfView {
 	private CharacterController chacon;
 	bool m_Started;
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		m_Started = true;
         chacon = GetComponentInParent<CharacterController>();
 		StartFind(.1f);
 	}
 	public override void FindUseTargets(){
 		useTargets.Clear();
-		Collider[] sameHeightObjs = Physics.OverlapBox(transform.position,new Vector3(viewRadius*2,chacon.height,viewRadius*2),Quaternion.identity,targetMask);//chacon.height*1.5f
+		Collider[] sameHeightObjs = Physics.OverlapBox(transform.position+transform.up * chacon.height/2,new Vector3(viewRadius*2,chacon.height,viewRadius*2),Quaternion.identity,targetMask);//chacon.height*1.5f
 		for (int i = 0; i < visibleTargets.Count; i++){
 			ActorManager tempAm=visibleTargets[i];
 			foreach(Collider sameHeight in sameHeightObjs){
@@ -38,6 +38,6 @@ public class FieldOfViewHeight : FieldOfView {
         //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
          //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
         if (m_Started)
-            Gizmos.DrawWireCube(transform.position,new Vector3(viewRadius*2,chacon.height,viewRadius*2));
+            Gizmos.DrawWireCube(transform.position+transform.up * chacon.height/2,new Vector3(viewRadius*2,chacon.height,viewRadius*2));
     }
 }

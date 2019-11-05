@@ -62,7 +62,7 @@ public class NeedlerController : ICareerController
         skillForce.Tick();
         forcingTimer.Tick();
         if(ac.am.sm.isDie){
-            ac.anim.SetBool("isArmour", false);
+            ac.SetBool("isArmour", false);
             skillQ.atkTimer.state=MyTimer.STATE.IDLE;
             return;
         }
@@ -79,7 +79,7 @@ public class NeedlerController : ICareerController
             }
         }
         if(CheckCD(skillQ)){//解除霸體
-            ac.anim.SetBool("isArmour", false);
+            ac.SetBool("isArmour", false);
         }
         if (ac.canAttack){//canAttack限制狀態機行為
             if(ac.CheckState("needlerArmour","attack")){//霸體狀態

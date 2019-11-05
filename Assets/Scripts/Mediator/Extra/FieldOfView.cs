@@ -14,13 +14,15 @@ public class FieldOfView : MonoBehaviour {
     //[HideInInspector]
     public List<ActorManager> visibleTargets = new List<ActorManager>();
     public List<ActorManager> useTargets = new List<ActorManager>();
-    void Start()
+    protected virtual void Start()
     {
         StartFind(.2f);
         // StartCoroutine(FindTargetsWithDelay(.2f));
         // Debug.Log("?????????????????????????????????????????????");
     }
+    public virtual void Initialize(ActorManager am){
 
+    }
     public virtual IEnumerator FindTargetsWithDelay(float delay)
     {
         while (true)

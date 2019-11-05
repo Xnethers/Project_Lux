@@ -22,6 +22,8 @@ public class StateBuff : MonoBehaviourPunCallbacks
     public List<Player> OtherTeam = new List<Player>();
     [Header("=== Camera Shake Setting ===")]
     public CameraShake cameraShake;
+    [Header("=== Immune Damage Setting ===")]
+    public ActorManager AbsorbAm;
     // public CameraShaker playerCamShaker;
     // public float magnitude = 4f;
     // public float roughness = 5f;
@@ -71,7 +73,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
             //photonView.RPC("RPC_SetTrigger", RpcTarget.All, "hit");
             if (!sm.isDie)
                 sm.am.ac.RPC_SetTrigger("hit");
-            mBuffDictionary.Remove("isRepel");
+            RemoveBuff("isRepel");
         }
         if (!photonView.IsMine)
         { return; }
@@ -80,7 +82,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
         {
             GameObject flash = (GameObject)Instantiate(thunderflash, Camera.main.transform.GetChild(0));
             flash.transform.position = flash.transform.parent.position;
-            mBuffDictionary.Remove("isBlind");
+            RemoveBuff("isBlind");
         }
         if(FindBuff("isMark"))
         {
@@ -89,14 +91,14 @@ public class StateBuff : MonoBehaviourPunCallbacks
             Instantiate(Markeffect, transform);
             Invoke("Invoke_closeOutline", MarkTime);
             //StartCoroutine(Mark());
-            mBuffDictionary.Remove("isMark");
+            RemoveBuff("isMark");
         }
         if(FindBuff("isShake"))
         {
             // playerCamShaker.ShakeOnce(magnitude,roughness,fadeIn,fadeOut);
             // Debug.Log(gameObject.name+":Y");
             StartCoroutine(cameraShake.Shake(cameraShake.duration, cameraShake.magnitude));
-            mBuffDictionary.Remove("isShake");
+            RemoveBuff("isShake");
         }
         if(FindBuff("isSpeedup"))
         {
@@ -121,7 +123,18 @@ public class StateBuff : MonoBehaviourPunCallbacks
 			return false;
 		}
 	}
-    void notSpeedup() { mBuffDictionary.Remove("isSpeedup"); }
+    public void RemoveBuff(string buffName){
+		mBuffDictionary.Remove(buffName);
+	}
+    public void SetBuffValue(float atkBuff,float defBuff,float hotBuff){
+        sm.ATKBuff=atkBuff;
+        sm.DEFBuff=defBuff;
+        sm.HOTBuff=hotBuff;
+    }
+    public void SetAbsorbed(ActorManager absorbAm){//ImmuneBuff
+        AbsorbAm=absorbAm;
+    }
+    void notSpeedup() { RemoveBuff("isSpeedup"); }
 
     IEnumerator Mark()
     {

@@ -39,7 +39,7 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
             PV.RPC("SetResult", RpcTarget.All);
             foreach (ActorManager am in FindObjectsOfType<ActorManager>())
             {
-                am.ac.anim.SetBool("lock",true);
+                am.ac.SetBool("result",true);
                 am.ac.pi.inputEnabled = false;
                 am.ac.pi.inputMouseEnabled = false;
                 //am.ac.pi.enabled = false;

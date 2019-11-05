@@ -69,7 +69,7 @@ public class SniperController : ICareerController
     }
     void FixedUpdate()
     {
-        FindTargetPoint();
+        // FindTargetPoint();
     }
     void Update()
     {

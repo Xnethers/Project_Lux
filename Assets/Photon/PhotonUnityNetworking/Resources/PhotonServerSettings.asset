@@ -98,4 +98,5 @@ MonoBehaviour:
   - RPC_ShakeAttack
   - RPC_Buff
   - RPC_ChangeBuffType
+  - AddAbsorbDamage
   DisableAutoOpenWizard: 1

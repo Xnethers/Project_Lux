@@ -4,14 +4,14 @@ using UnityEngine;
 using Photon.Pun;
 using EZCameraShake;
 using UnityEngine.UI;
-public class TankController : ICareerController {
+public class SupporterController : ICareerController {
 	private KICareer ki;
-	private FieldOfViewHeight fovh;
+	// private FieldOfViewHeight fovh;
 	public CameraShake cameraShake;
 	[Header("===== Weapon Settings =====")]
     public Transform handBone;
 	[Header("===== Buff Settings =====")]
-	public GameObject buffObj;
+	public GameObject[] buffObj;
 	public float atkBuff = 1.5f;//Attack
     public float detBuff = 1.5f;//Defense
     public float hotBuff = 2.0f;//Heal Over Time
@@ -20,20 +20,20 @@ public class TankController : ICareerController {
 		ATKBuff, DEFBuff,HOTBuff 
 	}
 	public BuffType buffType;
-	private TankController tankController;
 	public Text buffText;
 	[Space(10)]
     [Header("===== Shooter Settings =====")]
     [SerializeField] float ThrowerPower;
 	public bool isForce;
-
+	[Space(10)]
+    [Header("===== Absorb Settings =====")]
+	public float absorbDamage=0f;
 	// Use this for initialization
 	void Start () {
 		muzzleR = transform.DeepFind("MuzzleR");
 		ac = GetComponent<ActorController>();
 		ki = GetComponent<KICareer>();
-		tankController = GetComponent<TankController>();
-		fovh = GetComponent<FieldOfViewHeight>();
+		// fovh = GetComponent<FieldOfViewHeight>();
 		cameraShake = ac.camcon.GetComponentInParent<CameraShake>();
 		NeedleHand();
 	}
@@ -51,56 +51,84 @@ public class TankController : ICareerController {
         forcingTimer.Tick();
 		if(ac.am.sm.isDie){
 			skillQ.atkTimer.state=MyTimer.STATE.IDLE;
+			ac.SetBool("isArmour", false);
             return;
 		}
-		if(ac.pi.isLatent)
+		if(ac.pi.isLatent){
+			ac.SetBool("isArmour", false);
 			return;
+		}
+			
+		if(ac.CheckStateTag("armour") && CheckCD(skillQ)){//解除霸體
+            // ac.SetBool("isArmour", false);
+			ki.attackML=true;
+        }
 		if (ac.canAttack){
-			if (ki.attackML){
-				if (ac.height>3 && !ac.am.sm.isGround){ //空攻
-					ac.gravity = ac.gravityConstant *2 ;
-					ac._velocity.y = -ac.gravity;
-					ac.SetBool("fullBody",true);
-					UseSkill(4,careerValue.AirDamage);
-					// RayAim();
-					// if(!rayhitAirWall){
-					// 	if(CheckCD(skillAir)){
-					// 		UseSkill(4,careerValue.AirDamage) ;
-					// 		StartCD(skillAir,careerValue.AirCD);
-					// 	}
-					// }
-				}
-				else{
-					if(!isForce){//普攻
-						ac.SetBool("fullBody",false);
-						UseSkill(0,careerValue.NormalDamage,"attack",true);
+			if(ac.CheckStateTag("armour")){//霸體狀態
+                if(ac.GetBool("isArmour")){//解除霸體
+                    if (ki.attackML){//霸攻
+                        UseSkill(3, careerValue.RushDamage+absorbDamage/4);
+						ac.SetBool("isArmour", false);
+						skillQ.atkTimer.state = MyTimer.STATE.FINISHED;
+                    }
+                }
+            }
+			else
+			{
+				if (ki.attackML){
+					if (ac.height>3 && !ac.am.sm.isGround){ //空攻
+						ac.gravity = ac.gravityConstant *2 ;
+						ac._velocity.y = -ac.gravity;
+						ac.SetBool("fullBody",true);
+						UseSkill(4,careerValue.AirDamage);
+						// RayAim();
+						// if(!rayhitAirWall){
+						// 	if(CheckCD(skillAir)){
+						// 		UseSkill(4,careerValue.AirDamage) ;
+						// 		StartCD(skillAir,careerValue.AirCD);
+						// 	}
+						// }
 					}
-						
+					else{
+						if(!isForce){//普攻
+							ac.SetBool("fullBody",false);
+							UseSkill(0,careerValue.NormalDamage,"attack",true);
+						}
+							
+					}
+				}
+				if (ki.auxiliaryMR){//群攻
+					// UseSkill(1,careerValue.FirstDamage);
+					photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
+					buffText.text = buffType.ToString();
+				}
+				if (ki.attackF){//擊退攻
+					if(CheckCD(skillF)){
+						ac.SetBool("fullBody",true);
+						UseSkill(2,careerValue.SecondDamage);
+						photonView.RPC("RPC_Buff", RpcTarget.All,0);
+						StartCD(skillF,careerValue.SecondCD);
+					}  
+				}
+				if(ki.attackQ && ac.am.sm.RP>=100){//開啟霸體
+					StartCD(skillQ,careerValue.RushingCD);
+					// photonView.RPC("PS_creatQEffect", RpcTarget.All);
+					ac.SetBool("isArmour", true);
+					ac.am.sm.RP=0;
+					photonView.RPC("RPC_Buff", RpcTarget.All,1);
+				}
+				//蓄力
+				if(ki.forcingML){
+					if(CheckCD(skillForce)){
+						ac.SetBool("fullBody",true);
+						UseSkill(5,careerValue.ForceMinDamage,"force");
+						forcingTimer.Go(careerValue.ForcingCD);
+						isForce=true;
+						ac.am.sm.isForcingAim=true;
+					}
 				}
 			}
-			if (ki.auxiliaryMR){//群攻
-				// UseSkill(1,careerValue.FirstDamage);
-				photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
-				buffText.text = buffType.ToString();
-			}
-			if (ki.attackF){//擊退攻
-				if(CheckCD(skillF)){
-					ac.SetBool("fullBody",true);
-					UseSkill(2,careerValue.SecondDamage);
-					photonView.RPC("RPC_Buff", RpcTarget.All);
-					StartCD(skillF,careerValue.SecondCD);
-				}  
-			}
-			//蓄力
-			if(ki.forcingML){
-				if(CheckCD(skillForce)){
-					ac.SetBool("fullBody",true);
-					UseSkill(5,careerValue.ForceMinDamage,"force");
-					forcingTimer.Go(careerValue.ForcingCD);
-					isForce=true;
-					ac.am.sm.isForcingAim=true;
-				}
-			}
+			
 		}
 		//自動發射蓄力
         if(forcingTimer.state == MyTimer.STATE.FINISHED){
@@ -149,6 +177,32 @@ public class TankController : ICareerController {
             return;
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 2);
 	}
+	public void OnArmourEnter(){
+		ki.inputEnabled = false;
+		ac.canAttack=false;
+	}
+	public void OnArmourExit(){
+		ki.inputEnabled = true;
+		ac.canAttack=true;
+	}
+	public void DisableAbsorbRange(){
+		FieldOfViewAbsorb fova=GetComponentInChildren<FieldOfViewAbsorb>();
+		if(fova!=null)
+			fova.Disable();
+	}
+	public void InitializeAbsorbDamage(){
+		absorbDamage=0;
+	}
+	public void RushArmourAttack(){
+        // SoundManager.Instance.PlayEffectSound(gunFire);
+        if (!photonView.IsMine)
+            return;
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position+transform.forward*2, ac.anim.GetInteger("attackSkill"));//3
+        
+        //收刀動作
+        // Invoke("ArmourIsPull",pullTime+.5f);
+        // Invoke("ArmourNoPull",pullTime+1f);
+    }
 	//AirAtk
 	/*public void OnAirJumpEnter(){
 		// fovh.TargetsListClear();
@@ -215,10 +269,16 @@ public class TankController : ICareerController {
 		buffType = (BuffType)type;
 	}
 	[PunRPC]
-	public void RPC_Buff(){
-		GameObject buff = Instantiate(buffObj, transform.position, transform.rotation) as GameObject;
+	public void RPC_Buff(int fovSkill){
+		GameObject buff = Instantiate(buffObj[fovSkill], transform.position, transform.rotation) as GameObject;
 		buff.transform.parent=transform;
-		FieldOfViewBuff fovb = buff.GetComponent<FieldOfViewBuff>();
-		fovb.Initialize(tankController);
+		FieldOfView fov = buff.GetComponent<FieldOfView>();
+		fov.Initialize(ac.am);
+	}
+	[PunRPC]
+	public void AddAbsorbDamage(float damage){
+		if (!photonView.IsMine)
+            return;
+		absorbDamage+=damage;
 	}
 }

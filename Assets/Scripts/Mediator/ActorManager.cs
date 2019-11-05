@@ -84,8 +84,13 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             return;
         if(sm.isDie)
             return;
+        float currentDamage=(damage*(2-sm.DEFBuff));
+        if(sm.sb.AbsorbAm != null){
+            sm.sb.AbsorbAm.photonView.RPC("AddAbsorbDamage", RpcTarget.All,currentDamage*1.5f);
+            return;
+        }
         //可以加targetAm狀態來判定要不要扣血
-        sm.AddHP(-(damage*(2-sm.DEFBuff)));
+        sm.AddHP(-currentDamage);
         sm.AddRP(0.3f);
     }
     private void SetTag(Player p,ActorManager am){
@@ -93,6 +98,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             am.transform.tag = "Red";
             am.bm.bcH.tag = "Red";
             am.bm.bcB.tag = "Red";
+            am.bm.bcL.tag = "Red";
             // am.wm.wcL.transform.GetChild(0).tag = "Red";
             // am.wm.wcR.transform.GetChild(0).tag = "Red";
         }
@@ -101,6 +107,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             am.transform.tag = "Blue";
             am.bm.bcH.tag = "Blue";
             am.bm.bcB.tag = "Blue";
+            am.bm.bcL.tag = "Blue";
             // am.wm.wcL.transform.GetChild(0).tag = "Blue";
             // am.wm.wcR.transform.GetChild(0).tag = "Blue";
         }

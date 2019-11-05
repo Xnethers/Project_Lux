@@ -80,7 +80,6 @@ GameObject:
   - component: {fileID: 114755861551432556}
   - component: {fileID: 114001033017985356}
   - component: {fileID: 82737368540915398}
-  - component: {fileID: 114165953138927612}
   m_Layer: 11
   m_Name: Borislav
   m_TagString: Untagged
@@ -4964,6 +4963,7 @@ MonoBehaviour:
   - {fileID: 114274956089400198}
   MarkTime: 5
   cameraShake: {fileID: 0}
+  AbsorbAm: {fileID: 0}
 --- !u!114 &114010121683649420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5374,27 +5374,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114165953138927612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1028935420427188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2991584d1c34bb743a187238863c5655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 3
-  viewAngle: 360
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  visibleTargets: []
-  useTargets: []
 --- !u!114 &114201008231279428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5815,11 +5794,13 @@ MonoBehaviour:
   ATKBuff: 1
   DEFBuff: 1
   HOTBuff: 1
+  isLocomotion: 0
   isGround: 1
   isJump: 0
   isFall: 0
   isAttack: 0
   isRushAttack: 0
+  isForce: 0
   isForcingAim: 0
   isHit: 0
   isDie: 0
@@ -6182,7 +6163,7 @@ MonoBehaviour:
   model: {fileID: 1100813528399504}
   camcon: {fileID: 114558922579155140}
   pi: {fileID: 114313280167931042}
-  careercon: {fileID: 114755861551432556}
+  careercon: {fileID: 0}
   walkSpeed: 2.7
   upSpeed: 1
   runMultiplier: 2
@@ -6509,13 +6490,15 @@ MonoBehaviour:
   - {fileID: 1819154459570706, guid: c6cf6e5859a11f349aef92b95ff7e51a, type: 2}
   - {fileID: 1419159141858600, guid: b001e9eddc21a074fae9188ad4ad8712, type: 2}
   - {fileID: 1693539984120346, guid: b0af4149a15b2fb4dbdd74d9c9c1f1b4, type: 2}
-  - {fileID: 0}
+  - {fileID: 1626796664321574, guid: 4a0e6490087f6c74ea19d21a97b284ad, type: 2}
   - {fileID: 1213438088144474, guid: 25686f7801b8a3846b31f944221c9329, type: 2}
   - {fileID: 1604299404585526, guid: 2f5f2a9148e1077479b9ae5164944760, type: 2}
   rayhitAirWall: 0
   cameraShake: {fileID: 114716862390784616}
   handBone: {fileID: 4888874180651054}
-  buffObj: {fileID: 1968815450913872, guid: dbd705e2daf98654ca54561e3f79eb38, type: 2}
+  buffObj:
+  - {fileID: 1968815450913872, guid: dbd705e2daf98654ca54561e3f79eb38, type: 2}
+  - {fileID: 1968815450913872, guid: ccd343866ba92ef4caac92c5b4cdff72, type: 2}
   atkBuff: 1.5
   detBuff: 1.5
   hotBuff: 2
@@ -6523,6 +6506,7 @@ MonoBehaviour:
   buffText: {fileID: 114038160050062314}
   ThrowerPower: 100
   isForce: 0
+  absorbDamage: 0
 --- !u!114 &114757544558630126
 MonoBehaviour:
   m_ObjectHideFlags: 1

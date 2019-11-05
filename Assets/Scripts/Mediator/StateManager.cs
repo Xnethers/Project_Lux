@@ -20,11 +20,13 @@ public class StateManager : IActorManagerInterface, IPunObservable
     public float HOTBuff = 1.0f;//Heal Over Time
 
     [Header("1st order state flags")]
+    public bool isLocomotion;
     public bool isGround;
     public bool isJump;
     public bool isFall;
     public bool isAttack;
     public bool isRushAttack;
+    public bool isForce;
     public bool isForcingAim;
     public bool isHit;
     public bool isDie;
@@ -69,12 +71,13 @@ public class StateManager : IActorManagerInterface, IPunObservable
     }
     private void Update()
     {
+        // isLocomotion = am.ac.CheckStateTag("locomotion") && am.ac.CheckState("attackIdle","attack");
         isGround = am.ac.CheckState("ground");
         isJump = am.ac.CheckState("jump");
         isFall = am.ac.CheckState("fall");
         //isAttack = am.ac.CheckStateTag("attackR") || am.ac.CheckStateTag("attackL");
-        isRushAttack = !am.ac.careercon.CheckCD(am.ac.careercon.skillQ);
-
+        isRushAttack = !am.ac.careercon.CheckCD(am.ac.careercon.skillQ);//lena需收到才算大招結束
+        isForce=am.ac.CheckStateTag("force") || am.ac.CheckStateTag("force","attack");
         isHit = am.ac.CheckState("hit");
         //isDie = am.ac.CheckState("die");
 
@@ -92,7 +95,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
         }
         if(isDie){//在高處降落至地才死亡動畫
             am.ac.OnDieEnter();//不能行動
-            if(isGround && !am.ac.CheckState("die"))
+            if(am.ac.height<0.1f && !am.ac.CheckState("die"))//isGround
                 Die();
         }
         if (!photonView.IsMine)
@@ -128,11 +131,6 @@ public class StateManager : IActorManagerInterface, IPunObservable
     }
     public float GetATK(float baseATK){
         return baseATK * ATKBuff;
-    }
-    public void SetBuff(float atkBuff,float defBuff,float hotBuff){
-        ATKBuff=atkBuff;
-        DEFBuff=defBuff;
-        HOTBuff=hotBuff;
     }
     public void Die()
     {
