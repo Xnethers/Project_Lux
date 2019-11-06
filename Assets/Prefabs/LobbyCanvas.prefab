@@ -6274,7 +6274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1484138642849332
 GameObject:
   m_ObjectHideFlags: 1
@@ -22851,7 +22851,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1484123014074294}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bfe42a4e7dd02b640a9f4b2f1e313cd0, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 1186382994b4c284ba4820c51618a791, type: 3}
   m_Controller: {fileID: 9100000, guid: 9d596d4db91e76c48995dfd983699d2d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -27616,7 +27616,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: bfe42a4e7dd02b640a9f4b2f1e313cd0, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 1186382994b4c284ba4820c51618a791, type: 3}
   m_Bones:
   - {fileID: 4268342017517980}
   - {fileID: 4807010836624176}
@@ -31863,8 +31863,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 384.90002, y: -25.956528}
-  m_SizeDelta: {x: 769.80005, y: 21.913044}
+  m_AnchoredPosition: {x: 384.90002, y: -26.688313}
+  m_SizeDelta: {x: 769.80005, y: 23.376625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224932331370026444
 RectTransform:
@@ -31976,6 +31976,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 384.90002, y: -25.956528}
-  m_SizeDelta: {x: 769.80005, y: 21.913044}
+  m_AnchoredPosition: {x: 384.90002, y: -26.688313}
+  m_SizeDelta: {x: 769.80005, y: 23.376625}
   m_Pivot: {x: 0.5, y: 0.5}

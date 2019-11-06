@@ -185,7 +185,7 @@ public class DoubleGunController : ICareerController
     public override void FirstAttack()//
     {
         //SoundManager.Instance.PlayEffectSound(gunFire);
-        SendMessage("AddBuff","isSpeedup");
+        SendMessage("AddBuff", "isSpeedup");
         ac.anim.speed *= 2;
 
         if (!photonView.IsMine)
@@ -216,13 +216,14 @@ public class DoubleGunController : ICareerController
         { return; }
         else
         {
-            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[0].position, RayAim(), ThrowerPower);
-            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[1].position, RayAim(), ThrowerPower);
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[0].position, RayAim() - transform.right, ThrowerPower);
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[1].position, RayAim() + transform.right, ThrowerPower);
         }
     }
-    public void OnForcingEnter() {
+    public void OnForcingEnter()
+    {
         ki.inputEnabled = false;
-		ac.camcon.isHorizontalView=true;
+        ac.camcon.isHorizontalView = true;
     }
     public override void ForceAttack()//蓄力(0.7s)
     {
@@ -233,10 +234,11 @@ public class DoubleGunController : ICareerController
             p.Initialize(ac.am, 0, RayAim());
         }
     }
-    public void OnForceAttackExit(){
-		ac.camcon.isHorizontalView=false;
+    public void OnForceAttackExit()
+    {
+        ac.camcon.isHorizontalView = false;
         ki.inputEnabled = true;
-	}
+    }
     public void magazineOperation() //確認是否填彈
     {
         if (magazine <= 0 && !isFill)
