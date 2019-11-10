@@ -99,4 +99,7 @@ MonoBehaviour:
   - RPC_Buff
   - RPC_ChangeBuffType
   - AddAbsorbDamage
+  - TryDoDamage
+  - InitializeAbsorbDamage
+  - DisableAbsorbRange
   DisableAutoOpenWizard: 1

@@ -5012,6 +5012,7 @@ MonoBehaviour:
   ATKBuff: 1
   DEFBuff: 1
   HOTBuff: 1
+  isLocomotion: 0
   isGround: 1
   isJump: 0
   isFall: 0

@@ -6,6 +6,7 @@ using EZCameraShake;
 using UnityEngine.UI;
 public class SupporterController : ICareerController {
 	private KICareer ki;
+	public ActorController AC{get{return ac;}}
 	// private FieldOfViewHeight fovh;
 	public CameraShake cameraShake;
 	[Header("===== Weapon Settings =====")]
@@ -52,6 +53,8 @@ public class SupporterController : ICareerController {
 		if(ac.am.sm.isDie){
 			skillQ.atkTimer.state=MyTimer.STATE.IDLE;
 			ac.SetBool("isArmour", false);
+			photonView.RPC("InitializeAbsorbDamage", RpcTarget.All);
+			photonView.RPC("DisableAbsorbRange", RpcTarget.All);
             return;
 		}
 		if(ac.pi.isLatent){
@@ -185,11 +188,13 @@ public class SupporterController : ICareerController {
 		ki.inputEnabled = true;
 		ac.canAttack=true;
 	}
+	[PunRPC]
 	public void DisableAbsorbRange(){
 		FieldOfViewAbsorb fova=GetComponentInChildren<FieldOfViewAbsorb>();
 		if(fova!=null)
 			fova.Disable();
 	}
+	[PunRPC]
 	public void InitializeAbsorbDamage(){
 		absorbDamage=0;
 	}

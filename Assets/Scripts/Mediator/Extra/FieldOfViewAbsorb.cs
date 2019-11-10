@@ -17,6 +17,9 @@ public class FieldOfViewAbsorb : FieldOfView {
 	{
 		// if(supController.KI.attackML)
 		// 	Disable();
+		// if(supController.AC.am.sm.HP<=0){
+		// 	Disable();
+		// }
 	}
 	public override void FindUseTargets(){
 		AbsorbInitialize();

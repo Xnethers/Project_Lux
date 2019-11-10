@@ -109,6 +109,11 @@ public class StateBuff : MonoBehaviourPunCallbacks
         {
             sm.am.ac.SetSpeedup(1.0f);
         }
+        // if(AbsorbAm!=null)
+        // {
+        //     if(AbsorbAm.sm.HP<=0)
+        //         AbsorbAm=null;
+        // }
     }
     public void AddBuff(string buffName){
 		mBuffDictionary.Add(buffName,true);

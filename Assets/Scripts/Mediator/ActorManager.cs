@@ -72,6 +72,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         // } 
         
 	}
+    [PunRPC]
     public void TryDoDamage(float damage) {
         //sm.HP -= 5;
         /*if (sm.HP > 0) {
@@ -86,8 +87,15 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             return;
         float currentDamage=(damage*(2-sm.DEFBuff));
         if(sm.sb.AbsorbAm != null){
-            sm.sb.AbsorbAm.photonView.RPC("AddAbsorbDamage", RpcTarget.All,currentDamage*1.5f);
-            return;
+            if(sm.sb.AbsorbAm == this){
+                sm.sb.AbsorbAm.photonView.RPC("AddAbsorbDamage", RpcTarget.All,currentDamage);
+            }
+            else{
+                // sm.sb.AbsorbAm.photonView.RPC("AddAbsorbDamage", RpcTarget.All,currentDamage*1.5f);
+                sm.sb.AbsorbAm.photonView.RPC("TryDoDamage", RpcTarget.All,currentDamage*1.5f);
+                return;
+            }
+            
         }
         //可以加targetAm狀態來判定要不要扣血
         sm.AddHP(-currentDamage);
