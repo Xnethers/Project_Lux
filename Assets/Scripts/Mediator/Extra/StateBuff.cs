@@ -75,6 +75,11 @@ public class StateBuff : MonoBehaviourPunCallbacks
                 sm.am.ac.RPC_SetTrigger("hit");
             RemoveBuff("isRepel");
         }
+        if(AbsorbAm!=null)//Initialize
+        {
+            if(AbsorbAm.sm.HP<=0)
+                SetAbsorbed(null);
+        }
         if (!photonView.IsMine)
         { return; }
 
@@ -109,11 +114,6 @@ public class StateBuff : MonoBehaviourPunCallbacks
         {
             sm.am.ac.SetSpeedup(1.0f);
         }
-        // if(AbsorbAm!=null)
-        // {
-        //     if(AbsorbAm.sm.HP<=0)
-        //         AbsorbAm=null;
-        // }
     }
     public void AddBuff(string buffName){
 		mBuffDictionary.Add(buffName,true);
