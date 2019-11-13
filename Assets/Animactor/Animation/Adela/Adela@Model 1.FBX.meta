@@ -182,7 +182,9 @@ ModelImporter:
     2100004: 02 - Default
     4300000: Adela_Body
     9500000: //RootNode
+    11100000: //RootNode
     13700000: Adela_Body
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -208,7 +210,13 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bone013
+    - Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bone013/Bone014
+    - Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bone015
+    - Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bone015/Bone016
+    - Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bone017
+    - Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bone017/Bone018
     extraUserProperties: []
     clipAnimations: []
     isReadable: 1
