@@ -210,6 +210,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
         if (am.ac.pi.isAI)
             return;
         transform.localPosition = new Vector3(x, mylivezone.Y, z);
+        Debug.LogError(mylivezone);
         // if (am.ac.pi.isAI)
         //     return;
         // am.ac.camcon.enabled = true;

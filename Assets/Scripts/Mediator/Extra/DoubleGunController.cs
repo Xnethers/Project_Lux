@@ -12,7 +12,7 @@ public class DoubleGunController : ICareerController
     public GameObject VFX_Adela_gunFire;
     private KICareer ki;
 
-    new protected Transform[] muzzle = new Transform[3];
+    protected Transform[] muzzles = new Transform[3];
     private bool isleft = true;
 
     [Space(10)]
@@ -47,9 +47,9 @@ public class DoubleGunController : ICareerController
     public AudioClip repelAttack;
     void Start()
     {
-        muzzle[0] = transform.DeepFind("MuzzleL");
-        muzzle[1] = transform.DeepFind("MuzzleR");
-        muzzle[2] = transform.DeepFind("MuzzleF");
+        muzzles[0] = transform.DeepFind("MuzzleL");
+        muzzles[1] = transform.DeepFind("MuzzleR");
+        muzzles[2] = transform.DeepFind("MuzzleF");
         ac = GetComponent<ActorController>();
         ki = GetComponent<KICareer>();
         foreach (var item in Beam)
@@ -102,7 +102,10 @@ public class DoubleGunController : ICareerController
                 else
                 {
                     if (!isForce)
+                    {
                         UseSkill(0, careerValue.NormalDamage);
+                        ac.anim.SetBool("isLeft", isleft);
+                    }
                 }
             }
             if (ki.attackF)
@@ -174,9 +177,9 @@ public class DoubleGunController : ICareerController
         else
         {
             if (isleft)
-            { photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[0].position, RayAim(), ThrowerPower); }
+            { photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[0].position, RayAim(), ThrowerPower); }
             else
-            { photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[1].position, RayAim(), ThrowerPower); }
+            { photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[1].position, RayAim(), ThrowerPower); }
             magazine--;
             isleft = !isleft;
         }
@@ -185,8 +188,8 @@ public class DoubleGunController : ICareerController
     public override void FirstAttack()//
     {
         //SoundManager.Instance.PlayEffectSound(gunFire);
-        SendMessage("AddBuff","isSpeedup");
-        ac.anim.speed *= 2;
+        SendMessage("AddBuff", "isSpeedup");
+        //ac.anim.speed *= 2;
 
         if (!photonView.IsMine)
             return;
@@ -197,7 +200,7 @@ public class DoubleGunController : ICareerController
         SoundManager.Instance.PlayEffectSound(repelAttack);
         if (!photonView.IsMine)
             return;
-        photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[2].position, RayAim(), 0f);
+        photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[2].position, RayAim(), 0f);
     }
 
     public override void RushAttack()//Q
@@ -216,13 +219,14 @@ public class DoubleGunController : ICareerController
         { return; }
         else
         {
-            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[0].position, RayAim(), ThrowerPower);
-            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle[1].position, RayAim(), ThrowerPower);
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[0].position, RayAim() - transform.right, ThrowerPower);
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[1].position, RayAim() + transform.right, ThrowerPower);
         }
     }
-    public void OnForcingEnter() {
+    public void OnForcingEnter()
+    {
         ki.inputEnabled = false;
-		ac.camcon.isHorizontalView=true;
+        ac.camcon.isHorizontalView = true;
     }
     public override void ForceAttack()//蓄力(0.7s)
     {
@@ -233,10 +237,11 @@ public class DoubleGunController : ICareerController
             p.Initialize(ac.am, 0, RayAim());
         }
     }
-    public void OnForceAttackExit(){
-		ac.camcon.isHorizontalView=false;
+    public void OnForceAttackExit()
+    {
+        ac.camcon.isHorizontalView = false;
         ki.inputEnabled = true;
-	}
+    }
     public void magazineOperation() //確認是否填彈
     {
         if (magazine <= 0 && !isFill)
@@ -297,8 +302,8 @@ public class DoubleGunController : ICareerController
     {
         if (VFX_Adela_gunFire != null)
         {
-            GameObject vfx = Instantiate(VFX_Adela_gunFire, muzzle[0].transform.position, transform.rotation) as GameObject;
-            vfx.transform.SetParent(muzzle[0].transform);
+            GameObject vfx = Instantiate(VFX_Adela_gunFire, muzzles[0].transform.position, transform.rotation) as GameObject;
+            vfx.transform.SetParent(muzzles[0].transform);
         }
         SoundManager.Instance.PlayEffectSound(gunFire);
     }

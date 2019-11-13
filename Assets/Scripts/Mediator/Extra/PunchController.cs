@@ -5,7 +5,8 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-//Adela
+//Ivan
+public enum PunchState { Idle, NomalAttack, FirstAttack, SecondAttack }
 public class PunchController : ICareerController
 {
     public bool isForce;
@@ -18,17 +19,23 @@ public class PunchController : ICareerController
     public Transform[] origLocPos = new Transform[2];
     private bool isleft = true;
     private Vector3 targetPos;
+    public PunchState punchState;
 
     //------NomalAttack------
-    public bool ispunching;
+    public bool ispunching;//delete
     private bool isreturn;
     public float speed = 1.5f;
     private float returnTime;
 
     //------FirstAttack------
-    private bool isrotate = false;
+    private bool isrotate = false;//delete
     public float rotateSpeed = 10f;
     public float angled = 0; // set this to the maximum angle in degrees
+
+    //------SecondAttack------
+    private ShieldHealth shield;
+    [SerializeField] private BattleController body_battlectrl;
+    private Animator anim;
 
 
     [Space(10)]
@@ -55,6 +62,8 @@ public class PunchController : ICareerController
 
         ac = GetComponent<ActorController>();
         ki = GetComponent<KICareer>();
+        shield = GetComponentInChildren<ShieldHealth>();
+        anim = GetComponent<Animator>();
         //StartCoroutine("Timer_Forcing");
 
     }
@@ -62,68 +71,76 @@ public class PunchController : ICareerController
     #region Fixed Update
     void FixedUpdate()
     {
-        if (isrotate)
+        switch (punchState)
         {
-            Punches[0].GetComponent<Animator>().SetTrigger("rotate");
-            Punches[1].GetComponent<Animator>().SetTrigger("rotate");
-            isrotate = false;
-            //rotate_around();
-        }
+            case PunchState.NomalAttack:
+                {
+                    anim.enabled = false;
+                    if (isreturn && IfReurn())
+                    {
+                        isleft = !isleft;
+                        isreturn = ispunching = false;
+                        punchState = PunchState.Idle;
+                        returnTime = 0;
+                        Punches_rb[0].transform.parent = transform;
+                        Punches_rb[1].transform.parent = transform;
+                        anim.enabled = true;
+                    }
+                    else if (!isreturn && returnTime < 1)
+                    {
+                        if (!isleft)
+                        {
+                            Punches_rb[0].transform.parent = null;
+                            Punches_rb[0].position = Bezier.GetPoint(origLocPos[0].position, CurvePoint[0].position, targetPos, returnTime);
+                            returnTime += Time.deltaTime * speed;
+                        }
+                        else
+                        {
+                            Punches_rb[1].transform.parent = null;
+                            Punches_rb[1].position = Bezier.GetPoint(origLocPos[1].position, CurvePoint[1].position, targetPos, returnTime);
+                            returnTime += Time.deltaTime * speed;
+                        }
+                    }
+                    else if (isreturn && !IfReurn())
+                    {
+                        if (!isleft)
+                        {
+                            Punches_rb[0].position = Bezier.GetPoint(targetPos, CurvePoint[0].position, origLocPos[0].position, returnTime);
+                            returnTime += Time.deltaTime * speed;
+                        }
+                        else
+                        {
+                            Punches_rb[1].position = Bezier.GetPoint(targetPos, CurvePoint[1].position, origLocPos[1].position, returnTime);
+                            returnTime += Time.deltaTime * speed;
+                        }
+                    }
+                    else if (!isreturn && returnTime >= 1)
+                    {
+                        PunchStartReturn();
+                        if (!isleft)
+                        {
+                            //targetPos = Punches_rb[0].position;
+                            photonView.RPC("RPC_Projectile", RpcTarget.All, targetPos, Punches_rb[0].transform.position, 0f);
+                        }
+                        else
+                        {
+                            //targetPos = Punches_rb[1].position;
+                            photonView.RPC("RPC_Projectile", RpcTarget.All, targetPos, Punches_rb[1].transform.position, 0f);
+                        }
+                    }
+                    break;
+                }
 
-        if (ispunching)
-        {
-            if (isreturn && IfReurn())
-            {
-                isleft = !isleft;
-                isreturn = ispunching = false;
-                returnTime = 0;
-                Punches_rb[0].transform.parent = transform;
-                Punches_rb[1].transform.parent = transform;
-            }
-            else if (!isreturn && returnTime < 1)
-            {
-                if (!isleft)
+            case PunchState.FirstAttack:
                 {
-                    Punches_rb[0].transform.parent = null;
-                    Punches_rb[0].position = Bezier.GetPoint(origLocPos[0].position, CurvePoint[0].position, targetPos, returnTime);
-                    returnTime += Time.deltaTime * speed;
+                    rotate_around();
+                    break;
                 }
-                else
+            case PunchState.SecondAttack:
                 {
-                    Punches_rb[1].transform.parent = null;
-                    Punches_rb[1].position = Bezier.GetPoint(origLocPos[1].position, CurvePoint[1].position, targetPos, returnTime);
-                    returnTime += Time.deltaTime * speed;
+                    break;
                 }
-            }
-            else if (isreturn && !IfReurn())
-            {
-                if (!isleft)
-                {
-                    Punches_rb[0].position = Bezier.GetPoint(targetPos, CurvePoint[0].position, origLocPos[0].position, returnTime);
-                    returnTime += Time.deltaTime * speed;
-                }
-                else
-                {
-                    Punches_rb[1].position = Bezier.GetPoint(targetPos, CurvePoint[1].position, origLocPos[1].position, returnTime);
-                    returnTime += Time.deltaTime * speed;
-                }
-            }
-            else if (!isreturn && returnTime >= 1)
-            {
-                if (!isleft)
-                {
-                    //targetPos = Punches_rb[0].position;
-                    photonView.RPC("RPC_Projectile", RpcTarget.All, Punches_rb[0].transform.position, RayAim(), 0f);
-                }
-                else
-                {
-                    //targetPos = Punches_rb[1].position;
-                    photonView.RPC("RPC_Projectile", RpcTarget.All, Punches_rb[1].transform.position, RayAim(), 0f);
-                }
-                PunchStartReturn();
-            }
         }
-
     }
     #endregion
 
@@ -168,13 +185,12 @@ public class PunchController : ICareerController
                         UseSkill(0, careerValue.NormalDamage);
                 }
             }
-            if (ki.attackF)
+            if (ki.attackF && CheckCD(skillF) && !ac.CheckState("shielding", "attack"))
             {
-                if (CheckCD(skillF))
-                {
-                    UseSkill(2, careerValue.SecondDamage);
-                    StartCD(skillF, 5);
-                }
+                ac.SetBool("shield", true);
+                punchState = PunchState.SecondAttack;
+                anim.SetBool("SecondAttack", true);
+                // UseSkill(2, careerValue.SecondDamage);
             }
 
             if (ki.attackQ && ac.am.sm.RP >= 100)
@@ -196,13 +212,23 @@ public class PunchController : ICareerController
                 }
             }
         }
-
+        else
+        {
+            if (ki.attackF && ac.CheckState("shielding", "attack"))
+            {
+                //StartCD(skillF, 5);
+                shield.gameObject.SetActive(false);
+                punchState = PunchState.Idle;
+                ac.SetBool("shield", false);
+                anim.SetBool("SecondAttack", false);
+                body_battlectrl.defCol.enabled = true;
+            }
+        }
 
         if (ki.auxiliaryMR)
         {
             UseSkill(1, careerValue.FirstDamage);
         }
-
 
         if (forcingTimer.state == MyTimer.STATE.FINISHED)
         {
@@ -222,9 +248,6 @@ public class PunchController : ICareerController
         if (ki.attackML)
             isForce = false;
 
-        if (ki.R)
-        { photonView.RPC("RPC_SetTrigger", RpcTarget.All, "fillBullet"); }
-
     }
 
 
@@ -239,6 +262,7 @@ public class PunchController : ICareerController
         else
         {
             ispunching = true;
+            punchState = PunchState.NomalAttack;
             targetPos = RayAim();
         }
     }
@@ -247,19 +271,9 @@ public class PunchController : ICareerController
     {
         if (!photonView.IsMine)
             return;
-        // photonView.RPC("RPC_Projectile", RpcTarget.All, Punches_rb[0].position, Punches_rb[0].position, 0);
+        photonView.RPC("RPC_CreatFristAttackDamege", RpcTarget.All);
         // photonView.RPC("RPC_Projectile", RpcTarget.All, Punches_rb[1].position, Punches_rb[0].position, 0);
-        GameObject[] bullet = new GameObject[2];
-        bullet[0] = Instantiate(projectile[ac.anim.GetInteger("attackSkill")], Punches_rb[0].position, transform.rotation) as GameObject;
-        bullet[0].transform.parent = Punches_rb[0].transform;
-        bullet[1] = Instantiate(projectile[ac.anim.GetInteger("attackSkill")], Punches_rb[1].position, transform.rotation) as GameObject;
-        bullet[1].transform.parent = Punches_rb[1].transform;
-        foreach (var item in bullet)
-        {
-            foreach (Projectile projectile in item.GetComponentsInChildren<Projectile>())
-            { projectile.Initialize(ac.am, 0, RayAim()); }
-        }
-        isrotate = true;
+        punchState = PunchState.FirstAttack;
     }
 
     public override void SecondAttack()//F
@@ -267,7 +281,9 @@ public class PunchController : ICareerController
         SoundManager.Instance.PlayEffectSound(repelAttack);
         if (!photonView.IsMine)
             return;
-        photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), 0f);
+        shield.gameObject.SetActive(true);
+        body_battlectrl.defCol.enabled = false;
+        //photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), 0f);
     }
 
     public override void RushAttack()//Q
@@ -335,7 +351,20 @@ public class PunchController : ICareerController
     {
         Instantiate(VFX_Adela_Q, transform);
     }
-
+    [PunRPC]
+    void RPC_CreatFristAttackDamege()
+    {
+        GameObject[] bullet = new GameObject[2];
+        bullet[0] = Instantiate(projectile[ac.anim.GetInteger("attackSkill")], Punches_rb[0].position, transform.rotation) as GameObject;
+        bullet[0].transform.parent = Punches_rb[0].transform;
+        bullet[1] = Instantiate(projectile[ac.anim.GetInteger("attackSkill")], Punches_rb[1].position, transform.rotation) as GameObject;
+        bullet[1].transform.parent = Punches_rb[1].transform;
+        foreach (var item in bullet)
+        {
+            foreach (Projectile projectile in item.GetComponentsInChildren<Projectile>())
+            { projectile.Initialize(ac.am, 0, RayAim()); }
+        }
+    }
     #endregion
 
     #region PUN Callbacks
@@ -344,13 +373,13 @@ public class PunchController : ICareerController
         if (stream.IsWriting)
         {
             // We own this player: send the others our data
-            stream.SendNext(ispunching);
+            stream.SendNext(punchState);
             stream.SendNext(isreturn);
         }
         else
         {
             // Network player, receive data
-            this.ispunching = (bool)stream.ReceiveNext();
+            this.punchState = (PunchState)stream.ReceiveNext();
             this.isreturn = (bool)stream.ReceiveNext();
         }
     }
@@ -366,7 +395,7 @@ public class PunchController : ICareerController
         { d = Vector3.Distance(Punches_rb[0].position, origLocPos[0].position); }
         else
         { d = Vector3.Distance(Punches_rb[1].position, origLocPos[1].position); }
-        if (d > 0)
+        if (d > 0.1F)
         { return false; }
         else
         { return true; }
@@ -384,16 +413,26 @@ public class PunchController : ICareerController
 
     void rotate_around()
     {
-        if (angled > 360)
-        { isrotate = false; angled = 0; }
+        angled += rotateSpeed * Time.deltaTime;///累加轉過的角度
+        if (angled > 360 && IfReurn())
+        {
+            punchState = PunchState.Idle;
+            angled = 0;
+            anim.enabled = true;
+        }
         else
         {
+            anim.enabled = false;
             Punches_rb[0].transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
             Punches_rb[1].transform.RotateAround(transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
-            angled += ((int)rotateSpeed * Time.deltaTime) % 360;///累加轉過的角度
-            Debug.Log(angled);
+            //Debug.Log(angled);
         }
     }
+
+    public void On_openshield_Exit()
+    { ac.canAttack = false; }
+    public void On_closeshield_Exit()
+    { ac.canAttack = true; }
 
     #endregion
 }

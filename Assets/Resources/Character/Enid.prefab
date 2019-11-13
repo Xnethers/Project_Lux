@@ -4338,7 +4338,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 30
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4774,7 +4774,7 @@ MonoBehaviour:
   - {fileID: 114719799792810466}
   - {fileID: 114376165227488104}
   viewIdField: 0
-  InstantiationId: 9
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114218383465573066
 MonoBehaviour:
@@ -5425,7 +5425,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114678461351947774}
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114513486353133422
 MonoBehaviour:
