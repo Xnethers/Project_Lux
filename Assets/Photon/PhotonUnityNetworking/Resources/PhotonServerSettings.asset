@@ -102,4 +102,6 @@ MonoBehaviour:
   - TryDoDamage
   - InitializeAbsorbDamage
   - DisableAbsorbRange
+  - RPC_CreatFristAttackDamege
+  - cube
   DisableAutoOpenWizard: 1

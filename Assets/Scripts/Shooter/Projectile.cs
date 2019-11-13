@@ -75,6 +75,7 @@ public class Projectile : MonoBehaviourPunCallbacks
     {
         if (isHit)
             return;
+        rb.isKinematic=true;
         if (isBullet){
             transform.GetChild(0).gameObject.SetActive(false);
             if (normalhitVFX != null && !isVFX){//子彈火花

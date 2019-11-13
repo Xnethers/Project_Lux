@@ -78,7 +78,7 @@ public class ActorController : IActorManagerInterface {
             
         if(pi.esc)
             camcon.isCursorVisible = ! camcon.isCursorVisible;
-        if(pi.latent && am.im.overlapEcastms.Count!=0){//按下潛光按鍵(暫定e鍵)
+        if(pi.latent && am.im.overlapEcastms.Count!=0 && am.sm.isLocomotion){//按下潛光按鍵(暫定e鍵)
             if(am.im.overlapEcastms[0].tag == tag){
                 
                 photonView.RPC("RPC_SetLatent", RpcTarget.All);

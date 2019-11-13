@@ -69,7 +69,7 @@ public class DoubleGunController : ICareerController
         { return; }
         if (!photonView.IsMine)
         { return; }
-
+        skillMR.Tick();
         skillF.Tick();
         skillQ.Tick();
         skillAir.Tick();
@@ -140,7 +140,10 @@ public class DoubleGunController : ICareerController
 
         if (ki.auxiliaryMR)
         {
-            UseSkill(1, careerValue.FirstDamage);
+            if(CheckCD(skillMR)){
+                UseSkill(1, careerValue.FirstDamage);
+                StartCD(skillMR,careerValue.FirstCD);
+            }
         }
 
 
@@ -211,7 +214,9 @@ public class DoubleGunController : ICareerController
         photonView.RPC("RPC_Projectile", RpcTarget.All, transform.position, RayAim(), 0f);
         magazine--;
     }
-
+    public void OnRushAttackExit(){
+        skillQ.atkTimer.state = MyTimer.STATE.FINISHED;
+    }
     public override void AirAttack()
     {
         CreateGunFire();
@@ -313,7 +318,7 @@ public class DoubleGunController : ICareerController
 
     #region RPC
     [PunRPC]
-    public void RPC_Creatcube()
+    public void cube()
     {
         GameObject _cube = (GameObject)Instantiate(projectile[ac.anim.GetInteger("attackSkill")], transform.position - transform.up + transform.forward, Quaternion.identity);
     }

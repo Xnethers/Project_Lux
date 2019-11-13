@@ -22,6 +22,7 @@ public class CareerValue : ScriptableObject
     [SerializeField] private float forceDifferenceDamage;
 
     //攻擊CD時間
+    [SerializeField] private float firstCD;
     [SerializeField] private float secondCD;
     [SerializeField] private float rushingCD;
     [SerializeField] private float airCD;
@@ -35,6 +36,7 @@ public class CareerValue : ScriptableObject
     public float AirDamage { get { return airDamage; } }
     public float ForceMinDamage { get { return forceMinDamage; } }
     public float ForceDifferenceDamage { get { return forceDifferenceDamage; } }
+    public float FirstCD { get { return firstCD; } }
     public float SecondCD { get { return secondCD; } }
     public float RushingCD { get { return rushingCD; } }
     public float AirCD { get { return airCD; } }

@@ -14,6 +14,7 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 	public bool rayhitAirWall;
 	protected delegate void MyDelegate();
 	//CD
+	public MySkillTimer skillMR = new MySkillTimer();
 	public MySkillTimer skillF = new MySkillTimer();
     public MySkillTimer skillQ = new MySkillTimer();
     public MySkillTimer skillAir = new MySkillTimer();

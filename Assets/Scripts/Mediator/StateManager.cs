@@ -71,7 +71,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
     }
     private void Update()
     {
-        // isLocomotion = am.ac.CheckStateTag("locomotion") && am.ac.CheckState("attackIdle","attack");
+        isLocomotion = am.ac.CheckStateTag("locomotion") && am.ac.CheckStateTag("locomotion","attack") && !isRushAttack;
         isGround = am.ac.CheckState("ground");
         isJump = am.ac.CheckState("jump");
         isFall = am.ac.CheckState("fall");
