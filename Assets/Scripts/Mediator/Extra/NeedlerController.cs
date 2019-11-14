@@ -56,6 +56,7 @@ public class NeedlerController : ICareerController
             return;
         if (!photonView.IsMine)
             return;
+        skillMR.Tick();
         skillF.Tick();
         skillQ.Tick();
         skillAir.Tick();
@@ -109,7 +110,10 @@ public class NeedlerController : ICareerController
                 }
                     
                 if (ki.auxiliaryMR){//群攻
-                    UseSkill(1,careerValue.FirstDamage);
+                    if(CheckCD(skillMR)){
+                        UseSkill(1,careerValue.FirstDamage);
+                        StartCD(skillMR,careerValue.FirstCD);
+                    }
                 }
                     
                 if (ki.attackF){//擊退攻
