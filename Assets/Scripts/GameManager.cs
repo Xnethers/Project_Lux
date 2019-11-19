@@ -22,7 +22,6 @@ using Photon.Realtime;
         public ReliveZone RedRelivePoint;
         public ReliveZone BlueRelivePoint;
 
-
         #endregion
 
         #region Photon Callbacks
@@ -110,7 +109,7 @@ using Photon.Realtime;
             }
             Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
             //按人數加載場景(須改)
-            PhotonNetwork.LoadLevel("Room for 1");// + PhotonNetwork.CurrentRoom.PlayerCount);
+            PhotonNetwork.LoadLevel(Global.Level);// + PhotonNetwork.CurrentRoom.PlayerCount);
         }
 
 

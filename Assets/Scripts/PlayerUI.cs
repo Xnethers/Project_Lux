@@ -103,8 +103,11 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         }
         forcingAim.enabled = sm.isForcingAim;
         forcingAim.fillAmount = careercon.forcingTimer.elapsedTime / careercon.careerValue.ForcingCD;
-        OccupiedRed.fillAmount = occupied.redValue / 100;
-        OccupiedBlue.fillAmount = occupied.blueValue / 100;
+        if (occupied != null)
+        {
+            OccupiedRed.fillAmount = occupied.redValue / 100;
+            OccupiedBlue.fillAmount = occupied.blueValue / 100;
+        }
         if (sm.dieTimer.state == MyTimer.STATE.RUN)
         {
             ReLiveTime.gameObject.SetActive(true);

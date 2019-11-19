@@ -68,7 +68,7 @@ namespace Photon.Pun.Demo.Asteroids
 
             cachedRoomList = new Dictionary<string, RoomInfo>();
             roomListEntries = new Dictionary<string, GameObject>();
-            
+
             if (PlayerPrefs.HasKey("PlayerName"))
             { PlayerNameInput.text = PlayerPrefs.GetString("PlayerName"); }
             else
@@ -305,7 +305,7 @@ namespace Photon.Pun.Demo.Asteroids
         {
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
             SetActivePanel(JoinRandomRoomPanel.name);
-
+            Global.Level = Random.Range(1, 3);
             PhotonNetwork.JoinRandomRoom();
         }
 
@@ -349,8 +349,10 @@ namespace Photon.Pun.Demo.Asteroids
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
-
-            PhotonNetwork.LoadLevel("Room for 1");
+            if (Global.Level == 0)
+            { PhotonNetwork.LoadLevel("NoviceTeaching"); }
+            else
+            { PhotonNetwork.LoadLevel("Room for " + Global.Level); }
         }
 
         public void OnClickCamp(int whichCamp)
@@ -378,7 +380,33 @@ namespace Photon.Pun.Demo.Asteroids
             PhotonNetwork.LocalPlayer.SetCharacter(whichCharacter);
         }
 
+        public void OnClickRoom(int i)
+        {
+            Global.Level = i;
+        }
 
+        public void OnNoviceTeachingClicked()//新手教學
+        {
+            //SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
+            if (playerListEntries == null)
+            {
+                playerListEntries = new Dictionary<int, GameObject>();
+            }
+            RoomOptions options = new RoomOptions { MaxPlayers = 1 };
+            PhotonNetwork.CreateRoom(null, options, null);
+            
+            PlayerInfo.PI.mySelectedCharacter = 1;
+
+            PhotonNetwork.LocalPlayer.SetCharacter(0);
+            PhotonNetwork.LocalPlayer.SetReady(true);
+            Hashtable props = new Hashtable
+            {
+                {AsteroidsGame.PLAYER_LOADED_LEVEL, false}
+            };
+            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+            PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
+            Global.Level = 0;
+        }
 
         #endregion
         #region CHOOSE CHARACTERS
@@ -535,4 +563,9 @@ namespace Photon.Pun.Demo.Asteroids
             }
         }
     }
+}
+
+public class Global
+{
+    public static int Level;
 }
