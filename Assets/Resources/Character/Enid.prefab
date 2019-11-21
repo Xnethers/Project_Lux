@@ -459,6 +459,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1165306214002648
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4393165579892444}
+  m_Layer: 0
+  m_Name: LeftHandTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1180691114729134
 GameObject:
   m_ObjectHideFlags: 1
@@ -2094,6 +2109,8 @@ GameObject:
   - component: {fileID: 114501911608815854}
   - component: {fileID: 114678461351947774}
   - component: {fileID: 114538213829231866}
+  - component: {fileID: 114963308556400188}
+  - component: {fileID: 114557067027641930}
   m_Layer: 0
   m_Name: Enid
   m_TagString: Untagged
@@ -2382,6 +2399,23 @@ GameObject:
   - component: {fileID: 114928115528838372}
   m_Layer: 0
   m_Name: cameraHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1928881460258370
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4583532198542576}
+  - component: {fileID: 114543563784366302}
+  - component: {fileID: 114999152103625804}
+  m_Layer: 0
+  m_Name: AimTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2856,6 +2890,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4386473057971092}
+  - {fileID: 4583532198542576}
   m_Father: {fileID: 4857174590965762}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3123,6 +3158,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4898288170503902}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4393165579892444
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1165306214002648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.152, y: -0.108, z: -0.005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4692615000416578}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4394425448814128
 Transform:
@@ -3439,6 +3487,19 @@ Transform:
   m_Father: {fileID: 4484271554368244}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4583532198542576
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928881460258370}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4160233625641390}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4605340838826596
 Transform:
   m_ObjectHideFlags: 1
@@ -3645,6 +3706,7 @@ Transform:
   - {fileID: 4064316217794674}
   - {fileID: 4984234430502366}
   - {fileID: 4647064168045554}
+  - {fileID: 4393165579892444}
   m_Father: {fileID: 4435982258680786}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4774,7 +4836,7 @@ MonoBehaviour:
   - {fileID: 114719799792810466}
   - {fileID: 114376165227488104}
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114218383465573066
 MonoBehaviour:
@@ -5425,7 +5487,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114678461351947774}
   viewIdField: 0
-  InstantiationId: 9
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114513486353133422
 MonoBehaviour:
@@ -5487,6 +5549,27 @@ MonoBehaviour:
   whR: {fileID: 1662471711071014}
   wcL: {fileID: 114055149048856576}
   wcR: {fileID: 114707213639318942}
+--- !u!114 &114543563784366302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928881460258370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 114999152103625804}
+  viewIdField: 0
+  InstantiationId: 16
+  isRuntimeInstantiated: 0
 --- !u!114 &114544707042811110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5499,6 +5582,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tessellationSize: 30
+--- !u!114 &114557067027641930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800482163856152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cff8c620c9fc3547a4a678ae521c5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  enableFeetIk: 1
+  heightFromGroundRaycast: 0.85
+  raycastDownDistance: 0.2
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 66048
+  pelvisOffset: 0.02
+  pelvisUpAndDownSpeed: 0.6
+  feetToIkPositionSpeed: 0.5
+  weightIkPositionSpeed: 1
+  leftFootAnimVariableName: LeftFootCurve
+  rightFootAnimVariableName: RightFootCurve
+  useProIkFeature: 1
+  showSolverDebug: 1
+  _RaycastOriginY: 0.5
+  _RaycastEndY: -0.1
 --- !u!114 &114558281300972986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5715,6 +5826,7 @@ MonoBehaviour:
   lockPlanar: 0
   lerpTarget: 0
   isBounce: 0
+  isJump: 0
 --- !u!114 &114678461351947774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5780,6 +5892,12 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 1
     Name: height
+  - Type: 1
+    SynchronizeType: 0
+    Name: LeftFootCurve
+  - Type: 1
+    SynchronizeType: 0
+    Name: RightFootCurve
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -6094,9 +6212,12 @@ MonoBehaviour:
   maxVerAngle: 50
   offsetXDistanceConstant: 20
   offsetZDistance: 2.5
+  offsetZAimDis: 0.5
+  offsetYDistance: 1.6
+  offsetYAimDis: 1.1
   offsetXDistance: 0.6
   offestDampValue: 0.16
-  doAim: 0
+  offestYDampValue: 0.05
   isCursorVisible: 0
   cameraHandle: {fileID: 0}
   tempEulerX: 0
@@ -6107,6 +6228,8 @@ MonoBehaviour:
   isDieChange: 0
   isDieInvoke: 0
   isHorizontalView: 0
+  doAim: 0
+  offestY: 0
 --- !u!114 &114862703041327708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6270,6 +6393,22 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a36891ef068034a4e805a10b28bf0d4c, type: 2}
   subMeshIndex: 0
   eraseRenderer: 0
+--- !u!114 &114963308556400188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800482163856152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334bd818673032f488b9bcde4410aa06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 4583532198542576}
+  LeftHandTarget: {fileID: 0}
+  aimDenominator: 2
+  leftShoulderOffest: {x: 0, y: 0, z: 10}
+  rightShoulderOffest: {x: 0, y: 0, z: -5}
 --- !u!114 &114965762665758068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6374,6 +6513,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114999152103625804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928881460258370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!120 &120667165125690724
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -6721,7 +6874,7 @@ CharacterController:
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!222 &222001872550392928
@@ -7738,7 +7891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -125.00037, y: 200.00002}
+  m_AnchoredPosition: {x: -125.00049, y: 200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224994189634591462

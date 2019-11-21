@@ -173,12 +173,12 @@ public class SniperController : ICareerController
         }
         if (ki.attackML)
             isForce = false;
-        if (ki.auxiliaryMR)
-        {
+        if (ki.aimingMR && !isFill)
+        {//ki.auxiliaryMR
             ac.camcon.DoAim();
             ac.anim.SetBool("aim", true);
         }
-        if (ki.unAimMR)
+        if (ki.unAimMR || isFill)
         {
             ac.camcon.DoUnAim();
             ac.anim.SetBool("aim", false);

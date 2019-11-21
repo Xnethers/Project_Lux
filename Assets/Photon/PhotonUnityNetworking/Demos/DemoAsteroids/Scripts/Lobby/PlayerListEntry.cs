@@ -65,7 +65,6 @@ namespace Photon.Pun.Demo.Asteroids
                     if(!PhotonNetwork.LocalPlayer.GetReady()){
                         //FindObjectOfType<ChooseCharacter>().photonView.RPC("add",RpcTarget.MasterClient,PhotonNetwork.LocalPlayer);
                         PhotonNetwork.LocalPlayer.SetReady(true);
-                        Debug.Log(PhotonNetwork.LocalPlayer.NickName);
                         //Call funtion at same time.
                         Invoke("Invoke_CheckSameCharacter",Random.Range(0.2f,0.4f));
                     }

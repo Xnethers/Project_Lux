@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class CameraController : MonoBehaviour {
+using Photon.Pun;
+public class CameraController : MonoBehaviourPunCallbacks {
     [Space(10)]
     [Header("===== Base Settings =====")]
     public ActorController ac;
@@ -20,11 +20,13 @@ public class CameraController : MonoBehaviour {
     [Header("===== Offest Settings =====")]
     public float offsetXDistanceConstant=20f;
     public float offsetZDistance =2.5f;
-
+    public float offsetZAimDis =0.5f;
+    public float offsetYDistance =1.6f;
+    public float offsetYAimDis =1.3f;
     public float offsetXDistance =0.6f;
     public float offestDampValue = 0.2f;
+    public float offestYDampValue =0.05f;
 
-    public bool doAim;
     public bool isCursorVisible;
 
     private GameObject playerHandle;
@@ -50,6 +52,11 @@ public class CameraController : MonoBehaviour {
     public bool isDieChange = false;
     public bool isDieInvoke = false;
     public bool isHorizontalView = false; 
+    [Space(10)]
+    [Header("===== Aim Settings =====")]
+    public bool doAim;
+    [SerializeField]private float offestY;
+    private float offestYDampVelocity;
     
 	// Use this for initialization
 	void Start () {
@@ -57,6 +64,7 @@ public class CameraController : MonoBehaviour {
         playerHandle = cameraHandle.transform.parent.gameObject;
         tempEulerX = 20;
         offestX=offsetXDistance;
+        offestY = offsetYDistance;
         cameraHandle.transform.localPosition = new Vector3(offsetXDistance,cameraHandle.transform.localPosition.y,cameraHandle.transform.localPosition.z);
         ac = playerHandle.GetComponent<ActorController>();
         model = ac.model;
@@ -106,12 +114,19 @@ public class CameraController : MonoBehaviour {
         //攝影機位置
         //相機與目標點距離
         CameraRay();
-        if (!rayHit) {
-            offestZ = Mathf.SmoothDamp(transform.localPosition.z, -offsetZDistance, ref offestZDampVelocity, offestDampValue);
+        if(doAim)
+        {
+            offestZ = Mathf.SmoothDamp(transform.localPosition.z, -offsetZAimDis, ref offestZDampVelocity, offestDampValue);
         }
-        else {
-            offestZ = Mathf.SmoothDamp(transform.localPosition.z, -tempHitDistance, ref offestZDampVelocity, offestDampValue);
+        else{
+            if (!rayHit) {
+                offestZ = Mathf.SmoothDamp(transform.localPosition.z, -offsetZDistance, ref offestZDampVelocity, offestDampValue);
+            }
+            else {
+                offestZ = Mathf.SmoothDamp(transform.localPosition.z, -tempHitDistance, ref offestZDampVelocity, offestDampValue);
+            }
         }
+        
         offestZ = Mathf.Clamp(offestZ, -offsetZDistance, 0);
 
         transform.localPosition = new Vector3(0, 0, offestZ);
@@ -145,22 +160,25 @@ public class CameraController : MonoBehaviour {
         
         //改變看向目標點的位置
         SetOffsetX();
+        SetOffestY();
     }
     public void DoAim(){
-        if(!doAim){
-            Camera.main.fieldOfView -= 45;
-            HorizontalSpeed /= 5f;
-            VerticalSpeed /= 5f;
-            doAim=true;
-        }
+        doAim=true;
+        // if(!doAim){
+        //     Camera.main.fieldOfView -= 45;
+        //     HorizontalSpeed /= 5f;
+        //     VerticalSpeed /= 5f;
+        //     doAim=true;
+        // }
     }
     public void DoUnAim(){
-        if(doAim){
-            Camera.main.fieldOfView += 45;
-            HorizontalSpeed *= 5f;
-            VerticalSpeed *= 5f;
-            doAim=false;
-        }
+        doAim=false;
+        // if(doAim){
+        //     Camera.main.fieldOfView += 45;
+        //     HorizontalSpeed *= 5f;
+        //     VerticalSpeed *= 5f;
+        //     doAim=false;
+        // }
     }
     private void SetOffsetX(){//改變看向目標點的位置
         // Collider[] hitColliders = Physics.OverlapBox(playerHandle.transform.position +transform.up, new Vector3(1,.1f,1),Quaternion.identity, layerMask);
@@ -173,10 +191,24 @@ public class CameraController : MonoBehaviour {
         //     //camDampYValue=camDampXZValue;
         //     offestX = Mathf.Lerp(offestX,offsetXDistance,offestDampValue);
         // }
-        offestX=(offsetZDistance/offsetXDistance)*tempHitDistance/offsetXDistanceConstant;//Mathf.Abs(offestZ)/17
+        if(!ac.am.sm.isDie){
+            if(!doAim)
+                offestX=(offsetZDistance/offsetXDistance)*tempHitDistance/offsetXDistanceConstant;//Mathf.Abs(offestZ)/17
+            else
+                offestX=offsetXDistance;
+        }
         // Debug.Log(offestX);
         offestX = Mathf.Clamp(offestX,0,offsetXDistance);
-        cameraHandle.transform.localPosition = new Vector3(Mathf.SmoothDamp(cameraHandle.transform.localPosition.x, offestX, ref offestXDampVelocity, offestDampValue), cameraHandle.transform.localPosition.y, cameraHandle.transform.localPosition.z);
+        cameraHandle.transform.localPosition = new Vector3(Mathf.SmoothDamp(cameraHandle.transform.localPosition.x, offestX, ref offestXDampVelocity, offestDampValue), 
+        Mathf.SmoothDamp(cameraHandle.transform.localPosition.y,offestY, ref offestYDampVelocity, offestYDampValue), cameraHandle.transform.localPosition.z);//cameraHandle.transform.localPosition.y
+    }
+    public void SetOffestY(){
+        if(!doAim){
+            offestY = Mathf.Lerp(offestY,offsetYDistance,.1f);
+        }
+        else{
+            offestY = Mathf.Lerp(offestY,offsetYAimDis,.1f);
+        }
     }
     private void CameraRay()//AutoDetection
     {
@@ -213,5 +245,18 @@ public class CameraController : MonoBehaviour {
         offsetZDistance/=2;
         offestDampValue/=5;
         isDieInvoke =false;
+    }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(tempEulerX);
+        }
+        else
+        {
+            // Network player, receive data
+            this.tempEulerX = (float)stream.ReceiveNext();
+        }
     }
 }

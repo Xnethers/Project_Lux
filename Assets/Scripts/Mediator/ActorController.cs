@@ -46,6 +46,7 @@ public class ActorController : IActorManagerInterface {
     //"===== Bounce Settings ====="彈跳點
     private float bonceVelocity;
     public bool isBounce;
+    public bool isJump;
     // Use this for initialization
     public void Awake() {
         IUserInput[] inputs = GetComponents<IUserInput>();
@@ -230,6 +231,7 @@ public class ActorController : IActorManagerInterface {
         _velocity.y = 1f;//0有飄浮感
         _velocity.y += Mathf.Sqrt(jumpVelocity * -0.5f * Physics.gravity.y);
         //trackDirection = true;
+        isJump = true;
     }
     public void OnPopUpEnter(){
         pi.inputEnabled = false;
@@ -253,7 +255,6 @@ public class ActorController : IActorManagerInterface {
     public void IsGround(){
         anim.SetBool("isGround", true);
         gravity = gravityConstant;
-        isBounce=false;
     }
     public void IsNotGround()
     {
@@ -277,6 +278,8 @@ public class ActorController : IActorManagerInterface {
         canAttack = true;
         am.bm.bcB.defCol.material = frictionOne;
         trackDirection = false;
+        isBounce=false;
+        isJump=false;
     }
     public void OnGroundExit() {
         am.bm.bcB.defCol.material = frictionZero;
