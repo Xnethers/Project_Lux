@@ -144,10 +144,10 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: attack
     m_StateMachine: {fileID: 1107279766919166736}
-    m_Mask: {fileID: 31900000, guid: a2512a69171d87047a083a116c47d64c, type: 2}
+    m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 0
+    m_BlendingMode: 1
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 1
@@ -2176,7 +2176,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.6
   m_TransitionOffset: 0
   m_ExitTime: 0.5588236
   m_HasExitTime: 1
@@ -2462,7 +2462,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: RushAttack
-  m_Speed: 1.3
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101804621067753546}
@@ -2916,7 +2916,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SniperRepel
+  m_Name: RepelAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2930,7 +2930,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ea83fc9bd919ffc4ab6557268a8cbb83, type: 3}
+  m_Motion: {fileID: 7400000, guid: 101f871bd5281b44eb91cd6bb425fe68, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: R0L1

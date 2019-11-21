@@ -41,6 +41,11 @@ namespace Photon.Pun.Demo.Asteroids
         public int charactersCount;
         public GameObject[] myAllCamps;
 
+        [Header("NoviceTeaching Panel")]
+        public GameObject NoviceTeachingPanel;
+        public Button TeachButton;
+        public Button TrainingButton;
+
         [Header("Players List Panel ")]
         public GameObject PlayersListPanel;
         public GameObject PlayerListEntryPrefab;
@@ -146,7 +151,10 @@ namespace Photon.Pun.Demo.Asteroids
 
         public override void OnJoinedRoom()
         {
-            SetActivePanel(InsideRoomPanel.name);
+            if (Global.Level != 0)
+            { SetActivePanel(InsideRoomPanel.name); }
+            else
+            { SetActivePanel(NoviceTeachingPanel.name); }
 
             if (playerListEntries == null)
             {
@@ -349,10 +357,19 @@ namespace Photon.Pun.Demo.Asteroids
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
-            if (Global.Level == 0)
+
+            PhotonNetwork.LoadLevel("Room for " + Global.Level);
+        }
+
+        public void OnTeachButtonClicked()//新手教學
+        {
+            if (PhotonNetwork.IsMasterClient)
             { PhotonNetwork.LoadLevel("NoviceTeaching"); }
-            else
-            { PhotonNetwork.LoadLevel("Room for " + Global.Level); }
+        }
+        public void OnTrainingButtonClicked()//訓練模式
+        {
+            if (PhotonNetwork.IsMasterClient)
+            { PhotonNetwork.LoadLevel("Training"); }
         }
 
         public void OnClickCamp(int whichCamp)
@@ -385,7 +402,7 @@ namespace Photon.Pun.Demo.Asteroids
             Global.Level = i;
         }
 
-        public void OnNoviceTeachingClicked()//新手教學
+        public void OnNoviceTeachingClicked()
         {
             //SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
             if (playerListEntries == null)
@@ -394,7 +411,7 @@ namespace Photon.Pun.Demo.Asteroids
             }
             RoomOptions options = new RoomOptions { MaxPlayers = 1 };
             PhotonNetwork.CreateRoom(null, options, null);
-            
+
             PlayerInfo.PI.mySelectedCharacter = 1;
 
             PhotonNetwork.LocalPlayer.SetCharacter(0);
@@ -496,6 +513,7 @@ namespace Photon.Pun.Demo.Asteroids
             JoinRandomRoomPanel.SetActive(activePanel.Equals(JoinRandomRoomPanel.name));
             RoomListPanel.SetActive(activePanel.Equals(RoomListPanel.name));    // UI should call OnRoomListButtonClicked() to activate this
             InsideRoomPanel.SetActive(activePanel.Equals(InsideRoomPanel.name));
+            NoviceTeachingPanel.SetActive(activePanel.Equals(NoviceTeachingPanel.name));
         }
 
         private void UpdateCachedRoomList(List<RoomInfo> roomList)
