@@ -5066,7 +5066,7 @@ MonoBehaviour:
   pelvisOffset: 0.02
   pelvisUpAndDownSpeed: 0.6
   feetToIkPositionSpeed: 0.5
-  weightIkPositionSpeed: 1
+  weightIkPositionSpeed: 0.9
   leftFootAnimVariableName: LeftFootCurve
   rightFootAnimVariableName: RightFootCurve
   useProIkFeature: 1
@@ -6160,7 +6160,9 @@ MonoBehaviour:
   camcon: {fileID: 114502246226945538}
   pi: {fileID: 114830148207114210}
   careercon: {fileID: 0}
-  walkSpeed: 2.7
+  CurrentSpeed: 0
+  walkVerticalSpeed: 2.4
+  walkHorizontalSpeed: 2.4
   upSpeed: 1
   runMultiplier: 2
   jumpVelocity: 7
@@ -6491,6 +6493,7 @@ MonoBehaviour:
   isHit: 0
   isDie: 0
   isHPing: 0
+  die: 0
   deadTime: 5
 --- !u!114 &114730140077167734
 MonoBehaviour:
@@ -6752,10 +6755,12 @@ MonoBehaviour:
   Jright: 0
   run: 0
   isMove: 0
+  isHorizontal: 0
+  isVertical: 0
   jump: 0
   roll: 0
-  esc: 0
   latent: 0
+  inputInitialize: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -6771,6 +6776,7 @@ MonoBehaviour:
   keyR: r
   keyE: e
   keyESC: escape
+  keyTAB: tab
   mouseSensitivityX: 1
   mouseSensitivityY: 1
   attackML: 0
@@ -7026,7 +7032,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: height
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: shield
   - Type: 1
     SynchronizeType: 0

@@ -10,7 +10,9 @@ public class ActorController : IActorManagerInterface {
     public CameraController camcon;
     public IUserInput pi;
     public ICareerController careercon;
-    public float walkSpeed = 2.4f;
+    [SerializeField]private float CurrentSpeed;
+    public float walkVerticalSpeed = 2.4f;
+    public float walkHorizontalSpeed = 2.4f;
     public float upSpeed = 1;
     public float runMultiplier = 2.0f;
     public float jumpVelocity = 5.5f;
@@ -77,8 +79,8 @@ public class ActorController : IActorManagerInterface {
         if(!photonView.IsMine)
             return;
             
-        if(pi.esc)
-            camcon.isCursorVisible = ! camcon.isCursorVisible;
+        // if(pi.menu)
+        //     camcon.isCursorVisible = ! camcon.isCursorVisible;
         if(pi.latent && am.im.overlapEcastms.Count!=0 && am.sm.isLocomotion){//按下潛光按鍵(暫定e鍵)
             if(am.im.overlapEcastms[0].tag == tag){
                 
@@ -111,7 +113,16 @@ public class ActorController : IActorManagerInterface {
             }
         }
         if (lockPlanar == false) {
-            planarVec = pi.Dvec * walkSpeed * runMultiplier * upSpeed ;//((pi.run) ? runMultiplier : 1.0f
+            if(pi.isHorizontal && pi.isVertical){
+                CurrentSpeed = Mathf.Lerp(CurrentSpeed,(walkVerticalSpeed + walkHorizontalSpeed)/2,.5f);
+            }
+            else if(pi.isHorizontal && !pi.isVertical){
+                CurrentSpeed = Mathf.Lerp(CurrentSpeed,walkHorizontalSpeed,.5f);
+            }
+            else if(!pi.isHorizontal && pi.isVertical){
+                CurrentSpeed = Mathf.Lerp(CurrentSpeed,walkVerticalSpeed,.5f);
+            }
+            planarVec = pi.Dvec * CurrentSpeed * runMultiplier * upSpeed ;//((pi.run) ? runMultiplier : 1.0f
         }
         else{
             //planarVec = (pi.Dvec * walkSpeed * runMultiplier)/1.2f ;
@@ -317,7 +328,7 @@ public class ActorController : IActorManagerInterface {
         // Debug.Log("OnAttackIdleEnter");
     }
     public void OnAttackIdleUpdate() {
-        anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, .1f));
+        anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, .2f));
     }
     public void OnAttackEnter() {
         //pi.inputEnabled = false;
@@ -327,7 +338,7 @@ public class ActorController : IActorManagerInterface {
     }
     public void OnAttackUpdate() {
         //thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
-        anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, 0.1f));
+        anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, 0.2f));
     }
 
     public void OnAttackExit() {

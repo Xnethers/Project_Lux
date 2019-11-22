@@ -23,6 +23,7 @@ public class KeyboardInput : IUserInput
     public string keyR = "r";
     public string keyE = "e";
     public string keyESC = "escape";
+    public string keyTAB = "tab";
     public MyButton buttonUp = new MyButton();
     public MyButton buttonDown = new MyButton();
     public MyButton buttonLeft = new MyButton();
@@ -36,6 +37,7 @@ public class KeyboardInput : IUserInput
     public MyButton buttonR = new MyButton();
     public MyButton buttonE = new MyButton();
     public MyButton buttonESC = new MyButton();
+    public MyButton buttonTAB = new MyButton();
 
     [Header("===== Mouse settings =====")]
     public float mouseSensitivityX = 1.0f;
@@ -58,15 +60,19 @@ public class KeyboardInput : IUserInput
         buttonQ.Tick(Input.GetKey(keyQ));
         buttonR.Tick(Input.GetKey(keyR));
         buttonE.Tick(Input.GetKey(keyE));
-
-        buttonESC.Tick(Input.GetKey(keyESC));
+        //menu
+        // buttonESC.Tick(Input.GetKey(keyESC));
+        // buttonTAB.Tick(Input.GetKey(keyTAB));
 
         Jup = (Input.GetAxis("Mouse Y")) * 3.0f * mouseSensitivityY;
         Jright = (Input.GetAxis("Mouse X")) * 2.5f * mouseSensitivityX;
 
         targetDup = (buttonUp.IsPressing ? 1.0f : 0) - (buttonDown.IsPressing ? 1.0f : 0);
         targetDright = (buttonRight.IsPressing ? 1.0f : 0) - (buttonLeft.IsPressing ? 1.0f : 0);
-        isMove = buttonLeft.IsPressing || buttonRight.IsPressing || buttonDown.IsPressing || buttonUp.IsPressing;
+         
+        isHorizontal = buttonLeft.IsPressing || buttonRight.IsPressing ;
+        isVertical = buttonDown.IsPressing || buttonUp.IsPressing;
+        isMove = isHorizontal || isVertical;
 
         if (inputEnabled == false)
         {
@@ -74,7 +80,7 @@ public class KeyboardInput : IUserInput
             targetDright = 0;
             run = false;
             jump = false;
-            esc = false;
+            // menu = false;
         }
         if (inputMouseEnabled == false)
         {
@@ -102,8 +108,8 @@ public class KeyboardInput : IUserInput
 
         jump = buttonJump.OnPressed;
 
-        esc = buttonESC.OnPressed;
         latent = buttonE.OnPressed;
+        // menu = buttonTAB.OnPressed || buttonESC.OnPressed;
     }
 
 }

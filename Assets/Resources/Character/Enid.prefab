@@ -4604,10 +4604,12 @@ MonoBehaviour:
   Jright: 0
   run: 0
   isMove: 0
+  isHorizontal: 0
+  isVertical: 0
   jump: 0
   roll: 0
-  esc: 0
   latent: 0
+  inputInitialize: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -4623,6 +4625,7 @@ MonoBehaviour:
   keyR: r
   keyE: e
   keyESC: escape
+  keyTAB: tab
   mouseSensitivityX: 1
   mouseSensitivityY: 1
   attackML: 0
@@ -4836,7 +4839,7 @@ MonoBehaviour:
   - {fileID: 114719799792810466}
   - {fileID: 114376165227488104}
   viewIdField: 0
-  InstantiationId: 9
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114218383465573066
 MonoBehaviour:
@@ -5085,6 +5088,7 @@ MonoBehaviour:
   isHit: 0
   isDie: 0
   isHPing: 0
+  die: 0
   deadTime: 5
 --- !u!114 &114380017153704488
 MonoBehaviour:
@@ -5487,7 +5491,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114678461351947774}
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114513486353133422
 MonoBehaviour:
@@ -5568,7 +5572,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999152103625804}
   viewIdField: 0
-  InstantiationId: 16
+  InstantiationId: 17
   isRuntimeInstantiated: 0
 --- !u!114 &114544707042811110
 MonoBehaviour:
@@ -5603,7 +5607,7 @@ MonoBehaviour:
   pelvisOffset: 0.02
   pelvisUpAndDownSpeed: 0.6
   feetToIkPositionSpeed: 0.5
-  weightIkPositionSpeed: 1
+  weightIkPositionSpeed: 0.9
   leftFootAnimVariableName: LeftFootCurve
   rightFootAnimVariableName: RightFootCurve
   useProIkFeature: 1
@@ -5807,7 +5811,9 @@ MonoBehaviour:
   camcon: {fileID: 114858256881184256}
   pi: {fileID: 114086331316121956}
   careercon: {fileID: 114351684755625412}
-  walkSpeed: 2.7
+  CurrentSpeed: 0
+  walkVerticalSpeed: 2.4
+  walkHorizontalSpeed: 2.4
   upSpeed: 1
   runMultiplier: 2
   jumpVelocity: 7
@@ -6405,9 +6411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 4583532198542576}
-  LeftHandTarget: {fileID: 0}
   aimDenominator: 2
-  leftShoulderOffest: {x: 0, y: 0, z: 10}
+  leftShoulderOffest: {x: 0, y: 0, z: 5}
   rightShoulderOffest: {x: 0, y: 0, z: -5}
 --- !u!114 &114965762665758068
 MonoBehaviour:

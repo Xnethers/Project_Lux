@@ -38,6 +38,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
     protected Coroutine hpCoroutine;
     public bool isHPing;
     public MyTimer dieTimer = new MyTimer();
+    public bool die = false;
     public float deadTime = 5;
 
     ReliveZone mylivezone;
@@ -95,8 +96,10 @@ public class StateManager : IActorManagerInterface, IPunObservable
         }
         if(isDie){//在高處降落至地才死亡動畫
             am.ac.OnDieEnter();//不能行動
-            if(am.ac.height<1f && !am.ac.CheckState("die"))//isGround
+            if(am.ac.height<1f && !die){//isGround
                 Die();
+                die = true;
+            }
         }
         if (!photonView.IsMine)
             return;
@@ -202,11 +205,12 @@ public class StateManager : IActorManagerInterface, IPunObservable
     #endregion
     #region PUN Callbacks
     [PunRPC]
-    private void RPC_ReLive(float x, float z)
+    public void RPC_ReLive(float x, float z)
     {
         photonView.RPC("RPC_SetTrigger", RpcTarget.All, "reLife");
         HP = HPMax;
         isDie = false;
+        die = false;
         if (am.ac.pi.isAI)
             return;
         transform.localPosition = new Vector3(x, mylivezone.Y, z);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AimIK : LookAtIK {
 	// public Transform LeftHandTarget;
-	public float aimDenominator = 1.5f;
+	public float aimDenominator = 2f;
 	public Vector3 leftShoulderOffest;
 	public Vector3 rightShoulderOffest;
 	Transform leftShoulder;

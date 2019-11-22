@@ -146,6 +146,7 @@ MonoBehaviour:
   isHit: 0
   isVFX: 0
   isBullet: 0
+  isKinematic: 0
   buffsName: []
   baseATK: 1
   atkBuff: 1

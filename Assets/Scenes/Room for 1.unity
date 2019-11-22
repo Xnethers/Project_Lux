@@ -638,10 +638,12 @@ MonoBehaviour:
   Jright: 0
   run: 0
   isMove: 0
+  isHorizontal: 0
+  isVertical: 0
   jump: 0
   roll: 0
-  esc: 0
   latent: 0
+  inputInitialize: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -657,6 +659,7 @@ MonoBehaviour:
   keyR: r
   keyE: e
   keyESC: escape
+  keyTAB: tab
   mouseSensitivityX: 1
   mouseSensitivityY: 1
   attackML: 0
@@ -685,7 +688,9 @@ MonoBehaviour:
   camcon: {fileID: 442139431}
   pi: {fileID: 55852671}
   careercon: {fileID: 55852674}
-  walkSpeed: 2.7
+  CurrentSpeed: 0
+  walkVerticalSpeed: 2.4
+  walkHorizontalSpeed: 2.4
   upSpeed: 1
   runMultiplier: 2
   jumpVelocity: 7
@@ -704,6 +709,7 @@ MonoBehaviour:
   lockPlanar: 0
   lerpTarget: 0
   isBounce: 0
+  isJump: 0
 --- !u!143 &55852673
 CharacterController:
   m_ObjectHideFlags: 0
@@ -819,6 +825,7 @@ MonoBehaviour:
   isHit: 0
   isDie: 0
   isHPing: 0
+  die: 0
   deadTime: 5
 --- !u!82 &55852677
 AudioSource:
@@ -3018,30 +3025,6 @@ Transform:
   m_Father: {fileID: 1765718271}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &262122761
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/OutlineCommandBuffer
-  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &270279032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3250,9 +3233,9 @@ MonoBehaviour:
   interation: 1
   offset: 1
   colorIntensity: 3
-  postMat: {fileID: 262122761}
-  flatColor: {fileID: 1103477149}
-  blur: {fileID: 683717911}
+  postMat: {fileID: 1444578880}
+  flatColor: {fileID: 1631478008}
+  blur: {fileID: 478522279}
   bufferEvent: 17
 --- !u!114 &282840816
 MonoBehaviour:
@@ -5394,6 +5377,30 @@ Transform:
   m_Father: {fileID: 1758161164}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &478522279
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/KawaseBlurPostProcess
+  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &487505092
 GameObject:
   m_ObjectHideFlags: 0
@@ -6052,7 +6059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
-  offset: 0.2
+  offset: 0.1
 --- !u!1 &557481947
 GameObject:
   m_ObjectHideFlags: 0
@@ -6826,8 +6833,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1310954, y: 0.15674782, z: 0.6813425}
-  m_Center: {x: 0.0049061268, y: -6.76, z: 0.72449845}
+  m_Size: {x: 1.1310954, y: 0.15674782, z: 0.7056928}
+  m_Center: {x: 0.004906107, y: -6.76, z: 0.7366739}
 --- !u!65 &623297784
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6838,8 +6845,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.18091911, y: 11.421269, z: 0.6813419}
-  m_Center: {x: 0.48, y: -0.98578024, z: 0.7244998}
+  m_Size: {x: 0.18091917, y: 11.421269, z: 0.70569265}
+  m_Center: {x: 0.47999975, y: -0.98578024, z: 0.7366753}
 --- !u!65 &623297785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6850,8 +6857,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.18091911, y: 11.421269, z: 0.6813419}
-  m_Center: {x: -0.47126213, y: -0.98578024, z: 0.7244998}
+  m_Size: {x: 0.18091905, y: 11.421269, z: 0.7059133}
+  m_Center: {x: -0.47126123, y: -0.98578024, z: 0.736786}
 --- !u!1 &625462773
 GameObject:
   m_ObjectHideFlags: 0
@@ -8848,30 +8855,6 @@ Transform:
   m_Father: {fileID: 2050804861}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &683717911
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/KawaseBlurPostProcess
-  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &687764001
 GameObject:
   m_ObjectHideFlags: 0
@@ -11128,8 +11111,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1698815, y: 0.2, z: 11.376334}
-  m_Center: {x: -0.0000011622907, y: -0.08, z: -1.0393764}
+  m_Size: {x: 1.1698815, y: 0.20771906, z: 11.376334}
+  m_Center: {x: -0.0000011968834, y: -0.08385941, z: -1.0393764}
 --- !u!1 &855072448
 GameObject:
   m_ObjectHideFlags: 0
@@ -13400,30 +13383,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.99, y: 4.27, z: 1.93}
   m_Center: {x: 0.13, y: 1.61, z: -0.11}
---- !u!21 &1103477149
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/FlatColor
-  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1107033900
 GameObject:
   m_ObjectHideFlags: 0
@@ -17341,6 +17300,7 @@ MonoBehaviour:
   isHit: 0
   isDie: 0
   isHPing: 0
+  die: 0
   deadTime: 5
 --- !u!114 &1399344881
 MonoBehaviour:
@@ -17377,7 +17337,9 @@ MonoBehaviour:
   camcon: {fileID: 649291325}
   pi: {fileID: 0}
   careercon: {fileID: 1399344876}
-  walkSpeed: 2.7
+  CurrentSpeed: 0
+  walkVerticalSpeed: 2.4
+  walkHorizontalSpeed: 2.4
   upSpeed: 1
   runMultiplier: 2
   jumpVelocity: 7
@@ -17396,6 +17358,7 @@ MonoBehaviour:
   lockPlanar: 0
   lerpTarget: 0
   isBounce: 0
+  isJump: 0
 --- !u!114 &1399344883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17418,10 +17381,12 @@ MonoBehaviour:
   Jright: 0
   run: 0
   isMove: 0
+  isHorizontal: 0
+  isVertical: 0
   jump: 0
   roll: 0
-  esc: 0
   latent: 0
+  inputInitialize: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -17437,6 +17402,7 @@ MonoBehaviour:
   keyR: r
   keyE: e
   keyESC: escape
+  keyTAB: tab
   mouseSensitivityX: 1
   mouseSensitivityY: 1
   attackML: 0
@@ -18030,6 +17996,30 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Team:Untagged
+--- !u!21 &1444578880
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/OutlineCommandBuffer
+  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1455085748
 GameObject:
   m_ObjectHideFlags: 0
@@ -19918,6 +19908,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1626523084}
   m_Mesh: {fileID: 4300552, guid: 587176fbdb93bd94294cb6800b64dee7, type: 3}
+--- !u!21 &1631478008
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/FlatColor
+  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1634411751
 GameObject:
   m_ObjectHideFlags: 0
@@ -21984,7 +21998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
-  offset: 0.2
+  offset: 0.1
 --- !u!65 &1814241498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24527,6 +24541,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11c9aa267bdc847478c4519703a344cc, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2020877406 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1954569532185528, guid: 11c9aa267bdc847478c4519703a344cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 2020877405}
+--- !u!1 &2020877407 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1250934630362494, guid: 11c9aa267bdc847478c4519703a344cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 2020877405}
+--- !u!114 &2020877408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2020877407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4efbd3b93621c45ab48fb21d55af27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerAm: {fileID: 0}
+  MenuPanel: {fileID: 2020877406}
+  isMenu: 0
 --- !u!1 &2024167785
 GameObject:
   m_ObjectHideFlags: 0

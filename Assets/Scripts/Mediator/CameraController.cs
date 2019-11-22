@@ -73,8 +73,9 @@ public class CameraController : MonoBehaviourPunCallbacks {
         mainCamera = Camera.main.gameObject;
         mainCamCollider = mainCamera.GetComponentInChildren<ChangeIgnoreRayLayer>();
         //lockDot.enabled = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible=false;
+        isCursorVisible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible=false;
         
 	}
 	
@@ -84,15 +85,7 @@ public class CameraController : MonoBehaviourPunCallbacks {
             return;
         if(!ac.am.photonView.IsMine)
             return;
-        if(isCursorVisible){
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible=true;
-        }
-            
-        else{
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible=false;
-        }
+        // CursorControl();
         if(isHorizontalView){
             pi.Jup = 0f;
             tempEulerX =Mathf.Lerp(tempEulerX,0,.1f);
@@ -245,6 +238,19 @@ public class CameraController : MonoBehaviourPunCallbacks {
         offsetZDistance/=2;
         offestDampValue/=5;
         isDieInvoke =false;
+    }
+    public void CursorControl(){
+        // if(Global.Level==0){
+        //     return;
+        // }
+        if(isCursorVisible){
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible=true;
+        }
+        else{
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible=false;
+        }
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

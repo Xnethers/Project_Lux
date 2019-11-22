@@ -411,16 +411,15 @@ namespace Photon.Pun.Demo.Asteroids
             }
             RoomOptions options = new RoomOptions { MaxPlayers = 1 };
             PhotonNetwork.CreateRoom(null, options, null);
-
-            PlayerInfo.PI.mySelectedCharacter = 1;
-
             PhotonNetwork.LocalPlayer.SetCharacter(0);
-            PhotonNetwork.LocalPlayer.SetReady(true);
-            Hashtable props = new Hashtable
-            {
-                {AsteroidsGame.PLAYER_LOADED_LEVEL, false}
-            };
-            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+            // PlayerInfo.PI.mySelectedCharacter = 1;
+            
+            // PhotonNetwork.LocalPlayer.SetReady(true);
+            // Hashtable props = new Hashtable
+            // {
+            //     {AsteroidsGame.PLAYER_LOADED_LEVEL, false}
+            // };
+            // PhotonNetwork.LocalPlayer.SetCustomProperties(props);
             PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
             Global.Level = 0;
         }

@@ -51,6 +51,10 @@ public class MultiSegmentProjectile : Projectile
                 // isHit=true;
                 return;
             }
+            if (col.GetComponent<DamageHandler>() == null)
+            {
+                return;
+            }   
             col.SendMessageUpwards("TryDoDamage", GetATK());
         }
     }

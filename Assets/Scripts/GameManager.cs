@@ -21,6 +21,8 @@ using Photon.Realtime;
         [Header("Two Side Relive Point")]
         public ReliveZone RedRelivePoint;
         public ReliveZone BlueRelivePoint;
+        [Header("Menu")]
+        public InGameMenu GameMenu;
 
         #endregion
 
@@ -64,6 +66,7 @@ using Photon.Realtime;
         void Start()
         {
             Instance = this;
+            GameMenu = GetComponent<InGameMenu>();
             if (playerPrefab == null)
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
@@ -76,7 +79,7 @@ using Photon.Realtime;
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                     //if(PlayerInfo.PI.mySelectedCharacter!=-1)
                     SoundManager.Instance.FadeOutBGM();
-                    PhotonNetwork.Instantiate("Character/" + this.playerPrefab[PlayerInfo.PI.mySelectedCharacter].name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                    CreateCharacter();
                 }
                 // else
                 // {
@@ -111,7 +114,13 @@ using Photon.Realtime;
             //按人數加載場景(須改)
             PhotonNetwork.LoadLevel(Global.Level);// + PhotonNetwork.CurrentRoom.PlayerCount);
         }
-
+        public void CreateCharacter(){
+            GameObject player = PhotonNetwork.Instantiate("Character/" + this.playerPrefab[PlayerInfo.PI.mySelectedCharacter].name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+            GameMenu.PlayerAm = player.GetComponent<ActorManager>();
+        }
+        public void DestroyCharacter(GameObject obj){
+            PhotonNetwork.Destroy(obj);
+        }
 
         #endregion
     }

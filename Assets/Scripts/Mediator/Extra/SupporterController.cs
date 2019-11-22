@@ -9,8 +9,6 @@ public class SupporterController : ICareerController {
 	public ActorController AC{get{return ac;}}
 	// private FieldOfViewHeight fovh;
 	public CameraShake cameraShake;
-	[Header("===== Weapon Settings =====")]
-    public Transform handBone;
 	[Header("===== Buff Settings =====")]
 	public GameObject[] buffObj;
 	public float atkBuff = 1.5f;//Attack
@@ -36,7 +34,6 @@ public class SupporterController : ICareerController {
 		ki = GetComponent<KICareer>();
 		// fovh = GetComponent<FieldOfViewHeight>();
 		cameraShake = ac.camcon.GetComponentInParent<CameraShake>();
-		NeedleHand();
 	}
 	
 	// Update is called once per frame
@@ -45,6 +42,7 @@ public class SupporterController : ICareerController {
             return;
         if (!photonView.IsMine)
             return;
+		skillMR.Tick();
 		skillF.Tick();
         skillQ.Tick();
         skillAir.Tick();
@@ -101,9 +99,13 @@ public class SupporterController : ICareerController {
 					}
 				}
 				if (ki.auxiliaryMR){//群攻
-					// UseSkill(1,careerValue.FirstDamage);
-					photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
-					buffText.text = buffType.ToString();
+					if(CheckCD(skillMR)){
+						ac.SetBool("fullBody",false);
+						UseSkill(1,careerValue.FirstDamage);
+						photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
+						buffText.text = buffType.ToString();
+						StartCD(skillMR,careerValue.FirstCD);
+					}
 				}
 				if (ki.attackF){//擊退攻
 					if(CheckCD(skillF)){
@@ -149,14 +151,6 @@ public class SupporterController : ICareerController {
 		if(ki.attackML)
             isForce=false;
 	}
-	public void NeedleHand() {
-        BigNeedleSetParent(handBone);
-    }
-	public void BigNeedleSetParent(Transform targetPoint){
-        ac.am.wm.wcR.wdata[0].transform.parent=targetPoint;
-        ac.am.wm.wcR.wdata[0].transform.localPosition = Vector3.zero;
-        ac.am.wm.wcR.wdata[0].transform.localRotation = Quaternion.identity;
-    }
 	
     public void OnAttack1hAUpdate() {
         ac.thrustVec = ac.model.transform.forward * ac.anim.GetFloat("attack1hAVelocity");

@@ -18,15 +18,18 @@ public abstract class IUserInput : MonoBehaviourPunCallbacks {
     //pressing signal
     public bool run;
     public bool isMove;
+    public bool isHorizontal;
+    public bool isVertical;
 
     //trigger once signal
     public bool jump;
     public bool roll;
-    public bool esc;
     public bool latent;
+    // public bool menu;
     //double trigger
 
     [Header("===== Others =====")]
+    public bool inputInitialize = false;
     public bool inputEnabled = true;
     public bool inputMouseEnabled = true;
     protected float targetDup;
@@ -45,5 +48,13 @@ public abstract class IUserInput : MonoBehaviourPunCallbacks {
     protected void UpdateDmagDvec(float Dup2, float Dright2) {
         Dmag = Mathf.Sqrt(Dup2 * Dup2 + Dright2 * Dright2);
         Dvec = Dright2 * transform.right + Dup2 * transform.forward;
+    }
+    public void InputInitialize(){
+        Dup = 0;
+        Dright = 0;
+        Dmag = 0;
+        Dvec = Vector3.zero;
+        Jup = 0;
+        Jright = 0;
     }
 }

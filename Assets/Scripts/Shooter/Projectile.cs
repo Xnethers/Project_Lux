@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     [Header("===== Kind Settings =====")]
     [SerializeField] bool isBullet = false;
+    [SerializeField] bool isKinematic = true;
 
     [Header("===== DeBuff Settings =====")]
 
@@ -75,7 +76,8 @@ public class Projectile : MonoBehaviourPunCallbacks
     {
         if (isHit)
             return;
-        rb.isKinematic=true;
+        if(isKinematic)
+            rb.isKinematic=true;
         if (isBullet){
             transform.GetChild(0).gameObject.SetActive(false);
             if (normalhitVFX != null && !isVFX){//子彈火花
