@@ -29,7 +29,7 @@ public abstract class IUserInput : MonoBehaviourPunCallbacks {
     //double trigger
 
     [Header("===== Others =====")]
-    public bool inputInitialize = false;
+    // public bool inputInitialize = false;
     public bool inputEnabled = true;
     public bool inputMouseEnabled = true;
     protected float targetDup;

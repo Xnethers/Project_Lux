@@ -4018,7 +4018,6 @@ MonoBehaviour:
   jump: 0
   roll: 0
   latent: 0
-  inputInitialize: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w

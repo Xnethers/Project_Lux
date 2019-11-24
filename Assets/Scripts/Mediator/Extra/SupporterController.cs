@@ -224,6 +224,8 @@ public class SupporterController : ICareerController {
 	}*/
 	public override void AirAttack()//空技
 	{
+		ac.lockPlanar=false;
+		ki.InputInitialize();
 		ki.inputEnabled = false;
 		if (!photonView.IsMine)
             return;
