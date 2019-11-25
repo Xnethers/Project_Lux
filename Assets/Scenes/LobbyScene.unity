@@ -1082,9 +1082,14 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114205597148925308, guid: 506d54d3568634443a7a7f03529465ac,
+    - target: {fileID: 114543563784366302, guid: 506d54d3568634443a7a7f03529465ac,
         type: 2}
       propertyPath: viewIdField
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543563784366302, guid: 506d54d3568634443a7a7f03529465ac,
+        type: 2}
+      propertyPath: InstantiationId
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114501911608815854, guid: 506d54d3568634443a7a7f03529465ac,
@@ -1092,9 +1097,14 @@ Prefab:
       propertyPath: viewIdField
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114543563784366302, guid: 506d54d3568634443a7a7f03529465ac,
+    - target: {fileID: 114205597148925308, guid: 506d54d3568634443a7a7f03529465ac,
         type: 2}
       propertyPath: viewIdField
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114205597148925308, guid: 506d54d3568634443a7a7f03529465ac,
+        type: 2}
+      propertyPath: InstantiationId
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1664428161481376, guid: 506d54d3568634443a7a7f03529465ac, type: 2}

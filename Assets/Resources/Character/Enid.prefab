@@ -4609,7 +4609,6 @@ MonoBehaviour:
   jump: 0
   roll: 0
   latent: 0
-  inputInitialize: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -6220,7 +6219,7 @@ MonoBehaviour:
   offsetZDistance: 2.5
   offsetZAimDis: 0.5
   offsetYDistance: 1.6
-  offsetYAimDis: 1.1
+  offsetYAimDis: 1.2
   offsetXDistance: 0.6
   offestDampValue: 0.16
   offestYDampValue: 0.05
@@ -6411,9 +6410,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 4583532198542576}
-  aimDenominator: 2
+  aimXDenominator: 2
+  aimYDenominator: 2
   leftShoulderOffest: {x: 0, y: 0, z: 5}
   rightShoulderOffest: {x: 0, y: 0, z: -5}
+  speed: 0.5
 --- !u!114 &114965762665758068
 MonoBehaviour:
   m_ObjectHideFlags: 1

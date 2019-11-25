@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class AimIK : LookAtIK {
 	// public Transform LeftHandTarget;
-	public float aimDenominator = 2f;
+	public float aimXDenominator = 2f;
+	public float aimYDenominator = 2f;
 	public Vector3 leftShoulderOffest;
 	public Vector3 rightShoulderOffest;
 	Transform leftShoulder;
 	Transform rightShoulder;
+	public float speed=0.5f;
 	// public float leftOffest=5f;
 	
 	protected override void Start(){
@@ -20,8 +22,18 @@ public class AimIK : LookAtIK {
 	void LateUpdate () {
 		if(ac.am.sm.isDie)
 			return;
-		rightShoulderOffest.x= -ac.camcon.tempEulerX/aimDenominator;
-		leftShoulderOffest.x= ac.camcon.tempEulerX/aimDenominator;
+		rightShoulderOffest.x= -ac.camcon.tempEulerX/aimXDenominator;
+		leftShoulderOffest.x= (ac.camcon.tempEulerX/aimXDenominator)-5f;
+		if(!ac.camcon.doAim){
+			leftShoulderOffest.y= Mathf.Lerp(leftShoulderOffest.y,Mathf.Clamp(rightShoulderOffest.x,-25,-10),speed);
+			leftShoulderOffest.z= Mathf.Lerp(leftShoulderOffest.z,5f,speed);
+		}
+		else{
+			leftShoulderOffest.y= Mathf.Lerp(leftShoulderOffest.y,0f,speed);
+			leftShoulderOffest.z= Mathf.Lerp(leftShoulderOffest.z,Mathf.Clamp(-rightShoulderOffest.x,5,15),speed);
+		}
+			
+		//(ac.camcon.offsetXDistance - ac.camcon.transform.parent.localPosition.x)
 		// if(ac.camcon.doAim)
 		// 	leftShoulderOffest.x= ac.camcon.tempEulerX/aimDenominator;
 		// else
