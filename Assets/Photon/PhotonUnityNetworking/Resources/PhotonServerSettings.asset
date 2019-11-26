@@ -104,4 +104,8 @@ MonoBehaviour:
   - DisableAbsorbRange
   - RPC_CreatFristAttackDamege
   - cube
+  - ShootProjectile
+  - SetLineEnabled
+  - Disappear
+  - Appear
   DisableAutoOpenWizard: 1

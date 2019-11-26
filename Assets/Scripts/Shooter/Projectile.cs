@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     public GameObject normalhitVFX;
     public GameObject specialhitVFX;
-    [SerializeField]protected bool isHit;
+    [SerializeField] protected bool isHit;
     public bool isVFX = false;
 
     [Header("===== Kind Settings =====")]
@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviourPunCallbacks
     [Header("===== DeBuff Settings =====")]
 
     [SerializeField] string[] buffsName;
-    
+
     [Header("===== Damage Settings =====")]
     [SerializeField] float baseATK = 1f;
     public float atkBuff = 1f;
@@ -49,6 +49,15 @@ public class Projectile : MonoBehaviourPunCallbacks
         rb.velocity = rb.transform.forward * speed;
         //this.speed=speed;
     }
+    public virtual void Initialize(string tag, float atk, float speed, Vector3 targetPoint)
+    {
+        this.tag = tag;
+        this.baseATK = atk;
+        this.originVec3 = transform.position;
+        this.targetPoint = targetPoint;
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = rb.transform.forward * speed;
+    }
     public virtual void Awake()
     {
         Destroy(transform.root.gameObject, timeToLive);
@@ -76,22 +85,25 @@ public class Projectile : MonoBehaviourPunCallbacks
     {
         if (isHit)
             return;
-        if(isKinematic)
-            rb.isKinematic=true;
-        if (isBullet){
+        if (isKinematic)
+            rb.isKinematic = true;
+        if (isBullet)
+        {
             transform.GetChild(0).gameObject.SetActive(false);
-            if (normalhitVFX != null && !isVFX){//子彈火花
+            if (normalhitVFX != null && !isVFX)
+            {//子彈火花
                 GameObject vfx = Instantiate(normalhitVFX, targetPoint - transform.forward * 0.5f, transform.rotation) as GameObject;
-                isVFX=true;
+                isVFX = true;
             }
         }
 
-        if (col.tag == this.tag){
+        if (col.tag == this.tag)
+        {
             // Debug.Log("col.tag == this.tag"+col.name);
             // isHit=true;
             return;
         }
-            
+
         if (col.GetComponent<DamageHandler>() == null)
         {
             // Debug.Log("col.GetComponent<DamageHandler>() == null"+col.name);
@@ -104,34 +116,39 @@ public class Projectile : MonoBehaviourPunCallbacks
         {
             SetRangeBuff(col);
             SetHeadBuff(col);
-            if (specialhitVFX != null && !isVFX){//蜂窩火花
+            if (specialhitVFX != null && !isVFX)
+            {//蜂窩火花
                 GameObject vfx = Instantiate(specialhitVFX, targetPoint, transform.rotation) as GameObject;
-                isVFX=true;
+                isVFX = true;
             }
         }
         else
         {
-            if (normalhitVFX != null && !isVFX ){//被刀擊
+            if (normalhitVFX != null && !isVFX)
+            {//被刀擊
                 GameObject vfx = Instantiate(normalhitVFX, transform.position, transform.rotation) as GameObject;
-                isVFX=true;
+                isVFX = true;
             }
         }
         BattleController bc = col.GetComponent<BattleController>();
         if (bc != null)
         {
             // InstantiateVFX(col,new Vector3(col.transform.position.x,transform.position.y,col.transform.position.z));
-            col.SendMessageUpwards("SetTargetAm", am);
+            if (am != null)
+            { col.SendMessageUpwards("SetTargetAm", am); }
             AddBuffs(col.gameObject);
         }
         AdditionalAttack(col);
         col.SendMessageUpwards("TryDoDamage", GetATK());
         isHit = true;
     }
-    protected void AddBuffs(GameObject obj){
-        if(buffsName.Length==0)
+    protected void AddBuffs(GameObject obj)
+    {
+        if (buffsName.Length == 0)
             return;
-        foreach(string buff in buffsName){
-            obj.SendMessageUpwards("AddBuff",buff);
+        foreach (string buff in buffsName)
+        {
+            obj.SendMessageUpwards("AddBuff", buff);
         }
     }
     protected void SetRangeBuff(Collider col)
@@ -147,7 +164,8 @@ public class Projectile : MonoBehaviourPunCallbacks
             rangeBuff = 0.5f;
 
     }
-    protected void SetHeadBuff(Collider col){
+    protected void SetHeadBuff(Collider col)
+    {
         if (col.gameObject.layer == LayerMask.NameToLayer("Head"))
         {
             headBuff = 1.7f;
@@ -164,8 +182,8 @@ public class Projectile : MonoBehaviourPunCallbacks
     }
     public float GetATK()
     {
-        Debug.Log("ATK:" + baseATK * rangeBuff * comboBuff * headBuff *atkBuff);
-        return baseATK * rangeBuff * headBuff * comboBuff  *atkBuff;
+        Debug.Log("ATK:" + baseATK * rangeBuff * comboBuff * headBuff * atkBuff);
+        return baseATK * rangeBuff * headBuff * comboBuff * atkBuff;
     }
     public virtual void AdditionalAttack(Collider col)
     {

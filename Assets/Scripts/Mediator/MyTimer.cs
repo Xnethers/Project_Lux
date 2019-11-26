@@ -48,6 +48,11 @@ public class MyTimer {
         //pause = false;
         state = STATE.RUN;
     }
+    public void Reset()
+    {
+        elapsedTime = 0;
+        state = STATE.IDLE;
+    }
     /*public void StopTimer() {
         duration = 0;
         elapsedTime = 0;

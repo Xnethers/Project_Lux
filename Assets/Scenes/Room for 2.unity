@@ -963,6 +963,11 @@ Prefab:
       propertyPath: size.x
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114617809273098958, guid: 11c9aa267bdc847478c4519703a344cc,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11c9aa267bdc847478c4519703a344cc, type: 2}
   m_IsPrefabParent: 0
@@ -14342,7 +14347,6 @@ MonoBehaviour:
   jump: 0
   roll: 0
   latent: 0
-  inputInitialize: 0
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w

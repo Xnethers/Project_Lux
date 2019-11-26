@@ -11,6 +11,8 @@ public class TwoStageProjectile : Projectile
     public attackType attackType;
     public float Damage;
 
+    public LayerMask layer;
+
     public void Start()
     {
         Damage = am.ac.careercon.careerValue.GetDamageByString(attackType);
@@ -24,7 +26,7 @@ public class TwoStageProjectile : Projectile
 
     public override void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        if (col.gameObject.layer == layer)
         {
             GameObject sp = Instantiate(SecondProjectile, transform.position, Quaternion.identity) as GameObject;
             sp.GetComponent<Projectile>().Initialize(am,0,targetPoint);

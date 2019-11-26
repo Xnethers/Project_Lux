@@ -90,6 +90,8 @@ ModelImporter:
     100168: Bone017
     100170: Bone018
     100172: Bone019
+    100174: Adela_Arm
+    100176: Adela_Arm001
     400000: //RootNode
     400002: Adela_Body
     400004: Bip001
@@ -177,13 +179,19 @@ ModelImporter:
     400168: Bone017
     400170: Bone018
     400172: Bone019
+    400174: Adela_Arm
+    400176: Adela_Arm001
     2100000: Body
     2100002: Arms
     2100004: 02 - Default
     4300000: Adela_Body
+    4300002: Adela_Arm
+    4300004: Adela_Arm001
     9500000: //RootNode
     11100000: //RootNode
     13700000: Adela_Body
+    13700002: Adela_Arm
+    13700004: Adela_Arm001
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
