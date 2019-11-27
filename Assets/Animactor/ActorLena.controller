@@ -376,6 +376,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnLockEnter
+--- !u!114 &114198167854171666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onExitMessages:
+  - FootIKEnable
 --- !u!114 &114198833719962492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -495,6 +508,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnLockEnter
+--- !u!114 &114264516389698364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be6c93ddb36a3c48a2463d52672907d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnterMessages:
+  - FootIKDisable
 --- !u!114 &114269336536487470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -676,6 +702,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onEnterMessages: []
+--- !u!114 &114402045365053120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onExitMessages:
+  - FootIKEnable
 --- !u!114 &114414632259608708
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -768,6 +807,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnFallEnter
+--- !u!114 &114546208795047400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onExitMessages: []
 --- !u!114 &114550015458182028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -830,7 +881,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onExitMessages: []
+  onExitMessages:
+  - FootIKEnable
 --- !u!114 &114685345027616768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4296,6 +4348,7 @@ AnimatorState:
   - {fileID: 1101224963699916324}
   m_StateMachineBehaviours:
   - {fileID: 114099305396466978}
+  - {fileID: 114198167854171666}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -4966,7 +5019,9 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101115329877881726}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114264516389698364}
+  - {fileID: 114402045365053120}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
