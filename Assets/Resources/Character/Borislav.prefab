@@ -3633,7 +3633,7 @@ MonoBehaviour:
   - {fileID: 114214462689860372}
   - {fileID: 114414971300417562}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114083748814543258
 MonoBehaviour:
@@ -4482,7 +4482,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114200996963877352}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114547997086919342
 MonoBehaviour:
@@ -5293,7 +5293,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   enableFeetIk: 1
   heightFromGroundRaycast: 0.85
-  raycastDownDistance: 0.2
+  raycastDownDistance: 0.1
   environmentLayer:
     serializedVersion: 2
     m_Bits: 66048

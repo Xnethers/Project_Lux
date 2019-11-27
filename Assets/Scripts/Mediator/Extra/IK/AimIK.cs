@@ -19,7 +19,11 @@ public class AimIK : LookAtIK {
 		rightShoulder =ac.anim.GetBoneTransform(HumanBodyBones.RightShoulder);
 		// LeftHandTarget = transform.DeepFind("LeftHandTarget");
 	}
-	void LateUpdate () {
+	/// <summary>
+	/// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+	/// </summary>
+
+	void Update () {
 		if(ac.am.sm.isDie)
 			return;
 		rightShoulderOffest.x= -ac.camcon.tempEulerX/aimXDenominator;
@@ -48,12 +52,12 @@ public class AimIK : LookAtIK {
 		if(ac.am.sm.isDie)
 			return;
 		
-		if(ac.camcon.doAim){
-			// ac.anim.SetIKPosition(AvatarIKGoal.LeftHand, LeftHandTarget.position);
-			// ac.anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+		// if(ac.camcon.doAim){
+		// 	ac.anim.SetIKPosition(AvatarIKGoal.LeftHand, LeftHandTarget.position);
+		// 	ac.anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
 
-			// ac.anim.SetIKPosition(AvatarIKGoal.RightHand, HandTarget.position);
-			// ac.anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-		}
+		// 	ac.anim.SetIKPosition(AvatarIKGoal.RightHand, HandTarget.position);
+		// 	ac.anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+		// }
 	}
 }

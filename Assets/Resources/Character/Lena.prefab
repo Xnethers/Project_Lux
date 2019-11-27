@@ -5920,7 +5920,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   enableFeetIk: 1
   heightFromGroundRaycast: 0.85
-  raycastDownDistance: 0.2
+  raycastDownDistance: 0.1
   environmentLayer:
     serializedVersion: 2
     m_Bits: 66048
