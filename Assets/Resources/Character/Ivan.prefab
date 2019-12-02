@@ -4963,7 +4963,7 @@ MonoBehaviour:
   - {fileID: 114707027252949322}
   - {fileID: 114839645063806294}
   viewIdField: 0
-  InstantiationId: 12
+  InstantiationId: 14
   isRuntimeInstantiated: 0
 --- !u!114 &114047698886280978
 MonoBehaviour:
@@ -5059,11 +5059,11 @@ MonoBehaviour:
   anim: {fileID: 0}
   enableFeetIk: 1
   heightFromGroundRaycast: 0.85
-  raycastDownDistance: 0.1
+  raycastDownDistance: 0.15
   environmentLayer:
     serializedVersion: 2
     m_Bits: 66048
-  pelvisOffset: 0.02
+  pelvisOffset: 0.01
   pelvisUpAndDownSpeed: 0.6
   feetToIkPositionSpeed: 0.5
   weightIkPositionSpeed: 0.9
@@ -5569,7 +5569,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114758960382991668}
   viewIdField: 0
-  InstantiationId: 11
+  InstantiationId: 10
   isRuntimeInstantiated: 0
 --- !u!114 &114324447699644704
 MonoBehaviour:
@@ -5722,7 +5722,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114896299942052946}
   viewIdField: 0
-  InstantiationId: 14
+  InstantiationId: 13
   isRuntimeInstantiated: 0
 --- !u!114 &114408497414426628
 MonoBehaviour:
@@ -6182,6 +6182,7 @@ MonoBehaviour:
   lerpTarget: 0
   isBounce: 0
   isJump: 0
+  footIK: {fileID: 0}
 --- !u!114 &114575592712035958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6342,7 +6343,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114211621104466414}
   viewIdField: 0
-  InstantiationId: 10
+  InstantiationId: 12
   isRuntimeInstantiated: 0
 --- !u!114 &114659728391947564
 MonoBehaviour:
@@ -7141,7 +7142,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114125785196014762}
   viewIdField: 0
-  InstantiationId: 13
+  InstantiationId: 11
   isRuntimeInstantiated: 0
 --- !u!114 &114952398460573516
 MonoBehaviour:

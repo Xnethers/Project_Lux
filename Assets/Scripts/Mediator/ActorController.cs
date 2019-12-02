@@ -49,6 +49,7 @@ public class ActorController : IActorManagerInterface {
     private float bonceVelocity;
     public bool isBounce;
     public bool isJump;
+    public FootIK footIK;
     // Use this for initialization
     public void Awake() {
         IUserInput[] inputs = GetComponents<IUserInput>();
@@ -61,6 +62,7 @@ public class ActorController : IActorManagerInterface {
         }
         careercon = GetComponent<ICareerController>();
         anim = model.GetComponent<Animator>();
+        footIK = model.GetComponent<FootIK>();
         //rigid = GetComponent<Rigidbody>();
         chacon = GetComponent<CharacterController>();
         //col = GetComponent<CapsuleCollider>();
@@ -234,6 +236,7 @@ public class ActorController : IActorManagerInterface {
         gravity = 1.3f;
         //gravity = 0.1f;
         isBounce=true;
+        FootIKDisable();
     }
     public void OnJumpEnter() {
         //pi.inputEnabled = false;
@@ -243,6 +246,7 @@ public class ActorController : IActorManagerInterface {
         _velocity.y += Mathf.Sqrt(jumpVelocity * -0.5f * Physics.gravity.y);
         //trackDirection = true;
         isJump = true;
+        FootIKDisable();
     }
     public void OnPopUpEnter(){
         pi.inputEnabled = false;
@@ -253,6 +257,7 @@ public class ActorController : IActorManagerInterface {
         //_velocity.y += Mathf.Sqrt(-jumpVelocity * Physics.gravity.y);
         Debug.Log("OnPopUpEnter");
         lerpTarget = 0f;
+        FootIKDisable();
     }
     public void OnPopUpUpdate(){
         thrustVec = transform.forward * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity");
@@ -262,6 +267,13 @@ public class ActorController : IActorManagerInterface {
     public void OnPopUpExit(){
         pi.inputEnabled = true;
         pi.inputMouseEnabled = true;
+        FootIKEnable();
+    }
+    public void FootIKEnable(){
+        footIK.enableFeetIk=true;
+    }
+    public void FootIKDisable(){
+        footIK.enableFeetIk=false;
     }
     public void IsGround(){
         anim.SetBool("isGround", true);
@@ -298,6 +310,7 @@ public class ActorController : IActorManagerInterface {
     public void OnFallEnter(){
         pi.inputEnabled = false;
         lockPlanar = true;
+        FootIKDisable();
         if(!isBounce)
             _velocity.y = 0f;
         //gravity = .8f;

@@ -295,6 +295,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnLockEnter
+--- !u!114 &114210042025863348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onExitMessages:
+  - FootIKEnable
 --- !u!114 &114214886378953154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -349,6 +362,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onExitMessages:
   - OnPopUpExit
+--- !u!114 &114291771844501948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onExitMessages: []
 --- !u!114 &114305842260854772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -505,6 +530,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnLockEnter
+--- !u!114 &114653441177665920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onExitMessages:
+  - FootIKEnable
 --- !u!114 &114657891305004012
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -529,7 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onExitMessages: []
+  onExitMessages:
+  - FootIKEnable
 --- !u!114 &114762572719051386
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -640,6 +679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnAttackEnter
+  - FootIKDisable
 --- !u!114 &114924508692167780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2500,6 +2540,7 @@ AnimatorState:
   - {fileID: 1101224963699916324}
   m_StateMachineBehaviours:
   - {fileID: 114099305396466978}
+  - {fileID: 114210042025863348}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3204,6 +3245,7 @@ AnimatorState:
   m_StateMachineBehaviours:
   - {fileID: 114906375586029924}
   - {fileID: 114958128764461136}
+  - {fileID: 114653441177665920}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

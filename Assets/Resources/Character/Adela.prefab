@@ -6346,11 +6346,11 @@ MonoBehaviour:
   anim: {fileID: 0}
   enableFeetIk: 1
   heightFromGroundRaycast: 0.85
-  raycastDownDistance: 0.1
+  raycastDownDistance: 0.15
   environmentLayer:
     serializedVersion: 2
     m_Bits: 66048
-  pelvisOffset: 0.02
+  pelvisOffset: 0.01
   pelvisUpAndDownSpeed: 0.6
   feetToIkPositionSpeed: 0.5
   weightIkPositionSpeed: 0.9
@@ -6489,6 +6489,7 @@ MonoBehaviour:
   lerpTarget: 0
   isBounce: 0
   isJump: 0
+  footIK: {fileID: 0}
 --- !u!120 &120635955670361180
 LineRenderer:
   m_ObjectHideFlags: 1
