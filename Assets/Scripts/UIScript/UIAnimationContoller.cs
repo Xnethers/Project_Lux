@@ -5,41 +5,44 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class UIAnimationContoller : MonoBehaviour
+namespace UITween
 {
-    public RectTransform ThisButton;
-    public Image ButtonImage;
-    public Color color;
-    private Color originColor;
-    public float duration;
-    private Vector3 originScale;
-    public Vector3 endScale;
+    public class UIAnimationContoller : MonoBehaviour
+    {
+        public RectTransform ThisButton;
+        public Image ButtonImage;
+        public Color color;
+        private Color originColor;
+        public float duration;
+        private Vector3 originScale;
+        public Vector3 endScale;
 
-    // Use this for initialization
-    void Start()
-    {
-        originScale = ThisButton.localScale;
-        originColor = ButtonImage.color;
-    }
+        // Use this for initialization
+        void Start()
+        {
+            originScale = ThisButton.localScale;
+            originColor = ButtonImage.color;
+        }
 
-    public void ScaleEnter()
-    { ThisButton.DOScale(endScale, duration); }
-    public void ScaleExit()
-    {
-        EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.Select;
-        if (entry.eventID == EventTriggerType.Select)
-        { ThisButton.DOScale(originScale, duration); }
-    }
+        public void ScaleEnter()
+        { ThisButton.DOScale(endScale, duration); }
+        public void ScaleExit()
+        {
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.Select;
+            if (entry.eventID == EventTriggerType.Select)
+            { ThisButton.DOScale(originScale, duration); }
+        }
 
-    public void ColorChange()
-    {
-        ButtonImage.DOColor(color, duration);
+        public void ColorChange()
+        {
+            ButtonImage.DOColor(color, duration);
+        }
+        public void ColorChangeBack()
+        {
+            ButtonImage.DOColor(originColor, duration);
+        }
+        public void SelectScale()
+        { ThisButton.localScale = endScale; }
     }
-    public void ColorChangeBack()
-    {
-        ButtonImage.DOColor(originColor, duration);
-    }
-    public void SelectScale()
-    { ThisButton.localScale = endScale; }
 }

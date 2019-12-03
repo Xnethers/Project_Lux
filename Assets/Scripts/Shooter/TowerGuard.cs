@@ -8,6 +8,7 @@ public class TowerGuard : MonoBehaviour, IPunObservable
     public GameObject projectile;
     public float radius = 5;
     public float aim_time = 3;
+    public float rotateAngle = 10;
 
     [Header("Projectile Setting")]
     public float projectileSpeed = 20;
@@ -35,6 +36,7 @@ public class TowerGuard : MonoBehaviour, IPunObservable
         dl.SetLineEnabled(true);
         dl.destination = this.transform;
         dl.Disappear();
+        this.tag = transform.parent.tag;
     }
 
     // Update is called once per frame
@@ -46,21 +48,9 @@ public class TowerGuard : MonoBehaviour, IPunObservable
         {
             case status.aim:
                 {
-                    if (Physics.CheckSphere(transform.position, radius, layer))
+                    if (CheckPlayerExist())
                     {
-                        if (dl.destination == null)
-                        {
-                            for (int i = 0; i < Playerlist.Length; i++)
-                            {
-                                if (Playerlist[i].tag != this.tag)
-                                {
-                                    dl.destination = Playerlist[i].transform;
-                                    break;
-                                }
-                                else
-                                {}
-                            }
-                        }
+                        transform.LookAt(dl.destination);
                         dl.Appear(0.02f);
 
                         if (Timer.state == MyTimer.STATE.RUN)
@@ -72,7 +62,6 @@ public class TowerGuard : MonoBehaviour, IPunObservable
                             Timer.state = MyTimer.STATE.IDLE;
                             Status = status.shoot;
                         }
-                        Debug.Log(Timer.state);
                     }
                     else
                     {
@@ -97,8 +86,9 @@ public class TowerGuard : MonoBehaviour, IPunObservable
                 {
                     dl.destination = null;
                     dl.Disappear();
+                    transform.RotateAround(transform.parent.position, Vector3.up, rotateAngle);
                     //dl.SetLineEnabled(false);
-                    if (Physics.CheckSphere(transform.position, radius, layer))
+                    if (CheckPlayerExist())
                     { Status = status.aim; }
                     break;
                 }
@@ -118,6 +108,31 @@ public class TowerGuard : MonoBehaviour, IPunObservable
                 }
         }
     }
+    bool CheckPlayerExist()
+    {
+        if (Physics.CheckSphere(transform.position, radius, layer))
+        {
+            if (dl.destination == null)
+            {
+                for (int i = 0; i < Playerlist.Length; i++)
+                {
+                    if (Playerlist[i].tag != this.tag)
+                    {
+                        dl.destination = Playerlist[i].transform;
+                        return true;
+                    }
+                    else
+                    { continue; }
+                }
+                return false;
+            }
+            else
+            { return true; }
+        }
+        else
+        { return false; }
+    }
+
     [PunRPC]
     void ShootProjectile()
     {
