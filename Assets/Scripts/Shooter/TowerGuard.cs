@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class TowerGuard : MonoBehaviour ,IPunObservable 
+public class TowerGuard : MonoBehaviour, IPunObservable
 {
     public GameObject projectile;
     public float radius = 5;
@@ -49,7 +49,18 @@ public class TowerGuard : MonoBehaviour ,IPunObservable
                     if (Physics.CheckSphere(transform.position, radius, layer))
                     {
                         if (dl.destination == null)
-                        { dl.destination = Physics.OverlapSphere(transform.position, radius, layer)[0].transform; }
+                        {
+                            for (int i = 0; i < Playerlist.Length; i++)
+                            {
+                                if (Playerlist[i].tag != this.tag)
+                                {
+                                    dl.destination = Playerlist[i].transform;
+                                    break;
+                                }
+                                else
+                                {}
+                            }
+                        }
                         dl.Appear(0.02f);
 
                         if (Timer.state == MyTimer.STATE.RUN)

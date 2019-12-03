@@ -42,6 +42,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
         }
         //StartCoroutine(Mark());
         PunTeams.Team team = PhotonNetwork.LocalPlayer.GetOtherTeam();
+        if(GameObject.FindObjectsOfType<PunTeams>() != null)
         OtherTeam = PunTeams.PlayersPerTeam[team];
 
         if (this.tag == "Untagged")
