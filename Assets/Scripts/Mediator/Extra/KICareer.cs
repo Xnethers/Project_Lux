@@ -56,22 +56,4 @@ public class KICareer : KeyboardInput
         aimingMR = buttonMR.IsPressing;
         unAimMR = buttonMR.OnReleased;
     }
-    public override void InputInitialize(){
-        Dup = 0;
-        Dright = 0;
-        Dmag = 0;
-        Dvec = Vector3.zero;
-        Jup = 0;
-        Jright = 0;
-
-        attackML = false;
-        forcingML = false;
-        forceReleaseML = false;
-        auxiliaryMR=false;
-        aimingMR = false;
-        unAimMR = false;
-        attackF = false;
-        attackQ = false;
-        R = false;
-    }
 }

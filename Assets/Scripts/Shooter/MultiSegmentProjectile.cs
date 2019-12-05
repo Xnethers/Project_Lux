@@ -55,7 +55,7 @@ public class MultiSegmentProjectile : Projectile
             {
                 return;
             }   
-            col.SendMessageUpwards("TryDoDamage", GetATK());
+            SendTryDoDamage(col);
         }
     }
 

@@ -165,7 +165,7 @@ public class PunchController : ICareerController
         if (ac.pi.isLatent)
             return;
         //Debug.Log(skillML.atkTimer.elapsedTime);
-        if (ac.canAttack)
+        if (ac.canAttack && ac.am.sm.isLocomotion)
         {
             //canAttack限制狀態機行為
             if (ki.attackML)

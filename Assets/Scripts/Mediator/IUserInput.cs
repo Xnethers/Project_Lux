@@ -49,7 +49,7 @@ public abstract class IUserInput : MonoBehaviourPunCallbacks {
         Dmag = Mathf.Sqrt(Dup2 * Dup2 + Dright2 * Dright2);
         Dvec = Dright2 * transform.right + Dup2 * transform.forward;
     }
-    public virtual void InputInitialize(){
+    public void InputInitialize(){
         Dup = 0;
         Dright = 0;
         Dmag = 0;

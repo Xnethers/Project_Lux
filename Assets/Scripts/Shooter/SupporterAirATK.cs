@@ -11,7 +11,7 @@ public class SupporterAirATK : Projectile {
 	void Update()
 	{
 		if(!isHit && am.ac.height<1){
-			AddBuffs(am.gameObject);
+			am.sm.sb.AddBuffsByStrings(buffsName);
 			if(fova.useTargets.Count!=0){
 				Attack();
 				isHit=true;
@@ -22,8 +22,7 @@ public class SupporterAirATK : Projectile {
 	public void Attack(){
 		foreach(ActorManager targetAm in fova.useTargets){
 			// Debug.Log(targetAm.gameObject.name);
-			targetAm.SendMessage("TryDoDamage",GetATK());
-			AddBuffs(targetAm.gameObject);
+			SendTryDoDamage(targetAm.bm.bcB.defCol);
 		}
 	}
 }

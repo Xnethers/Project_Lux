@@ -147,19 +147,6 @@ AnimatorController:
     m_IKPass: 1
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!114 &114005603913776114
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6722d1e6f3f32b45a28686ab23832f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clearAtEnter: []
-  clearAtExit: []
 --- !u!114 &114022714167186652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,19 +282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnLockEnter
---- !u!114 &114210042025863348
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onExitMessages:
-  - FootIKEnable
 --- !u!114 &114214886378953154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,19 +505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnLockEnter
---- !u!114 &114653441177665920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onExitMessages:
-  - FootIKEnable
 --- !u!114 &114657891305004012
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -557,7 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnAttackUpdate
---- !u!114 &114677102254325658
+--- !u!114 &114754959029201994
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -680,7 +641,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnAttackEnter
-  - FootIKDisable
 --- !u!114 &114924508692167780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2541,7 +2501,6 @@ AnimatorState:
   - {fileID: 1101224963699916324}
   m_StateMachineBehaviours:
   - {fileID: 114099305396466978}
-  - {fileID: 114210042025863348}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3054,7 +3013,6 @@ AnimatorState:
   - {fileID: 114872334914282170}
   - {fileID: 114816135956055416}
   - {fileID: 114271282856830242}
-  - {fileID: 114005603913776114}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3162,7 +3120,7 @@ AnimatorState:
   - {fileID: 1101010012230830372}
   m_StateMachineBehaviours:
   - {fileID: 114479557403974048}
-  - {fileID: 114677102254325658}
+  - {fileID: 114754959029201994}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3246,7 +3204,6 @@ AnimatorState:
   m_StateMachineBehaviours:
   - {fileID: 114906375586029924}
   - {fileID: 114958128764461136}
-  - {fileID: 114653441177665920}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

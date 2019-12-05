@@ -116,6 +116,15 @@ public class StateBuff : MonoBehaviourPunCallbacks
             sm.am.ac.SetSpeedup(1.0f);
         }
     }
+    public void AddBuffsByStrings(string[] buffsName)
+    {
+        if (buffsName.Length == 0)
+            return;
+        foreach (string buff in buffsName)
+        {
+            AddBuff(buff);
+        }
+    }
     public void AddBuff(string buffName){
 		mBuffDictionary.Add(buffName,true);
 	}

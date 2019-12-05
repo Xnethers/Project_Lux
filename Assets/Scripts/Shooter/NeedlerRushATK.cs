@@ -64,7 +64,7 @@ public class NeedlerRushATK : Projectile {
 	}
 	public void Invoke_TryDoDamage()
     {
-		col.SendMessageUpwards("TryDoDamage",am.ac.careercon.careerValue.RushAddDamage*atkBuff);
+		col.SendMessageUpwards("TryDoDamage",new DamageData(am, am.ac.careercon.careerValue.RushAddDamage*atkBuff,buffsName));
         //Debug.Log("RushAddAttack" + am.sm.ATK);
     }
 	/*public override void OnTriggerEnter(Collider other)

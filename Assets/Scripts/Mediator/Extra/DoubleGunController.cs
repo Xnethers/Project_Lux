@@ -85,7 +85,7 @@ public class DoubleGunController : ICareerController
         if (ac.pi.isLatent)
             return;
         //Debug.Log(skillML.atkTimer.elapsedTime);
-        if (ac.canAttack && !isFill)
+        if (ac.canAttack && !isFill && ac.am.sm.isLocomotion)
         {
             //canAttack限制狀態機行為
             if (ki.attackML)
@@ -246,6 +246,7 @@ public class DoubleGunController : ICareerController
     {
         ac.camcon.isHorizontalView = false;
         ki.inputEnabled = true;
+        ac.canAttack=true;
     }
     public void magazineOperation() //確認是否填彈
     {

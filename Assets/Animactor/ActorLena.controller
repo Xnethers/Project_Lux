@@ -181,6 +181,20 @@ MonoBehaviour:
   - attack
   - hit
   clearAtExit: []
+--- !u!114 &114051493478636374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6722d1e6f3f32b45a28686ab23832f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearAtEnter:
+  - close
+  clearAtExit: []
 --- !u!114 &114058967472320534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,19 +390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnLockEnter
---- !u!114 &114198167854171666
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onExitMessages:
-  - FootIKEnable
 --- !u!114 &114198833719962492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,19 +509,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnLockEnter
---- !u!114 &114264516389698364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be6c93ddb36a3c48a2463d52672907d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onEnterMessages:
-  - FootIKDisable
 --- !u!114 &114269336536487470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -586,19 +574,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onExitMessages:
   - OnDrawExit
---- !u!114 &114312685262372388
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6722d1e6f3f32b45a28686ab23832f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clearAtEnter: []
-  clearAtExit: []
 --- !u!114 &114316374864049574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -638,6 +613,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onUpdateMessages:
   - OnPopUpUpdate
+--- !u!114 &114329655667429480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onExitMessages:
+  - FootIKEnable
 --- !u!114 &114341171648212388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -702,19 +690,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onEnterMessages: []
---- !u!114 &114402045365053120
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onExitMessages:
-  - FootIKEnable
 --- !u!114 &114414632259608708
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -870,19 +845,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onExitMessages:
   - OnAttackExit
---- !u!114 &114677102254325658
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a326a8702257f21438704d0a21bbb5f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onExitMessages:
-  - FootIKEnable
 --- !u!114 &114685345027616768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -896,6 +858,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onUpdateMessages:
   - OnAttackUpdate
+--- !u!114 &114724782796721428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6722d1e6f3f32b45a28686ab23832f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearAtEnter:
+  - close
+  clearAtExit: []
 --- !u!114 &114725644357526968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4348,7 +4324,6 @@ AnimatorState:
   - {fileID: 1101224963699916324}
   m_StateMachineBehaviours:
   - {fileID: 114099305396466978}
-  - {fileID: 114198167854171666}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -4487,7 +4462,6 @@ AnimatorState:
   - {fileID: 114989538030931724}
   - {fileID: 114169388106669514}
   - {fileID: 114501797267730202}
-  - {fileID: 114312685262372388}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -4752,6 +4726,7 @@ AnimatorState:
   - {fileID: 1101512126796995410}
   m_StateMachineBehaviours:
   - {fileID: 114736928341010632}
+  - {fileID: 114051493478636374}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -4859,6 +4834,7 @@ AnimatorState:
   - {fileID: 1101370925954835186}
   m_StateMachineBehaviours:
   - {fileID: 114513079402760158}
+  - {fileID: 114724782796721428}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -5019,9 +4995,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101115329877881726}
-  m_StateMachineBehaviours:
-  - {fileID: 114264516389698364}
-  - {fileID: 114402045365053120}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -5218,7 +5192,7 @@ AnimatorState:
   - {fileID: 1101147970297152698}
   m_StateMachineBehaviours:
   - {fileID: 114479557403974048}
-  - {fileID: 114677102254325658}
+  - {fileID: 114329655667429480}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

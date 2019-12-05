@@ -236,7 +236,6 @@ public class ActorController : IActorManagerInterface {
         gravity = 1.3f;
         //gravity = 0.1f;
         isBounce=true;
-        FootIKDisable();
     }
     public void OnJumpEnter() {
         //pi.inputEnabled = false;
@@ -257,7 +256,6 @@ public class ActorController : IActorManagerInterface {
         //_velocity.y += Mathf.Sqrt(-jumpVelocity * Physics.gravity.y);
         Debug.Log("OnPopUpEnter");
         lerpTarget = 0f;
-        FootIKDisable();
     }
     public void OnPopUpUpdate(){
         thrustVec = transform.forward * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity");
@@ -267,7 +265,6 @@ public class ActorController : IActorManagerInterface {
     public void OnPopUpExit(){
         pi.inputEnabled = true;
         pi.inputMouseEnabled = true;
-        FootIKEnable();
     }
     public void FootIKEnable(){
         footIK.enableFeetIk=true;
@@ -310,7 +307,6 @@ public class ActorController : IActorManagerInterface {
     public void OnFallEnter(){
         pi.inputEnabled = false;
         lockPlanar = true;
-        FootIKDisable();
         if(!isBounce)
             _velocity.y = 0f;
         //gravity = .8f;
