@@ -20,9 +20,9 @@ public class SupporterAirATK : Projectile {
 	}
 	public override void OnTriggerEnter(Collider col){}
 	public void Attack(){
-		foreach(ActorManager targetAm in fova.useTargets){
+		foreach(ActorManager viewAm in fova.useTargets){
 			// Debug.Log(targetAm.gameObject.name);
-			SendTryDoDamage(targetAm.bm.bcB.defCol);
+			SendTryDoDamage(viewAm.bm.bcB.defCol);
 		}
 	}
 }

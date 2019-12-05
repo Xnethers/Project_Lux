@@ -135,17 +135,14 @@ public class DoubleGunController : ICareerController
                     ac.am.sm.isForcingAim = true;
                 }
             }
-        }
-
-
-        if (ki.auxiliaryMR)
-        {
-            if(CheckCD(skillMR)){
-                UseSkill(1, careerValue.FirstDamage);
-                StartCD(skillMR,careerValue.FirstCD);
+            if (ki.auxiliaryMR)
+            {
+                if(CheckCD(skillMR)){
+                    UseSkill(1, careerValue.FirstDamage);
+                    StartCD(skillMR,careerValue.FirstCD);
+                }
             }
         }
-
 
         if (forcingTimer.state == MyTimer.STATE.FINISHED)
         {

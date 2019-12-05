@@ -72,6 +72,10 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         // } 
         
 	}
+    public static bool IsInLayerMask(int layer, LayerMask layermask)
+    {
+        return layermask == (layermask | (1 << layer));
+    }
     [PunRPC]
     public void TryDoDamage(DamageData damageData) {
         //sm.HP -= 5;

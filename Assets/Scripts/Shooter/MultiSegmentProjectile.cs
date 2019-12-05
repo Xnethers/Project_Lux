@@ -39,6 +39,7 @@ public class MultiSegmentProjectile : Projectile
     void Update()
     {
         cols = Physics.OverlapBox(transform.position, col_range.size *5, Quaternion.identity, mask);
+        am.ac.canAttack=false;
         // Invoke("Invoke_DoMultiDamage", DelayedLaunch);
     }
     public void Invoke_DoMultiDamage()

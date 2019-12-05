@@ -15,7 +15,7 @@ public class RangeProjectile : Projectile
     // Use this for initialization
     public void Start()
     {
-        cols = Physics.OverlapSphere(transform.position, range, mask);
+        cols = Physics.OverlapSphere(transform.position, range, LayerMask.NameToLayer("Body"));
         Damage = am.ac.careercon.careerValue.GetDamageByString(attackType);
         Invoke("Invoke_RangeDamage", 0);
     }

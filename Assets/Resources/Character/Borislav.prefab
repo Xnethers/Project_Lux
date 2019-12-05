@@ -4270,6 +4270,7 @@ MonoBehaviour:
   isForce: 0
   isForcingAim: 0
   isHit: 0
+  isRepelled: 0
   isDie: 0
   isHPing: 0
   die: 0
