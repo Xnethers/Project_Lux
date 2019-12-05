@@ -76,47 +76,44 @@ public class SupporterController : ICareerController {
             }
 			else
 			{
-				if(ac.am.sm.isLocomotion){
-					//蓄力
-					if(ki.forcingML && !isForce){
-						if(CheckCD(skillForce)){
+				//蓄力
+				if(ki.forcingML && !isForce && ac.am.sm.isLocomotion){
+					if(CheckCD(skillForce)){
+						ac.SetBool("fullBody",true);
+						UseSkill(5,careerValue.ForceMinDamage,"force");
+						forcingTimer.Go(careerValue.ForcingCD);
+						isForce=true;
+						ac.am.sm.isForcingAim=true;
+					}
+				}
+				if(!ac.am.sm.isForcingAim){
+					if (ki.attackML){
+						if (ac.height>3 && !ac.am.sm.isGround){ //空攻
+							ac.gravity = ac.gravityConstant *2 ;
+							ac._velocity.y = -ac.gravity;
 							ac.SetBool("fullBody",true);
-							UseSkill(5,careerValue.ForceMinDamage,"force");
-							forcingTimer.Go(careerValue.ForcingCD);
-							isForce=true;
-							ac.am.sm.isForcingAim=true;
+							UseSkill(4,careerValue.AirDamage);
+							// RayAim();
+							// if(!rayhitAirWall){
+							// 	if(CheckCD(skillAir)){
+							// 		UseSkill(4,careerValue.AirDamage) ;
+							// 		StartCD(skillAir,careerValue.AirCD);
+							// 	}
+							// }
+						}
+						else{
+							if(!isForce){//普攻
+								ac.SetBool("fullBody",false);
+								UseSkill(0,careerValue.NormalDamage,"attack",true);
+							}
+								
 						}
 					}
-					if(!ac.am.sm.isForcingAim){
-						if (ki.attackML){
-							if (ac.height>3 && !ac.am.sm.isGround){ //空攻
-								ac.gravity = ac.gravityConstant *2 ;
-								ac._velocity.y = -ac.gravity;
-								ac.SetBool("fullBody",true);
-								UseSkill(4,careerValue.AirDamage);
-								// RayAim();
-								// if(!rayhitAirWall){
-								// 	if(CheckCD(skillAir)){
-								// 		UseSkill(4,careerValue.AirDamage) ;
-								// 		StartCD(skillAir,careerValue.AirCD);
-								// 	}
-								// }
-							}
-							else{
-								if(!isForce){//普攻
-									ac.SetBool("fullBody",false);
-									UseSkill(0,careerValue.NormalDamage,"attack",true);
-								}
-									
-							}
-						}
-						
+					if(ac.am.sm.isLocomotion){
 						if (ki.auxiliaryMR){//群攻
 							if(CheckCD(skillMR)){
 								ac.SetBool("fullBody",false);
 								UseSkill(1,careerValue.FirstDamage);
-								photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
-								buffText.text = buffType.ToString();
 								StartCD(skillMR,careerValue.FirstCD);
 							}
 						}
@@ -157,7 +154,10 @@ public class SupporterController : ICareerController {
 		if(ki.attackML)
             isForce=false;
 	}
-	
+	public override void FirstAttack(){
+		photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
+		buffText.text = buffType.ToString();
+	}
     public void OnAttack1hAUpdate() {
         ac.thrustVec = ac.model.transform.forward * ac.anim.GetFloat("attack1hAVelocity");
         //anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, 0.4f));

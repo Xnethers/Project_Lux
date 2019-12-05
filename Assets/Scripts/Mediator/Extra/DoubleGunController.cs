@@ -85,7 +85,7 @@ public class DoubleGunController : ICareerController
         if (ac.pi.isLatent)
             return;
         //Debug.Log(skillML.atkTimer.elapsedTime);
-        if (ac.canAttack && !isFill && ac.am.sm.isLocomotion)
+        if (ac.canAttack && !isFill)
         {
             //canAttack限制狀態機行為
             if (ki.attackML)

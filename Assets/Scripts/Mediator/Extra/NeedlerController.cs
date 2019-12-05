@@ -92,51 +92,49 @@ public class NeedlerController : ICareerController
             }
             else
             {//其他攻
-                if(ac.am.sm.isLocomotion){
-                    if (ki.attackML){
-                        if (ac.height>3 && !ac.am.sm.isGround){ //空攻
-                            RayAim();
-                            if(!rayhitAirWall){
-                                if(CheckCD(skillAir)){
-                                    UseSkill(4,careerValue.AirDamage) ;
-                                    StartCD(skillAir,careerValue.AirCD);
-                                }
+                if (ki.attackML){
+                    if (ac.height>3 && !ac.am.sm.isGround){ //空攻
+                        RayAim();
+                        if(!rayhitAirWall){
+                            if(CheckCD(skillAir)){
+                                UseSkill(4,careerValue.AirDamage) ;
+                                StartCD(skillAir,careerValue.AirCD);
                             }
                         }
-                        else{
-                            //if(ac.CheckState("attackIdle","attack"))
-                            if(!isForce)//普攻
-                                UseSkill(0,careerValue.NormalDamage);
-                        }
                     }
-                        
-                    if (ki.auxiliaryMR){//群攻
-                        if(CheckCD(skillMR)){
-                            UseSkill(1,careerValue.FirstDamage);
-                            StartCD(skillMR,careerValue.FirstCD);
-                        }
+                    else{
+                        //if(ac.CheckState("attackIdle","attack"))
+                        if(!isForce)//普攻
+                            UseSkill(0,careerValue.NormalDamage);
                     }
-                        
-                    if (ki.attackF){//擊退攻
-                        if(CheckCD(skillF)){
-                            UseSkill(2,careerValue.SecondDamage);
-                            StartCD(skillF,careerValue.SecondCD);
-                        }  
+                }
+                    
+                if (ki.auxiliaryMR){//群攻
+                    if(CheckCD(skillMR)){
+                        UseSkill(1,careerValue.FirstDamage);
+                        StartCD(skillMR,careerValue.FirstCD);
                     }
-                    if(ki.attackQ && ac.am.sm.RP>=100){//開啟霸體
-                        StartCD(skillQ,careerValue.RushingCD);
-                        photonView.RPC("PS_creatQEffect", RpcTarget.All);
-                        ac.anim.SetBool("isArmour", true);
-                        ac.am.sm.RP=0;
-                    }
-                    //蓄力
-                    if(ki.forcingML && !isForce){
-                        if(CheckCD(skillForce)){
-                            UseSkill(5,careerValue.ForceMinDamage,"force");
-                            forcingTimer.Go(careerValue.ForcingCD);
-                            isForce=true;
-                            ac.am.sm.isForcingAim=true;
-                        }
+                }
+                    
+                if (ki.attackF){//擊退攻
+                    if(CheckCD(skillF)){
+                        UseSkill(2,careerValue.SecondDamage);
+                        StartCD(skillF,careerValue.SecondCD);
+                    }  
+                }
+                if(ki.attackQ && ac.am.sm.RP>=100){//開啟霸體
+                    StartCD(skillQ,careerValue.RushingCD);
+                    photonView.RPC("PS_creatQEffect", RpcTarget.All);
+                    ac.anim.SetBool("isArmour", true);
+                    ac.am.sm.RP=0;
+                }
+                //蓄力
+                if(ki.forcingML && !isForce){
+                    if(CheckCD(skillForce)){
+                        UseSkill(5,careerValue.ForceMinDamage,"force");
+                        forcingTimer.Go(careerValue.ForcingCD);
+                        isForce=true;
+                        ac.am.sm.isForcingAim=true;
                     }
                 }
             }
