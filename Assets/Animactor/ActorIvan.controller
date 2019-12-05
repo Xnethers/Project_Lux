@@ -338,6 +338,7 @@ MonoBehaviour:
   clearAtEnter:
   - attack
   - fillBullet
+  - force
   clearAtExit: []
 --- !u!114 &114258005115817114
 MonoBehaviour:

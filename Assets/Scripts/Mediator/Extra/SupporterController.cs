@@ -98,7 +98,7 @@ public class SupporterController : ICareerController {
 							
 					}
 				}
-				if (ki.auxiliaryMR){//群攻
+				if (ki.auxiliaryMR && ac.am.sm.isLocomotion){//群攻
 					if(CheckCD(skillMR)){
 						ac.SetBool("fullBody",false);
 						UseSkill(1,careerValue.FirstDamage);
@@ -123,7 +123,7 @@ public class SupporterController : ICareerController {
 					photonView.RPC("RPC_Buff", RpcTarget.All,1);
 				}
 				//蓄力
-				if(ki.forcingML){
+				if(ki.forcingML && !isForce){
 					if(CheckCD(skillForce)){
 						ac.SetBool("fullBody",true);
 						UseSkill(5,careerValue.ForceMinDamage,"force");
