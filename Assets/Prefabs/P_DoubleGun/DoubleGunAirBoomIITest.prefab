@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 23594148354410326}
   - component: {fileID: 135544606357257680}
   - component: {fileID: 54933855351551454}
-  - component: {fileID: 114428262579458252}
+  - component: {fileID: 114906219009476808}
+  - component: {fileID: 114725886676821406}
   m_Layer: 13
-  m_Name: DoubleGunAirBoom
+  m_Name: DoubleGunAirBoomIITest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1318987123019488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -101,7 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &114428262579458252
+--- !u!114 &114725886676821406
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,7 +110,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1318987123019488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa01b2fdf79caa4cb2f6df276a402f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 946ee5457b8c69b42b245e071fddf593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 3
+  viewAngle: 360
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
+  useTargets: []
+--- !u!114 &114906219009476808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1318987123019488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d882c091d6e611041bc246a8865f8b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   normalhitVFX: {fileID: 0}
@@ -120,18 +142,12 @@ MonoBehaviour:
   isKinematic: 1
   buffsName:
   - isRepel
-  baseATK: 1
+  baseATK: 50
   atkBuff: 1
   rangeBuff: 1
   headBuff: 1
   comboBuff: 1
-  timeToLive: 3
-  range: 5
-  mask:
-    serializedVersion: 2
-    m_Bits: 180736
-  attackType: 6
-  Damage: 0
+  timeToLive: 1
 --- !u!135 &135544606357257680
 SphereCollider:
   m_ObjectHideFlags: 1

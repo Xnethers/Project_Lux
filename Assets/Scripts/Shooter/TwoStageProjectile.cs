@@ -26,14 +26,14 @@ public class TwoStageProjectile : Projectile
 
     public override void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.layer == layer)
+        if (ActorManager.IsInLayerMask(col.gameObject.layer,layer))//col.gameObject.layer == layer
         {
             GameObject sp = Instantiate(SecondProjectile, transform.position, Quaternion.identity) as GameObject;
             sp.GetComponent<Projectile>().Initialize(am,0,targetPoint);
             Destroy(transform.root.gameObject);
         }
     }
-
+    
     public override void AdditionalAttack(Collider col)
     {
         SendTryDoDamage(col);

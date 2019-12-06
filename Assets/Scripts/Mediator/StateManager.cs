@@ -29,6 +29,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
     public bool isForce;
     public bool isForcingAim;
     public bool isHit;
+    public bool isRepelled;
     public bool isDie;
 
 
@@ -79,9 +80,9 @@ public class StateManager : IActorManagerInterface, IPunObservable
         //isAttack = am.ac.CheckStateTag("attackR") || am.ac.CheckStateTag("attackL");
         isRushAttack = !am.ac.careercon.CheckCD(am.ac.careercon.skillQ);//lena需收到才算大招結束
         isForce=am.ac.CheckStateTag("force") || am.ac.CheckStateTag("force","attack");
-        isHit = am.ac.CheckState("hit");
+        // isHit = am.ac.CheckState("hit");
         //isDie = am.ac.CheckState("die");
-
+        isRepelled=am.ac.CheckStateTag("repelled");
         if (HP <= 0 && !isDie)
         {
             if(am.ac.pi.isLatent){
@@ -94,7 +95,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
             { am.targetAm.sm.AddRP(2); }
             
         }
-        if(isDie){//在高處降落至地才死亡動畫
+        if(isDie ){//在高處降落至地才死亡動畫
             am.ac.OnDieEnter();//不能行動
             if(am.ac.height<1f && !die){//isGround
                 Die();

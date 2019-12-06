@@ -72,6 +72,10 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         // } 
         
 	}
+    public static bool IsInLayerMask(int layer, LayerMask layermask)
+    {
+        return layermask == (layermask | (1 << layer));
+    }
     [PunRPC]
     public void TryDoDamage(DamageData damageData) {
         //sm.HP -= 5;
@@ -111,8 +115,9 @@ public class ActorManager : MonoBehaviourPunCallbacks {
                 // Hit();
                 //do some VFX, liked splatter blood...
                 sm.sb.AddBuffsByStrings(damageData.BuffsName);
-                this.targetAm = damageData.AttackerAm;
-                ac.attackerVec = targetAm.transform.forward;
+                ac.attackerVec = damageData.DamageVec;
+                // this.targetAm = damageData.AttackerAm;
+                // ac.attackerVec = targetAm.transform.forward;
             }
             else {
                 // Die();
@@ -143,9 +148,11 @@ public class DamageData{
     public ActorManager AttackerAm;
     public float Damage;
     public string[] BuffsName;
-    public DamageData(ActorManager attackerAm,float damage,string[] BuffsName){
+    public Vector3 DamageVec;//方向
+    public DamageData(ActorManager attackerAm,float damage,string[] BuffsName,Vector3 damageVec){
         this.AttackerAm = attackerAm;
         this.Damage = damage;
         this.BuffsName = BuffsName;
+        this.DamageVec = damageVec;
     }
 }
