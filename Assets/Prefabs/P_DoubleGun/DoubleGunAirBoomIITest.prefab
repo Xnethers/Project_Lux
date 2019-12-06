@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 135544606357257680}
   - component: {fileID: 54933855351551454}
   - component: {fileID: 114906219009476808}
-  - component: {fileID: 114496591444276890}
+  - component: {fileID: 114725886676821406}
   m_Layer: 13
   m_Name: DoubleGunAirBoomIITest
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1318987123019488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -102,7 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &114496591444276890
+--- !u!114 &114725886676821406
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -110,10 +110,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1318987123019488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 716aa68620ae2244985d7483a82e6bd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 946ee5457b8c69b42b245e071fddf593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 5
+  viewRadius: 3
   viewAngle: 360
   targetMask:
     serializedVersion: 2
@@ -142,12 +142,12 @@ MonoBehaviour:
   isKinematic: 1
   buffsName:
   - isRepel
-  baseATK: 1
+  baseATK: 50
   atkBuff: 1
   rangeBuff: 1
   headBuff: 1
   comboBuff: 1
-  timeToLive: 3
+  timeToLive: 1
 --- !u!135 &135544606357257680
 SphereCollider:
   m_ObjectHideFlags: 1

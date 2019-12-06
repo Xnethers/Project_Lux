@@ -211,8 +211,16 @@ public class DoubleGunController : ICareerController
         photonView.RPC("RPC_Projectile", RpcTarget.All, transform.position, RayAim(), 0f);
         magazine--;
     }
+    public void OnRushAttackEnter(){
+        ac.pi.inputEnabled = false;
+        ac.pi.inputMouseEnabled = false;
+        ac.camcon.isHorizontalView = true;
+    }
     public void OnRushAttackExit(){
         skillQ.atkTimer.state = MyTimer.STATE.FINISHED;
+        ac.pi.inputEnabled = true;
+        ac.pi.inputMouseEnabled = true;
+        ac.camcon.isHorizontalView = false;
     }
     public override void AirAttack()
     {
