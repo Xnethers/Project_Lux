@@ -129,7 +129,7 @@ public class NeedlerController : ICareerController
                     ac.am.sm.RP=0;
                 }
                 //蓄力
-                if(ki.forcingML){
+                if(ki.forcingML && !isForce){
                     if(CheckCD(skillForce)){
                         UseSkill(5,careerValue.ForceMinDamage,"force");
                         forcingTimer.Go(careerValue.ForcingCD);

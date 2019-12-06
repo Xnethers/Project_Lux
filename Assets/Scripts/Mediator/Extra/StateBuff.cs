@@ -42,6 +42,7 @@ public class StateBuff : MonoBehaviourPunCallbacks
         }
         //StartCoroutine(Mark());
         PunTeams.Team team = PhotonNetwork.LocalPlayer.GetOtherTeam();
+        if(GameObject.FindObjectsOfType<PunTeams>() != null)
         OtherTeam = PunTeams.PlayersPerTeam[team];
 
         if (this.tag == "Untagged")
@@ -113,6 +114,15 @@ public class StateBuff : MonoBehaviourPunCallbacks
         else
         {
             sm.am.ac.SetSpeedup(1.0f);
+        }
+    }
+    public void AddBuffsByStrings(string[] buffsName)
+    {
+        if (buffsName.Length == 0)
+            return;
+        foreach (string buff in buffsName)
+        {
+            AddBuff(buff);
         }
     }
     public void AddBuff(string buffName){

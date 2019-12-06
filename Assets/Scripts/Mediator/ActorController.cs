@@ -49,6 +49,7 @@ public class ActorController : IActorManagerInterface {
     private float bonceVelocity;
     public bool isBounce;
     public bool isJump;
+    public FootIK footIK;
     // Use this for initialization
     public void Awake() {
         IUserInput[] inputs = GetComponents<IUserInput>();
@@ -61,6 +62,7 @@ public class ActorController : IActorManagerInterface {
         }
         careercon = GetComponent<ICareerController>();
         anim = model.GetComponent<Animator>();
+        footIK = model.GetComponent<FootIK>();
         //rigid = GetComponent<Rigidbody>();
         chacon = GetComponent<CharacterController>();
         //col = GetComponent<CapsuleCollider>();
@@ -243,6 +245,7 @@ public class ActorController : IActorManagerInterface {
         _velocity.y += Mathf.Sqrt(jumpVelocity * -0.5f * Physics.gravity.y);
         //trackDirection = true;
         isJump = true;
+        FootIKDisable();
     }
     public void OnPopUpEnter(){
         pi.inputEnabled = false;
@@ -262,6 +265,12 @@ public class ActorController : IActorManagerInterface {
     public void OnPopUpExit(){
         pi.inputEnabled = true;
         pi.inputMouseEnabled = true;
+    }
+    public void FootIKEnable(){
+        footIK.enableFeetIk=true;
+    }
+    public void FootIKDisable(){
+        footIK.enableFeetIk=false;
     }
     public void IsGround(){
         anim.SetBool("isGround", true);

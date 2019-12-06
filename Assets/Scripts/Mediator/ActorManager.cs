@@ -72,8 +72,12 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         // } 
         
 	}
+    public static bool IsInLayerMask(int layer, LayerMask layermask)
+    {
+        return layermask == (layermask | (1 << layer));
+    }
     [PunRPC]
-    public void TryDoDamage(float damage) {
+    public void TryDoDamage(DamageData damageData) {
         //sm.HP -= 5;
         /*if (sm.HP > 0) {
             sm.AddHP(-5);
@@ -85,7 +89,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             return;
         if(sm.isDie)
             return;
-        float currentDamage=(damage*(2-sm.DEFBuff));
+        float currentDamage=(damageData.Damage*(2-sm.DEFBuff));
         if(sm.sb.AbsorbAm != null){
             if(sm.sb.AbsorbAm == this){
                 sm.sb.AbsorbAm.photonView.RPC("AddAbsorbDamage", RpcTarget.All,currentDamage);
@@ -100,6 +104,24 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         //可以加targetAm狀態來判定要不要扣血
         sm.AddHP(-currentDamage);
         sm.AddRP(0.3f);
+        HitOrDie(damageData);
+    }
+    public void HitOrDie(DamageData damageData) {
+        if (sm.HP < 0) {
+            //Already dead
+        }
+        else {
+            if (sm.HP > 0) {
+                // Hit();
+                //do some VFX, liked splatter blood...
+                sm.sb.AddBuffsByStrings(damageData.BuffsName);
+                this.targetAm = damageData.AttackerAm;
+                ac.attackerVec = targetAm.transform.forward;
+            }
+            else {
+                // Die();
+            }
+        }
     }
     private void SetTag(Player p,ActorManager am){
         if(p.GetTeam() == PunTeams.Team.red){
@@ -120,8 +142,14 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             // am.wm.wcR.transform.GetChild(0).tag = "Blue";
         }
     }
-    public void SetTargetAm(ActorManager targetAm){
-        this.targetAm = targetAm;
-        ac.attackerVec = targetAm.transform.forward;
+}
+public class DamageData{
+    public ActorManager AttackerAm;
+    public float Damage;
+    public string[] BuffsName;
+    public DamageData(ActorManager attackerAm,float damage,string[] BuffsName){
+        this.AttackerAm = attackerAm;
+        this.Damage = damage;
+        this.BuffsName = BuffsName;
     }
 }

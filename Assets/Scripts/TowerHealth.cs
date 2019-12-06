@@ -84,14 +84,14 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
         //     Debug.Log("Weapon");
         // }
     }
-    public void TryDoDamage(float damage)
+    public void TryDoDamage(DamageData damageData)
     {
         if (health < 0)
             return;
         if (occupied.tag == "Untagged")//occupied.occupiedState == OccupiedTest.OccupiedState.None
             return;
         if (occupied.tag != this.tag)
-            AddHP(-1 * damage);
+            AddHP(-1 * damageData.Damage);
     }
     public void AddHP(float value)
     {

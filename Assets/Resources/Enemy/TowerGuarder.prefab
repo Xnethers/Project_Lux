@@ -29,7 +29,7 @@ GameObject:
   - component: {fileID: 114973013835822362}
   m_Layer: 10
   m_Name: TowerGuarder
-  m_TagString: Blue
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,8 +40,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1263185262844722}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.514747, y: 2.14, z: 0.75}
+  m_LocalRotation: {x: -0, y: 0.42698133, z: -0.000000029802326, w: 0.9042605}
+  m_LocalPosition: {x: -0.20397782, y: 4.7218657, z: -2.9846404}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   - {fileID: 114925891416493424}
   - {fileID: 114019115963454798}
   viewIdField: 0
-  InstantiationId: 2
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114925891416493424
 MonoBehaviour:
@@ -140,11 +140,12 @@ MonoBehaviour:
   projectile: {fileID: 1994053614765338, guid: 6264b30fca0a83c42aa70bbb8d277bc5, type: 2}
   radius: 8
   aim_time: 3
+  rotateAngle: 1
   projectileSpeed: 20
   projectileAtk: 10
   layer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 32768
   Status: 2
   Playerlist: []
 --- !u!114 &114973013835822362

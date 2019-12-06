@@ -1,4 +1,4 @@
-﻿using ExitGames.Client.Photon;
+using ExitGames.Client.Photon;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +9,11 @@ namespace Photon.Pun.Demo.Asteroids
 {
     public class LobbyMainPanel : MonoBehaviourPunCallbacks
     {
+        [Header("Title Panel")]
+        public GameObject TitlePanel;
 
         [Header("Login Panel")]
         public GameObject LoginPanel;
-
         public InputField PlayerNameInput;
 
         [Header("Selection Panel")]
@@ -100,6 +101,12 @@ namespace Photon.Pun.Demo.Asteroids
             //myCharacter = SetRoomObj(myAllCharacters);
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.BGM);
         }
+        void Update()
+        {
+            if (TitlePanel.activeSelf)
+            { OnTitlePanelCLicked(); }
+        }
+
         private GameObject[] SetRoomObj(GameObject tempDadObj)
         {
             GameObject[] go = new GameObject[6];
@@ -279,6 +286,15 @@ namespace Photon.Pun.Demo.Asteroids
 
         #region UI CALLBACKS
 
+        public void OnTitlePanelCLicked()
+        {
+            if (Input.anyKeyDown)
+            { LoginPanel.SetActive(true); }
+        }
+
+        public void OnLoginCancelButton()
+        { SetActivePanel(TitlePanel.name); }
+
         public void OnBackButtonClicked()
         {
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
@@ -413,7 +429,7 @@ namespace Photon.Pun.Demo.Asteroids
             PhotonNetwork.CreateRoom(null, options, null);
             PhotonNetwork.LocalPlayer.SetCharacter(0);
             // PlayerInfo.PI.mySelectedCharacter = 1;
-            
+
             // PhotonNetwork.LocalPlayer.SetReady(true);
             // Hashtable props = new Hashtable
             // {
@@ -506,6 +522,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         private void SetActivePanel(string activePanel)
         {
+            TitlePanel.SetActive(activePanel.Equals(TitlePanel.name));
             LoginPanel.SetActive(activePanel.Equals(LoginPanel.name));
             SelectionPanel.SetActive(activePanel.Equals(SelectionPanel.name));
             CreateRoomPanel.SetActive(activePanel.Equals(CreateRoomPanel.name));

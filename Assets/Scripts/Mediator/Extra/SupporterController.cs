@@ -65,8 +65,8 @@ public class SupporterController : ICareerController {
 			ki.attackML=true;
         }
 		if (ac.canAttack){
-			if(ac.CheckStateTag("armour")){//霸體狀態
-                if(ac.GetBool("isArmour")){//解除霸體
+			if(ac.GetBool("isArmour")){//霸體狀態
+                if(ac.CheckStateTag("armour")){//解除霸體
                     if (ki.attackML){//霸攻
                         UseSkill(3, careerValue.RushDamage+absorbDamage/4);
 						ac.SetBool("isArmour", false);
@@ -76,54 +76,8 @@ public class SupporterController : ICareerController {
             }
 			else
 			{
-				if (ki.attackML){
-					if (ac.height>3 && !ac.am.sm.isGround){ //空攻
-						ac.gravity = ac.gravityConstant *2 ;
-						ac._velocity.y = -ac.gravity;
-						ac.SetBool("fullBody",true);
-						UseSkill(4,careerValue.AirDamage);
-						// RayAim();
-						// if(!rayhitAirWall){
-						// 	if(CheckCD(skillAir)){
-						// 		UseSkill(4,careerValue.AirDamage) ;
-						// 		StartCD(skillAir,careerValue.AirCD);
-						// 	}
-						// }
-					}
-					else{
-						if(!isForce){//普攻
-							ac.SetBool("fullBody",false);
-							UseSkill(0,careerValue.NormalDamage,"attack",true);
-						}
-							
-					}
-				}
-				if (ki.auxiliaryMR){//群攻
-					if(CheckCD(skillMR)){
-						ac.SetBool("fullBody",false);
-						UseSkill(1,careerValue.FirstDamage);
-						photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
-						buffText.text = buffType.ToString();
-						StartCD(skillMR,careerValue.FirstCD);
-					}
-				}
-				if (ki.attackF){//擊退攻
-					if(CheckCD(skillF)){
-						ac.SetBool("fullBody",true);
-						UseSkill(2,careerValue.SecondDamage);
-						photonView.RPC("RPC_Buff", RpcTarget.All,0);
-						StartCD(skillF,careerValue.SecondCD);
-					}  
-				}
-				if(ki.attackQ && ac.am.sm.RP>=100){//開啟霸體
-					StartCD(skillQ,careerValue.RushingCD);
-					// photonView.RPC("PS_creatQEffect", RpcTarget.All);
-					ac.SetBool("isArmour", true);
-					ac.am.sm.RP=0;
-					photonView.RPC("RPC_Buff", RpcTarget.All,1);
-				}
 				//蓄力
-				if(ki.forcingML){
+				if(ki.forcingML && !isForce && ac.am.sm.isLocomotion){
 					if(CheckCD(skillForce)){
 						ac.SetBool("fullBody",true);
 						UseSkill(5,careerValue.ForceMinDamage,"force");
@@ -132,8 +86,57 @@ public class SupporterController : ICareerController {
 						ac.am.sm.isForcingAim=true;
 					}
 				}
+				if(!ac.am.sm.isForcingAim){
+					if (ki.attackML){
+						if (ac.height>3 && !ac.am.sm.isGround){ //空攻
+							ac.gravity = ac.gravityConstant *2 ;
+							ac._velocity.y = -ac.gravity;
+							ac.SetBool("fullBody",true);
+							UseSkill(4,careerValue.AirDamage);
+							// RayAim();
+							// if(!rayhitAirWall){
+							// 	if(CheckCD(skillAir)){
+							// 		UseSkill(4,careerValue.AirDamage) ;
+							// 		StartCD(skillAir,careerValue.AirCD);
+							// 	}
+							// }
+						}
+						else{
+							if(!isForce){//普攻
+								ac.SetBool("fullBody",false);
+								UseSkill(0,careerValue.NormalDamage,"attack",true);
+							}
+								
+						}
+					}
+					if(ac.am.sm.isLocomotion){
+						if (ki.auxiliaryMR){//群攻
+							if(CheckCD(skillMR)){
+								ac.SetBool("fullBody",false);
+								UseSkill(1,careerValue.FirstDamage);
+								StartCD(skillMR,careerValue.FirstCD);
+							}
+						}
+						if(!ac.am.sm.isJump && !ac.am.sm.isFall){
+							if (ki.attackF){
+								if(CheckCD(skillF)){
+									ac.SetBool("fullBody",true);
+									UseSkill(2,careerValue.SecondDamage);
+									photonView.RPC("RPC_Buff", RpcTarget.All,0);
+									StartCD(skillF,careerValue.SecondCD);
+								}  
+							}
+							if(ki.attackQ && ac.am.sm.RP>=100){//開啟霸體
+								StartCD(skillQ,careerValue.RushingCD);
+								// photonView.RPC("PS_creatQEffect", RpcTarget.All);
+								ac.SetBool("isArmour", true);
+								ac.am.sm.RP=0;
+								photonView.RPC("RPC_Buff", RpcTarget.All,1);
+							}
+						}
+					}
+				}
 			}
-			
 		}
 		//自動發射蓄力
         if(forcingTimer.state == MyTimer.STATE.FINISHED){
@@ -151,7 +154,10 @@ public class SupporterController : ICareerController {
 		if(ki.attackML)
             isForce=false;
 	}
-	
+	public override void FirstAttack(){
+		photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
+		buffText.text = buffType.ToString();
+	}
     public void OnAttack1hAUpdate() {
         ac.thrustVec = ac.model.transform.forward * ac.anim.GetFloat("attack1hAVelocity");
         //anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, 0.4f));
@@ -181,6 +187,7 @@ public class SupporterController : ICareerController {
 	public void OnArmourExit(){
 		ki.inputEnabled = true;
 		ac.canAttack=true;
+		ac.anim.SetInteger("attackSkill", -1);
 	}
 	[PunRPC]
 	public void DisableAbsorbRange(){
@@ -253,6 +260,7 @@ public class SupporterController : ICareerController {
     }
 	public void OnForceAttackExit(){
 		ac.camcon.isHorizontalView=false;
+		ac.canAttack=true;
 	}
 	
 	public void OnRunUpdate() {

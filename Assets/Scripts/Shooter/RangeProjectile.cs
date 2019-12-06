@@ -15,17 +15,12 @@ public class RangeProjectile : Projectile
     // Use this for initialization
     public void Start()
     {
-        cols = Physics.OverlapSphere(transform.position, range, mask);
+        cols = Physics.OverlapSphere(transform.position, range, LayerMask.NameToLayer("Body"));
         Damage = am.ac.careercon.careerValue.GetDamageByString(attackType);
         Invoke("Invoke_RangeDamage", 0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    public override void OnTriggerEnter(Collider col){}
     public void Invoke_RangeDamage()
     {
         foreach (Collider col in cols)
@@ -41,15 +36,8 @@ public class RangeProjectile : Projectile
                 return;
             }
             SetRangeBuff(col);
-            BattleController bc = col.GetComponent<BattleController>();
-            if (bc != null)
-            {
-                // InstantiateVFX(col,new Vector3(col.transform.position.x,transform.position.y,col.transform.position.z));
-                col.SendMessageUpwards("SetTargetAm", am);
-                AddBuffs(col.gameObject);
-            }
-            
-            col.SendMessageUpwards("TryDoDamage", Damage * atkBuff);
+
+            SendTryDoDamage(col);
         }
     }
 }

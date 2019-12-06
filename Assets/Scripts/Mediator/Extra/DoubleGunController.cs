@@ -125,7 +125,7 @@ public class DoubleGunController : ICareerController
             }
 
             //蓄力
-            if (ki.forcingML)
+            if (ki.forcingML && !isForce)
             {
                 if (CheckCD(skillForce))
                 {
@@ -135,17 +135,14 @@ public class DoubleGunController : ICareerController
                     ac.am.sm.isForcingAim = true;
                 }
             }
-        }
-
-
-        if (ki.auxiliaryMR)
-        {
-            if(CheckCD(skillMR)){
-                UseSkill(1, careerValue.FirstDamage);
-                StartCD(skillMR,careerValue.FirstCD);
+            if (ki.auxiliaryMR)
+            {
+                if(CheckCD(skillMR)){
+                    UseSkill(1, careerValue.FirstDamage);
+                    StartCD(skillMR,careerValue.FirstCD);
+                }
             }
         }
-
 
         if (forcingTimer.state == MyTimer.STATE.FINISHED)
         {
@@ -246,6 +243,7 @@ public class DoubleGunController : ICareerController
     {
         ac.camcon.isHorizontalView = false;
         ki.inputEnabled = true;
+        ac.canAttack=true;
     }
     public void magazineOperation() //確認是否填彈
     {

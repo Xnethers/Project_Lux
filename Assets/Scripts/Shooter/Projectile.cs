@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     [Header("===== DeBuff Settings =====")]
 
-    [SerializeField] string[] buffsName;
+    public string[] buffsName;
 
     [Header("===== Damage Settings =====")]
     [SerializeField] float baseATK = 1f;
@@ -130,26 +130,12 @@ public class Projectile : MonoBehaviourPunCallbacks
                 isVFX = true;
             }
         }
-        BattleController bc = col.GetComponent<BattleController>();
-        if (bc != null)
-        {
-            // InstantiateVFX(col,new Vector3(col.transform.position.x,transform.position.y,col.transform.position.z));
-            if (am != null)
-            { col.SendMessageUpwards("SetTargetAm", am); }
-            AddBuffs(col.gameObject);
-        }
         AdditionalAttack(col);
-        col.SendMessageUpwards("TryDoDamage", GetATK());
+        SendTryDoDamage(col);
         isHit = true;
     }
-    protected void AddBuffs(GameObject obj)
-    {
-        if (buffsName.Length == 0)
-            return;
-        foreach (string buff in buffsName)
-        {
-            obj.SendMessageUpwards("AddBuff", buff);
-        }
+    protected void SendTryDoDamage(Collider col){
+        col.SendMessageUpwards("TryDoDamage",new DamageData(am, GetATK(),buffsName));
     }
     protected void SetRangeBuff(Collider col)
     {

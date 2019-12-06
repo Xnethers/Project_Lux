@@ -49,7 +49,7 @@ public class DoubleGunRushATK : Projectile
             {
                 return;
             } 
-            col.SendMessageUpwards("TryDoDamage", GetATK());
+            SendTryDoDamage(col);
         }
     }
 

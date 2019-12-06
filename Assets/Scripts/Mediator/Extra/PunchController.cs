@@ -201,7 +201,7 @@ public class PunchController : ICareerController
             }
 
             //蓄力
-            if (ki.forcingML)
+            if (ki.forcingML && !isForce)
             {
                 if (CheckCD(skillForce))
                 {
