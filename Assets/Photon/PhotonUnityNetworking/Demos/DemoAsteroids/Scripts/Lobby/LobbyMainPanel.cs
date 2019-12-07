@@ -3,6 +3,8 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UITween;
+using DG.Tweening;
 using Photon.Pun.UtilityScripts;
 
 namespace Photon.Pun.Demo.Asteroids
@@ -63,8 +65,9 @@ namespace Photon.Pun.Demo.Asteroids
         private GameObject[] myCharacter;
         private GameObject[] myCharacterUI;
         private GameObject[] lockCharacterUI;
-
-
+        
+        [Header("UI Controller")]
+        public UILoginPanelContoller uILoginPanelContoller;
 
         #region UNITY
 
@@ -289,11 +292,17 @@ namespace Photon.Pun.Demo.Asteroids
         public void OnTitlePanelCLicked()
         {
             if (Input.anyKeyDown)
-            { LoginPanel.SetActive(true); }
+            {
+                LoginPanel.SetActive(true);
+                uILoginPanelContoller.onLoginPanelActive.Invoke();
+            }
         }
 
         public void OnLoginCancelButton()
-        { SetActivePanel(TitlePanel.name); }
+        {
+            // SetActivePanel(TitlePanel.name);
+            uILoginPanelContoller.onCancelClick.Invoke();
+        }
 
         public void OnBackButtonClicked()
         {
@@ -308,7 +317,8 @@ namespace Photon.Pun.Demo.Asteroids
         public void OnCreateRoomPanelButtonClicked()
         {
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
-            SetActivePanel(CreateRoomPanel.name);
+            //SetActivePanel(CreateRoomPanel.name);
+            CreateRoomPanel.SetActive(true);
         }
         public void OnCreateRoomButtonClicked()
         {
@@ -365,7 +375,8 @@ namespace Photon.Pun.Demo.Asteroids
                 PhotonNetwork.JoinLobby();
             }
 
-            SetActivePanel(RoomListPanel.name);
+            //SetActivePanel(RoomListPanel.name);
+            RoomListPanel.SetActive(true);
         }
 
         public void OnStartGameButtonClicked()

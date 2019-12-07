@@ -7,7 +7,7 @@ using DG.Tweening;
 
 namespace UITween
 {
-    public class UITextAnimationContoller : MonoBehaviour
+    public class UITitlePanelContoller : MonoBehaviour
     {
         public Text ThisText;
         public float duration;
@@ -36,9 +36,9 @@ namespace UITween
             onDisable.Invoke();
         }
 
-        public void TextAlphaFade()
+        public void TextAlphaFade(Text thistext)
         {
-            ThisText.DOFade(0, duration).SetEase(this.EaseType).SetLoops(-1, LoopType.Yoyo);
+            thistext.DOFade(0, duration).SetEase(this.EaseType).SetLoops(-1, LoopType.Yoyo);
         }
 
         public void TextShowEachWord()
