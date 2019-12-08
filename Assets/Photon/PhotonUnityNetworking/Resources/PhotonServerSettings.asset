@@ -108,4 +108,5 @@ MonoBehaviour:
   - SetLineEnabled
   - Disappear
   - Appear
+  - RPC_AddAllAttack
   DisableAutoOpenWizard: 1

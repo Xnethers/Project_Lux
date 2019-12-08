@@ -4275,6 +4275,10 @@ MonoBehaviour:
   isHPing: 0
   die: 0
   deadTime: 5
+  AllAttack: 0
+  AllHurt: 0
+  AllKill: 0
+  AllDead: 0
 --- !u!114 &114431957560450570
 MonoBehaviour:
   m_ObjectHideFlags: 1

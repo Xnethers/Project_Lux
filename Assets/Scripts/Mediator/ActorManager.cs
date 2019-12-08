@@ -102,6 +102,15 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             
         }
         //可以加targetAm狀態來判定要不要扣血
+        if(sm.HP-currentDamage>0){
+            sm.AllHurt+=currentDamage;
+            damageData.AttackerAm.photonView.RPC("RPC_AddAllAttack", RpcTarget.All,currentDamage);
+        }
+        else
+        {
+            sm.AllHurt+=sm.HP;
+            damageData.AttackerAm.photonView.RPC("RPC_AddAllAttack", RpcTarget.All,sm.HP);
+        }
         sm.AddHP(-currentDamage);
         sm.AddRP(0.3f);
         HitOrDie(damageData);
@@ -116,7 +125,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
                 //do some VFX, liked splatter blood...
                 sm.sb.AddBuffsByStrings(damageData.BuffsName);
                 ac.attackerVec = damageData.DamageVec;
-                // this.targetAm = damageData.AttackerAm;
+                this.targetAm = damageData.AttackerAm;
                 // ac.attackerVec = targetAm.transform.forward;
             }
             else {

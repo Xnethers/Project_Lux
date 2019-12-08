@@ -7,7 +7,6 @@ using UnityEngine.UI;
 using Photon.Pun.UtilityScripts;
 public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public bool isResult = false;
     [SerializeField] public float health = 100;
     [SerializeField] private float maxhealth = 100;
     private PhotonView PV;
@@ -17,11 +16,12 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     {
         get { return maxhealth; }
     }
-
-    public GameObject resultUI;
-    public Text tempText;
     public OccupiedTest occupied;
     public float enemyHpValue = -5f;
+    [Header("Result Settings")]
+    public bool isResult = false;
+    public GameObject resultUI;
+    public Text tempText;
     // Use this for initialization
     void Start()
     {
@@ -37,10 +37,11 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (health <= 0 && !isResult)
         {
-            PV.RPC("SetResult", RpcTarget.All);
+            // PV.RPC("SetResult", RpcTarget.All);
+            SetResult();
             foreach (ActorManager am in FindObjectsOfType<ActorManager>())
             {
-                am.ac.SetBool("result", true);
+                // am.ac.SetBool("result", true);
                 am.ac.pi.inputEnabled = false;
                 am.ac.pi.inputMouseEnabled = false;
                 //am.ac.pi.enabled = false;
@@ -142,6 +143,19 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
                 tempText.text = "Purple Team Lose";
                 SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
             }
+        }
+        
+        foreach(Player p in PhotonNetwork.PlayerList){
+            GameObject entry = Instantiate(GameManager.Instance.ResultPlayerListEntry);
+
+            if (p.GetTeam() == PhotonNetwork.LocalPlayer.GetTeam())
+            { entry.transform.SetParent(GameManager.Instance.MyTeamPanel.transform); }
+            else if (p.GetTeam() != PhotonNetwork.LocalPlayer.GetTeam())
+            { entry.transform.SetParent(GameManager.Instance.OtherTeamPanel.transform); }
+
+            entry.transform.localScale = Vector3.one;
+            entry.GetComponent<RectTransform>().localPosition = Vector3.zero;
+            entry.GetComponent<ResultListEntry>().Initialize(p);
         }
     }
 

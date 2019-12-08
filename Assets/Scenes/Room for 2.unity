@@ -485,30 +485,6 @@ Transform:
   m_Father: {fileID: 627051446}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &32623237
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/KawaseBlurPostProcess
-  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &38788195
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +639,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 50319409}
   m_Mesh: {fileID: 4300526, guid: 587176fbdb93bd94294cb6800b64dee7, type: 3}
+--- !u!21 &54960972
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/FlatColor
+  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &60266219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1036,16 @@ Prefab:
         type: 2}
       propertyPath: size.z
       value: 4.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617809273098958, guid: 11c9aa267bdc847478c4519703a344cc,
+        type: 2}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617809273098958, guid: 11c9aa267bdc847478c4519703a344cc,
+        type: 2}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11c9aa267bdc847478c4519703a344cc, type: 2}
@@ -3006,6 +3016,30 @@ Transform:
   m_Father: {fileID: 550102792}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &378602599
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/OutlineCommandBuffer
+  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &397571087
 GameObject:
   m_ObjectHideFlags: 0
@@ -4186,30 +4220,6 @@ Transform:
   m_Father: {fileID: 351209522}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &563793704
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/OutlineCommandBuffer
-  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &565528351
 GameObject:
   m_ObjectHideFlags: 0
@@ -4763,13 +4773,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822291a11387cad40ab877f9641a7108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isResult: 0
   health: 250
   maxhealth: 250
-  resultUI: {fileID: 88188227}
-  tempText: {fileID: 88188226}
   occupied: {fileID: 1578755754}
   enemyHpValue: -5
+  isResult: 0
+  resultUI: {fileID: 88188227}
+  tempText: {fileID: 88188226}
 --- !u!114 &614400644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10898,13 +10908,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822291a11387cad40ab877f9641a7108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isResult: 0
   health: 250
   maxhealth: 250
-  resultUI: {fileID: 88188227}
-  tempText: {fileID: 88188226}
   occupied: {fileID: 1578755754}
   enemyHpValue: -5
+  isResult: 0
+  resultUI: {fileID: 88188227}
+  tempText: {fileID: 88188226}
 --- !u!114 &1167288553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12190,6 +12200,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1329845073}
   m_Mesh: {fileID: 4300528, guid: 587176fbdb93bd94294cb6800b64dee7, type: 3}
+--- !u!21 &1336114390
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/KawaseBlurPostProcess
+  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1344762380
 GameObject:
   m_ObjectHideFlags: 0
@@ -12331,9 +12365,9 @@ MonoBehaviour:
   interation: 1
   offset: 1
   colorIntensity: 3
-  postMat: {fileID: 563793704}
-  flatColor: {fileID: 1521316515}
-  blur: {fileID: 32623237}
+  postMat: {fileID: 378602599}
+  flatColor: {fileID: 54960972}
+  blur: {fileID: 1336114390}
   bufferEvent: 17
 --- !u!124 &1355655536
 Behaviour:
@@ -13964,30 +13998,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1521316515
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/FlatColor
-  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1529882526
 GameObject:
   m_ObjectHideFlags: 0
@@ -16286,10 +16296,15 @@ MonoBehaviour:
   isForce: 0
   isForcingAim: 0
   isHit: 0
+  isRepelled: 0
   isDie: 0
   isHPing: 0
   die: 0
   deadTime: 5
+  AllAttack: 0
+  AllHurt: 0
+  AllKill: 0
+  AllDead: 0
 --- !u!114 &1796560973
 MonoBehaviour:
   m_ObjectHideFlags: 0

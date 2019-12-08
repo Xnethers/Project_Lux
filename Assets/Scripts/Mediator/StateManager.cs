@@ -31,7 +31,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
     public bool isHit;
     public bool isRepelled;
     public bool isDie;
-
+    
 
     //[Header("2nd order state flag")]
     protected Coroutine rpCoroutine;
@@ -43,7 +43,11 @@ public class StateManager : IActorManagerInterface, IPunObservable
     public float deadTime = 5;
 
     ReliveZone mylivezone;
-
+    [Header("Result Data")]
+    public float AllAttack;
+    public float AllHurt;
+    public int AllKill;
+    public int AllDead;
     private void Start()
     {
         sb = GetComponent<StateBuff>();
@@ -91,8 +95,12 @@ public class StateManager : IActorManagerInterface, IPunObservable
             // Die();
             am.ac.OnDieEnter();//不能行動
             isDie = true;
+            AllDead+=1;
             if (am.targetAm != null)
-            { am.targetAm.sm.AddRP(2); }
+            { 
+                am.targetAm.sm.AddRP(2); 
+                am.targetAm.sm.AllKill+=1;
+            }
             
         }
         if(isDie ){//在高處降落至地才死亡動畫
@@ -231,6 +239,10 @@ public class StateManager : IActorManagerInterface, IPunObservable
             stream.SendNext(HP);
             stream.SendNext(ATK);
             stream.SendNext(RP);
+            stream.SendNext(AllAttack);
+            stream.SendNext(AllHurt);
+            stream.SendNext(AllKill);
+            stream.SendNext(AllDead);
         }
         else
         {
@@ -238,11 +250,19 @@ public class StateManager : IActorManagerInterface, IPunObservable
             this.HP = (float)stream.ReceiveNext();
             this.ATK = (float)stream.ReceiveNext();
             this.RP = (float)stream.ReceiveNext();
+            this.AllAttack = (float)stream.ReceiveNext();
+            this.AllHurt = (float)stream.ReceiveNext();
+            this.AllKill = (int)stream.ReceiveNext();
+            this.AllDead = (int)stream.ReceiveNext();
         }
     }
     [PunRPC]
     public void RPC_MaxRP(){
         RP=RPMax;
+    }
+    [PunRPC]
+    public void RPC_AddAllAttack(float tempAttack){
+        AllAttack+=tempAttack;
     }
     #endregion
 }

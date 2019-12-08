@@ -23,6 +23,10 @@ using Photon.Realtime;
         public ReliveZone BlueRelivePoint;
         [Header("Menu")]
         public InGameMenu GameMenu;
+        [Header("Result")]
+        public GameObject ResultPlayerListEntry;
+        public GameObject MyTeamPanel;
+        public GameObject OtherTeamPanel;
 
         #endregion
 
