@@ -30,6 +30,7 @@ public abstract class IUserInput : MonoBehaviourPunCallbacks {
 
     [Header("===== Others =====")]
     // public bool inputInitialize = false;
+    public bool inputActive = true;
     public bool inputEnabled = true;
     public bool inputMouseEnabled = true;
     protected float targetDup;

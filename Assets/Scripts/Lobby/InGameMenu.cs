@@ -21,6 +21,7 @@ public class InGameMenu : MonoBehaviour {
 			if(PlayerAm!=null){
 				// PlayerAm.ac.pi.enabled=false;
 				// PlayerAm.ac.camcon.enabled = false;
+				PlayerAm.ac.pi.inputActive = false;
 				PlayerAm.ac.pi.InputInitialize();
 			}
 			
@@ -30,6 +31,7 @@ public class InGameMenu : MonoBehaviour {
 			Cursor.visible=false;
 			MenuPanel.SetActive(false);
 			if(PlayerAm!=null){
+				PlayerAm.ac.pi.inputActive = true;
 				// PlayerAm.ac.pi.enabled=true;
 				// PlayerAm.ac.camcon.enabled = true;
 			}

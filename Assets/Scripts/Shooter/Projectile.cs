@@ -135,7 +135,10 @@ public class Projectile : MonoBehaviourPunCallbacks
         isHit = true;
     }
     protected void SendTryDoDamage(Collider col){
-        col.SendMessageUpwards("TryDoDamage",new DamageData(am, GetATK(),buffsName,am.transform.forward));
+        if(am != null)
+            col.SendMessageUpwards("TryDoDamage",new DamageData(am, GetATK(),buffsName,am.transform.forward));
+        else
+            col.SendMessageUpwards("TryDoDamage",new DamageData(null, GetATK(),buffsName,Vector3.zero));
     }
     protected void SetRangeBuff(Collider col)
     {

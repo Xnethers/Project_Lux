@@ -23,7 +23,7 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject resultUI;
     public Text tempText;
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         PV = GetComponent<PhotonView>();
         if (resultUI != null)
@@ -38,12 +38,14 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
         if (health <= 0 && !isResult)
         {
             // PV.RPC("SetResult", RpcTarget.All);
-            SetResult();
+            if(Global.Level!=0)
+                SetResult();
             foreach (ActorManager am in FindObjectsOfType<ActorManager>())
             {
                 // am.ac.SetBool("result", true);
-                am.ac.pi.inputEnabled = false;
-                am.ac.pi.inputMouseEnabled = false;
+                // am.ac.pi.inputEnabled = false;
+                // am.ac.pi.inputMouseEnabled = false;
+                am.ac.pi.inputActive = false;
                 //am.ac.pi.enabled = false;
                 am.ac.camcon.isCursorVisible = true;
                 am.ac.anim.ResetTrigger("attack");

@@ -28,6 +28,8 @@ public class KICareer : KeyboardInput
             return;
         if (!photonView.IsMine)
             return;
+        if(!inputActive)
+            return;
         base.Update();
 
         if (inputEnabled == false)

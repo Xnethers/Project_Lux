@@ -50,6 +50,7 @@ public class ActorController : IActorManagerInterface {
     public bool isBounce;
     public bool isJump;
     public FootIK footIK;
+    public int latentCount = 0;
     // Use this for initialization
     public void Awake() {
         IUserInput[] inputs = GetComponents<IUserInput>();
@@ -85,7 +86,7 @@ public class ActorController : IActorManagerInterface {
         //     camcon.isCursorVisible = ! camcon.isCursorVisible;
         if(pi.latent && am.im.overlapEcastms.Count!=0 && am.sm.isLocomotion){//按下潛光按鍵(暫定e鍵)
             if(am.im.overlapEcastms[0].tag == tag){
-                
+                //InteractionManager im為偵測有無物件(帶有EventCasterManager)
                 photonView.RPC("RPC_SetLatent", RpcTarget.All);
                 lockPlanar = false;
                 //camcon.tempEulerX= 0;//攝影機UpDown角度歸零
@@ -94,9 +95,10 @@ public class ActorController : IActorManagerInterface {
                 //人與潛光平行(轉角度)
                 // Debug.Log(am.im.overlapEcastms[0].transform.eulerAngles.y);
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x,am.im.overlapEcastms[0].transform.eulerAngles.y-180f,transform.eulerAngles.z);
-                if(pi.isLatent)
+                if(pi.isLatent){
                     transform.position -= am.im.overlapEcastms[0].transform.forward*am.im.overlapEcastms[0].offset;
-                //InteractionManager im為偵測有無物件(帶有EventCasterManager)
+                    latentCount++;
+                }    
             }
         }
         

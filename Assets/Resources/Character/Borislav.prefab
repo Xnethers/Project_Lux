@@ -4018,6 +4018,7 @@ MonoBehaviour:
   jump: 0
   roll: 0
   latent: 0
+  inputActive: 1
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -4634,6 +4635,7 @@ MonoBehaviour:
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
+  latentCount: 0
 --- !u!114 &114587599819806300
 MonoBehaviour:
   m_ObjectHideFlags: 1

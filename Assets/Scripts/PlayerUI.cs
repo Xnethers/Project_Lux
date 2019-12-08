@@ -108,6 +108,11 @@ public class PlayerUI : MonoBehaviourPunCallbacks
             OccupiedRed.fillAmount = occupied.redValue / 100;
             OccupiedBlue.fillAmount = occupied.blueValue / 100;
         }
+        else
+        {
+            OccupiedRed.fillAmount = 0;
+            OccupiedBlue.fillAmount = 0;
+        }
         if (sm.dieTimer.state == MyTimer.STATE.RUN)
         {
             ReLiveTime.gameObject.SetActive(true);
