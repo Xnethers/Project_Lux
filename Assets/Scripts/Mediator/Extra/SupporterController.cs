@@ -65,8 +65,8 @@ public class SupporterController : ICareerController {
 			ki.attackML=true;
         }
 		if (ac.canAttack){
-			if(ac.GetBool("isArmour")){//霸體狀態
-                if(ac.CheckStateTag("armour")){//解除霸體
+			if(ac.CheckStateTag("armour")){//霸體狀態
+                if(ac.GetBool("isArmour")){//解除霸體
                     if (ki.attackML){//霸攻
                         UseSkill(3, careerValue.RushDamage+absorbDamage/4);
 						ac.SetBool("isArmour", false);
