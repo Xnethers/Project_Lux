@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 public class LookAtIK : MonoBehaviourPunCallbacks {
-	private Transform camAimTarget;
+	protected Transform camAimTarget;
 	public Transform Target;
 	protected ActorController ac;
 	// Use this for initialization
