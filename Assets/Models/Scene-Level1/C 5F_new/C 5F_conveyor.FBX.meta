@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9c7ee7987676dfa4f9ff1a486e2c12a2
+guid: d9d4c293c25d99a439c83abee13ad28b
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -11,7 +11,7 @@ ModelImporter:
     4300000: conveyor001
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
