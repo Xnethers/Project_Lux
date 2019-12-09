@@ -2220,9 +2220,9 @@ MonoBehaviour:
   interation: 1
   offset: 1
   colorIntensity: 3
-  postMat: {fileID: 1237573067}
-  flatColor: {fileID: 1530802574}
-  blur: {fileID: 436912173}
+  postMat: {fileID: 1093096912}
+  flatColor: {fileID: 348229165}
+  blur: {fileID: 524933220}
   bufferEvent: 17
 --- !u!124 &123040951
 Behaviour:
@@ -3520,7 +3520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 67
+    x: 65.96907
     y: 73
     width: 120
     height: 40
@@ -3547,11 +3547,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -371, y: 43}
+  scrollPos: {x: -15.618525, y: 22.319557}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 200
-  zoom: 1
+  blockViewHeight: 276
+  zoom: 0.97
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -3559,9 +3559,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 273014278}
+  - {fileID: 273014250}
   selectedCommands:
-  - {fileID: 273014277}
+  - {fileID: 273014253}
   variables: []
   description: 
   stepPause: 0
@@ -3599,7 +3599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: "\u300C\u8ACB\u5148\u79FB\u52D5\u5230\u524D\u65B9\u767C\u5149\u4F4D\u7F6E\u3002\uFF08\u4F7F\u7528WASD\u9032\u884C\u79FB\u52D5\uFF0C\u7A7A\u767D\u9375\u8DF3\u8E8D\u3002\uFF09\u300D\n"
+  storyText: "\u300C\u8ACB\u5148\u79FB\u52D5\u5230\u524D\u65B9\u767C\u5149\u4F4D\u7F6E\u3002\uFF08\u4F7F\u7528WASD\u9032\u884C\u79FB\u52D5\uFF0C\u7A7A\u767D\u9375\u8DF3\u8E8D\u3002\uFF09\u300D{w=3}"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3608,7 +3608,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3625,7 +3625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: "\u300C\u6B61\u8FCE\u4F86\u5230PacemNeon\u8A13\u7DF4\u4E2D\u5FC3\uFF0C\u63A5\u4E0B\u4F86\u5C07\u7531\u7CFB\u7D71\u5E36\u9818\u60A8\u719F\u6089Noah\u7684\u64CD\u4F5C\u65B9\u5F0F\u3002\u300D\n"
+  storyText: "\u300C\u6B61\u8FCE\u4F86\u5230PacemNeon\u8A13\u7DF4\u4E2D\u5FC3\uFF0C\u63A5\u4E0B\u4F86\u5C07\u7531\u7CFB\u7D71\u5E36\u9818\u60A8\u719F\u6089Noah\u7684\u64CD\u4F5C\u65B9\u5F0F\u3002\u300D{w=3}\n"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3634,7 +3634,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3709,7 +3709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  storyText: "\u300C\u666E\u901A\u653B\u64CA\uFF08\u6ED1\u9F20\u5DE6\u53F3\u9375\uFF09\u3001\u84C4\u529B\u653B\u64CA\uFF08\u9577\u6309\u5DE6\u9375\uFF09\u3001\u7279\u6B8A\u653B\u64CA\uFF08\uFF26\u9375\uFF09\u3001\u7A7A\u4E2D\u653B\u64CA\uFF08\u5DE6\u9375\uFF09\u3001\u5927\u62DB\uFF08\uFF31\u9375\uFF09\u3002\u300D\r\n"
+  storyText: "\u300C\u666E\u901A\u653B\u64CA\uFF08\u6ED1\u9F20\u5DE6\u53F3\u9375\uFF09\u3001\u84C4\u529B\u653B\u64CA\uFF08\u9577\u6309\u5DE6\u9375\uFF09\u3001\u7279\u6B8A\u653B\u64CA\uFF08\uFF26\u9375\uFF09\u3001\u7A7A\u4E2D\u653B\u64CA\uFF08\u5DE6\u9375\uFF09\u3001\u5927\u62DB\uFF08\uFF31\u9375\uFF09\u3002\u73FE\u5728\u8ACB\u60A8\u8A66\u8A66\u770B\u653B\u64CA\u6575\u4EBA\u3002\r\u300D\r{w=3}\n"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3718,7 +3718,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3751,7 +3751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: "\u300C\u6230\u9B25\u65B9\u5F0F\u4E00\u5171\u5206\u70BA\u4E94\u7A2E\u3002\u300D"
+  storyText: "\u300C\u6230\u9B25\u65B9\u5F0F\u4E00\u5171\u5206\u70BA\u4E94\u7A2E\u3002\u300D{w=3}"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3760,7 +3760,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3793,7 +3793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: "\u300C\u73FE\u5728\u8ACB\u60A8\u8A66\u8A66\u770B\u653B\u64CA\u6575\u4EBA\u3002\r\u5B8C\u6210\u5F8C\u8ACB\u8D70\u5411\u4E0B\u4E00\u500B\u5149\u5708\u3002\u300D"
+  storyText: "\u300C\u5B8C\u6210\u5F8C\u8ACB\u8D70\u5411\u4E0B\u4E00\u500B\u5149\u5708\u3002\u300D{w=3}"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3802,7 +3802,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3819,9 +3819,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 502
+    x: 504.0309
     y: 67
-    width: 137
+    width: 139.69072
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3847,7 +3847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 27
   indentLevel: 0
-  storyText: "\u300C\u56E0\u6B64\u8ACB\u5148\u4F54\u9818\u4E2D\u9593\u7684\u532F\u96C6\u5340\uFF0C\u518D\u53BB\u7834\u58DE\u6575\u65B9\u80FD\u91CF\u5854\uFF0C\u8981\u5C0F\u5FC3\u5854\u5468\u906D\u7684\u5B88\u885B\u653B\u64CA\u3002\u300D\n"
+  storyText: "\u300C\u56E0\u6B64\u8ACB\u5148\u4F54\u9818\u4E2D\u9593\u7684\u532F\u96C6\u5340\uFF0C\u518D\u53BB\u7834\u58DE\u6575\u65B9\u80FD\u91CF\u5854\uFF0C\u8981\u5C0F\u5FC3\u5854\u5468\u906D\u7684\u5B88\u885B\u653B\u64CA\u3002\u300D{w=3}\n"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3856,7 +3856,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 26
   indentLevel: 0
-  storyText: "\u300C\u4F46\u80FD\u91CF\u5854\u5728\u904B\u4F5C\u7684\u904E\u7A0B\u4E2D\u662F\u4E0D\u53D7\u5916\u529B\u5F71\u97FF\u7684\uFF0C\u6211\u5011\u5FC5\u9808\u5148\u62FF\u4E0B\u9019\u500B\u5340\u57DF\u5167\u7684\u7D14\u5149\u532F\u96C6\u5340\uFF0C\u505C\u6B62\u5B83\u7684\u904B\u4F5C\u624D\u80FD\u7834\u58DE\u5B83\u3002\u300D\n"
+  storyText: "\u300C\u4F46\u80FD\u91CF\u5854\u5728\u904B\u4F5C\u7684\u904E\u7A0B\u4E2D\u662F\u4E0D\u53D7\u5916\u529B\u5F71\u97FF\u7684\uFF0C\u6211\u5011\u5FC5\u9808\u5148\u62FF\u4E0B\u9019\u500B\u5340\u57DF\u5167\u7684\u7D14\u5149\u532F\u96C6\u5340\uFF0C\u505C\u6B62\u5B83\u7684\u904B\u4F5C\u624D\u80FD\u7834\u58DE\u5B83\u3002\u300D{w=3}\n"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3909,7 +3909,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3926,7 +3926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 25
   indentLevel: 0
-  storyText: "\u300C\u6211\u5011\u7684\u76EE\u6A19\u662F\u64CA\u6F70\u4E0D\u5C6C\u65BC\u6211\u65B9\u9663\u71DF\u7684\u80FD\u91CF\u5854\uFF0C\u85C9\u6B64\u4E2D\u65B7\u4ED6\u5011\u7684\u300C\u7D14\u5149\u300D\u88DC\u7D66\u3002\u300D\r"
+  storyText: "\u300C\u6211\u5011\u7684\u76EE\u6A19\u662F\u64CA\u6F70\u4E0D\u5C6C\u65BC\u6211\u65B9\u9663\u71DF\u7684\u80FD\u91CF\u5854\uFF0C\u85C9\u6B64\u4E2D\u65B7\u4ED6\u5011\u7684\u300C\u7D14\u5149\u300D\u88DC\u7D66\u3002\u300D\r{w=3}"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3935,7 +3935,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3952,7 +3952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 13
   indentLevel: 0
-  storyText: "\u300C\uFF08\u9760\u8FD1\u5149\u5E36\u6309\u4E0B\uFF25\u9375\u5C31\u53EF\u4EE5\u9032\u5165\uFF0C\u518D\u6309\u4E00\u6B21\uFF25\u9375\u5C31\u80FD\u96E2\u958B\u3002\uFF09\u300D\n"
+  storyText: "\u300C\uFF08\u9760\u8FD1\u5149\u5E36\u6309\u4E0B\uFF25\u9375\u5C31\u53EF\u4EE5\u9032\u5165\uFF0C\u518D\u6309\u4E00\u6B21\uFF25\u9375\u5C31\u80FD\u96E2\u958B\u3002\uFF09\u300D{w=3}\n"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3961,7 +3961,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -3978,7 +3978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: "\u300C\u7A7F\u4E0ANoah\u5F8C\u80FD\u6F5B\u5165\u76EE\u524D\u8A2D\u7F6E\u5728\u5834\u5730\u4E0A\u7684\u90A3\u4E9B\u5149\u5E36\uFF0C\u9032\u5165\u5F8C\u80FD\u5C11\u91CF\u56DE\u5FA9\u53D7\u640D\uFF0C\u5728\u88E1\u9762\u7684\u79FB\u52D5\u901F\u5EA6\u6703\u5FEB\u4E0A\u8A31\u591A\u3002\u300D"
+  storyText: "\u300C\u7A7F\u4E0ANoah\u5F8C\u80FD\u6F5B\u5165\u76EE\u524D\u8A2D\u7F6E\u5728\u5834\u5730\u4E0A\u7684\u90A3\u4E9B\u5149\u5E36\uFF0C\u9032\u5165\u5F8C\u80FD\u5C11\u91CF\u56DE\u5FA9\u53D7\u640D\uFF0C\u5728\u88E1\u9762\u7684\u79FB\u52D5\u901F\u5EA6\u6703\u5FEB\u4E0A\u8A31\u591A\u3002\u300D{w=3}"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3987,7 +3987,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -4075,7 +4075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 32
   indentLevel: 0
-  storyText: "\u300C\u5C31\u662F\u73FE\u5728\uFF0C\u5728\u5C0D\u65B9\u80FD\u91CF\u5854\u6062\u5FA9\u904B\u4F5C\u524D\uFF0C\u5FEB\u53BB\u7834\u58DE\u5B83\u3002\u300D"
+  storyText: "\u300C\u5C31\u662F\u73FE\u5728\uFF0C\u5728\u5C0D\u65B9\u80FD\u91CF\u5854\u6062\u5FA9\u904B\u4F5C\u524D\uFF0C\u5FEB\u53BB\u7834\u58DE\u5B83\u3002\u300D{w=3}"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4084,7 +4084,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -4102,8 +4102,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 649.5
-    y: 67
-    width: 134
+    y: 66.96907
+    width: 136.59793
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4126,7 +4126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 35
   indentLevel: 0
-  storyText: "\u300C\u606D\u559C\u60A8\u6210\u529F\u64CA\u6F70\u5C0D\u65B9\u7684\u80FD\u91CF\u5854\uFF0C\u95DC\u65BCNoah\u64CD\u4F5C\u65B9\u5F0F\u4EE5\u53CA\u7D44\u7E54\u7684\u76EE\u6A19\u90FD\u5DF2\u8AAA\u660E\u5B8C\u7562\uFF0C\u8ACB\u524D\u5F80\u6230\u5834\u5B8C\u6210\u81EA\u5DF1\u7684\u4F7F\u547D\u3002\u7D14\u5149\u7D42\u5C07\u70BA\u6211\u5011\u5E36\u4F86\u548C\u5E73\u3002\u300D"
+  storyText: "\u300C\u606D\u559C\u60A8\u6210\u529F\u64CA\u6F70\u5C0D\u65B9\u7684\u80FD\u91CF\u5854\uFF0C\u95DC\u65BCNoah\u64CD\u4F5C\u65B9\u5F0F\u4EE5\u53CA\u7D44\u7E54\u7684\u76EE\u6A19\u90FD\u5DF2\u8AAA\u660E\u5B8C\u7562\uFF0C\u8ACB\u524D\u5F80\u6230\u5834\u5B8C\u6210\u81EA\u5DF1\u7684\u4F7F\u547D\u3002\u7D14\u5149\u7D42\u5C07\u70BA\u6211\u5011\u5E36\u4F86\u548C\u5E73\u3002\u300D{w=3}"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -4135,7 +4135,7 @@ MonoBehaviour:
   showCount: 1
   extendPrevious: 0
   fadeWhenDone: 1
-  waitForClick: 1
+  waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
@@ -5056,6 +5056,30 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_TargetDisplay: 0
+--- !u!21 &348229165
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/FlatColor
+  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &352530217
 GameObject:
   m_ObjectHideFlags: 0
@@ -5984,30 +6008,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429961974}
---- !u!21 &436912173
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/KawaseBlurPostProcess
-  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &446764232
 GameObject:
   m_ObjectHideFlags: 0
@@ -6783,6 +6783,30 @@ Transform:
   m_Father: {fileID: 530970444}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &524933220
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/KawaseBlurPostProcess
+  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &530633228
 GameObject:
   m_ObjectHideFlags: 0
@@ -10476,9 +10500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b85556abd314f3f870c18c013fdcef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickMode: 1
+  clickMode: 0
   nextClickDelay: 0
-  cancelEnabled: 1
+  cancelEnabled: 0
   ignoreMenuClicks: 1
 --- !u!114 &895681076
 MonoBehaviour:
@@ -14744,6 +14768,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1093096912
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/OutlineCommandBuffer
+  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1095650478
 GameObject:
   m_ObjectHideFlags: 0
@@ -16444,30 +16492,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1234278396}
   m_Mesh: {fileID: 4300524, guid: 587176fbdb93bd94294cb6800b64dee7, type: 3}
---- !u!21 &1237573067
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/OutlineCommandBuffer
-  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1241759838
 GameObject:
   m_ObjectHideFlags: 0
@@ -19430,30 +19454,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530105634}
---- !u!21 &1530802574
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/FlatColor
-  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1533948422
 GameObject:
   m_ObjectHideFlags: 0

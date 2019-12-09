@@ -158,9 +158,16 @@ namespace Photon.Pun.Demo.Asteroids
 
         public override void OnJoinedRoom()
         {
-            if (Global.Level != 0)
-            { SetActivePanel(InsideRoomPanel.name); }
-
+            if (Global.Level <= 0)
+            { 
+                if(Global.Level == -1)
+                    PhotonNetwork.LoadLevel("NoviceTeaching");
+                else if(Global.Level == 0)
+                    PhotonNetwork.LoadLevel("Training");
+            }
+            else{
+                SetActivePanel(InsideRoomPanel.name); 
+            }
 
             if (playerListEntries == null)
             {
@@ -306,6 +313,7 @@ namespace Photon.Pun.Demo.Asteroids
         {
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
             SetActiveRightPanel(CreateRoomPanel.name);
+            Global.Level = Random.Range(1, 3);
         }
         public void OnCreateRoomButtonClicked()
         {
@@ -336,6 +344,7 @@ namespace Photon.Pun.Demo.Asteroids
             FindObjectOfType<ChooseCharacter>().photonView.RPC("RPC_ReadyFalse", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer);
             FindObjectOfType<ChooseCharacter>().ResetLockCharacter();
             PhotonNetwork.LeaveRoom();
+            // SetActivePanel(SelectionPanel.name);
         }
 
         public void OnLoginButtonClicked()
@@ -382,10 +391,9 @@ namespace Photon.Pun.Demo.Asteroids
             }
             RoomOptions options = new RoomOptions { MaxPlayers = 1 };
             PhotonNetwork.CreateRoom("Teaching", options, null);
-            PhotonNetwork.LocalPlayer.SetCharacter(0);
-
-            if (PhotonNetwork.IsMasterClient)
-            { PhotonNetwork.LoadLevel("NoviceTeaching"); }
+            // PhotonNetwork.LocalPlayer.SetCharacter(0);
+            Global.Level = -1; 
+            // if (PhotonNetwork.IsMasterClient){ }
         }
         public void OnTrainingButtonClicked()//訓練模式
         {
@@ -395,10 +403,9 @@ namespace Photon.Pun.Demo.Asteroids
             }
             RoomOptions options = new RoomOptions { MaxPlayers = 1 };
             PhotonNetwork.CreateRoom("Teaching", options, null);
-            PhotonNetwork.LocalPlayer.SetCharacter(0);
-
-            if (PhotonNetwork.IsMasterClient)
-            { PhotonNetwork.LoadLevel("Training"); }
+            // PhotonNetwork.LocalPlayer.SetCharacter(0);
+            Global.Level = 0; 
+            // if (PhotonNetwork.IsMasterClient){ }
         }
 
         public void OnClickCamp(int whichCamp)
@@ -434,7 +441,7 @@ namespace Photon.Pun.Demo.Asteroids
         public void OnNoviceTeachingClicked()
         {
             //PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
-            Global.Level = 0;
+            // Global.Level = 0;
             SetActiveRightPanel(NoviceTeachingPanel.name);
         }
 
@@ -584,7 +591,7 @@ namespace Photon.Pun.Demo.Asteroids
         {
             if (PhotonNetwork.IsConnectedAndReady)
             {
-                if(Global.Level == 0){
+                if(Global.Level <= 0){
                     PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
                 }
                 else{
