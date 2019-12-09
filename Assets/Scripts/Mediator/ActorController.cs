@@ -247,7 +247,7 @@ public class ActorController : IActorManagerInterface {
         _velocity.y += Mathf.Sqrt(jumpVelocity * -0.5f * Physics.gravity.y);
         //trackDirection = true;
         isJump = true;
-        FootIKDisable();
+        // FootIKDisable();
     }
     public void OnPopUpEnter(){
         pi.inputEnabled = false;
