@@ -113,6 +113,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &122410147 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114484138832092752, guid: fe7dd4986e246af47b49a783c2f6bf85,
+    type: 2}
+  m_PrefabInternal: {fileID: 1651224053}
+  m_Script: {fileID: 11500000, guid: 547bceb159e1d2741ab62e486cec4f05, type: 3}
 --- !u!1001 &440185176
 Prefab:
   m_ObjectHideFlags: 0
@@ -1104,6 +1110,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114707719377641204, guid: fe7dd4986e246af47b49a783c2f6bf85,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224008520103129776, guid: fe7dd4986e246af47b49a783c2f6bf85,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1258,6 +1269,41 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224590602980259378, guid: fe7dd4986e246af47b49a783c2f6bf85,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -120.00195
+      objectReference: {fileID: 0}
+    - target: {fileID: 224932331370026444, guid: fe7dd4986e246af47b49a783c2f6bf85,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114707719377641204, guid: fe7dd4986e246af47b49a783c2f6bf85,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114707719377641204, guid: fe7dd4986e246af47b49a783c2f6bf85,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114707719377641204, guid: fe7dd4986e246af47b49a783c2f6bf85,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 122410147}
+    - target: {fileID: 114707719377641204, guid: fe7dd4986e246af47b49a783c2f6bf85,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ResetPanelSize
+      objectReference: {fileID: 0}
+    - target: {fileID: 114707719377641204, guid: fe7dd4986e246af47b49a783c2f6bf85,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe7dd4986e246af47b49a783c2f6bf85, type: 2}
