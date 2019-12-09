@@ -24,9 +24,9 @@ namespace UITween
             originColor = ButtonImage.color;
         }
 
-        public void ScaleEnter()
+        public void ButtonScaleEnter(RectTransform rect, Vector3 endScale, float duration)
         { ThisButton.DOScale(endScale, duration); }
-        public void ScaleExit()
+        public void ButtonScaleExit()
         {
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.Select;

@@ -3,6 +3,8 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UITween;
+using DG.Tweening;
 using Photon.Pun.UtilityScripts;
 
 namespace Photon.Pun.Demo.Asteroids
@@ -64,8 +66,6 @@ namespace Photon.Pun.Demo.Asteroids
         private GameObject[] myCharacterUI;
         private GameObject[] lockCharacterUI;
 
-
-
         #region UNITY
 
         public void Awake()
@@ -103,7 +103,7 @@ namespace Photon.Pun.Demo.Asteroids
         }
         void Update()
         {
-            if (TitlePanel.activeSelf)
+            if (TitlePanel.activeSelf && Input.anyKeyDown && !LoginPanel.activeSelf)
             { OnTitlePanelCLicked(); }
         }
 
@@ -160,8 +160,7 @@ namespace Photon.Pun.Demo.Asteroids
         {
             if (Global.Level != 0)
             { SetActivePanel(InsideRoomPanel.name); }
-            else
-            { SetActivePanel(NoviceTeachingPanel.name); }
+
 
             if (playerListEntries == null)
             {
@@ -288,12 +287,8 @@ namespace Photon.Pun.Demo.Asteroids
 
         public void OnTitlePanelCLicked()
         {
-            if (Input.anyKeyDown)
-            { LoginPanel.SetActive(true); }
+            TitlePanel.GetComponent<UILoginPanelContoller>().onLoginPanelActive.Invoke();
         }
-
-        public void OnLoginCancelButton()
-        { SetActivePanel(TitlePanel.name); }
 
         public void OnBackButtonClicked()
         {
@@ -302,13 +297,15 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 PhotonNetwork.LeaveLobby();
             }
+            if (PhotonNetwork.InRoom)
+            { PhotonNetwork.LeaveRoom(); }
 
             SetActivePanel(SelectionPanel.name);
         }
         public void OnCreateRoomPanelButtonClicked()
         {
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
-            SetActivePanel(CreateRoomPanel.name);
+            SetActiveRightPanel(CreateRoomPanel.name);
         }
         public void OnCreateRoomButtonClicked()
         {
@@ -365,7 +362,7 @@ namespace Photon.Pun.Demo.Asteroids
                 PhotonNetwork.JoinLobby();
             }
 
-            SetActivePanel(RoomListPanel.name);
+            SetActiveRightPanel(RoomListPanel.name);
         }
 
         public void OnStartGameButtonClicked()
@@ -379,11 +376,27 @@ namespace Photon.Pun.Demo.Asteroids
 
         public void OnTeachButtonClicked()//新手教學
         {
+            if (playerListEntries == null)
+            {
+                playerListEntries = new Dictionary<int, GameObject>();
+            }
+            RoomOptions options = new RoomOptions { MaxPlayers = 1 };
+            PhotonNetwork.CreateRoom("Teaching", options, null);
+            PhotonNetwork.LocalPlayer.SetCharacter(0);
+
             if (PhotonNetwork.IsMasterClient)
             { PhotonNetwork.LoadLevel("NoviceTeaching"); }
         }
         public void OnTrainingButtonClicked()//訓練模式
         {
+            if (playerListEntries == null)
+            {
+                playerListEntries = new Dictionary<int, GameObject>();
+            }
+            RoomOptions options = new RoomOptions { MaxPlayers = 1 };
+            PhotonNetwork.CreateRoom("Teaching", options, null);
+            PhotonNetwork.LocalPlayer.SetCharacter(0);
+
             if (PhotonNetwork.IsMasterClient)
             { PhotonNetwork.LoadLevel("Training"); }
         }
@@ -420,24 +433,9 @@ namespace Photon.Pun.Demo.Asteroids
 
         public void OnNoviceTeachingClicked()
         {
-            //SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
-            if (playerListEntries == null)
-            {
-                playerListEntries = new Dictionary<int, GameObject>();
-            }
-            RoomOptions options = new RoomOptions { MaxPlayers = 1 };
-            PhotonNetwork.CreateRoom(null, options, null);
-            PhotonNetwork.LocalPlayer.SetCharacter(0);
-            // PlayerInfo.PI.mySelectedCharacter = 1;
-
-            // PhotonNetwork.LocalPlayer.SetReady(true);
-            // Hashtable props = new Hashtable
-            // {
-            //     {AsteroidsGame.PLAYER_LOADED_LEVEL, false}
-            // };
-            // PhotonNetwork.LocalPlayer.SetCustomProperties(props);
-            // PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
+            PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
             Global.Level = 0;
+            SetActiveRightPanel(NoviceTeachingPanel.name);
         }
 
         #endregion
@@ -465,6 +463,11 @@ namespace Photon.Pun.Demo.Asteroids
                 obj.SetActive(false);
             }
             tempObjs[visible].SetActive(true);
+        }
+        public void ResetCharacterVisiable()
+        {
+            foreach (GameObject obj in myCharacter)
+            { obj.SetActive(false); }
         }
         private void ObjVisiable(bool[] tempBools)
         {
@@ -525,10 +528,13 @@ namespace Photon.Pun.Demo.Asteroids
             TitlePanel.SetActive(activePanel.Equals(TitlePanel.name));
             LoginPanel.SetActive(activePanel.Equals(LoginPanel.name));
             SelectionPanel.SetActive(activePanel.Equals(SelectionPanel.name));
-            CreateRoomPanel.SetActive(activePanel.Equals(CreateRoomPanel.name));
             JoinRandomRoomPanel.SetActive(activePanel.Equals(JoinRandomRoomPanel.name));
-            RoomListPanel.SetActive(activePanel.Equals(RoomListPanel.name));    // UI should call OnRoomListButtonClicked() to activate this
             InsideRoomPanel.SetActive(activePanel.Equals(InsideRoomPanel.name));
+        }
+        private void SetActiveRightPanel(string activePanel)
+        {
+            CreateRoomPanel.SetActive(activePanel.Equals(CreateRoomPanel.name));
+            RoomListPanel.SetActive(activePanel.Equals(RoomListPanel.name));    // UI should call OnRoomListButtonClicked() to activate this
             NoviceTeachingPanel.SetActive(activePanel.Equals(NoviceTeachingPanel.name));
         }
 
@@ -578,26 +584,22 @@ namespace Photon.Pun.Demo.Asteroids
         {
             if (PhotonNetwork.IsConnectedAndReady)
             {
-                if(Global.Level !=0 ){
-                    int redAmount = 0;
-                    int blueAmount = 0;
+                int redAmount = 0;
+                int blueAmount = 0;
 
-                    foreach (Player player in PunTeams.PlayersPerTeam[PunTeams.Team.red])
-                    { redAmount++; }
+                foreach (Player player in PunTeams.PlayersPerTeam[PunTeams.Team.red])
+                { redAmount++; }
 
-                    foreach (Player player in PunTeams.PlayersPerTeam[PunTeams.Team.blue])
-                    { blueAmount++; }
+                foreach (Player player in PunTeams.PlayersPerTeam[PunTeams.Team.blue])
+                { blueAmount++; }
 
-                    if (redAmount == 0 && blueAmount == 0)
-                    { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red); }
+                if (redAmount == 0 && blueAmount == 0)
+                { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red); }
 
-                    if (redAmount > blueAmount)
-                    { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.blue); }
-                    else
-                    { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red); }
-                }
+                if (redAmount > blueAmount)
+                { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.blue); }
                 else
-                    PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
+                { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red); }
             }
         }
     }
