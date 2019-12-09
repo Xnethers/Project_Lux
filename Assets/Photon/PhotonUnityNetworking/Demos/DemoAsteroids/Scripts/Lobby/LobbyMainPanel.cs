@@ -433,7 +433,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         public void OnNoviceTeachingClicked()
         {
-            PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
+            //PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
             Global.Level = 0;
             SetActiveRightPanel(NoviceTeachingPanel.name);
         }
@@ -584,22 +584,27 @@ namespace Photon.Pun.Demo.Asteroids
         {
             if (PhotonNetwork.IsConnectedAndReady)
             {
-                int redAmount = 0;
-                int blueAmount = 0;
+                if(Global.Level == 0){
+                    PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
+                }
+                else{
+                    int redAmount = 0;
+                    int blueAmount = 0;
 
-                foreach (Player player in PunTeams.PlayersPerTeam[PunTeams.Team.red])
-                { redAmount++; }
+                    foreach (Player player in PunTeams.PlayersPerTeam[PunTeams.Team.red])
+                    { redAmount++; }
 
-                foreach (Player player in PunTeams.PlayersPerTeam[PunTeams.Team.blue])
-                { blueAmount++; }
+                    foreach (Player player in PunTeams.PlayersPerTeam[PunTeams.Team.blue])
+                    { blueAmount++; }
 
-                if (redAmount == 0 && blueAmount == 0)
-                { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red); }
+                    if (redAmount == 0 && blueAmount == 0)
+                    { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red); }
 
-                if (redAmount > blueAmount)
-                { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.blue); }
-                else
-                { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red); }
+                    if (redAmount > blueAmount)
+                    { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.blue); }
+                    else
+                    { PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red); }
+                }
             }
         }
     }
