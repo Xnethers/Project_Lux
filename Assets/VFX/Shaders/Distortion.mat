@@ -45,7 +45,7 @@ Material:
     - _NormalIntensity: 1.63
     - _NormalInvensity: 0
     - _OpacityValue: 0
-    - _RefractionIntensity: 0.59
+    - _RefractionIntensity: 0.524
     - _RefractionValue: 0.378
     - _RotationSpeed: -0.4
     - _Speed: 1
