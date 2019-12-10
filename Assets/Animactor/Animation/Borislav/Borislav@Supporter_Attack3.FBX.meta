@@ -879,7 +879,7 @@ ModelImporter:
     - name: Borislav@Model(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      rotation: {x: 0, y: 0.0000015177212, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Borislav
       parentName: Borislav@Model(Clone)
@@ -898,7 +898,7 @@ ModelImporter:
       scale: {x: 0.99999994, y: 0.99999994, z: 1}
     - name: Bip001 Footsteps
       parentName: Bip001
-      position: {x: -0, y: 0, z: -0.7362807}
+      position: {x: -0, y: 0, z: -0.7283249}
       rotation: {x: 0, y: 0, z: -0.7071063, w: 0.70710725}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Pelvis
@@ -1238,7 +1238,7 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 10c45d75e8387f545b102c8ad2af3391,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0101e4f389cc2ee47a8f12e4a802ef5a,
     type: 3}
   animationType: 3
   humanoidOversampling: 1

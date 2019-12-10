@@ -679,18 +679,28 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Adela@Model 1(Clone)
+    - name: Adela@Model(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0.0000015556319, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+    - name: Adela_Arm
+      parentName: Adela@Model(Clone)
+      position: {x: -0, y: 0, z: -8.9640286e-17}
+      rotation: {x: -1.0165751e-15, y: 1, z: -0.000000021855694, w: -0.00000004371139}
+      scale: {x: 0.79587585, y: 0.79587585, z: 0.79587585}
+    - name: Adela_Arm001
+      parentName: Adela@Model(Clone)
+      position: {x: -1.2652608, y: 0, z: 1.8968263e-16}
+      rotation: {x: -1.0165751e-15, y: 1, z: -0.000000021855694, w: -0.00000004371139}
+      scale: {x: 0.79587585, y: 0.79587585, z: 0.79587585}
     - name: Adela_Body
-      parentName: Adela@Model 1(Clone)
+      parentName: Adela@Model(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001
-      parentName: Adela@Model 1(Clone)
+      parentName: Adela@Model(Clone)
       position: {x: -0, y: 0.655, z: -0.014204513}
       rotation: {x: -0.5000004, y: 0.4999997, z: 0.49999964, w: 0.5000003}
       scale: {x: 0.99999994, y: 0.99999994, z: 1}
@@ -804,11 +814,6 @@ ModelImporter:
       position: {x: -0.1397007, y: 0, z: 0.000000076293944}
       rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
       scale: {x: 1.0000012, y: 1.000001, z: 1.0000005}
-    - name: Bone001
-      parentName: Bip001 R Hand
-      position: {x: -0.08672191, y: 0.027364273, z: 0.07296119}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.9999999, y: 0.9999998, z: 1.0000005}
     - name: Bip001 R Finger4
       parentName: Bip001 R Hand
       position: {x: -0.08045589, y: -0.0054011536, z: -0.03493702}
@@ -909,6 +914,11 @@ ModelImporter:
       position: {x: -0.019104157, y: 0.0000000023841857, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: -1.0000001, y: -1, z: -1.0000001}
+    - name: Bone001
+      parentName: Bip001 R Hand
+      position: {x: -0.08672191, y: 0.027364273, z: 0.07296119}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000026, y: 1.0000026, z: 1.0000007}
     - name: Bip001 L Clavicle
       parentName: Bip001 Neck
       position: {x: 0.011915817, y: 0.0084889885, z: 0.038617216}
@@ -929,11 +939,6 @@ ModelImporter:
       position: {x: -0.13970064, y: -0.000000009536743, z: -0.000000076293944}
       rotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
       scale: {x: 1.0000001, y: 1.0000008, z: 1.0000011}
-    - name: Bone019
-      parentName: Bip001 L Hand
-      position: {x: -0.08672169, y: 0.027363967, z: -0.072962634}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 0.9999997, z: 0.9999998}
     - name: Bip001 L Finger4
       parentName: Bip001 L Hand
       position: {x: -0.080455855, y: -0.0054011536, z: 0.034937028}
@@ -1034,6 +1039,11 @@ ModelImporter:
       position: {x: -0.019104157, y: 0.0000000023841857, z: 0.000000076293944}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+    - name: Bone019
+      parentName: Bip001 L Hand
+      position: {x: -0.08672169, y: 0.027363967, z: -0.072962634}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000005, y: 0.9999996, z: 1.000001}
     - name: Bone013
       parentName: Bip001 Spine1
       position: {x: -0.05180313, y: -0.018056175, z: -0.18321992}
@@ -1126,7 +1136,7 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1186382994b4c284ba4820c51618a791,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d08a823d57a9f8747bc9480c2221818f,
     type: 3}
   animationType: 3
   humanoidOversampling: 1

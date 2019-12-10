@@ -114,6 +114,8 @@ namespace Photon.Pun.Demo.Asteroids{
 		} */
 		public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
         {
+			if (Global.Level <= 0)
+				return;
             this.UpdateCharacter();
         }
 		//When player LeaveRoom, close ready.
