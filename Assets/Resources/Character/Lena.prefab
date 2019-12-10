@@ -1898,7 +1898,7 @@ GameObject:
   - component: {fileID: 136815257075828088}
   m_Layer: 12
   m_Name: sensor
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5582,6 +5582,7 @@ MonoBehaviour:
   jump: 0
   roll: 0
   latent: 0
+  inputActive: 1
   inputEnabled: 1
   inputMouseEnabled: 1
   keyUp: w
@@ -6167,7 +6168,7 @@ MonoBehaviour:
   die: 0
   deadTime: 5
   AllAttack: 0
-  AllHit: 0
+  AllHurt: 0
   AllKill: 0
   AllDead: 0
 --- !u!114 &114570619109347910
@@ -6972,6 +6973,7 @@ MonoBehaviour:
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
+  latentCount: 0
 --- !u!114 &114926318356447440
 MonoBehaviour:
   m_ObjectHideFlags: 1

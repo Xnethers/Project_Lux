@@ -19,9 +19,9 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     public OccupiedTest occupied;
     public float enemyHpValue = -5f;
     [Header("Result Settings")]
-    public bool isResult = false;
     public GameObject resultUI;
     public Text tempText;
+    private ActorManager[] allActor;
     // Use this for initialization
     void Awake()
     {
@@ -30,28 +30,30 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
         { resultUI.SetActive(false); }
         health = maxhealth;
         fov = GetComponent<FieldOfView>();
+        allActor = FindObjectsOfType<ActorManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0 && !isResult)
-        {
-            // PV.RPC("SetResult", RpcTarget.All);
-            if(Global.Level!=0)
-                SetResult();
-            foreach (ActorManager am in FindObjectsOfType<ActorManager>())
-            {
+        if (health <= 0)
+        {   
+            // foreach (ActorManager am in allActor)
+            // {
                 // am.ac.SetBool("result", true);
                 // am.ac.pi.inputEnabled = false;
                 // am.ac.pi.inputMouseEnabled = false;
-                am.ac.pi.inputActive = false;
+                // am.ac.pi.inputActive = false;
                 //am.ac.pi.enabled = false;
-                am.ac.camcon.isCursorVisible = true;
-                am.ac.anim.ResetTrigger("attack");
+                // am.ac.camcon.isCursorVisible = true;
+                // am.ac.anim.ResetTrigger("attack");
 
+            // }
+            if(!GameManager.Instance.isResult){
+                // PV.RPC("SetResult", RpcTarget.All);
+                SetResult();
+                GameManager.Instance.isResult = true;
             }
-            isResult = true;
         }
         else
         {
@@ -64,7 +66,6 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
                 }
             }
         }
-
     }
 
     void OnTriggerEnter(Collider col)
@@ -119,7 +120,8 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     private void SetResult()
     {
-        resultUI.SetActive(true);
+        // resultUI.SetActive(true);
+        GameManager.Instance.GameMenu.isMenu=true;
         if (this.tag == "Red")
         {//red = Yellow , blue = Purple
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.red)

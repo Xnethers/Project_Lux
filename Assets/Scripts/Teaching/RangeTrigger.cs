@@ -6,13 +6,15 @@ public class RangeTrigger : IFlowchart {
 	public string rangeName;
 	void OnTriggerEnter(Collider other)
 	{
-		flowchart.StopAllBlocks();
-		if(rangeName == "Attack"){
-			Fungus.Flowchart.BroadcastFungusMessage("Attack");
+		if(other.tag == "Player"){
+			flowchart.StopAllBlocks();
+			if(rangeName == "Attack"){
+				Fungus.Flowchart.BroadcastFungusMessage("Attack");
+			}
+			if(rangeName == "Latent"){
+				Fungus.Flowchart.BroadcastFungusMessage("Latent");
+			}
+			this.gameObject.SetActive(false);
 		}
-		if(rangeName == "Latent"){
-			Fungus.Flowchart.BroadcastFungusMessage("Latent");
-		}
-		this.gameObject.SetActive(false);
 	}
 }

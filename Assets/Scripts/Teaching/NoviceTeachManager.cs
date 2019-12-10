@@ -19,7 +19,7 @@ public class NoviceTeachManager : IFlowchart {
 		AI.SetActive(false);
 		rangeLatent.SetActive(false);
 		Latent.SetActive(false);
-		occupied.redValue = 95;
+		occupied.redValue = 85;
 		occupied.gameObject.SetActive(false);
 		tower.gameObject.SetActive(false);
 	}
@@ -38,7 +38,7 @@ public class NoviceTeachManager : IFlowchart {
 			Fungus.Flowchart.BroadcastFungusMessage("OccupiedFinish");
 			isOccupiedFinish = true;
 		}
-		if(!isTowerFinish && tower.isResult){
+		if(!isTowerFinish && GameManager.Instance.isResult){
 			flowchart.StopAllBlocks();
 			Fungus.Flowchart.BroadcastFungusMessage("TowerFinish");
 			isTowerFinish = true;

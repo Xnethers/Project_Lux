@@ -24,6 +24,7 @@ using Photon.Realtime;
         [Header("Menu")]
         public InGameMenu GameMenu;
         [Header("Result")]
+        public bool isResult;
         public GameObject ResultPlayerListEntry;
         public GameObject MyTeamPanel;
         public GameObject OtherTeamPanel;

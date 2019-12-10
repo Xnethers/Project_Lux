@@ -74,7 +74,7 @@ public class OccupiedTest : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
             return;
-        if (photonView.IsSceneView && !isInvincible)
+        if (photonView.IsSceneView && !isInvincible && !GameManager.Instance.isResult)
         {
             if (isRedIn && isBlueIn)
             { }

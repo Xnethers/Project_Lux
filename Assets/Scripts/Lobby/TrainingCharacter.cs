@@ -17,7 +17,7 @@ public class TrainingCharacter : InGameMenu {
 		}*/
 		if(PlayerUI == null)
 			PlayerUI = PlayerAm.GetComponent<PlayerUI>().ScreenCanvas;
-		if(isMenu){
+		if(isMenu && !GameManager.Instance.isResult){
 			PlayerUI.gameObject.SetActive(false);
 		}
 		else{
