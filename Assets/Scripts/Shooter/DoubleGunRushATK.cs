@@ -13,7 +13,7 @@ public class DoubleGunRushATK : Projectile
     public float Intervals = 0.1f;//間隔時間
     public float DelayedLaunch = 0.0f;//延遲發動時間
     public LayerMask mask;//目標對象layer
-    Collider[] cols;//目標對象collider
+    public Collider[] cols;//目標對象collider
     public GameObject RushZoneVFX;
 
     public override void Awake()
@@ -25,12 +25,34 @@ public class DoubleGunRushATK : Projectile
     void Start()
     {
         Destroy(this, duration);
+        cols = Physics.OverlapSphere(transform.position, range, mask);
+        StartCoroutine("DoMultiDamag");
+        for (int i = 0; i < frequency + 1; i++)
+        {           
+            //Invoke("Invoke_DoMultiDamage", Intervals * i);
+        }
+    }
+
+    IEnumerator DoMultiDamag()
+    {
         for (int i = 0; i < frequency + 1; i++)
         {
-            Invoke("Invoke_DoMultiDamage", Intervals * i);
+            foreach (Collider col in cols)
+            {
+                if (col.tag == this.tag)
+                {
+                    continue;
+                }
+                if (col.GetComponent<DamageHandler>() == null)
+                {
+                    continue;
+                }
+                SendTryDoDamage(col);
+            }
+            yield return new WaitForSeconds(Intervals);
         }
-
     }
+
 
     void Update()
     {
@@ -48,7 +70,7 @@ public class DoubleGunRushATK : Projectile
             if (col.GetComponent<DamageHandler>() == null)
             {
                 return;
-            } 
+            }
             SendTryDoDamage(col);
         }
     }
