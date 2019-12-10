@@ -391,6 +391,7 @@ namespace Photon.Pun.Demo.Asteroids
             }
             RoomOptions options = new RoomOptions { MaxPlayers = 1 };
             PhotonNetwork.CreateRoom("Teaching", options, null);
+            PhotonNetwork.JoinOrCreateRoom("Teaching", options, null);
             // PhotonNetwork.LocalPlayer.SetCharacter(0);
             Global.Level = -1; 
             // if (PhotonNetwork.IsMasterClient){ }

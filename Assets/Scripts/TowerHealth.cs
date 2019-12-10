@@ -95,7 +95,20 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
         if (occupied.tag == "Untagged")//occupied.occupiedState == OccupiedTest.OccupiedState.None
             return;
         if (occupied.tag != this.tag)
+        {
+            if (damageData.AttackerAm != null)
+            {
+                if (health - damageData.Damage > 0)
+                {
+                    damageData.AttackerAm.sm.RPC_AddAllAttack(damageData.Damage);
+                }
+                else
+                {
+                    damageData.AttackerAm.sm.RPC_AddAllAttack(health);
+                }
+            }
             AddHP(-1 * damageData.Damage);
+        }
     }
     public void AddHP(float value)
     {

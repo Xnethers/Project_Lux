@@ -27441,11 +27441,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114484138832092752}
-        m_MethodName: ResetPanelSize
-        m_Mode: 1
+        m_MethodName: ClosePanel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 224590602980259378}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -30555,7 +30555,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100004, guid: 0101e4f389cc2ee47a8f12e4a802ef5a, type: 3}
+  - {fileID: 2100000, guid: dba7a808974f40a4a8feeae537b30219, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32363,9 +32363,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0101e4f389cc2ee47a8f12e4a802ef5a, type: 3}
-  - {fileID: 2100002, guid: 0101e4f389cc2ee47a8f12e4a802ef5a, type: 3}
-  - {fileID: 2100004, guid: 0101e4f389cc2ee47a8f12e4a802ef5a, type: 3}
+  - {fileID: 2100000, guid: 354ecae040a50714cb89e5a240dfecb9, type: 2}
+  - {fileID: 2100000, guid: 3f2d7c3b3e6db574a9460247057ff561, type: 2}
+  - {fileID: 2100000, guid: dba7a808974f40a4a8feeae537b30219, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35347,8 +35347,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 357.5, y: -27}
-  m_SizeDelta: {x: 715, y: 24}
+  m_AnchoredPosition: {x: 357.5, y: -26.533981}
+  m_SizeDelta: {x: 715, y: 23.067963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224932046009650994
 RectTransform:
@@ -35478,8 +35478,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 357.5, y: -27}
-  m_SizeDelta: {x: 715, y: 24}
+  m_AnchoredPosition: {x: 357.5, y: -26.533981}
+  m_SizeDelta: {x: 715, y: 23.067963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224970548672815428
 RectTransform:

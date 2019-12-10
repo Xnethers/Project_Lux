@@ -102,16 +102,17 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             
         }
         //可以加targetAm狀態來判定要不要扣血
-        if(damageData.AttackerAm != null){
-            if(sm.HP-currentDamage>0){
-                sm.AllHurt+=currentDamage;
-                damageData.AttackerAm.photonView.RPC("RPC_AddAllAttack", RpcTarget.All,currentDamage);
-            }
-            else
-            {
-                sm.AllHurt+=sm.HP;
-                damageData.AttackerAm.photonView.RPC("RPC_AddAllAttack", RpcTarget.All,sm.HP);
-            }
+        if (sm.HP - currentDamage > 0)
+        {
+            sm.AllHurt += currentDamage;
+            if (damageData.AttackerAm != null)
+                damageData.AttackerAm.photonView.RPC("RPC_AddAllAttack", RpcTarget.All, currentDamage);
+        }
+        else
+        {
+            sm.AllHurt += sm.HP;
+            if (damageData.AttackerAm != null)
+                damageData.AttackerAm.photonView.RPC("RPC_AddAllAttack", RpcTarget.All, sm.HP);
         }
         
         sm.AddHP(-currentDamage);

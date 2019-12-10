@@ -72,14 +72,19 @@ public class TowerGuard : MonoBehaviour, IPunObservable
                 }
             case status.shoot:
                 {
-                    dl.Disappear();
-                    // dl.SetLineEnabled(false);
-                    if (PhotonNetwork.IsConnected)
-                    { pv.RPC("ShootProjectile", RpcTarget.All); }
+                    if (GameManager.Instance.isResult)
+                    { return; }
                     else
-                    { ShootProjectile(); }
-                    Timer.Reset();
-                    Status = status.finished;
+                    {
+                        dl.Disappear();
+                        // dl.SetLineEnabled(false);
+                        if (PhotonNetwork.IsConnected)
+                        { pv.RPC("ShootProjectile", RpcTarget.All); }
+                        else
+                        { ShootProjectile(); }
+                        Timer.Reset();
+                        Status = status.finished;
+                    }
                     break;
                 }
             case status.search:

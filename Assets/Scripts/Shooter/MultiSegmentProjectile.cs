@@ -26,7 +26,6 @@ public class MultiSegmentProjectile : Projectile
     {
         cols = Physics.OverlapBox(transform.position, col_range.size, transform.rotation, mask);
         base.OnEnable();
-        Debug.LogError(am);
         Invoke("close", duration);
         InvokeRepeating("Invoke_DoMultiDamage", DelayedLaunch, Intervals);
     }

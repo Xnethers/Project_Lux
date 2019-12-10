@@ -28,6 +28,7 @@ public class DoubleGunController : ICareerController
     //[0]==左,[1]==右,[2]==F
     public bool isFill;
     public int magazine = 40;
+    private int MaxMagazine;
 
     [Header("===== Force Settings =====")]
     public GameObject[] Beam = new GameObject[2];
@@ -55,7 +56,7 @@ public class DoubleGunController : ICareerController
         foreach (var item in Beam)
         { item.SetActive(false); }
         //StartCoroutine("Timer_Forcing");
-
+        MaxMagazine = magazine;
     }
 
 
@@ -270,7 +271,7 @@ public class DoubleGunController : ICareerController
 
     public void BulletRecover() //填彈
     {
-        magazine = 10;
+        magazine = MaxMagazine;
     }
     public void OnFillBulletExit() //填彈
     {
