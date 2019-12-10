@@ -48,7 +48,7 @@ public class CharacterIK : LookAtIK {
 		l_Hand.position = l_Hand_Target.position;
 		// l_Hand.rotation = lh_rot;
 
-		if(ac.camcon.doAim){
+		if(ac.anim.GetBool("aim")){//ac.camcon.doAim
 			// rh_Weight +=Time.deltaTime *2;
 			r_Hand.localRotation = rotRightAim;
 			r_Hand.localPosition = characterInventory.secondWeapon.rHandPos;
