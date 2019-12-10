@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/VFX/Prefab/Lux/Adela/FX_AdelaQ.prefab.meta
+guid: 184c2d0f6c34f894788f46d82dbb1b8e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+=======
+guid: 0583ba84c0ecb9c4dba2710d8a4092d2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+>>>>>>> UITween:Assets/Animactor/Animation/Borislav/Borislav@Model.controller.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
