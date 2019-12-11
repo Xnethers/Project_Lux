@@ -6184,6 +6184,9 @@ MonoBehaviour:
   isJump: 0
   footIK: {fileID: 0}
   latentCount: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 66048
 --- !u!114 &114575592712035958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7047,6 +7050,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: RightFootCurve
+  - Type: 4
+    SynchronizeType: 1
+    Name: isBounce
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0

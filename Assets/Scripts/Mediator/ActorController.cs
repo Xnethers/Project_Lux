@@ -51,6 +51,8 @@ public class ActorController : IActorManagerInterface {
     public bool isJump;
     public FootIK footIK;
     public int latentCount = 0;
+    public LayerMask layerMask;
+    bool m_Started;
     // Use this for initialization
     public void Awake() {
         IUserInput[] inputs = GetComponents<IUserInput>();
@@ -74,6 +76,7 @@ public class ActorController : IActorManagerInterface {
     void Start()
     {
         am.bm.bcL.gameObject.SetActive(false);
+        m_Started = true;
     }
     // Update is called once per frame
     protected void Update() {
@@ -144,8 +147,22 @@ public class ActorController : IActorManagerInterface {
         if (pi.jump) {
             photonView.RPC("RPC_SetTrigger",RpcTarget.All,"jump");
         }
+        anim.SetBool("isBounce",isBounce);
+        if(Physics.CheckBox(transform.position+transform.up*chacon.height,Vector3.one*0.25f,transform.rotation,layerMask)){
+            isBounce = false;
+            // _velocity.y=0;
+            
+        }
     }
-
+    //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        if (m_Started)
+            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
+            Gizmos.DrawWireCube(transform.position+transform.up*chacon.height, Vector3.one*0.25f);
+    }
     public void SetSpeedup(float upvalue)
     {
         upSpeed = upvalue;
@@ -167,8 +184,10 @@ public class ActorController : IActorManagerInterface {
         // if (anim.GetBool("isGround") && _velocity.y < 0)
         // { _velocity.y = 0f; }
         if(!pi.isLatent){
+            
             if(_velocity.y > -25f)
                 _velocity.y += gravity * Physics.gravity.y * Time.fixedDeltaTime;
+            
             if(am.sm.isDie && am.sm.isGround)
                 _velocity.y=0;
             //移動
@@ -197,12 +216,14 @@ public class ActorController : IActorManagerInterface {
     {
         return anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(layerName)).IsTag(tagName);
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
+        
         //撞到空中走廊
         // if(other.gameObject.layer!=LayerMask.NameToLayer("Bounce") && other.gameObject.layer!=LayerMask.NameToLayer("Occupied")){
-        //     _velocity.y = 0f;
-        //     Debug.Log("no bounce=fall:"+other.name);
+            
+                // photonView.RPC("RPC_SetTrigger",RpcTarget.All,"obstacle");
+                //Debug.Log("no bounce=fall:"+other.name);
         // }
         //anim.SetBool("isHighFall", true);
         // Collider[] outputCols = Physics.OverlapBox(am.bm.transform.position , new Vector3(.5f,.2f,.5f),Quaternion.identity, LayerMask.GetMask("Bounce"));
@@ -211,6 +232,7 @@ public class ActorController : IActorManagerInterface {
         // }
             
     }
+    
     void OnTriggerExit(Collider other)
     {
         // if(other.gameObject.layer==LayerMask.NameToLayer("Ground") || other.gameObject.layer==LayerMask.NameToLayer("Wall")){

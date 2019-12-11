@@ -389,9 +389,11 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 playerListEntries = new Dictionary<int, GameObject>();
             }
-            RoomOptions options = new RoomOptions { MaxPlayers = 1 };
+            RoomOptions options = new RoomOptions { MaxPlayers = 1 ,IsVisible =false, IsOpen =false};
+            
             PhotonNetwork.CreateRoom("Teaching", options, null);
-            PhotonNetwork.JoinOrCreateRoom("Teaching", options, null);
+
+            // PhotonNetwork.JoinOrCreateRoom("Teaching", options, null);
             // PhotonNetwork.LocalPlayer.SetCharacter(0);
             Global.Level = -1; 
             // if (PhotonNetwork.IsMasterClient){ }
@@ -402,8 +404,10 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 playerListEntries = new Dictionary<int, GameObject>();
             }
-            RoomOptions options = new RoomOptions { MaxPlayers = 1 };
-            PhotonNetwork.CreateRoom("Teaching", options, null);
+            RoomOptions options = new RoomOptions { MaxPlayers = 1  ,IsVisible =false, IsOpen =false};
+            PhotonNetwork.CreateRoom("Training", options, null);
+
+            // PhotonNetwork.JoinOrCreateRoom("Training", options, null);
             // PhotonNetwork.LocalPlayer.SetCharacter(0);
             Global.Level = 0; 
             // if (PhotonNetwork.IsMasterClient){ }

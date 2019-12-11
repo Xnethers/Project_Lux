@@ -4841,7 +4841,7 @@ MonoBehaviour:
   - {fileID: 114719799792810466}
   - {fileID: 114376165227488104}
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 17
   isRuntimeInstantiated: 0
 --- !u!114 &114218383465573066
 MonoBehaviour:
@@ -5592,7 +5592,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999152103625804}
   viewIdField: 0
-  InstantiationId: 17
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114544707042811110
 MonoBehaviour:
@@ -5855,6 +5855,9 @@ MonoBehaviour:
   isJump: 0
   footIK: {fileID: 0}
   latentCount: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 66048
 --- !u!114 &114678461351947774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5926,6 +5929,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: RightFootCurve
+  - Type: 4
+    SynchronizeType: 1
+    Name: isBounce
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -6387,8 +6393,10 @@ MonoBehaviour:
   r_Hand: {fileID: 0}
   lh_rot: {x: 0, y: 0, z: 0, w: 0}
   rh_Weight: 1
+  lh_Weight: 0
   shoulder: {fileID: 0}
   aimPivot: {fileID: 0}
+  speed: 5
 --- !u!114 &114944289073866124
 MonoBehaviour:
   m_ObjectHideFlags: 1

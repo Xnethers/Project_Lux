@@ -3634,7 +3634,7 @@ MonoBehaviour:
   - {fileID: 114214462689860372}
   - {fileID: 114414971300417562}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114083748814543258
 MonoBehaviour:
@@ -3871,6 +3871,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: RightFootCurve
+  - Type: 4
+    SynchronizeType: 1
+    Name: isBounce
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -4508,7 +4511,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114200996963877352}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114547997086919342
 MonoBehaviour:
@@ -4656,6 +4659,9 @@ MonoBehaviour:
   isJump: 0
   footIK: {fileID: 0}
   latentCount: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 66048
 --- !u!114 &114587599819806300
 MonoBehaviour:
   m_ObjectHideFlags: 1
