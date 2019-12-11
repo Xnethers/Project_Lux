@@ -6436,9 +6436,11 @@ MonoBehaviour:
   - {fileID: 1834539410345922, guid: f27cbf94535fb004ea69e88e052994a0, type: 2}
   - {fileID: 1834539410345922, guid: f27cbf94535fb004ea69e88e052994a0, type: 2}
   rayhitAirWall: 0
-  VFX_Adela_Q: {fileID: 0}
-  VFX_Adela_gunFire: {fileID: 0}
-  ThrowerPower: 10
+  VFX_Adela_B1: {fileID: 1180488345008914, guid: f04305bebdf44054faf5e2272ef6ec69,
+    type: 2}
+  VFX_Adela_gunFire: {fileID: 1297153384708878, guid: e9d161f3a150f1a4e95bc6fe0c9fdfd3,
+    type: 2}
+  ThrowerPower: 80
   Magazine: {fileID: 0}
   Obj_magazine: {fileID: 0}
   magazinePos:

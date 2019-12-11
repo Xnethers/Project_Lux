@@ -8,7 +8,7 @@ using Photon.Realtime;
 //Adela
 public class DoubleGunController : ICareerController
 {
-    public GameObject VFX_Adela_Q;
+    public GameObject VFX_Adela_B1;
     public GameObject VFX_Adela_gunFire;
     private KICareer ki;
 
@@ -172,15 +172,15 @@ public class DoubleGunController : ICareerController
     #region animator skill events
     public override void NormalAttack()
     {
-        CreateGunFire();
+        
         if (!photonView.IsMine)
             return;
         else
         {
             if (isleft)
-            { photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[0].position, RayAim(), ThrowerPower); }
+            { photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[0].position, RayAim(), ThrowerPower); CreateGunFire(muzzles[0]);}
             else
-            { photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[1].position, RayAim(), ThrowerPower); }
+            { photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[1].position, RayAim(), ThrowerPower); CreateGunFire(muzzles[1]);}
             magazine--;
             isleft = !isleft;
         }
@@ -189,6 +189,8 @@ public class DoubleGunController : ICareerController
     public override void FirstAttack()//
     {
         //SoundManager.Instance.PlayEffectSound(gunFire);
+        GameObject vfx = Instantiate(VFX_Adela_B1, transform.position,VFX_Adela_B1.transform.rotation) as GameObject;
+        vfx.transform.SetParent(transform);
         SendMessage("AddBuff", "isSpeedup");
         //ac.anim.speed *= 2;
 
@@ -206,7 +208,8 @@ public class DoubleGunController : ICareerController
 
     public override void RushAttack()//Q
     {
-        CreateGunFire();
+        CreateGunFire( muzzles[0]);
+        CreateGunFire( muzzles[1]);
         if (!photonView.IsMine)
         { return; }
         photonView.RPC("RPC_Projectile", RpcTarget.All, transform.position, RayAim(), 0f);
@@ -225,7 +228,8 @@ public class DoubleGunController : ICareerController
     }
     public override void AirAttack()
     {
-        CreateGunFire();
+        CreateGunFire( muzzles[0]);
+        CreateGunFire( muzzles[1]);
         if (!photonView.IsMine)
         { return; }
         else
@@ -310,12 +314,12 @@ public class DoubleGunController : ICareerController
         if (ac != null)
             ac.lerpTarget = 1.0f;
     }
-    public void CreateGunFire()
+    public void CreateGunFire(Transform trans)
     {
         if (VFX_Adela_gunFire != null)
         {
-            GameObject vfx = Instantiate(VFX_Adela_gunFire, muzzles[0].transform.position, transform.rotation) as GameObject;
-            vfx.transform.SetParent(muzzles[0].transform);
+            GameObject vfx = Instantiate(VFX_Adela_gunFire, trans.position, trans.rotation) as GameObject;
+            vfx.transform.SetParent(trans);
         }
         SoundManager.Instance.PlayEffectSound(gunFire);
     }
@@ -331,9 +335,9 @@ public class DoubleGunController : ICareerController
     }
 
     [PunRPC]
-    void PS_creatQEffect()
+    void PS_creatBuffEffect()
     {
-        Instantiate(VFX_Adela_Q, transform);
+        Instantiate(VFX_Adela_B1, transform);
     }
 
     #endregion
