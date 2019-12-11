@@ -158,8 +158,8 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'Bip001 L
-      Thigh' : position error = 8.805010 mm\n\t'Bip001 R Thigh' : position error =
-      8.816743 mm\n"
+      Thigh' : position error = 8.805017 mm\n\t'Bip001 R Thigh' : position error =
+      8.816713 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -500,7 +500,7 @@ ModelImporter:
             outWeight: 0
           - serializedVersion: 3
             time: 0.5
-            value: -16
+            value: -18
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -534,7 +534,7 @@ ModelImporter:
             outWeight: 0
           - serializedVersion: 3
             time: 0.1
-            value: 15
+            value: 18
             inSlope: 0
             outSlope: 0
             tangentMode: 0

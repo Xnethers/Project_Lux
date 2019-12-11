@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using Fungus;
 public class InGameMenu : MonoBehaviour
 {
     public ActorManager PlayerAm;
@@ -43,6 +43,16 @@ public class InGameMenu : MonoBehaviour
                     Tweener scale1 = PlayersListPanel.DOSizeDelta(new Vector2(size.x, 1), duration);
                     Tweener scale2 = PlayersListPanel.DOSizeDelta(size, duration);
                     mySequence.Append(scale1).Append(scale2);
+                    
+                }
+                if (Input.anyKeyDown &&  PlayersListPanel.sizeDelta == size){//mySequence.IsComplete()
+                    if(Global.Level == -1){
+                        if(!FindObjectOfType<Flowchart>().GetBooleanVariable("isTalking")){
+                            GameManager.Instance.LeaveRoom();
+                        }
+                    }
+                    else 
+                        GameManager.Instance.LeaveRoom();
                 }
             }
             if (PlayerAm != null)

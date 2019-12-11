@@ -20,6 +20,13 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
     public MySkillTimer skillAir = new MySkillTimer();
     public MySkillTimer skillForce = new MySkillTimer();
     public MyTimer forcingTimer = new MyTimer();
+	void Awake(){
+		skillMR.Initialize(careerValue.FirstCD);
+		skillF.Initialize(careerValue.SecondCD);
+		skillQ.Initialize(careerValue.RushingCD);
+		skillAir.Initialize(careerValue.AirCD);
+		skillForce.Initialize(careerValue.ForceCD);
+	}
 	public virtual void NormalAttack()//普攻
 	{ }
 
@@ -139,10 +146,13 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 	public bool isSkilling = false;
 	public float duration;
 	public MyTimer atkTimer = new MyTimer();
+	public void Initialize(float duration){
+		atkTimer.elapsedTime = duration;
+	}
 	public void Tick() {
 		atkTimer.Tick();
 		if(isSkilling){
-			StartTimer(atkTimer,duration);	
+			atkTimer.Go(duration);	
 			isSkilling = false;
 		}
 		if (atkTimer.state == MyTimer.STATE.RUN)
@@ -150,7 +160,4 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 		else
 			FinishedCD=true;
 	}
-	private void StartTimer(MyTimer timer, float duration) {
-        timer.Go(duration);
-    }
 }

@@ -64,9 +64,9 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         }
         occupied = FindObjectOfType<OccupiedTest>();
         ReLiveTime.text = sm.deadTime.ToString();
-        foreach (Image image in skill)
-        { image.enabled = false; }
-        skill[1].enabled = true;//rush
+        // foreach (Image image in skill)
+        // { image.enabled = false; }
+        // skill[1].enabled = true;//rush
     }
 
     public virtual void Update()
@@ -96,9 +96,12 @@ public class PlayerUI : MonoBehaviourPunCallbacks
             return;
         if (skill.Length > 0)
         {
-            skill[0].enabled = !careercon.CheckCD(careercon.skillF);
-            skill[2].enabled = !careercon.CheckCD(careercon.skillAir);
-            skill[3].enabled = !careercon.CheckCD(careercon.skillForce);
+            // skill[0].enabled = !careercon.CheckCD(careercon.skillF);
+            // skill[2].enabled = !careercon.CheckCD(careercon.skillAir);
+            // skill[3].enabled = !careercon.CheckCD(careercon.skillForce);
+            skill[0].fillAmount = (careercon.careerValue.SecondCD-careercon.skillF.atkTimer.elapsedTime) / careercon.careerValue.SecondCD;
+            skill[2].fillAmount = (careercon.careerValue.AirCD-careercon.skillAir.atkTimer.elapsedTime) / careercon.careerValue.AirCD;
+            skill[3].fillAmount = (careercon.careerValue.ForceCD-careercon.skillForce.atkTimer.elapsedTime) / careercon.careerValue.ForceCD;
             skill[1].fillAmount = sm.RP / sm.RPMax;
         }
         forcingAim.enabled = sm.isForcingAim;
