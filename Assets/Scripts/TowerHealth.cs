@@ -161,7 +161,8 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
                 SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
             }
         }
-        GameManager.Instance.Settlement();
+        // GameManager.Instance.Settlement();
+        GameManager.Instance.GameMenu.SettlementPanelDisable();
     }
 
 

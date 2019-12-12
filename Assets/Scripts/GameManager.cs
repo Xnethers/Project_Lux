@@ -14,6 +14,7 @@ using Photon.Pun.UtilityScripts;
     {
         #region Public Fields
         public static GameManager Instance;
+        public bool GameStart = false;
         [Tooltip("The prefab to use for representing the player")]
         public GameObject[] playerPrefab;
 
@@ -91,6 +92,20 @@ using Photon.Pun.UtilityScripts;
                 // }
             }
         }
+        void Update(){
+            if(!GameStart){
+                ActorManager[] PMs=FindObjectsOfType<ActorManager>();
+                int count =  PMs.Length;
+                foreach(ActorManager tempAm in PMs){
+                    if(tempAm.ac.pi.isAI)
+                        count--;
+                }
+                if(count == PhotonNetwork.PlayerList.Length){
+                    Settlement();
+                    GameStart = true;
+                }
+            }
+        }
         #endregion
 
 
@@ -128,8 +143,8 @@ using Photon.Pun.UtilityScripts;
             PhotonNetwork.Destroy(obj);
         }
         public void Settlement(){
-            DestroySettlement();
-            GameMenu.SettlementPanelDisable();
+            // DestroySettlement();
+            // GameMenu.SettlementPanelDisable();
             // GameMenu.PlayersListPanel.gameObject.SetActive(false);
             foreach(Player p in PhotonNetwork.PlayerList){
                 GameObject entry = Instantiate(ResultPlayerListEntry);

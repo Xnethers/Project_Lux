@@ -31,14 +31,14 @@ public class ResultListEntry : MonoBehaviour {
 	}
 	public void Update(){
 		if(am != null){
-			PlayerAttackText.text = am.sm.AllAttack.ToString();
-			PlayerHurtText.text = am.sm.AllHurt.ToString();
+			PlayerAttackText.text = Mathf.Round(am.sm.AllAttack).ToString();
+			PlayerHurtText.text = Mathf.Round(am.sm.AllHurt).ToString();
 			PlayerKillText.text = am.sm.AllKill.ToString();
 			PlayerDeadText.text = am.sm.AllDead.ToString();
 		}
-		else{
-			if(!GameManager.Instance.isResult)
-				Destroy(gameObject);
-		}
+		// else{
+		// 	if(!GameManager.Instance.isResult)
+		// 		Destroy(gameObject);
+		// }
 	}
 }

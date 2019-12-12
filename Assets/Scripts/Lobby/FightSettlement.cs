@@ -22,9 +22,9 @@ public class FightSettlement : InGameMenu {
 			
 		if (!GameManager.Instance.isResult)
         {
-			if(Input.GetKeyDown(KeyCode.Tab)){
-				GameManager.Instance.Settlement();
-			}
+			// if(Input.GetKeyDown(KeyCode.Tab)){
+			// 	GameManager.Instance.Settlement();
+			// }
             if (Input.GetKey(KeyCode.Tab))
             {
                 isTab = true;	
@@ -51,7 +51,7 @@ public class FightSettlement : InGameMenu {
 		if(PlayersListCanvasGroup.alpha < 0.1f){
 			// PlayersListPanel.gameObject.SetActive(false);
 			SettlementPanelDisable();
-			GameManager.Instance.DestroySettlement();
+			// GameManager.Instance.DestroySettlement();
 		}
 	}
 }
