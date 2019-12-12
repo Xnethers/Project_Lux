@@ -158,6 +158,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         public override void OnJoinedRoom()
         {
+            CalculateTeamToStartOn();
             if(PhotonNetwork.IsMasterClient)
             {
                 Hashtable roominfo = new Hashtable{{"Global.Level" ,Global.Level}};
@@ -179,15 +180,12 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 SetActivePanel(InsideRoomPanel.name);
 
-
                 InsideRoomPanel.GetComponent<UIInsideRoomPanelContoller>().ChangeBackGround();
 
                 if (playerListEntries == null)
                 {
                     playerListEntries = new Dictionary<int, GameObject>();
                 }
-
-                CalculateTeamToStartOn();
 
                 foreach (Player p in PhotonNetwork.PlayerList)
                 {

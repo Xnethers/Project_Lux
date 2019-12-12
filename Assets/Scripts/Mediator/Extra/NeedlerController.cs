@@ -63,8 +63,7 @@ public class NeedlerController : ICareerController
         skillForce.Tick();
         forcingTimer.Tick();
         if(ac.am.sm.isDie){
-            ac.SetBool("isArmour", false);
-            skillQ.atkTimer.state=MyTimer.STATE.IDLE;
+            LockState();
             return;
         }
         
@@ -179,6 +178,11 @@ public class NeedlerController : ICareerController
         }
         Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 3f)), Camera.main.transform.TransformDirection(Vector3.forward) * 100);
     }
+    [PunRPC]
+    public override void LockState(){
+        base.LockState();
+		ac.SetBool("isArmour", false);
+	}
     #region animator skill events
     public override void NormalAttack()//ForceAttack
     {

@@ -85,9 +85,7 @@ public class SniperController : ICareerController
         forcingTimer.Tick();
         if (ac.am.sm.isDie)
         {
-            ac.camcon.DoUnAim();
-            ac.anim.SetBool("aim", false);
-            skillQ.atkTimer.state = MyTimer.STATE.IDLE;
+            LockState();
             return;
         }
 		if(ac.pi.isLatent)
@@ -206,8 +204,12 @@ public class SniperController : ICareerController
     //     Gizmos.DrawWireCube(new Vector3(0, 0, Maxdistance / 2), new Vector3(6.6f, 3.7f, Maxdistance));
 
     // }
-
-
+    [PunRPC]
+    public override void LockState(){
+        base.LockState();
+		ac.camcon.DoUnAim();
+        ac.anim.SetBool("aim", false);
+	}
 
     #region animator skill events
     public override void NormalAttack()
@@ -242,7 +244,10 @@ public class SniperController : ICareerController
         CreateGunFire();
         if (!photonView.IsMine)
         { return; }
-        photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, target.transform.position, ThrowerPower);
+        if(target!=null)
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, target.transform.position, ThrowerPower);
+        else
+            photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), ThrowerPower);
         magazine--;
     }
 

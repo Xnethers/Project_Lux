@@ -18,8 +18,7 @@ public class InGameMenu : MonoBehaviour
         size = PlayersListPanel.sizeDelta;
 		SettlementPanelDisable();
 		EscPanel.SetActive(false);
-        ResultPanel.SetActive(false);
-        
+        ResultPanel.SetActive(false); 
     }
     public virtual void Update()
     {
@@ -61,6 +60,8 @@ public class InGameMenu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 isMenu = !isMenu;
+                if (PlayerAm != null)
+                    PlayerAm.sm.RPC_Lock();
             }
         }
     }

@@ -157,9 +157,7 @@ public class PunchController : ICareerController
         forcingTimer.Tick();
         if (ac.am.sm.isDie)
         {
-            ac.camcon.DoUnAim();
-            ac.anim.SetBool("aim", false);
-            skillQ.atkTimer.state = MyTimer.STATE.IDLE;
+            LockState();
             return;
         }
         if (ac.pi.isLatent)
@@ -249,8 +247,12 @@ public class PunchController : ICareerController
             isForce = false;
 
     }
-
-
+    [PunRPC]
+    public override void LockState(){
+        base.LockState();
+		ac.camcon.DoUnAim();
+        ac.anim.SetBool("aim", false);
+	}
 
 
     #region animator skill events

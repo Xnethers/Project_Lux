@@ -49,10 +49,7 @@ public class SupporterController : ICareerController {
         skillForce.Tick();
         forcingTimer.Tick();
 		if(ac.am.sm.isDie){
-			skillQ.atkTimer.state=MyTimer.STATE.IDLE;
-			ac.SetBool("isArmour", false);
-			photonView.RPC("InitializeAbsorbDamage", RpcTarget.All);
-			photonView.RPC("DisableAbsorbRange", RpcTarget.All);
+			LockState();
             return;
 		}
 		if(ac.pi.isLatent){
@@ -153,6 +150,13 @@ public class SupporterController : ICareerController {
         } 
 		if(ki.attackML)
             isForce=false;
+	}
+	[PunRPC]
+	public override void LockState(){
+		base.LockState();
+		ac.SetBool("isArmour", false);
+		photonView.RPC("InitializeAbsorbDamage", RpcTarget.All);
+		photonView.RPC("DisableAbsorbRange", RpcTarget.All);
 	}
 	public override void FirstAttack(){
 		photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);

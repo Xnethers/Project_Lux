@@ -44,6 +44,16 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 
 	public virtual void ForceAttack()//蓄力
 	{ }
+	public virtual void LockState(){
+		ac.am.sm.isForcingAim=false;
+		forcingTimer.state = MyTimer.STATE.IDLE;
+		skillQ.atkTimer.state = MyTimer.STATE.IDLE;
+		DestoryPS[] VFXs = gameObject.GetComponentsInChildren<DestoryPS>();
+		foreach(DestoryPS vfx in VFXs){
+			Destroy(vfx.gameObject);
+		}
+
+	}
 	protected void UseSkill(int attackSkill,float ATK,string triggerName = "attack",bool comboAttack = false){//動作+無CD技能
 		ac.am.sm.ATK = ATK;
         photonView.RPC("RPC_SetTrigger", RpcTarget.All, triggerName);
