@@ -28,6 +28,8 @@ public class ResultListEntry : MonoBehaviour {
 				am=pm;
 			}
 		}
+	}
+	public void Update(){
 		PlayerAttackText.text = am.sm.AllAttack.ToString();
 		PlayerHurtText.text = am.sm.AllHurt.ToString();
 		PlayerKillText.text = am.sm.AllKill.ToString();

@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 public class TrainingCharacter : InGameMenu {
-	public GameObject PlayerUI;
+	public GameObject TrainingPanel;
+	public GameObject PlayerUI;	
+	public override void Start(){
+		base.Start();
+		TrainingPanel.SetActive(false);
+	}
 	public override void Update()
 	{
 		base.Update();
@@ -15,15 +20,28 @@ public class TrainingCharacter : InGameMenu {
 				}
 			}
 		}*/
+		if(isMenu)
+			return;
 		if(PlayerUI == null)
 			PlayerUI = PlayerAm.GetComponent<PlayerUI>().ScreenCanvas;
-		if(isMenu && !GameManager.Instance.isResult){
-			PlayerUI.gameObject.SetActive(false);
-		}
-		else{
-			PlayerUI.gameObject.SetActive(true);
-		}
-			
+		if (!GameManager.Instance.isResult)
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {//Input.GetKeyDown(KeyCode.Tab) || 
+                isTab = !isTab;
+            }
+			if (isTab)
+			{
+				PlayerDisable();
+				PlayerUI.gameObject.SetActive(false);
+				TrainingPanel.SetActive(true);
+			}
+			else{
+				PlayerEnable();
+				PlayerUI.gameObject.SetActive(true);
+				TrainingPanel.SetActive(false);
+			}
+        }			
 	}
 	public void OnClickCharacter(int whichCharacter){
 		PlayerInfo.PI.mySelectedCharacter = whichCharacter;
@@ -31,6 +49,6 @@ public class TrainingCharacter : InGameMenu {
 	public void OnClickChoose(){
 		GameManager.Instance.DestroyCharacter(PlayerAm.gameObject);
 		GameManager.Instance.CreateCharacter();
-		isMenu = !isMenu;
+		isTab = !isTab;
 	}
 }

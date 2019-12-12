@@ -500,7 +500,7 @@ ModelImporter:
             outWeight: 0
           - serializedVersion: 3
             time: 0.5
-            value: -18
+            value: -15
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -534,7 +534,7 @@ ModelImporter:
             outWeight: 0
           - serializedVersion: 3
             time: 0.1
-            value: 18
+            value: 15
             inSlope: 0
             outSlope: 0
             tangentMode: 0

@@ -158,7 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4339427582229552}
   - component: {fileID: 114279661788753878}
-  - component: {fileID: 114566764063014572}
+  - component: {fileID: 114928685775411020}
   m_Layer: 16
   m_Name: GameManager
   m_TagString: Untagged
@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 114712603161748316}
   - component: {fileID: 114615222519644694}
   - component: {fileID: 114006089164942370}
+  - component: {fileID: 225995809109144114}
   m_Layer: 5
   m_Name: PlayersListPanel
   m_TagString: Untagged
@@ -1300,23 +1301,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114566764063014572
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1250934630362494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4efbd3b93621c45ab48fb21d55af27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerAm: {fileID: 0}
-  MenuPanel: {fileID: 1978591483109138}
-  ResultPanel: {fileID: 1159723403656208}
-  PlayersListPanel: {fileID: 224221832518817886}
-  duration: 0.8
-  isMenu: 0
 --- !u!114 &114611442538740466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1646,6 +1630,24 @@ MonoBehaviour:
   PlayerHurtText: {fileID: 114433060462989298}
   PlayerKillText: {fileID: 114736792679996316}
   PlayerDeadText: {fileID: 114141821779157668}
+--- !u!114 &114928685775411020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1250934630362494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6304ade6a43300340a83ab2090ed2433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerAm: {fileID: 0}
+  EscPanel: {fileID: 1978591483109138}
+  ResultPanel: {fileID: 1159723403656208}
+  PlayersListPanel: {fileID: 224221832518817886}
+  duration: 0.8
+  isMenu: 0
+  isTab: 0
 --- !u!114 &114954909110112378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1868,7 +1870,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224377902453944714}
-  - {fileID: 224221832518817886}
   m_Father: {fileID: 224570836023450582}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1919,15 +1920,15 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1832315722463850}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224797547906136588}
   - {fileID: 224234098462855124}
   - {fileID: 224254638029674472}
-  m_Father: {fileID: 224170953099746386}
-  m_RootOrder: 1
+  m_Father: {fileID: 224570836023450582}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2099,6 +2100,7 @@ RectTransform:
   m_Children:
   - {fileID: 224592900772689382}
   - {fileID: 224170953099746386}
+  - {fileID: 224221832518817886}
   m_Father: {fileID: 4339427582229552}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2275,3 +2277,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 95, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225995809109144114
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832315722463850}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
