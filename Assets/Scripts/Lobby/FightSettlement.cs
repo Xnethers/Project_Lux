@@ -13,10 +13,10 @@ public class FightSettlement : InGameMenu {
 	{
 		base.Update();
 		if(isMenu){
-			// if (!GameManager.Instance.isResult)
-			// 	SettlementDisable();
+			if (GameManager.Instance.isResult)
+				PlayersListCanvasGroup.DOFade(1,duration/2);
 			// else
-			// 	PlayersListCanvasGroup.DOFade(1,duration/2);
+			// 	SettlementDisable();
 			return;
 		}
 			

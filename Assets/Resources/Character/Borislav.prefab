@@ -5301,7 +5301,6 @@ MonoBehaviour:
   showSolverDebug: 1
   _RaycastOriginY: 0.5
   _RaycastEndY: -0.1
-  feetOffest: 0.1
 --- !u!114 &114923541140439030
 MonoBehaviour:
   m_ObjectHideFlags: 1
