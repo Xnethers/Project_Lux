@@ -9,6 +9,13 @@ namespace UITween
 {
     public class UIInsideRoomPanelContoller : UIManager
     {
+        [HideInInspector]
+        public static UIInsideRoomPanelContoller insideRoomPanelUI;
+        [Header("Inside Room Panel")]
+        public Image BackGround;
+        public Sprite Level1;
+        public Sprite Level2;
+
         [Header("Select Camp Button")]
         public RectTransform CampButton;
         public Button YellowCamp;
@@ -72,6 +79,14 @@ namespace UITween
 
             lobbyMainPanel.myAllCharacters.SetActive(false);
             mySequence.Append(s1).Join(s2).Join(s3).Join(s4);
+        }
+
+        public void ChangeBackGround()
+        {
+            if (Global.Level == 1)
+            { BackGround.sprite = Level1; }
+            else if (Global.Level == 2)
+            { BackGround.sprite = Level2; }
         }
     }
 }

@@ -23697,7 +23697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -28207,6 +28207,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyMainPanel: {fileID: 114272524210743062}
   EaseType: 0
+  BackGround: {fileID: 114150227653156116}
+  Level1: {fileID: 21300000, guid: f0b1c60b0227e4e1fa89a56252ded127, type: 3}
+  Level2: {fileID: 21300000, guid: 214f7e62633ee4585a55b459cc6d0f53, type: 3}
   CampButton: {fileID: 224574224291801276}
   YellowCamp: {fileID: 114058116021193696}
   PurpleCamp: {fileID: 114236898154241040}
@@ -28216,7 +28219,18 @@ MonoBehaviour:
   duration: 0.5
   onEnable:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114484138832092752}
+        m_MethodName: ResetPanelSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onDisable:

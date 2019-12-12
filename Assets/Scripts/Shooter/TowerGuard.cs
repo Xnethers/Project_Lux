@@ -80,8 +80,7 @@ public class TowerGuard : MonoBehaviour, IPunObservable
                         // dl.SetLineEnabled(false);
                         if (PhotonNetwork.IsConnected)
                         { pv.RPC("ShootProjectile", RpcTarget.All); }
-                        else
-                        { ShootProjectile(); }
+                        
                         Timer.Reset();
                         Status = status.finished;
                     }
@@ -123,8 +122,13 @@ public class TowerGuard : MonoBehaviour, IPunObservable
                 {
                     if (Playerlist[i].tag != this.tag)
                     {
-                        dl.destination = Playerlist[i].transform;
-                        return true;
+                        if (Physics.Linecast(transform.position, Playerlist[i].transform.position))
+                        {
+                            dl.destination = Playerlist[i].transform;
+                            return true;
+                        }
+                        else
+                        { continue; }
                     }
                     else
                     { continue; }
