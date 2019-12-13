@@ -52,7 +52,6 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 		foreach(DestoryPS vfx in VFXs){
 			Destroy(vfx.gameObject);
 		}
-
 	}
 	protected void UseSkill(int attackSkill,float ATK,string triggerName = "attack",bool comboAttack = false){//動作+無CD技能
 		ac.am.sm.ATK = ATK;

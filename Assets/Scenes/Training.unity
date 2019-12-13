@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -3388,7 +3388,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
@@ -3811,13 +3811,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 170076733}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 25, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 16.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &170333745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,6 +4114,30 @@ RectTransform:
   m_AnchoredPosition: {x: 2.5, y: 0}
   m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &196209278
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/FlatColor
+  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &197250491
 GameObject:
   m_ObjectHideFlags: 0
@@ -6774,6 +6798,47 @@ Transform:
   m_Father: {fileID: 712208660}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &378910895
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 378910897}
+  - component: {fileID: 378910896}
+  m_Layer: 0
+  m_Name: _FungusState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &378910896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 378910895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedFlowchart: {fileID: 0}
+--- !u!4 &378910897
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 378910895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &379946245
 GameObject:
   m_ObjectHideFlags: 0
@@ -8728,6 +8793,30 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 532622901}
+--- !u!21 &533525635
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/OutlineCommandBuffer
+  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &545343309
 GameObject:
   m_ObjectHideFlags: 0
@@ -12077,30 +12166,6 @@ Transform:
   m_Father: {fileID: 2026063724}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &745426090
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/OutlineCommandBuffer
-  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &748806230
 GameObject:
   m_ObjectHideFlags: 0
@@ -15065,6 +15130,15 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: height
+  - Type: 4
+    SynchronizeType: 0
+    Name: isBounce
+  - Type: 1
+    SynchronizeType: 0
+    Name: LeftFootCurve
+  - Type: 1
+    SynchronizeType: 0
+    Name: RightFootCurve
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -15903,30 +15977,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 970763830}
---- !u!21 &972352194
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/KawaseBlurPostProcess
-  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &972468956
 GameObject:
   m_ObjectHideFlags: 0
@@ -16966,6 +17016,9 @@ MonoBehaviour:
   textRP: {fileID: 51740590}
   playerNameText: {fileID: 1843752977}
   playerHealthSlider: {fileID: 1830944724}
+  CurveBlood: {fileID: 1541467981}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
   careercon: {fileID: 1041211266}
   sm: {fileID: 1041211270}
   ScreenCanvas: {fileID: 2033836362}
@@ -17079,13 +17132,14 @@ MonoBehaviour:
   attackerVec: {x: 0, y: 0, z: 0}
   lockPlanar: 0
   lerpTarget: 0
-  isBounce: 0
-  isJump: 0
-  footIK: {fileID: 0}
-  latentCount: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  isBounce: 0
+  isJump: 0
+  footIK: {fileID: 0}
+  latentType: 0
+  latentCount: 0
 --- !u!114 &1041211273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19365,9 +19419,9 @@ MonoBehaviour:
   interation: 1
   offset: 1
   colorIntensity: 3
-  postMat: {fileID: 745426090}
-  flatColor: {fileID: 1518383145}
-  blur: {fileID: 972352194}
+  postMat: {fileID: 533525635}
+  flatColor: {fileID: 196209278}
+  blur: {fileID: 1413717099}
   bufferEvent: 17
 --- !u!124 &1161763576
 Behaviour:
@@ -22094,6 +22148,9 @@ MonoBehaviour:
   textRP: {fileID: 1541172466}
   playerNameText: {fileID: 1810986090}
   playerHealthSlider: {fileID: 42029458}
+  CurveBlood: {fileID: 1100884363}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
   careercon: {fileID: 1275492346}
   sm: {fileID: 1275492348}
   ScreenCanvas: {fileID: 1672035717}
@@ -22204,13 +22261,14 @@ MonoBehaviour:
   attackerVec: {x: 0, y: 0, z: 0}
   lockPlanar: 0
   lerpTarget: 0
-  isBounce: 0
-  isJump: 0
-  footIK: {fileID: 0}
-  latentCount: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  isBounce: 0
+  isJump: 0
+  footIK: {fileID: 0}
+  latentType: 0
+  latentCount: 0
 --- !u!114 &1275492351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22770,6 +22828,9 @@ MonoBehaviour:
   textRP: {fileID: 1704058375}
   playerNameText: {fileID: 788264694}
   playerHealthSlider: {fileID: 1653948046}
+  CurveBlood: {fileID: 1153795776}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
   careercon: {fileID: 1288712654}
   sm: {fileID: 1288712658}
   ScreenCanvas: {fileID: 1952371159}
@@ -22880,13 +22941,14 @@ MonoBehaviour:
   attackerVec: {x: 0, y: 0, z: 0}
   lockPlanar: 0
   lerpTarget: 0
-  isBounce: 0
-  isJump: 0
-  footIK: {fileID: 0}
-  latentCount: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  isBounce: 0
+  isJump: 0
+  footIK: {fileID: 0}
+  latentType: 0
+  latentCount: 0
 --- !u!114 &1288712661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22970,7 +23032,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.6
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.01
@@ -25517,6 +25579,30 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1413243799}
+--- !u!21 &1413717099
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/KawaseBlurPostProcess
+  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1415921718
 GameObject:
   m_ObjectHideFlags: 0
@@ -26850,6 +26936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de3fe06aa424f64a86b85143f58ee5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameStart: 0
   playerPrefab:
   - {fileID: 1028935420427188, guid: 45092992c8e82cb4499645a10c89cb69, type: 2}
   - {fileID: 1664428161481376, guid: 506d54d3568634443a7a7f03529465ac, type: 2}
@@ -26899,8 +26986,8 @@ MonoBehaviour:
   duration: 0.8
   isMenu: 0
   isTab: 0
-  PlayerUI: {fileID: 0}
   TrainingPanel: {fileID: 970763830}
+  PlayerUI: {fileID: 0}
 --- !u!1 &1517952372
 GameObject:
   m_ObjectHideFlags: 0
@@ -26931,30 +27018,6 @@ Transform:
   m_Father: {fileID: 899695736}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1518383145
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/FlatColor
-  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1529231873
 GameObject:
   m_ObjectHideFlags: 0
@@ -28284,6 +28347,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: RightFootCurve
+  - Type: 4
+    SynchronizeType: 0
+    Name: isBounce
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -33412,6 +33478,9 @@ MonoBehaviour:
   textRP: {fileID: 575970356}
   playerNameText: {fileID: 1644513304}
   playerHealthSlider: {fileID: 455408018}
+  CurveBlood: {fileID: 966039990}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
   careercon: {fileID: 1843420007}
   sm: {fileID: 1843420011}
   ScreenCanvas: {fileID: 2004195312}
@@ -33522,13 +33591,14 @@ MonoBehaviour:
   attackerVec: {x: 0, y: 0, z: 0}
   lockPlanar: 0
   lerpTarget: 0
-  isBounce: 0
-  isJump: 0
-  footIK: {fileID: 0}
-  latentCount: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  isBounce: 0
+  isJump: 0
+  footIK: {fileID: 0}
+  latentType: 0
+  latentCount: 0
 --- !u!114 &1843420014
 MonoBehaviour:
   m_ObjectHideFlags: 0

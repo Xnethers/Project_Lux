@@ -2298,9 +2298,9 @@ MonoBehaviour:
   interation: 1
   offset: 1
   colorIntensity: 3
-  postMat: {fileID: 1827960575}
-  flatColor: {fileID: 765611299}
-  blur: {fileID: 2134196141}
+  postMat: {fileID: 1154099099}
+  flatColor: {fileID: 483486090}
+  blur: {fileID: 1734353663}
   bufferEvent: 17
 --- !u!124 &123040951
 Behaviour:
@@ -7660,6 +7660,30 @@ Transform:
   m_Father: {fileID: 1777106217}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &483486090
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/FlatColor
+  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &484203789
 GameObject:
   m_ObjectHideFlags: 0
@@ -9768,7 +9792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.159912, y: -32.399994}
+  m_AnchoredPosition: {x: 2.159668, y: -32.399902}
   m_SizeDelta: {x: -1102.9001, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &692660201
@@ -10881,30 +10905,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!21 &765611299
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/FlatColor
-  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &770456975
 GameObject:
   m_ObjectHideFlags: 0
@@ -11937,12 +11937,12 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &883605000 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1047761120324810, guid: 290ac10e6d5d7e245abc3d774485367d,
+  m_PrefabParentObject: {fileID: 1594657449822822, guid: 4163f6d00f9ce5b4eb0c79b372c952a7,
     type: 2}
   m_PrefabInternal: {fileID: 1627909898}
 --- !u!4 &883605001 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d,
+  m_PrefabParentObject: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7,
     type: 2}
   m_PrefabInternal: {fileID: 1627909898}
 --- !u!1 &895681073
@@ -15377,6 +15377,9 @@ MonoBehaviour:
   textRP: {fileID: 51740590}
   playerNameText: {fileID: 1843752977}
   playerHealthSlider: {fileID: 1830944724}
+  CurveBlood: {fileID: 1541467981}
+  bloodLatentRot: {x: 0, y: 42, z: 0}
+  bloodLatentVec: {x: -0.1, y: 0.44, z: -1.58}
   careercon: {fileID: 1041211266}
   sm: {fileID: 1041211270}
   ScreenCanvas: {fileID: 2033836362}
@@ -15493,6 +15496,7 @@ MonoBehaviour:
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
+  latentType: 0
   latentCount: 0
   layerMask:
     serializedVersion: 2
@@ -17110,6 +17114,30 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1154098389}
+--- !u!21 &1154099099
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/OutlineCommandBuffer
+  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1156252505
 GameObject:
   m_ObjectHideFlags: 0
@@ -22173,40 +22201,40 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 964631706}
     m_Modifications:
-    - target: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+    - target: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+    - target: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.7
+      value: 4.85
       objectReference: {fileID: 0}
-    - target: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+    - target: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+    - target: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+    - target: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
       propertyPath: m_LocalRotation.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+    - target: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+    - target: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
       propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4751430159581406, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+    - target: {fileID: 4862184490018080, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 290ac10e6d5d7e245abc3d774485367d, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 4163f6d00f9ce5b4eb0c79b372c952a7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1628638060
 GameObject:
@@ -24032,6 +24060,30 @@ RectTransform:
   m_AnchoredPosition: {x: -299.7, y: -95.00001}
   m_SizeDelta: {x: 100, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &1734353663
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/KawaseBlurPostProcess
+  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1742217680
 GameObject:
   m_ObjectHideFlags: 0
@@ -24520,30 +24572,6 @@ Transform:
   m_Father: {fileID: 1380960338}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1827960575
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/OutlineCommandBuffer
-  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1830944723
 GameObject:
   m_ObjectHideFlags: 0
@@ -24771,6 +24799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de3fe06aa424f64a86b85143f58ee5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameStart: 0
   playerPrefab:
   - {fileID: 1028935420427188, guid: 45092992c8e82cb4499645a10c89cb69, type: 2}
   - {fileID: 1664428161481376, guid: 506d54d3568634443a7a7f03529465ac, type: 2}
@@ -25164,6 +25193,9 @@ MonoBehaviour:
   textRP: {fileID: 575970356}
   playerNameText: {fileID: 1644513304}
   playerHealthSlider: {fileID: 455408018}
+  CurveBlood: {fileID: 966039990}
+  bloodLatentRot: {x: 0, y: 42, z: 0}
+  bloodLatentVec: {x: -0.1, y: 0.44, z: -1.58}
   careercon: {fileID: 1843420007}
   sm: {fileID: 1843420011}
   ScreenCanvas: {fileID: 2004195312}
@@ -25277,6 +25309,7 @@ MonoBehaviour:
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
+  latentType: 0
   latentCount: 0
   layerMask:
     serializedVersion: 2
@@ -29357,30 +29390,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2121453619}
---- !u!21 &2134196141
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/KawaseBlurPostProcess
-  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &2139364296
 GameObject:
   m_ObjectHideFlags: 0

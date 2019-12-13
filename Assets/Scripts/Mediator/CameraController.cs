@@ -43,6 +43,7 @@ public class CameraController : MonoBehaviourPunCallbacks {
     private float offestZDampVelocity;
     private float offestX;
     private float offestZ;
+    Vector3 playerHead;
     public bool rayHit;
     // public float radius =0.1f;
     private float tempHitDistance = -2.0f;
@@ -208,7 +209,15 @@ public class CameraController : MonoBehaviourPunCallbacks {
         //LayerMask mask = 1<<LayerMask.NameToLayer("Default")|1<<LayerMask.NameToLayer("Wall")|1<<LayerMask.NameToLayer("Ground");
         // Debug.Log("mask"+mask);
         // Debug.Log("layermask"+layerMask);
-        Vector3 playerHead=ac.transform.position+new Vector3(0,ac.chacon.height,0);//ac.am.bm.OriginColValue[2]
+        if(!ac.pi.isLatent)
+            playerHead = ac.transform.position+new Vector3(0,ac.chacon.height,0);
+        else{
+            if(ac.latentType == LatentType.Horizontal)
+                playerHead = ac.transform.position;
+            else
+                playerHead = ac.transform.position+new Vector3(0,ac.am.bm.OriginColValue[2]/2,0);
+        }
+            
         Vector3 dir = transform.position - playerHead;
         RaycastHit hit;
         if (Physics.Raycast(playerHead, dir * 100, out hit,100, layerMask))//cameraHandle.transform.position, mainCamera.transform.TransformDirection(-Vector3.forward)

@@ -5449,6 +5449,9 @@ MonoBehaviour:
   textRP: {fileID: 114697668307148916}
   playerNameText: {fileID: 114522297898691434}
   playerHealthSlider: {fileID: 114172351663372012}
+  CurveBlood: {fileID: 0}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
   careercon: {fileID: 114706801060354566}
   sm: {fileID: 114856973316791092}
   ScreenCanvas: {fileID: 1599722029672964}
@@ -5563,7 +5566,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114216248428490776}
   viewIdField: 0
-  InstantiationId: 15
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114330328575038568
 MonoBehaviour:
@@ -5651,6 +5654,9 @@ MonoBehaviour:
   textRP: {fileID: 114697668307148916}
   playerNameText: {fileID: 114522297898691434}
   playerHealthSlider: {fileID: 114172351663372012}
+  CurveBlood: {fileID: 224629744564417246}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
   careercon: {fileID: 114706801060354566}
   sm: {fileID: 114856973316791092}
   ScreenCanvas: {fileID: 1599722029672964}
@@ -5951,7 +5957,7 @@ MonoBehaviour:
   - {fileID: 114502605480114190}
   - {fileID: 114856973316791092}
   viewIdField: 0
-  InstantiationId: 4
+  InstantiationId: 15
   isRuntimeInstantiated: 0
 --- !u!114 &114502605480114190
 MonoBehaviour:
@@ -6557,7 +6563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStuck: 0
-  chacon: {fileID: 143068386977253044}
+  chacon: {fileID: 0}
   offset: 0.1
   outputCols: []
   count: 0
@@ -7066,6 +7072,7 @@ MonoBehaviour:
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
+  latentType: 0
   latentCount: 0
   layerMask:
     serializedVersion: 2

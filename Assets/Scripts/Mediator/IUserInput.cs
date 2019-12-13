@@ -57,5 +57,7 @@ public abstract class IUserInput : MonoBehaviourPunCallbacks {
         Dvec = Vector3.zero;
         Jup = 0;
         Jright = 0;
+        // inputEnabled = false;
+        // inputMouseEnabled = false;
     }
 }

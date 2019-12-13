@@ -18,6 +18,10 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     [Tooltip("UI Slider to display Player's Health")]
     [SerializeField]
     private Slider playerHealthSlider;
+    [SerializeField]
+    private RectTransform CurveBlood;
+    public Vector3 bloodLatentRot = new Vector3(0f,35f,0f);
+    public Vector3 bloodLatentVec = new Vector3(0.05f,0.44f,-1.58f);
 
     // [SerializeField] private PlayerManager target;
     //new
@@ -85,11 +89,23 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         {//red = Yellow , blue = Purple
             if (transform.tag == "Red")
                 textTag.text = "Team:Yellow";
-            if (transform.tag == "Blue")
+            else if (transform.tag == "Blue")
                 textTag.text = "Team:Purple";
+            else
+                textTag.text = "Team:AI";
             //textTag.text ="Team:" + transform.tag.ToString();
         }
-
+        if(CurveBlood!=null){
+            if(sm.am.ac.pi.isLatent){
+                CurveBlood.localPosition = bloodLatentVec;
+                CurveBlood.localRotation = Quaternion.Euler(bloodLatentRot);
+            }
+            else{
+                CurveBlood.localPosition = Vector3.zero;
+                CurveBlood.localRotation = Quaternion.Euler(Vector3.zero);
+            }
+        }
+        
         if (sm.am.ac.pi.isAI)
             return;
         if (!photonView.IsMine)
