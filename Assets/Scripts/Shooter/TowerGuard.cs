@@ -14,6 +14,13 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     public float projectileSpeed = 20;
     public float projectileAtk = 10;
     public LayerMask layer;
+    public LayerMask ignorePlayer;
+
+
+    [Header("Material Setting")]
+    public Material usual;
+    public Material aim;
+    private MeshRenderer meshRenderer;
 
     enum status
     { aim, shoot, search, finished }
@@ -36,6 +43,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         dl.SetLineEnabled(true);
         dl.destination = this.transform;
         dl.Disappear();
+        meshRenderer = GetComponent<MeshRenderer>();
         this.tag = transform.parent.tag;
     }
 
@@ -50,6 +58,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                 {
                     if (CheckPlayerExist())
                     {
+                        meshRenderer.sharedMaterial = aim;
                         transform.LookAt(dl.destination);
                         dl.Appear(0.02f);
 
@@ -78,10 +87,11 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     {
                         dl.Disappear();
                         // dl.SetLineEnabled(false);
-                        if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient){
+                        if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
+                        {
                             pv.RPC("ShootProjectile", RpcTarget.All);
                         }
-                        
+
                         Timer.Reset();
                         Status = status.finished;
                     }
@@ -94,7 +104,8 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     transform.RotateAround(transform.parent.position, Vector3.up, rotateAngle);
                     //dl.SetLineEnabled(false);
                     if (CheckPlayerExist())
-                    { Status = status.aim; }
+                    { Status = status.aim; break; }
+                    meshRenderer.sharedMaterial = usual;
                     break;
                 }
             case status.finished:
@@ -123,7 +134,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                 {
                     if (Playerlist[i].tag != this.tag)
                     {
-                        if (Physics.Linecast(transform.position, Playerlist[i].transform.position))
+                        if (!Physics.Linecast(transform.position, Playerlist[i].transform.position, ignorePlayer))
                         {
                             dl.destination = Playerlist[i].transform;
                             return true;
@@ -137,7 +148,15 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                 return false;
             }
             else
-            { return true; }
+            {
+                if (!Physics.Linecast(transform.position, dl.destination.transform.position, ignorePlayer))
+                { return true; }
+                else
+                {
+                    dl.destination = null;
+                    return false;
+                }
+            }
         }
         else
         { return false; }
