@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class TowerGuard : MonoBehaviour, IPunObservable
-{
+public class TowerGuard : MonoBehaviourPunCallbacks
+{//, IPunObservable
     public GameObject projectile;
     public float radius = 5;
     public float aim_time = 3;
@@ -78,10 +78,10 @@ public class TowerGuard : MonoBehaviour, IPunObservable
                     {
                         dl.Disappear();
                         // dl.SetLineEnabled(false);
-                        if (PhotonNetwork.IsConnected)
-                        { pv.RPC("ShootProjectile", RpcTarget.All); }
-                        else
-                        { ShootProjectile(); }
+                        if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient){
+                            pv.RPC("ShootProjectile", RpcTarget.All);
+                        }
+                        
                         Timer.Reset();
                         Status = status.finished;
                     }
@@ -123,8 +123,13 @@ public class TowerGuard : MonoBehaviour, IPunObservable
                 {
                     if (Playerlist[i].tag != this.tag)
                     {
-                        dl.destination = Playerlist[i].transform;
-                        return true;
+                        if (Physics.Linecast(transform.position, Playerlist[i].transform.position))
+                        {
+                            dl.destination = Playerlist[i].transform;
+                            return true;
+                        }
+                        else
+                        { continue; }
                     }
                     else
                     { continue; }
@@ -147,10 +152,10 @@ public class TowerGuard : MonoBehaviour, IPunObservable
         bullet.GetComponentInChildren<Projectile>().Initialize(this.tag, projectileAtk, projectileSpeed, dl.destination.position);
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        throw new System.NotImplementedException();
-    }
+    // public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    // {
+    //     throw new System.NotImplementedException();
+    // }
     //Physics.OverlapSphere()
 
 }

@@ -5156,10 +5156,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 5d82db194c8fb4e42b16d47202250e52, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -5449,6 +5449,9 @@ MonoBehaviour:
   textRP: {fileID: 114697668307148916}
   playerNameText: {fileID: 114522297898691434}
   playerHealthSlider: {fileID: 114172351663372012}
+  CurveBlood: {fileID: 0}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0, y: 0.44, z: -1.4}
   careercon: {fileID: 114706801060354566}
   sm: {fileID: 114856973316791092}
   ScreenCanvas: {fileID: 1599722029672964}
@@ -5651,6 +5654,9 @@ MonoBehaviour:
   textRP: {fileID: 114697668307148916}
   playerNameText: {fileID: 114522297898691434}
   playerHealthSlider: {fileID: 114172351663372012}
+  CurveBlood: {fileID: 224629744564417246}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0, y: 0.44, z: -1.4}
   careercon: {fileID: 114706801060354566}
   sm: {fileID: 114856973316791092}
   ScreenCanvas: {fileID: 1599722029672964}
@@ -5850,10 +5856,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 5d82db194c8fb4e42b16d47202250e52, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -5924,10 +5930,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 5d82db194c8fb4e42b16d47202250e52, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -6179,6 +6185,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: RightFootCurve
+  - Type: 4
+    SynchronizeType: 1
+    Name: isBounce
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -6554,7 +6563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStuck: 0
-  chacon: {fileID: 143068386977253044}
+  chacon: {fileID: 0}
   offset: 0.1
   outputCols: []
   count: 0
@@ -6929,7 +6938,7 @@ MonoBehaviour:
   weightIkPositionSpeed: 0.9
   leftFootAnimVariableName: LeftFootCurve
   rightFootAnimVariableName: RightFootCurve
-  useProIkFeature: 1
+  useProIkFeature: 0
   showSolverDebug: 1
   _RaycastOriginY: 0.5
   _RaycastEndY: -0.1
@@ -7060,9 +7069,13 @@ MonoBehaviour:
   attackerVec: {x: 0, y: 0, z: 0}
   lockPlanar: 0
   lerpTarget: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 66048
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
+  latentType: 0
   latentCount: 0
 --- !u!120 &120635955670361180
 LineRenderer:

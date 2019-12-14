@@ -12,11 +12,13 @@ public class CharacterIK : LookAtIK {
 	public Quaternion lh_rot;
 
 	public float rh_Weight;
+	public float lh_Weight;
 
 	public Transform shoulder;
 	public Transform aimPivot;
 	Quaternion rotRight;
 	Quaternion rotRightAim;
+	public float speed = 5f;
 	// Use this for initialization
 	protected override void Start(){
 		base.Start();
@@ -43,22 +45,32 @@ public class CharacterIK : LookAtIK {
 	
 	// Update is called once per frame
 	void Update () {
+		if(ac.am.sm.isDie)
+			return;
 		// lh_rot = l_Hand.rotation;
 		lh_rot = l_Hand_Target.rotation;
 		l_Hand.position = l_Hand_Target.position;
 		// l_Hand.rotation = lh_rot;
-
+		
 		if(ac.anim.GetBool("aim")){//ac.camcon.doAim
-			// rh_Weight +=Time.deltaTime *2;
 			r_Hand.localRotation = rotRightAim;
 			r_Hand.localPosition = characterInventory.secondWeapon.rHandPos;
 		}	
 		else{
-			// rh_Weight -=Time.deltaTime *2;
 			r_Hand.localRotation = rotRight;
 			r_Hand.localPosition = characterInventory.firstWeapon.rHandPos;
-		}	
-		// rh_Weight = Mathf.Clamp(rh_Weight,0,1);
+		}
+		if(ac.CheckState("FillBullet","attack"))
+		{
+			lh_Weight -=Time.deltaTime * speed;
+			rh_Weight -=Time.deltaTime * speed;
+		}
+		else{
+			lh_Weight +=Time.deltaTime * speed;
+			rh_Weight +=Time.deltaTime * speed;
+		}
+		rh_Weight = Mathf.Clamp(rh_Weight,0,1);
+		lh_Weight = Mathf.Clamp(lh_Weight,0,1);
 	}
 	protected override void OnAnimatorIK(int layerIndex)
 	{
@@ -66,7 +78,7 @@ public class CharacterIK : LookAtIK {
 			return;
 		//頭
 		base.OnAnimatorIK(layerIndex);
-
+		
 		aimPivot.position = shoulder.position;
 		aimPivot.LookAt(Target);
 
@@ -79,12 +91,12 @@ public class CharacterIK : LookAtIK {
 			ac.anim.SetLookAtWeight(.3f,.3f,.3f);
 		}
 		ac.anim.SetLookAtPosition(Target.position);*/
-
-		ac.anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
-		ac.anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+		
+		ac.anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, lh_Weight);
+		ac.anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, lh_Weight);
 		ac.anim.SetIKPosition(AvatarIKGoal.LeftHand, l_Hand.position);
 		ac.anim.SetIKRotation(AvatarIKGoal.LeftHand, lh_rot);
-
+		
 		ac.anim.SetIKPositionWeight(AvatarIKGoal.RightHand, rh_Weight);
 		ac.anim.SetIKRotationWeight(AvatarIKGoal.RightHand, rh_Weight);
 		ac.anim.SetIKPosition(AvatarIKGoal.RightHand, r_Hand.position);

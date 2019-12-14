@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum LatentType
+{
+	Vertical,
+	Horizontal
+}
 public class EventCasterManager : IActorManagerInterface {
-
+	public LatentType latentType;
+	public GameObject ColliderObj;
     // public string eventName;
     // public bool active;
 	// public Vector3 offset = new Vector3(0,0,0.5f);
@@ -13,6 +19,9 @@ public class EventCasterManager : IActorManagerInterface {
         if (am == null) {
             am = GetComponentInParent<ActorManager>();
         }
+		if(ColliderObj!=null){
+			ColliderObj.SetActive(false);
+		}
 	}
 	
 	//// Update is called once per frame

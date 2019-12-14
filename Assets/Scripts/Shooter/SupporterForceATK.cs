@@ -11,7 +11,12 @@ public class SupporterForceATK : Projectile {
 		SetRangeBuff(col);
 		SetHeadBuff(col);
 		ActorManager targetAm=col.GetComponentInParent<ActorManager>();
-		if (targetAm != null && targetAm.photonView.IsMine)
+		if(targetAm.ac.pi.isAI){
 			base.OnTriggerEnter(col);
+		}
+		else{
+			if (targetAm != null && targetAm.photonView.IsMine)
+				base.OnTriggerEnter(col);
+		}
 	}
 }

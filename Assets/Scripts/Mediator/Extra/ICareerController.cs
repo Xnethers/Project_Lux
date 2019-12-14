@@ -20,6 +20,13 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
     public MySkillTimer skillAir = new MySkillTimer();
     public MySkillTimer skillForce = new MySkillTimer();
     public MyTimer forcingTimer = new MyTimer();
+	void Awake(){
+		skillMR.Initialize(careerValue.FirstCD);
+		skillF.Initialize(careerValue.SecondCD);
+		skillQ.Initialize(careerValue.RushingCD);
+		skillAir.Initialize(careerValue.AirCD);
+		skillForce.Initialize(careerValue.ForceCD);
+	}
 	public virtual void NormalAttack()//普攻
 	{ }
 
@@ -37,6 +44,15 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 
 	public virtual void ForceAttack()//蓄力
 	{ }
+	public virtual void LockState(){
+		ac.am.sm.isForcingAim=false;
+		forcingTimer.state = MyTimer.STATE.IDLE;
+		skillQ.atkTimer.state = MyTimer.STATE.IDLE;
+		DestoryPS[] VFXs = gameObject.GetComponentsInChildren<DestoryPS>();
+		foreach(DestoryPS vfx in VFXs){
+			Destroy(vfx.gameObject);
+		}
+	}
 	protected void UseSkill(int attackSkill,float ATK,string triggerName = "attack",bool comboAttack = false){//動作+無CD技能
 		ac.am.sm.ATK = ATK;
         photonView.RPC("RPC_SetTrigger", RpcTarget.All, triggerName);
@@ -139,10 +155,13 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 	public bool isSkilling = false;
 	public float duration;
 	public MyTimer atkTimer = new MyTimer();
+	public void Initialize(float duration){
+		atkTimer.elapsedTime = duration;
+	}
 	public void Tick() {
 		atkTimer.Tick();
 		if(isSkilling){
-			StartTimer(atkTimer,duration);	
+			atkTimer.Go(duration);	
 			isSkilling = false;
 		}
 		if (atkTimer.state == MyTimer.STATE.RUN)
@@ -150,7 +169,4 @@ public abstract class ICareerController : MonoBehaviourPunCallbacks{
 		else
 			FinishedCD=true;
 	}
-	private void StartTimer(MyTimer timer, float duration) {
-        timer.Go(duration);
-    }
 }

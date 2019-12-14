@@ -31,6 +31,8 @@ public class ActorController : IActorManagerInterface {
     
     //private Rigidbody rigid;
     public CharacterController chacon;
+    [Space(10)]
+    [Header("===== Gravity Settings =====")]
     public float gravityConstant = 1.5f;
     public float gravity = 1f;
     public float height=0f;
@@ -45,12 +47,21 @@ public class ActorController : IActorManagerInterface {
     
     public float lerpTarget;
     private Vector3 deltaPos;
-    //"===== Bounce Settings ====="彈跳點
+    
+    [Space(10)]
+    [Header("===== Bounce Settings =====")]//彈跳點
+    public LayerMask layerMask;
+    bool m_Started;
     private float bonceVelocity;
     public bool isBounce;
     public bool isJump;
     public FootIK footIK;
+    [Space(10)]
+    [Header("===== Latent Settings =====")]
+    public LatentType latentType;
     public int latentCount = 0;
+    
+    
     // Use this for initialization
     public void Awake() {
         IUserInput[] inputs = GetComponents<IUserInput>();
@@ -74,6 +85,7 @@ public class ActorController : IActorManagerInterface {
     void Start()
     {
         am.bm.bcL.gameObject.SetActive(false);
+        m_Started = true;
     }
     // Update is called once per frame
     protected void Update() {
@@ -95,6 +107,8 @@ public class ActorController : IActorManagerInterface {
                 //人與潛光平行(轉角度)
                 // Debug.Log(am.im.overlapEcastms[0].transform.eulerAngles.y);
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x,am.im.overlapEcastms[0].transform.eulerAngles.y-180f,transform.eulerAngles.z);
+                //開關潛光collider
+                am.im.overlapEcastms[0].ColliderObj.SetActive(pi.isLatent);
                 if(pi.isLatent){
                     transform.position -= am.im.overlapEcastms[0].transform.forward*am.im.overlapEcastms[0].offset;
                     latentCount++;
@@ -144,8 +158,22 @@ public class ActorController : IActorManagerInterface {
         if (pi.jump) {
             photonView.RPC("RPC_SetTrigger",RpcTarget.All,"jump");
         }
+        anim.SetBool("isBounce",isBounce);
+        if(Physics.CheckBox(transform.position+transform.up*chacon.height,Vector3.one*0.25f,transform.rotation,layerMask)){
+            isBounce = false;
+            // _velocity.y=0;
+            
+        }
     }
-
+    //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        if (m_Started)
+            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
+            Gizmos.DrawWireCube(transform.position+transform.up*chacon.height, Vector3.one*0.25f);
+    }
     public void SetSpeedup(float upvalue)
     {
         upSpeed = upvalue;
@@ -167,8 +195,10 @@ public class ActorController : IActorManagerInterface {
         // if (anim.GetBool("isGround") && _velocity.y < 0)
         // { _velocity.y = 0f; }
         if(!pi.isLatent){
+            
             if(_velocity.y > -25f)
                 _velocity.y += gravity * Physics.gravity.y * Time.fixedDeltaTime;
+            
             if(am.sm.isDie && am.sm.isGround)
                 _velocity.y=0;
             //移動
@@ -197,12 +227,14 @@ public class ActorController : IActorManagerInterface {
     {
         return anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex(layerName)).IsTag(tagName);
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
+        
         //撞到空中走廊
         // if(other.gameObject.layer!=LayerMask.NameToLayer("Bounce") && other.gameObject.layer!=LayerMask.NameToLayer("Occupied")){
-        //     _velocity.y = 0f;
-        //     Debug.Log("no bounce=fall:"+other.name);
+            
+                // photonView.RPC("RPC_SetTrigger",RpcTarget.All,"obstacle");
+                //Debug.Log("no bounce=fall:"+other.name);
         // }
         //anim.SetBool("isHighFall", true);
         // Collider[] outputCols = Physics.OverlapBox(am.bm.transform.position , new Vector3(.5f,.2f,.5f),Quaternion.identity, LayerMask.GetMask("Bounce"));
@@ -211,6 +243,7 @@ public class ActorController : IActorManagerInterface {
         // }
             
     }
+    
     void OnTriggerExit(Collider other)
     {
         // if(other.gameObject.layer==LayerMask.NameToLayer("Ground") || other.gameObject.layer==LayerMask.NameToLayer("Wall")){
@@ -260,7 +293,10 @@ public class ActorController : IActorManagerInterface {
         lerpTarget = 0f;
     }
     public void OnPopUpUpdate(){
-        thrustVec = transform.forward * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity");
+        if(latentType == LatentType.Vertical)
+            thrustVec = transform.forward * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity");
+        else if(latentType == LatentType.Horizontal) 
+            thrustVec = transform.forward * anim.GetFloat("repelVelocity") /2+transform.up * popUpVelocity * anim.GetFloat("upVelocity") * Time.deltaTime;
         pi.inputEnabled = false;
         pi.inputMouseEnabled = false;
     }
@@ -403,7 +439,11 @@ public class ActorController : IActorManagerInterface {
         am.bm.bcL.gameObject.SetActive(pi.isLatent);
         am.bm.SetChacontrollerSize(pi.isLatent);
         model.transform.GetChild(0).gameObject.SetActive(!pi.isLatent);
+        latentType = am.im.overlapEcastms[0].latentType;
         // foreach(GameObject mesh in model.GetComponentsInChildren<GameObject>()){}
+    }
+    public void CloseLatentCol(){
+        am.im.overlapEcastms[0].ColliderObj.SetActive(false);
     }
     public void BounceTrigger(float bonceVelocity){
         this.bonceVelocity = bonceVelocity;

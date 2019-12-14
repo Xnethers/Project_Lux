@@ -34,15 +34,7 @@ public class KICareer : KeyboardInput
 
         if (inputEnabled == false)
         {
-            attackML = false;
-            forcingML = false;
-            forceReleaseML = false;
-            auxiliaryMR=false;
-            aimingMR = false;
-            unAimMR = false;
-            attackF = false;
-            attackQ = false;
-            R = false;
+            AttackInitialize();
         }
         //基本操作
         attackML = buttonML.OnReleased;
@@ -57,5 +49,20 @@ public class KICareer : KeyboardInput
         //狙擊瞄準
         aimingMR = buttonMR.IsPressing;
         unAimMR = buttonMR.OnReleased;
+    }
+    public override void InputInitialize(){
+        base.InputInitialize();
+        AttackInitialize();
+    }
+    public void AttackInitialize(){
+        attackML = false;
+        forcingML = false;
+        forceReleaseML = false;
+        auxiliaryMR=false;
+        aimingMR = false;
+        unAimMR = false;
+        attackF = false;
+        attackQ = false;
+        R = false;
     }
 }

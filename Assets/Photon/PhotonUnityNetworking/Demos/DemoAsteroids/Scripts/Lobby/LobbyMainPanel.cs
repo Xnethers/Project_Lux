@@ -158,50 +158,61 @@ namespace Photon.Pun.Demo.Asteroids
 
         public override void OnJoinedRoom()
         {
+            CalculateTeamToStartOn();
+            if(PhotonNetwork.IsMasterClient)
+            {
+                Hashtable roominfo = new Hashtable{{"Global.Level" ,Global.Level}};
+                PhotonNetwork.CurrentRoom.SetCustomProperties(roominfo);
+                Debug.Log(PhotonNetwork.CurrentRoom.CustomProperties["Global.Level"]);
+            }
+            //會在加入他人房間時出錯
+            Hashtable cp = PhotonNetwork.CurrentRoom.CustomProperties;
+            Global.Level = (int)cp["Global.Level"];
             if (Global.Level <= 0)
-            { 
-                if(Global.Level == -1)
+            {
+                if (Global.Level == -1)
                     PhotonNetwork.LoadLevel("NoviceTeaching");
-                else if(Global.Level == 0)
+
+                else if (Global.Level == 0)
                     PhotonNetwork.LoadLevel("Training");
             }
-            else{
-                SetActivePanel(InsideRoomPanel.name); 
-            }
-
-            if (playerListEntries == null)
+            else
             {
-                playerListEntries = new Dictionary<int, GameObject>();
-            }
+                SetActivePanel(InsideRoomPanel.name);
 
-            CalculateTeamToStartOn();
+                InsideRoomPanel.GetComponent<UIInsideRoomPanelContoller>().ChangeBackGround();
 
-            foreach (Player p in PhotonNetwork.PlayerList)
-            {
+                if (playerListEntries == null)
+                {
+                    playerListEntries = new Dictionary<int, GameObject>();
+                }
 
-                GameObject entry = Instantiate(PlayerListEntryPrefab);
+                foreach (Player p in PhotonNetwork.PlayerList)
+                {
 
-                if (p.GetTeam() == PhotonNetwork.LocalPlayer.GetTeam())
-                { entry.transform.SetParent(MyTeamPanel.transform); }
-                else if (p.GetTeam() != PhotonNetwork.LocalPlayer.GetTeam())
-                { entry.transform.SetParent(OtherTeamPanel.transform); }
+                    GameObject entry = Instantiate(PlayerListEntryPrefab);
 
-                entry.transform.localScale = Vector3.one;
-                entry.GetComponent<RectTransform>().localPosition = Vector3.zero;
-                entry.GetComponent<PlayerListEntry>().Initialize(p.ActorNumber, p.NickName);
+                    if (p.GetTeam() == PhotonNetwork.LocalPlayer.GetTeam())
+                    { entry.transform.SetParent(MyTeamPanel.transform); }
+                    else if (p.GetTeam() != PhotonNetwork.LocalPlayer.GetTeam())
+                    { entry.transform.SetParent(OtherTeamPanel.transform); }
 
-                entry.GetComponent<PlayerListEntry>().SetPlayerReady(p.GetReady());
+                    entry.transform.localScale = Vector3.one;
+                    entry.GetComponent<RectTransform>().localPosition = Vector3.zero;
+                    entry.GetComponent<PlayerListEntry>().Initialize(p.ActorNumber, p.NickName);
 
-                playerListEntries.Add(p.ActorNumber, entry);
-            }
-            StartGameButton.gameObject.SetActive(CheckPlayersReady());
+                    entry.GetComponent<PlayerListEntry>().SetPlayerReady(p.GetReady());
 
-            Hashtable props = new Hashtable
+                    playerListEntries.Add(p.ActorNumber, entry);
+                }
+                StartGameButton.gameObject.SetActive(CheckPlayersReady());
+
+                Hashtable props = new Hashtable
             {
                 {AsteroidsGame.PLAYER_LOADED_LEVEL, false}
             };
-            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
-
+                PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+            }
         }
 
         public override void OnLeftRoom()
@@ -385,27 +396,33 @@ namespace Photon.Pun.Demo.Asteroids
 
         public void OnTeachButtonClicked()//新手教學
         {
+            Global.Level = -1;
             if (playerListEntries == null)
             {
                 playerListEntries = new Dictionary<int, GameObject>();
             }
-            RoomOptions options = new RoomOptions { MaxPlayers = 1 };
+            
+            RoomOptions options = new RoomOptions { MaxPlayers = 1, IsVisible = false, IsOpen = false };
             PhotonNetwork.CreateRoom("Teaching", options, null);
-            PhotonNetwork.JoinOrCreateRoom("Teaching", options, null);
+           
+            // PhotonNetwork.JoinOrCreateRoom("Teaching", options, null);
             // PhotonNetwork.LocalPlayer.SetCharacter(0);
-            Global.Level = -1; 
+
             // if (PhotonNetwork.IsMasterClient){ }
         }
         public void OnTrainingButtonClicked()//訓練模式
         {
+            Global.Level = 0;
             if (playerListEntries == null)
             {
                 playerListEntries = new Dictionary<int, GameObject>();
             }
-            RoomOptions options = new RoomOptions { MaxPlayers = 1 };
-            PhotonNetwork.CreateRoom("Teaching", options, null);
+            RoomOptions options = new RoomOptions { MaxPlayers = 1, IsVisible = false, IsOpen = false };
+            PhotonNetwork.CreateRoom("Training", options, null);
+            
+            // PhotonNetwork.JoinOrCreateRoom("Training", options, null);
             // PhotonNetwork.LocalPlayer.SetCharacter(0);
-            Global.Level = 0; 
+            
             // if (PhotonNetwork.IsMasterClient){ }
         }
 
@@ -592,10 +609,12 @@ namespace Photon.Pun.Demo.Asteroids
         {
             if (PhotonNetwork.IsConnectedAndReady)
             {
-                if(Global.Level <= 0){
+                if (Global.Level <= 0)
+                {
                     PhotonNetwork.LocalPlayer.SetTeam(PunTeams.Team.red);
                 }
-                else{
+                else
+                {
                     int redAmount = 0;
                     int blueAmount = 0;
 

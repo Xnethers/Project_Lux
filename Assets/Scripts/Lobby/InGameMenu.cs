@@ -2,38 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using Fungus;
 public class InGameMenu : MonoBehaviour
 {
     public ActorManager PlayerAm;
-    public GameObject MenuPanel;
+    public GameObject EscPanel;
     public GameObject ResultPanel;
     public RectTransform PlayersListPanel;
 	public float duration = 0.8f;
 	private Vector2 size;
     public bool isMenu;
-    void Start()
+    public bool isTab;
+    public virtual void Start()
     {
-		size = PlayersListPanel.sizeDelta;
-		PlayersListPanel.sizeDelta=Vector2.one;
-		MenuPanel.SetActive(false);
-        ResultPanel.SetActive(false);
+        size = PlayersListPanel.sizeDelta;
+		SettlementPanelDisable();
+		EscPanel.SetActive(false);
+        ResultPanel.SetActive(false); 
     }
     public virtual void Update()
     {
-        if (!GameManager.Instance.isResult)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {//Input.GetKeyDown(KeyCode.Tab) || 
-                isMenu = !isMenu;
-            }
-        }
         if (isMenu)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             if (!GameManager.Instance.isResult)
-                MenuPanel.SetActive(true);
+                EscPanel.SetActive(true);
             else
             {
                 ResultPanel.SetActive(true);
@@ -44,29 +36,62 @@ public class InGameMenu : MonoBehaviour
                     Tweener scale2 = PlayersListPanel.DOSizeDelta(size, duration);
                     mySequence.Append(scale1).Append(scale2);
                 }
+                if (Input.anyKeyDown &&  PlayersListPanel.sizeDelta == size){//mySequence.IsComplete()
+                    if(Global.Level == -1){
+                        if(!FindObjectOfType<Flowchart>().GetBooleanVariable("isTalking")){
+                            GameManager.Instance.LeaveRoom();
+                        }
+                    }
+                    else 
+                        GameManager.Instance.LeaveRoom();
+                }
             }
-            if (PlayerAm != null)
-            {
-                // PlayerAm.ac.pi.enabled=false;
-                // PlayerAm.ac.camcon.enabled = false;
-                PlayerAm.ac.pi.inputActive = false;
-                PlayerAm.ac.pi.InputInitialize();
-            }
-
+            PlayerDisable();
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            MenuPanel.SetActive(false);
-            ResultPanel.SetActive(false);
-            if (PlayerAm != null)
+            PlayerEnable();
+        }
+        if(isTab){
+            return;
+        }
+        if (!GameManager.Instance.isResult)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                PlayerAm.ac.pi.inputActive = true;
-                // PlayerAm.ac.pi.enabled=true;
-                // PlayerAm.ac.camcon.enabled = true;
+                isMenu = !isMenu;
+                if (PlayerAm != null)
+                    PlayerAm.sm.RPC_Lock();
             }
         }
-
+    }
+    public void PlayerDisable(){
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        if (PlayerAm != null)
+        {
+            // PlayerAm.ac.pi.enabled=false;
+            // PlayerAm.ac.camcon.enabled = false;
+            PlayerAm.ac.pi.inputActive = false;
+            PlayerAm.ac.pi.InputInitialize();
+        }
+    }
+    public void PlayerEnable(){
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        EscPanel.SetActive(false);
+        ResultPanel.SetActive(false);
+        if (PlayerAm != null)
+        {
+            PlayerAm.ac.pi.inputActive = true;
+            // PlayerAm.ac.pi.enabled=true;
+            // PlayerAm.ac.camcon.enabled = true;
+        }
+    }
+    public void SettlementPanelDisable(){
+		PlayersListPanel.sizeDelta=Vector2.one;
+    }
+    public void SettlementPanelEnable(){
+		PlayersListPanel.sizeDelta=size;
     }
 }

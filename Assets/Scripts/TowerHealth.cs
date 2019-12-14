@@ -36,24 +36,22 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
+        if (health <= 0 && !GameManager.Instance.isResult)
         {   
-            // foreach (ActorManager am in allActor)
-            // {
+            // PV.RPC("SetResult", RpcTarget.All);
+            SetResult();
+            foreach (ActorManager am in allActor)
+            {
+                am.sm.RPC_Lock();
+                am.ac.pi.inputActive = false;
                 // am.ac.SetBool("result", true);
                 // am.ac.pi.inputEnabled = false;
                 // am.ac.pi.inputMouseEnabled = false;
-                // am.ac.pi.inputActive = false;
                 //am.ac.pi.enabled = false;
                 // am.ac.camcon.isCursorVisible = true;
                 // am.ac.anim.ResetTrigger("attack");
-
-            // }
-            if(!GameManager.Instance.isResult){
-                // PV.RPC("SetResult", RpcTarget.All);
-                SetResult();
-                GameManager.Instance.isResult = true;
             }
+            GameManager.Instance.isResult = true;
         }
         else
         {
@@ -161,19 +159,8 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
                 SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
             }
         }
-        
-        foreach(Player p in PhotonNetwork.PlayerList){
-            GameObject entry = Instantiate(GameManager.Instance.ResultPlayerListEntry);
-
-            if (p.GetTeam() == PhotonNetwork.LocalPlayer.GetTeam())
-            { entry.transform.SetParent(GameManager.Instance.MyTeamPanel.transform); }
-            else if (p.GetTeam() != PhotonNetwork.LocalPlayer.GetTeam())
-            { entry.transform.SetParent(GameManager.Instance.OtherTeamPanel.transform); }
-
-            entry.transform.localScale = Vector3.one;
-            entry.GetComponent<RectTransform>().localPosition = Vector3.zero;
-            entry.GetComponent<ResultListEntry>().Initialize(p);
-        }
+        // GameManager.Instance.Settlement();
+        GameManager.Instance.GameMenu.SettlementPanelDisable();
     }
 
 

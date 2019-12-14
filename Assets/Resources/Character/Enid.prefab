@@ -4722,10 +4722,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 5d82db194c8fb4e42b16d47202250e52, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -4841,7 +4841,7 @@ MonoBehaviour:
   - {fileID: 114719799792810466}
   - {fileID: 114376165227488104}
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 17
   isRuntimeInstantiated: 0
 --- !u!114 &114218383465573066
 MonoBehaviour:
@@ -4985,10 +4985,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 5d82db194c8fb4e42b16d47202250e52, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -5370,10 +5370,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 5d82db194c8fb4e42b16d47202250e52, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -5389,7 +5389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStuck: 0
-  chacon: {fileID: 143499012118435864}
+  chacon: {fileID: 0}
   offset: 0.1
   outputCols: []
   count: 0
@@ -5592,7 +5592,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999152103625804}
   viewIdField: 0
-  InstantiationId: 17
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114544707042811110
 MonoBehaviour:
@@ -5851,9 +5851,13 @@ MonoBehaviour:
   attackerVec: {x: 0, y: 0, z: 0}
   lockPlanar: 0
   lerpTarget: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 66048
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
+  latentType: 0
   latentCount: 0
 --- !u!114 &114678461351947774
 MonoBehaviour:
@@ -5926,6 +5930,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 0
     Name: RightFootCurve
+  - Type: 4
+    SynchronizeType: 1
+    Name: isBounce
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -6387,8 +6394,10 @@ MonoBehaviour:
   r_Hand: {fileID: 0}
   lh_rot: {x: 0, y: 0, z: 0, w: 0}
   rh_Weight: 1
+  lh_Weight: 0
   shoulder: {fileID: 0}
   aimPivot: {fileID: 0}
+  speed: 5
 --- !u!114 &114944289073866124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6404,6 +6413,9 @@ MonoBehaviour:
   textRP: {fileID: 114380017153704488}
   playerNameText: {fileID: 114400167065257766}
   playerHealthSlider: {fileID: 114418096671048810}
+  CurveBlood: {fileID: 224606818212361208}
+  bloodLatentRot: {x: 0, y: 35, z: 0}
+  bloodLatentVec: {x: 0, y: 0.44, z: -1.4}
   careercon: {fileID: 114351684755625412}
   sm: {fileID: 114376165227488104}
   ScreenCanvas: {fileID: 1283916582278214}

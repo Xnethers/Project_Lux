@@ -89,7 +89,8 @@ namespace Fungus
                 if (Input.GetButtonDown(currentStandaloneInputModule.submitButton) ||
                     (cancelEnabled && Input.GetButton(currentStandaloneInputModule.cancelButton)))
                 {
-                    SetNextLineFlag();
+                    if(!GameManager.Instance.GameMenu.isTab && !GameManager.Instance.GameMenu.isMenu)
+                        SetNextLineFlag();
                 }
             }
 

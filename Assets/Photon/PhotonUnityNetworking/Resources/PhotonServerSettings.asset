@@ -110,4 +110,5 @@ MonoBehaviour:
   - Appear
   - RPC_AddAllAttack
   - PS_creatBuffEffect
+  - LockState
   DisableAutoOpenWizard: 1
