@@ -86,17 +86,14 @@ public class SupporterController : ICareerController {
 				if(!ac.am.sm.isForcingAim){
 					if (ki.attackML){
 						if (ac.height>3 && !ac.am.sm.isGround){ //空攻
-							ac.gravity = ac.gravityConstant *2 ;
-							ac._velocity.y = -ac.gravity;
-							ac.SetBool("fullBody",true);
-							UseSkill(4,careerValue.AirDamage);
-							// RayAim();
-							// if(!rayhitAirWall){
-							// 	if(CheckCD(skillAir)){
-							// 		UseSkill(4,careerValue.AirDamage) ;
-							// 		StartCD(skillAir,careerValue.AirCD);
-							// 	}
-							// }
+							if (CheckCD(skillAir))
+							{
+								ac.gravity = ac.gravityConstant *2 ;
+								ac._velocity.y = -ac.gravity;
+								ac.SetBool("fullBody",true);
+								UseSkill(4,careerValue.AirDamage);
+								StartCD(skillAir, careerValue.AirCD);
+							}
 						}
 						else{
 							if(!isForce){//普攻

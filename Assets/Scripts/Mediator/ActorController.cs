@@ -205,7 +205,7 @@ public class ActorController : IActorManagerInterface {
             if (lockPlanar == false && !isBounce)
                 chacon.Move((new Vector3(planarVec.x, _velocity.y, planarVec.z) + thrustVec) * Time.fixedDeltaTime);
             else
-                chacon.Move((new Vector3(planarVec.x/2f, _velocity.y, planarVec.z/2f) + thrustVec) * Time.fixedDeltaTime);
+                chacon.Move((new Vector3(planarVec.x/1.5f, _velocity.y, planarVec.z/1.5f) + thrustVec) * Time.fixedDeltaTime);
         }
         else
         {//潛光移動

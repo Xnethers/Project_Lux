@@ -10,11 +10,26 @@ public class SupporterAirATK : Projectile {
 	}
 	void Update()
 	{
-		if(!isHit && am.ac.height<1){
-			am.sm.sb.AddBuffsByStrings(buffsName);
-			if(fova.useTargets.Count!=0){
-				Attack();
-				isHit=true;
+		if(am.ac.height<1f || am.ac.anim.GetBool("isGround")){
+			if(!isHit){
+				am.sm.sb.AddBuffsByStrings(buffsName);
+				if(fova.useTargets.Count!=0){
+					Attack();
+					isHit=true;
+				}
+			}
+			if(!isVFX){//am.ac.height<0.15
+				GameObject vfx;
+				if(am.ac.height<1f)
+					vfx = Instantiate(normalhitVFX,transform.GetChild(0).position,am.transform.rotation);//am.GetComponent<BossAIController>().targetAir
+				if(am.ac.anim.GetBool("isGround"))
+					vfx = Instantiate(normalhitVFX,transform.position,am.transform.rotation);
+				// vfx.transform.parent = am.transform;
+				isVFX=true;
+			}
+			else{
+				if (transform.parent != null)
+					Destroy(this.transform.parent.gameObject, 0.5f);
 			}
 		}
 	}
