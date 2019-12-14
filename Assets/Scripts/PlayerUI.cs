@@ -21,7 +21,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     [SerializeField]
     private RectTransform CurveBlood;
     public Vector3 bloodLatentRot = new Vector3(0f,35f,0f);
-    public Vector3 bloodLatentVec = new Vector3(0.05f,0.44f,-1.58f);
+    public Vector3 bloodLatentVec = new Vector3(0f,0.44f,-1.4f);
 
     // [SerializeField] private PlayerManager target;
     //new

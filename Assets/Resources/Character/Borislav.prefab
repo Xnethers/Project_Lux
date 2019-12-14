@@ -4144,7 +4144,7 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 114506970188200476}
   CurveBlood: {fileID: 224904477845566360}
   bloodLatentRot: {x: 0, y: 35, z: 0}
-  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
+  bloodLatentVec: {x: 0, y: 0.44, z: -1.4}
   careercon: {fileID: 114755861551432556}
   sm: {fileID: 114414971300417562}
   ScreenCanvas: {fileID: 1679435638724074}

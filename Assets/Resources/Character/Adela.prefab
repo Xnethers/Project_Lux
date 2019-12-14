@@ -5451,7 +5451,7 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 114172351663372012}
   CurveBlood: {fileID: 0}
   bloodLatentRot: {x: 0, y: 35, z: 0}
-  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
+  bloodLatentVec: {x: 0, y: 0.44, z: -1.4}
   careercon: {fileID: 114706801060354566}
   sm: {fileID: 114856973316791092}
   ScreenCanvas: {fileID: 1599722029672964}
@@ -5656,7 +5656,7 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 114172351663372012}
   CurveBlood: {fileID: 224629744564417246}
   bloodLatentRot: {x: 0, y: 35, z: 0}
-  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
+  bloodLatentVec: {x: 0, y: 0.44, z: -1.4}
   careercon: {fileID: 114706801060354566}
   sm: {fileID: 114856973316791092}
   ScreenCanvas: {fileID: 1599722029672964}
@@ -6938,7 +6938,7 @@ MonoBehaviour:
   weightIkPositionSpeed: 0.9
   leftFootAnimVariableName: LeftFootCurve
   rightFootAnimVariableName: RightFootCurve
-  useProIkFeature: 1
+  useProIkFeature: 0
   showSolverDebug: 1
   _RaycastOriginY: 0.5
   _RaycastEndY: -0.1
@@ -7069,14 +7069,14 @@ MonoBehaviour:
   attackerVec: {x: 0, y: 0, z: 0}
   lockPlanar: 0
   lerpTarget: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 66048
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
   latentType: 0
   latentCount: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 66048
 --- !u!120 &120635955670361180
 LineRenderer:
   m_ObjectHideFlags: 1

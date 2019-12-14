@@ -5851,14 +5851,14 @@ MonoBehaviour:
   attackerVec: {x: 0, y: 0, z: 0}
   lockPlanar: 0
   lerpTarget: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 66048
   isBounce: 0
   isJump: 0
   footIK: {fileID: 0}
   latentType: 0
   latentCount: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 66048
 --- !u!114 &114678461351947774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6415,7 +6415,7 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 114418096671048810}
   CurveBlood: {fileID: 224606818212361208}
   bloodLatentRot: {x: 0, y: 35, z: 0}
-  bloodLatentVec: {x: 0.05, y: 0.44, z: -1.58}
+  bloodLatentVec: {x: 0, y: 0.44, z: -1.4}
   careercon: {fileID: 114351684755625412}
   sm: {fileID: 114376165227488104}
   ScreenCanvas: {fileID: 1283916582278214}

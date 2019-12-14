@@ -296,7 +296,7 @@ public class ActorController : IActorManagerInterface {
         if(latentType == LatentType.Vertical)
             thrustVec = transform.forward * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity");
         else if(latentType == LatentType.Horizontal) 
-            thrustVec = transform.forward * anim.GetFloat("repelVelocity") /2;
+            thrustVec = transform.forward * anim.GetFloat("repelVelocity") /2+transform.up * popUpVelocity * anim.GetFloat("upVelocity") * Time.deltaTime;
         pi.inputEnabled = false;
         pi.inputMouseEnabled = false;
     }
@@ -441,6 +441,9 @@ public class ActorController : IActorManagerInterface {
         model.transform.GetChild(0).gameObject.SetActive(!pi.isLatent);
         latentType = am.im.overlapEcastms[0].latentType;
         // foreach(GameObject mesh in model.GetComponentsInChildren<GameObject>()){}
+    }
+    public void CloseLatentCol(){
+        am.im.overlapEcastms[0].ColliderObj.SetActive(false);
     }
     public void BounceTrigger(float bonceVelocity){
         this.bonceVelocity = bonceVelocity;

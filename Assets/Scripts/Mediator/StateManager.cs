@@ -54,9 +54,6 @@ public class StateManager : IActorManagerInterface, IPunObservable
         //AddHP(0);
         HP = HPMax;
         //RP=0;
-        if (!photonView.IsMine)
-            return;
-        
 
         if (am.ac.pi.isAI)
         {
@@ -72,7 +69,8 @@ public class StateManager : IActorManagerInterface, IPunObservable
             {
                 mylivezone = GameManager.Instance.BlueRelivePoint;
             }
-            photonView.RPC("RPC_ReLive", RpcTarget.All, RandomPosition(mylivezone.MinX, mylivezone.MaxX), RandomPosition(mylivezone.MinZ, mylivezone.MaxZ));
+            if (photonView.IsMine)
+                photonView.RPC("RPC_ReLive", RpcTarget.All, RandomPosition(mylivezone.MinX, mylivezone.MaxX), RandomPosition(mylivezone.MinZ, mylivezone.MaxZ));
         }
     }
     private void Update()
@@ -91,6 +89,8 @@ public class StateManager : IActorManagerInterface, IPunObservable
         {
             if(am.ac.pi.isLatent){
                 photonView.RPC("RPC_SetLatent", RpcTarget.All);
+                if(photonView.IsMine)
+                    am.ac.CloseLatentCol();
             }//退出潛光
             // Die();
             am.ac.OnDieEnter();//不能行動
