@@ -62,7 +62,7 @@ public class OnGroundSensor : MonoBehaviour {
     public float GetGroundDistance(){//取得玩家與下方地面的距離
 		Vector3 targetPoint;
 		RaycastHit hit;
-		if (Physics.Raycast(transform.position,transform.TransformDirection(Vector3.down), out hit))
+		if (Physics.Raycast(transform.position,transform.TransformDirection(Vector3.down), out hit,100,~LayerMask.GetMask("Occupied")))
 		{
 			targetPoint = hit.point;
 		}
@@ -72,8 +72,6 @@ public class OnGroundSensor : MonoBehaviour {
 		}
 		Debug.DrawRay(transform.position,transform.TransformDirection(Vector3.down) * 100,Color.green);
 		return Vector3.Distance(transform.position,targetPoint);
-		
-		
 	}
     IEnumerator Stuck(){//判定是否卡住了
         while(true){
