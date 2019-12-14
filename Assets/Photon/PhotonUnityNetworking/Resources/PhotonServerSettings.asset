@@ -112,4 +112,6 @@ MonoBehaviour:
   - PS_creatBuffEffect
   - LockState
   - AbsorbTryDoDamage
+  - Attack
+  - CreateVFX
   DisableAutoOpenWizard: 1
