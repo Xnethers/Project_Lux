@@ -89,17 +89,29 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             return;
         if(sm.isDie)
             return;
-        float currentDamage=(damageData.Damage*(2-sm.DEFBuff));
+        float currentDamage= 0;
+        if(!damageData.AbsorbOthers){
+            currentDamage=(damageData.Damage*(2-sm.DEFBuff));
+            Debug.Log("自己受傷");
+        }
+        else{
+            currentDamage=damageData.Damage;
+            Debug.Log("幫別人吸收");
+        }
+            
         if(sm.sb.AbsorbAm != null){
             if(sm.sb.AbsorbAm == this){
                 sm.sb.AbsorbAm.photonView.RPC("AddAbsorbDamage", RpcTarget.All,currentDamage);
             }
             else{
                 // sm.sb.AbsorbAm.photonView.RPC("AddAbsorbDamage", RpcTarget.All,currentDamage*1.5f);
-                sm.sb.AbsorbAm.photonView.RPC("TryDoDamage", RpcTarget.All,currentDamage*1.5f);
-                return;
+                foreach(ResultListEntry result in GameManager.Instance.playersResult){
+                    if(damageData.AttackerAm == result.am){
+                        sm.sb.AbsorbAm.photonView.RPC("AbsorbTryDoDamage", RpcTarget.All,result.player,currentDamage*1.5f,damageData.BuffsName,damageData.DamageVec,true);
+                        return;
+                    }
+                }
             }
-            
         }
         //可以加targetAm狀態來判定要不要扣血
         if (sm.HP - currentDamage > 0)
@@ -118,6 +130,15 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         sm.AddHP(-currentDamage);
         sm.AddRP(0.3f);
         HitOrDie(damageData);
+    }
+    [PunRPC]
+    public void AbsorbTryDoDamage(Player player,float damage,string[] BuffsName,Vector3 damageVec,bool absorbOthers){
+        foreach(ResultListEntry result in GameManager.Instance.playersResult){
+            if(player == result.player){
+                TryDoDamage(new DamageData(result.am,damage,BuffsName,damageVec,absorbOthers));
+                return;
+            }
+        }
     }
     public void HitOrDie(DamageData damageData) {
         if (sm.HP < 0) {
@@ -163,10 +184,18 @@ public class DamageData{
     public float Damage;
     public string[] BuffsName;
     public Vector3 DamageVec;//方向
+    public bool AbsorbOthers = false;
     public DamageData(ActorManager attackerAm,float damage,string[] BuffsName,Vector3 damageVec){
         this.AttackerAm = attackerAm;
         this.Damage = damage;
         this.BuffsName = BuffsName;
         this.DamageVec = damageVec;
+    }
+    public DamageData(ActorManager attackerAm,float damage,string[] BuffsName,Vector3 damageVec,bool absorbOthers){
+        this.AttackerAm = attackerAm;
+        this.Damage = damage;
+        this.BuffsName = BuffsName;
+        this.DamageVec = damageVec;
+        this.AbsorbOthers = absorbOthers;
     }
 }

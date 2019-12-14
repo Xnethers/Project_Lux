@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 public class ResultListEntry : MonoBehaviour {
+	public Player player;
 	public ActorManager am;
 
 	[Header("UI References")]
@@ -16,6 +17,7 @@ public class ResultListEntry : MonoBehaviour {
 	public void Initialize(Player p)
 	{
 		// ownerId = p.ActorNumber;
+		player = p;
 		PlayerNameText.text = p.NickName;
 		ActorManager[] PMs=FindObjectsOfType<ActorManager>();
         List<ActorManager> playerAm = new List<ActorManager>();

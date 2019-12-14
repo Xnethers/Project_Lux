@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-
+using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,6 +28,7 @@ using Photon.Pun.UtilityScripts;
         public GameObject ResultPlayerListEntry;
         public GameObject MyTeamPanel;
         public GameObject OtherTeamPanel;
+        public List<ResultListEntry> playersResult = new List<ResultListEntry>();
 
         #endregion
 
@@ -156,7 +157,9 @@ using Photon.Pun.UtilityScripts;
 
                 entry.transform.localScale = Vector3.one;
                 entry.GetComponent<RectTransform>().localPosition = Vector3.zero;
-                entry.GetComponent<ResultListEntry>().Initialize(p);
+                ResultListEntry result = entry.GetComponent<ResultListEntry>();
+                result.Initialize(p);
+                playersResult.Add(result);
             }
             // GameMenu.PlayersListPanel.gameObject.SetActive(true);
         }
