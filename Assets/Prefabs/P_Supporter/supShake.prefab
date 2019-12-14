@@ -134,7 +134,7 @@ MonoBehaviour:
   rangeBuff: 1
   headBuff: 1
   comboBuff: 1
-  timeToLive: 1
+  timeToLive: 1.6
   ShakeCam: 0
 --- !u!114 &114220914700868266
 MonoBehaviour:

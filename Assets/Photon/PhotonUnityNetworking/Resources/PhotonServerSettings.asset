@@ -114,4 +114,5 @@ MonoBehaviour:
   - AbsorbTryDoDamage
   - Attack
   - CreateVFX
+  - CreateShakeVFX
   DisableAutoOpenWizard: 1

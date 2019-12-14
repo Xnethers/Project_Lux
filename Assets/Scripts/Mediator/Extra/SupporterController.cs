@@ -9,6 +9,7 @@ public class SupporterController : ICareerController {
 	public ActorController AC{get{return ac;}}
 	// private FieldOfViewHeight fovh;
 	public CameraShake cameraShake;
+	public GameObject shakeVFX;
 	[Header("===== Buff Settings =====")]
 	public GameObject[] buffObj;
 	public float atkBuff = 1.5f;//Attack
@@ -240,6 +241,9 @@ public class SupporterController : ICareerController {
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position, ac.anim.GetInteger("attackSkill"));//4
 		// photonView.RPC("RPC_ShakeAttack", RpcTarget.All);
 		
+	}
+	public void AirAttackVFX(){
+		Instantiate(shakeVFX,transform.position,transform.rotation);
 	}
 	public void OnForcingEnter() {
         ki.inputEnabled = false;
