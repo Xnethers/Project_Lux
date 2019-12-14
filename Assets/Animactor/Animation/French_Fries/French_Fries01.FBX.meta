@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 264571a38ec21424f94de4a5a9546c9c
+guid: be948010a3a14f144804eddd8d935e5e
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -66,20 +66,20 @@ ModelImporter:
     4300018: french_fries022
     4300020: french_fries023
     4300022: french_fries024
-    7400000: French_Fries01
+    7400000: Take 001
     9500000: //RootNode
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: <Root Transform>
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -95,61 +95,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: French_Fries01
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 30
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: french_fries013
-        weight: 1
-      - path: french_fries014
-        weight: 1
-      - path: french_fries015
-        weight: 1
-      - path: french_fries016
-        weight: 1
-      - path: french_fries017
-        weight: 1
-      - path: french_fries018
-        weight: 1
-      - path: french_fries019
-        weight: 1
-      - path: french_fries020
-        weight: 1
-      - path: french_fries021
-        weight: 1
-      - path: french_fries022
-        weight: 1
-      - path: french_fries023
-        weight: 1
-      - path: french_fries024
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -178,7 +124,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

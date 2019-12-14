@@ -20,7 +20,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     [Header("Material Setting")]
     public Material usual;
     public Material aim;
-    private MeshRenderer meshRenderer;
+    private SkinnedMeshRenderer meshRenderer;
 
     enum status
     { aim, shoot, search, finished }
@@ -31,7 +31,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     private DrawLine dl;
     private PhotonView pv;
     public MyTimer Timer = new MyTimer();
-    private Transform target;
+    private Animator animator;
 
 
     // Use this for initialization
@@ -40,10 +40,11 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         layer = 1 << LayerMask.NameToLayer("Body");
         dl = GetComponent<DrawLine>();
         pv = GetComponent<PhotonView>();
+        animator = GetComponent<Animator>();
         dl.SetLineEnabled(true);
         dl.destination = this.transform;
         dl.Disappear();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponent<SkinnedMeshRenderer>();
         this.tag = transform.parent.tag;
     }
 
@@ -75,6 +76,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     else
                     {
                         Status = status.search;
+                        animator.SetBool("Aim", false);
                         Timer.Reset();
                     }
                     break;
@@ -85,6 +87,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     { return; }
                     else
                     {
+                        transform.LookAt(dl.destination);
                         dl.Disappear();
                         // dl.SetLineEnabled(false);
                         if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
@@ -99,13 +102,16 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                 }
             case status.search:
                 {
+                    Vector3 relativePos = new Vector3( transform.parent.position.x ,transform.position.y,transform.parent.position.z) - transform.position;
+                    transform.rotation =Quaternion.LookRotation(relativePos)*Quaternion.Euler(0,90*-rotateAngle,0);
                     dl.destination = null;
                     dl.Disappear();
                     transform.RotateAround(transform.parent.position, Vector3.up, rotateAngle);
                     //dl.SetLineEnabled(false);
                     if (CheckPlayerExist())
-                    { Status = status.aim; break; }
+                    { animator.SetBool("Aim", true); Status = status.aim; break; }
                     meshRenderer.sharedMaterial = usual;
+                    animator.SetBool("Aim", false);
                     break;
                 }
             case status.finished:
