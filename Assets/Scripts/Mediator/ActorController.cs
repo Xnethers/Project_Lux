@@ -110,6 +110,7 @@ public class ActorController : IActorManagerInterface {
                 //開關潛光collider
                 am.im.overlapEcastms[0].ColliderObj.SetActive(pi.isLatent);
                 if(pi.isLatent){
+                    pi.inputEnabled = true;
                     transform.position -= am.im.overlapEcastms[0].transform.forward*am.im.overlapEcastms[0].offset;
                     latentCount++;
                 }    
@@ -294,7 +295,7 @@ public class ActorController : IActorManagerInterface {
     }
     public void OnPopUpUpdate(){
         if(latentType == LatentType.Vertical)
-            thrustVec = transform.forward * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity");
+            thrustVec = transform.forward * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity") /6;
         else if(latentType == LatentType.Horizontal) 
             thrustVec = transform.forward * anim.GetFloat("repelVelocity") /2+transform.up * popUpVelocity * anim.GetFloat("upVelocity") * Time.deltaTime;
         pi.inputEnabled = false;

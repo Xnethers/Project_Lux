@@ -115,4 +115,5 @@ MonoBehaviour:
   - Attack
   - CreateVFX
   - CreateShakeVFX
+  - DisableBuffRange
   DisableAutoOpenWizard: 1

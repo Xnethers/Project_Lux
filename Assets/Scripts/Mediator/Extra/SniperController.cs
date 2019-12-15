@@ -154,7 +154,7 @@ public class SniperController : ICareerController
                 }
             }
         }
-        if (forcingTimer.state == MyTimer.STATE.FINISHED)
+        if (forcingTimer.state == MyTimer.STATE.FINISHED || !ki.forcingML)
         {
             ki.forceReleaseML = true;
             forcingTimer.state = MyTimer.STATE.IDLE;

@@ -229,12 +229,12 @@ public class StateManager : IActorManagerInterface, IPunObservable
         // if (photonView.IsMine)
         //     Camera.main.transform.position = am.ac.camcon.transform.position;
     }
-    public void RPC_Lock(){
-        if(am.ac.pi.isLatent)
-            return;
-        photonView.RPC("RPC_SetTrigger", RpcTarget.All, "reLife");
-        photonView.RPC("LockState", RpcTarget.All);
-    }
+    // public void RPC_Lock(){
+    //     if(am.ac.pi.isLatent)
+    //         return;
+    //     photonView.RPC("RPC_SetTrigger", RpcTarget.All, "reLife");
+    //     photonView.RPC("LockState", RpcTarget.All);
+    // }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)

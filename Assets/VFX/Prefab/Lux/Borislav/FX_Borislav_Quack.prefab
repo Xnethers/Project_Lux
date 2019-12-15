@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4934351892938548}
   - component: {fileID: 198513294281392846}
   - component: {fileID: 199339741342272358}
+  - component: {fileID: 114232652871374422}
   m_Layer: 0
   m_Name: FX_Borislav_Quack
   m_TagString: Untagged
@@ -103,6 +104,17 @@ Transform:
   m_Father: {fileID: 4934351892938548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &114232652871374422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937955472171588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d574e2e24206f40a03119e8a4a92ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198204135448463328
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -113,7 +125,7 @@ ParticleSystem:
   lengthInSec: 3
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4701,7 +4713,7 @@ ParticleSystem:
   lengthInSec: 3
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -9289,7 +9301,7 @@ ParticleSystem:
   lengthInSec: 3
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

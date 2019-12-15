@@ -38,20 +38,21 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (health <= 0 && !GameManager.Instance.isResult)
         {   
-            // PV.RPC("SetResult", RpcTarget.All);
             SetResult();
-            foreach (ActorManager am in allActor)
+            GameManager.Instance.isResult = true;
+            // PV.RPC("SetResult", RpcTarget.All);
+            /*foreach (ActorManager am in allActor)
             {
-                am.sm.RPC_Lock();
+                // am.sm.RPC_Lock();
                 am.ac.pi.inputActive = false;
+                am.ac.pi.InputInitialize();
                 // am.ac.SetBool("result", true);
                 // am.ac.pi.inputEnabled = false;
                 // am.ac.pi.inputMouseEnabled = false;
                 //am.ac.pi.enabled = false;
                 // am.ac.camcon.isCursorVisible = true;
                 // am.ac.anim.ResetTrigger("attack");
-            }
-            GameManager.Instance.isResult = true;
+            }*/
         }
         else
         {

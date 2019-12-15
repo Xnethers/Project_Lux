@@ -10,6 +10,7 @@ public class SupporterController : ICareerController {
 	// private FieldOfViewHeight fovh;
 	public CameraShake cameraShake;
 	public GameObject shakeVFX;
+	public GameObject changeBuffVFX;
 	[Header("===== Buff Settings =====")]
 	public GameObject[] buffObj;
 	public float atkBuff = 1.5f;//Attack
@@ -134,7 +135,7 @@ public class SupporterController : ICareerController {
 			}
 		}
 		//自動發射蓄力
-        if(forcingTimer.state == MyTimer.STATE.FINISHED){
+        if(forcingTimer.state == MyTimer.STATE.FINISHED || !ki.forcingML){
             ki.forceReleaseML=true;
             forcingTimer.state = MyTimer.STATE.IDLE;
         }
@@ -155,8 +156,11 @@ public class SupporterController : ICareerController {
 		ac.SetBool("isArmour", false);
 		photonView.RPC("InitializeAbsorbDamage", RpcTarget.All);
 		photonView.RPC("DisableAbsorbRange", RpcTarget.All);
+		photonView.RPC("DisableBuffRange", RpcTarget.All);
 	}
 	public override void FirstAttack(){
+		if (!photonView.IsMine)
+            return;
 		photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
 		buffText.text = buffType.ToString();
 	}
@@ -168,19 +172,19 @@ public class SupporterController : ICareerController {
 		Debug.Log("第一連擊");
 		if (!photonView.IsMine)
             return;
-		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 0);
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position, 0);
 	}
 	public void TwoAttack(){
 		Debug.Log("第二連擊");
 		if (!photonView.IsMine)
             return;
-		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 1);
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position, 1);
 	}
 	public void ThreeAttack(){
 		Debug.Log("第三連擊");
 		if (!photonView.IsMine)
             return;
-		photonView.RPC("RPC_NearProjectile", RpcTarget.All,muzzleR.position, 2);
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position, 2);
 	}
 	public void OnArmourEnter(){
 		ki.inputEnabled = false;
@@ -190,6 +194,12 @@ public class SupporterController : ICareerController {
 		ki.inputEnabled = true;
 		ac.canAttack=true;
 		ac.anim.SetInteger("attackSkill", -1);
+	}
+	[PunRPC]
+	public void DisableBuffRange(){
+		FieldOfViewBuff fovb=GetComponentInChildren<FieldOfViewBuff>();
+		if(fovb!=null)
+			fovb.Disable();
 	}
 	[PunRPC]
 	public void DisableAbsorbRange(){
@@ -205,7 +215,7 @@ public class SupporterController : ICareerController {
         // SoundManager.Instance.PlayEffectSound(gunFire);
         if (!photonView.IsMine)
             return;
-		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position+transform.forward*2, ac.anim.GetInteger("attackSkill"));//3
+		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position+transform.forward*2.12f, ac.anim.GetInteger("attackSkill"));//3
         
         //收刀動作
         // Invoke("ArmourIsPull",pullTime+.5f);
@@ -281,6 +291,8 @@ public class SupporterController : ICareerController {
 		} 
 		Debug.Log(type);
 		buffType = (BuffType)type;
+		GameObject vfx = Instantiate(changeBuffVFX,transform.position,transform.rotation);
+		vfx.transform.parent=transform;
 	}
 	[PunRPC]
 	public void RPC_Buff(int fovSkill){

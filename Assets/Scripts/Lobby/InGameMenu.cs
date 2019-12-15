@@ -60,8 +60,8 @@ public class InGameMenu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 isMenu = !isMenu;
-                if (PlayerAm != null)
-                    PlayerAm.sm.RPC_Lock();
+                // if (PlayerAm != null)
+                //     PlayerAm.sm.RPC_Lock();
             }
         }
     }

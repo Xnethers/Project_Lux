@@ -5787,7 +5787,7 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: reLife
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 0
     Name: force
   - Type: 9
     SynchronizeType: 0
