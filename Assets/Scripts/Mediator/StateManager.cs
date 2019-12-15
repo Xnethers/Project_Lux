@@ -101,7 +101,6 @@ public class StateManager : IActorManagerInterface, IPunObservable
                 am.targetAm.sm.AddRP(2); 
                 am.targetAm.sm.AllKill+=1;
             }
-            
         }
         if(isDie ){//在高處降落至地才死亡動畫
             am.ac.OnDieEnter();//不能行動

@@ -69,17 +69,20 @@ public class StateBuff : MonoBehaviourPunCallbacks
     void Update()
     {
         Timer_mark.Tick();
-        if(FindBuff("isRepel"))
-        {
-            //photonView.RPC("RPC_SetTrigger", RpcTarget.All, "hit");
-            if (!sm.isDie)
-                sm.am.ac.RPC_SetTrigger("hit");
-            RemoveBuff("isRepel");
+        if(sm.isDie){
+            notSpeedup();
+            SetBuffValue(1,1,1);
         }
         if(AbsorbAm!=null)//Initialize
         {
-            if(AbsorbAm.sm.HP<=0)
+            if(AbsorbAm.sm.isDie)
                 SetAbsorbed(null);
+        }
+        if(FindBuff("isRepel"))
+        {
+            //photonView.RPC("RPC_SetTrigger", RpcTarget.All, "hit");
+            sm.am.ac.RPC_SetTrigger("hit");
+            RemoveBuff("isRepel");
         }
         if (!photonView.IsMine)
         { return; }
@@ -110,10 +113,6 @@ public class StateBuff : MonoBehaviourPunCallbacks
         {
             sm.am.ac.SetSpeedup(2.0f);
             Invoke("notSpeedup", 3.0f);
-        }
-        else
-        {
-            sm.am.ac.SetSpeedup(1.0f);
         }
     }
     public void AddBuffsByStrings(string[] buffsName)
@@ -149,7 +148,10 @@ public class StateBuff : MonoBehaviourPunCallbacks
     public void SetAbsorbed(ActorManager absorbAm){//ImmuneBuff
         AbsorbAm=absorbAm;
     }
-    void notSpeedup() { RemoveBuff("isSpeedup"); }
+    void notSpeedup() { 
+        sm.am.ac.SetSpeedup(1.0f);
+        RemoveBuff("isSpeedup"); 
+    }
 
     IEnumerator Mark()
     {
