@@ -1047,12 +1047,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de3fe06aa424f64a86b85143f58ee5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameStart: 0
   playerPrefab:
   - {fileID: 1028935420427188, guid: 45092992c8e82cb4499645a10c89cb69, type: 2}
   - {fileID: 1664428161481376, guid: 506d54d3568634443a7a7f03529465ac, type: 2}
+  - {fileID: 1585588866025934, guid: 89302a5020232404183faa253088e3a3, type: 2}
   - {fileID: 1595332062839686, guid: b965aba08cb0f9a4e8f00a13438a3d01, type: 2}
   - {fileID: 1287390371873622, guid: 6ca37b8b3ffc541409c05e9347ca9ecb, type: 2}
-  - {fileID: 1585588866025934, guid: 89302a5020232404183faa253088e3a3, type: 2}
   - {fileID: 1585588866025934, guid: 89302a5020232404183faa253088e3a3, type: 2}
   RedRelivePoint: {fileID: 114884986812210802}
   BlueRelivePoint: {fileID: 114030715077520470}
@@ -1062,6 +1063,7 @@ MonoBehaviour:
     type: 2}
   MyTeamPanel: {fileID: 1671469369637100}
   OtherTeamPanel: {fileID: 1955976469600604}
+  playersResult: []
 --- !u!114 &114281710334986644
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6512,9 +6512,7 @@ MonoBehaviour:
   - {fileID: 114888919908389672}
   - {fileID: 114010970752936066}
   duration: 0.6
-  pos:
-  - {x: -275, y: 0}
-  - {x: 0, y: 0}
+  buffOutPos: {x: -275, y: 0}
   sc: {fileID: 114351684755625412}
   aimUI: {fileID: 224087945928973824}
   magazineText: {fileID: 114882223057568194}

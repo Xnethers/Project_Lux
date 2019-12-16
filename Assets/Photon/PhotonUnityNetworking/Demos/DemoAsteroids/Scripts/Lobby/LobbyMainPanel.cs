@@ -440,13 +440,19 @@ namespace Photon.Pun.Demo.Asteroids
                 return;
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.red)
             {
-                if (FindObjectOfType<ChooseCharacter>().isRedChooseCharacter[whichCharacter])
+                if (FindObjectOfType<ChooseCharacter>().isRedChooseCharacter[whichCharacter]){
+                    PhotonNetwork.LocalPlayer.SetCharacter(ChooseCharacter.RandomInt(whichCharacter));
                     return;
+                }
+                    
             }
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.blue)
             {
-                if (FindObjectOfType<ChooseCharacter>().isBlueChooseCharacter[whichCharacter])
+                if (FindObjectOfType<ChooseCharacter>().isBlueChooseCharacter[whichCharacter]){
+                    PhotonNetwork.LocalPlayer.SetCharacter(ChooseCharacter.RandomInt(whichCharacter));
                     return;
+                }
+                    
             }
             PhotonNetwork.LocalPlayer.SetCharacter(whichCharacter);
         }

@@ -48,10 +48,10 @@ namespace Photon.Pun.Demo.Asteroids
             }
             else
             {
-                if(PlayerInfo.PI.mySelectedCamp==0)
-                    startCharacter=1;//0
-                else
-                    startCharacter=4;//3
+                // if(PlayerInfo.PI.mySelectedCamp==0)
+                //     startCharacter=0;//0
+                // else
+                //     startCharacter=2;//3
                 PhotonNetwork.LocalPlayer.SetCharacter(startCharacter);
                 PhotonNetwork.LocalPlayer.SetReady(false);
                 
@@ -157,6 +157,7 @@ namespace Photon.Pun.UtilityScripts{
             chooseCharacter[PlayerInfo.PLAYER_Character] = character;
 
             player.SetCustomProperties(chooseCharacter);
+
         }
     }
 }

@@ -38,7 +38,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     public Image[] Buffs;
     private RectTransform[] BuffsRectTrans = new RectTransform[3];
     public float duration=0.6f;
-    public Vector2[] pos;
+    public Vector2 buffOutPos= new Vector2(-275,0);
 
     #endregion
 
@@ -74,6 +74,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         ReLiveTime.text = sm.deadTime.ToString();
         for(int i= 0; i<Buffs.Length;i++){
             BuffsRectTrans[i]=Buffs[i].GetComponent<RectTransform>();
+            BuffsRectTrans[i].anchoredPosition = buffOutPos;
             Buffs[i].DOFade(0, duration);
             // Buffs[i].enabled = false; 
         }
@@ -156,12 +157,12 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         if(buffValue != 1){
             // buffObj.enabled = true;
             buffImg.DOFade(1, duration);
-            buffRect.DOAnchorPos(pos[1], duration);
+            buffRect.DOAnchorPos(Vector2.zero, duration);
         }
         else{
             // buffObj.enabled = false;
             buffImg.DOFade(0, duration);
-            buffRect.DOAnchorPos(pos[0], duration);
+            buffRect.DOAnchorPos(buffOutPos, duration);
         }
     }
     #endregion

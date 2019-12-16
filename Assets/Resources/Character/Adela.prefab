@@ -4588,7 +4588,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1437046607415546}
-  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4596,7 +4596,7 @@ Transform:
   - {fileID: 4615767870326040}
   m_Father: {fileID: 4981881710410914}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4998320556664788
 Transform:
   m_ObjectHideFlags: 1
@@ -5467,7 +5467,7 @@ MonoBehaviour:
   - {fileID: 114452134924562142}
   - {fileID: 114565884895333862}
   duration: 0.6
-  pos: []
+  buffOutPos: {x: -275, y: 0}
 --- !u!114 &114250032611659000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5639,7 +5639,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114563342176842012}
   viewIdField: 0
-  InstantiationId: 15
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114373766132593892
 MonoBehaviour:
@@ -5677,9 +5677,7 @@ MonoBehaviour:
   - {fileID: 114452134924562142}
   - {fileID: 114565884895333862}
   duration: 0.6
-  pos:
-  - {x: -275, y: 0}
-  - {x: 0, y: 0}
+  buffOutPos: {x: -275, y: 0}
   dc: {fileID: 114706801060354566}
   aimUI: {fileID: 224818949613082016}
   magazineText: {fileID: 114068762039409174}
@@ -5993,7 +5991,7 @@ MonoBehaviour:
   - {fileID: 114502605480114190}
   - {fileID: 114856973316791092}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 15
   isRuntimeInstantiated: 0
 --- !u!114 &114502605480114190
 MonoBehaviour:

@@ -6955,9 +6955,7 @@ MonoBehaviour:
   - {fileID: 114069886152133990}
   - {fileID: 114542553473891902}
   duration: 0.6
-  pos:
-  - {x: -275, y: 0}
-  - {x: 0, y: 0}
+  buffOutPos: {x: -275, y: 0}
 --- !u!114 &114873010075085782
 MonoBehaviour:
   m_ObjectHideFlags: 1

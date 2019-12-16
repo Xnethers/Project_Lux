@@ -5031,9 +5031,7 @@ MonoBehaviour:
   - {fileID: 114665928465115828}
   - {fileID: 114575215852782250}
   duration: 0.6
-  pos:
-  - {x: -275, y: 0}
-  - {x: 0, y: 0}
+  buffOutPos: {x: -275, y: 0}
 --- !u!114 &114064772640694748
 MonoBehaviour:
   m_ObjectHideFlags: 1

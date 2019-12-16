@@ -175,12 +175,12 @@ namespace Photon.Pun.Demo.Asteroids{
 				return null;
 		}
 		
-		private int RandomInt(int character){
+		public static int RandomInt(int character){
 			int tempInt = 0;
 			if(PlayerInfo.PI.mySelectedCamp==0)
-				tempInt = UnityEngine.Random.Range(0,3);
+				tempInt = UnityEngine.Random.Range(0,2);
 			else if(PlayerInfo.PI.mySelectedCamp==1)
-				tempInt = UnityEngine.Random.Range(3,6);
+				tempInt = UnityEngine.Random.Range(2,4);
 			if(tempInt==character)
 				return RandomInt(character);
 			else
