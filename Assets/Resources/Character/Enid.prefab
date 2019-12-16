@@ -6511,6 +6511,10 @@ MonoBehaviour:
   - {fileID: 114005624743047608}
   - {fileID: 114888919908389672}
   - {fileID: 114010970752936066}
+  duration: 0.6
+  pos:
+  - {x: -275, y: 0}
+  - {x: 0, y: 0}
   sc: {fileID: 114351684755625412}
   aimUI: {fileID: 224087945928973824}
   magazineText: {fileID: 114882223057568194}
@@ -7565,7 +7569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000076293945, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224424810830018420
@@ -8047,7 +8051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000076293945, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224897356674603484

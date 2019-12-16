@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using Photon.Pun;
 using System.Text;
-
+using UITween;
+using DG.Tweening;
 public class PlayerUI : MonoBehaviourPunCallbacks
 {
     #region Private Fields
@@ -35,6 +36,9 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     public OccupiedTest occupied;
     public Text ReLiveTime;
     public Image[] Buffs;
+    private RectTransform[] BuffsRectTrans = new RectTransform[3];
+    public float duration=0.6f;
+    public Vector2[] pos;
 
     #endregion
 
@@ -68,8 +72,11 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         }
         occupied = FindObjectOfType<OccupiedTest>();
         ReLiveTime.text = sm.deadTime.ToString();
-        foreach (Image buff in Buffs)
-        { buff.enabled = false; }
+        for(int i= 0; i<Buffs.Length;i++){
+            BuffsRectTrans[i]=Buffs[i].GetComponent<RectTransform>();
+            Buffs[i].DOFade(0, duration);
+            // Buffs[i].enabled = false; 
+        }
         // skill[1].enabled = true;//rush
     }
 
@@ -140,17 +147,21 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         else
             ReLiveTime.gameObject.SetActive(false);
         if(Buffs.Length>0){
-            SetBuffsUI(sm.ATKBuff,Buffs[0]);
-            SetBuffsUI(sm.DEFBuff,Buffs[1]);
-            SetBuffsUI(sm.HOTBuff,Buffs[2]);
+            SetBuffsUI(sm.ATKBuff,Buffs[0],BuffsRectTrans[0]);
+            SetBuffsUI(sm.DEFBuff,Buffs[1],BuffsRectTrans[1]);
+            SetBuffsUI(sm.HOTBuff,Buffs[2],BuffsRectTrans[2]);
         } 
     }
-    void SetBuffsUI(float buffValue,Image buffObj){
+    void SetBuffsUI(float buffValue,Image buffImg,RectTransform buffRect){
         if(buffValue != 1){
-            buffObj.enabled = true;
+            // buffObj.enabled = true;
+            buffImg.DOFade(1, duration);
+            buffRect.DOAnchorPos(pos[1], duration);
         }
         else{
-            buffObj.enabled = false;
+            // buffObj.enabled = false;
+            buffImg.DOFade(0, duration);
+            buffRect.DOAnchorPos(pos[0], duration);
         }
     }
     #endregion

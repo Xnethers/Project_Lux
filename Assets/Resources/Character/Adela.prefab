@@ -5466,6 +5466,8 @@ MonoBehaviour:
   - {fileID: 114621596885619224}
   - {fileID: 114452134924562142}
   - {fileID: 114565884895333862}
+  duration: 0.6
+  pos: []
 --- !u!114 &114250032611659000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5674,6 +5676,10 @@ MonoBehaviour:
   - {fileID: 114621596885619224}
   - {fileID: 114452134924562142}
   - {fileID: 114565884895333862}
+  duration: 0.6
+  pos:
+  - {x: -275, y: 0}
+  - {x: 0, y: 0}
   dc: {fileID: 114706801060354566}
   aimUI: {fileID: 224818949613082016}
   magazineText: {fileID: 114068762039409174}
@@ -100697,7 +100703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000076293945, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224294301313617038
@@ -101163,7 +101169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000076293945, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224783792002733154

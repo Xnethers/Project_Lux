@@ -4997,7 +4997,7 @@ MonoBehaviour:
   - {fileID: 114707027252949322}
   - {fileID: 114839645063806294}
   viewIdField: 0
-  InstantiationId: 12
+  InstantiationId: 14
   isRuntimeInstantiated: 0
 --- !u!114 &114047698886280978
 MonoBehaviour:
@@ -5030,6 +5030,10 @@ MonoBehaviour:
   - {fileID: 114808002920272166}
   - {fileID: 114665928465115828}
   - {fileID: 114575215852782250}
+  duration: 0.6
+  pos:
+  - {x: -275, y: 0}
+  - {x: 0, y: 0}
 --- !u!114 &114064772640694748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5609,7 +5613,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114758960382991668}
   viewIdField: 0
-  InstantiationId: 14
+  InstantiationId: 10
   isRuntimeInstantiated: 0
 --- !u!114 &114324447699644704
 MonoBehaviour:
@@ -5762,7 +5766,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114896299942052946}
   viewIdField: 0
-  InstantiationId: 10
+  InstantiationId: 13
   isRuntimeInstantiated: 0
 --- !u!114 &114408497414426628
 MonoBehaviour:
@@ -6378,7 +6382,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114211621104466414}
   viewIdField: 0
-  InstantiationId: 13
+  InstantiationId: 12
   isRuntimeInstantiated: 0
 --- !u!114 &114659728391947564
 MonoBehaviour:
@@ -8266,7 +8270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000076293945, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224437213056103994
@@ -8783,7 +8787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000076293945, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224855165567787238
