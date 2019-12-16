@@ -16,6 +16,12 @@ namespace Photon.Pun.Demo.Asteroids{
 
 		void Start()
 		{
+			ActorManager[] lastAms=FindObjectsOfType<ActorManager>();
+			if(lastAms.Length!=0){
+				foreach(ActorManager am in lastAms)
+					Destroy(am.gameObject);
+			}
+				
 			RedPlayersCharacter = new Dictionary<Character, List<Player>> ();
 			BluePlayersCharacter = new Dictionary<Character, List<Player>> ();
 			Array enumVals = Enum.GetValues(typeof(Character));

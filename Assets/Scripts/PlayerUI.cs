@@ -34,7 +34,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     public Image OccupiedBlue;
     public OccupiedTest occupied;
     public Text ReLiveTime;
-    public Text Buff;
+    public Image[] Buffs;
 
     #endregion
 
@@ -68,8 +68,8 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         }
         occupied = FindObjectOfType<OccupiedTest>();
         ReLiveTime.text = sm.deadTime.ToString();
-        // foreach (Image image in skill)
-        // { image.enabled = false; }
+        foreach (Image buff in Buffs)
+        { buff.enabled = false; }
         // skill[1].enabled = true;//rush
     }
 
@@ -139,8 +139,19 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         }
         else
             ReLiveTime.gameObject.SetActive(false);
-        Buff.text = "ATKBuff:" + sm.ATKBuff + "\r\nDEFBuff:" + sm.DEFBuff + "\r\nHOTBuff:" + sm.HOTBuff;
+        if(Buffs.Length>0){
+            SetBuffsUI(sm.ATKBuff,Buffs[0]);
+            SetBuffsUI(sm.DEFBuff,Buffs[1]);
+            SetBuffsUI(sm.HOTBuff,Buffs[2]);
+        } 
     }
-
+    void SetBuffsUI(float buffValue,Image buffObj){
+        if(buffValue != 1){
+            buffObj.enabled = true;
+        }
+        else{
+            buffObj.enabled = false;
+        }
+    }
     #endregion
 }

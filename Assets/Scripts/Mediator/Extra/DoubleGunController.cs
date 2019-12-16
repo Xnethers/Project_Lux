@@ -312,11 +312,6 @@ public class DoubleGunController : ICareerController
     {
         Obj_magazine.SetActive(true);
     }
-    public void SniperIdle()
-    {
-        if (ac != null)
-            ac.lerpTarget = 1.0f;
-    }
     public void CreateGunFire(Transform trans)
     {
         if (VFX_Adela_gunFire != null)
