@@ -4936,7 +4936,7 @@ MonoBehaviour:
   - {fileID: 1604299404585526, guid: 2f5f2a9148e1077479b9ae5164944760, type: 2}
   rayhitAirWall: 0
   cameraShake: {fileID: 114716862390784616}
-  shakeVFX: {fileID: 1937955472171588, guid: 0431dc3722033ac42bd6f196e232e132, type: 2}
+  shakeVFX: {fileID: 1106295331644786, guid: 0431dc3722033ac42bd6f196e232e132, type: 2}
   changeBuffVFX: {fileID: 1540371091395506, guid: 965ea36b6fa1cde479da60d2b15de1f0,
     type: 2}
   buffObj:
