@@ -9,6 +9,8 @@ public class SupporterController : ICareerController {
 	public ActorController AC{get{return ac;}}
 	// private FieldOfViewHeight fovh;
 	public CameraShake cameraShake;
+	[Header("===== Others VFX Settings =====")]
+    public GameObject VFX_Borislav_Q;
 	public GameObject shakeVFX;
 	public GameObject changeBuffVFX;
 	[Header("===== Buff Settings =====")]
@@ -29,6 +31,7 @@ public class SupporterController : ICareerController {
 	[Space(10)]
     [Header("===== Absorb Settings =====")]
 	public float absorbDamage=0f;
+	
 	// Use this for initialization
 	void Start () {
 		muzzleR = transform.DeepFind("MuzzleR");
@@ -307,4 +310,14 @@ public class SupporterController : ICareerController {
             return;
 		absorbDamage+=damage;
 	}
+    void creatQEffect()
+    {
+        GameObject vfx = Instantiate(VFX_Borislav_Q,muzzleR);
+    }
+	void destoryQEffect()
+    {
+		DestoryPS vfx = muzzleR.GetComponentInChildren<DestoryPS>();
+		if(vfx!=null)
+        	Destroy(vfx.gameObject);
+    }
 }

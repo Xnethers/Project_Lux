@@ -2085,6 +2085,7 @@ MonoBehaviour:
   onExitMessages:
   - OnArmourExit
   - InitializeAbsorbDamage
+  - destoryQEffect
 --- !u!114 &114672559168214764
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2716,6 +2717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onExitMessages:
   - OnArmourExit
+  - creatQEffect
 --- !u!114 &114918636038414128
 MonoBehaviour:
   m_ObjectHideFlags: 3
