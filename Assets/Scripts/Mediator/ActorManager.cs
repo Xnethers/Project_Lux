@@ -85,6 +85,9 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         Debug.Log("TryDoDamageTryDoDamageTryDoDamage");
         //this.targetAm =targetAm;
         //ac.attackerVec = targetAm.transform.forward;
+        ac.attackerVec = damageData.DamageVec;
+        if(damageData.AttackerAm != null)
+            this.targetAm = damageData.AttackerAm;
         if(!photonView.IsMine)//人物父層才有photonView
             return;
         if(sm.isDie)
@@ -92,11 +95,11 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         float currentDamage= 0;
         if(!damageData.AbsorbOthers){
             currentDamage=(damageData.Damage*(2-sm.DEFBuff));
-            Debug.Log("自己受傷");
+            // Debug.Log("自己受傷");
         }
         else{
             currentDamage=damageData.Damage;
-            Debug.Log("幫別人吸收");
+            // Debug.Log("幫別人吸收");
         }
             
         if(sm.sb.AbsorbAm != null){
@@ -149,9 +152,6 @@ public class ActorManager : MonoBehaviourPunCallbacks {
                 // Hit();
                 //do some VFX, liked splatter blood...
                 sm.sb.AddBuffsByStrings(damageData.BuffsName);
-                ac.attackerVec = damageData.DamageVec;
-                if(damageData.AttackerAm != null)
-                    this.targetAm = damageData.AttackerAm;
                 // ac.attackerVec = targetAm.transform.forward;
             }
             else {

@@ -87,6 +87,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
         isRepelled=am.ac.CheckStateTag("repelled");
         if (HP <= 0 && !isDie)
         {
+            // Debug.LogError("die");
             if(am.ac.pi.isLatent){
                 photonView.RPC("RPC_SetLatent", RpcTarget.All);
                 if(photonView.IsMine)
@@ -94,13 +95,14 @@ public class StateManager : IActorManagerInterface, IPunObservable
             }//退出潛光
             // Die();
             am.ac.OnDieEnter();//不能行動
-            isDie = true;
             AllDead+=1;
             if (am.targetAm != null)
             { 
                 am.targetAm.sm.AddRP(2); 
                 am.targetAm.sm.AllKill+=1;
+                // Debug.LogError("addRp+kill");
             }
+            isDie = true;
         }
         if(isDie ){//在高處降落至地才死亡動畫
             am.ac.OnDieEnter();//不能行動
