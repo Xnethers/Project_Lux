@@ -4,11 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 public class FightSettlement : InGameMenu {
-	private CanvasGroup PlayersListCanvasGroup;
-	public override void Start(){
-		base.Start();
-		PlayersListCanvasGroup = PlayersListPanel.GetComponent<CanvasGroup>();
-	}
+	
 	public override void Update()
 	{
 		base.Update();

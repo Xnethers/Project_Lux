@@ -498,7 +498,7 @@ namespace Photon.Pun.Demo.Asteroids
         private void UpdateCharacterObj()
         {
             int tempVisible = PhotonNetwork.LocalPlayer.GetCharacter();//玩家所選角色
-            ObjSclae(myCharacterUI, tempVisible);//放大所選角色
+            //ObjSclae(myCharacterUI, tempVisible);//放大所選角色
             ObjVisiable(myCharacter, tempVisible);//顯示3D角色模型
             PlayerInfo.PI.mySelectedCharacter = tempVisible;
         }

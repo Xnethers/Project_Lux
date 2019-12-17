@@ -30,6 +30,16 @@ namespace UITween
 
         [Header("My All Character")]
 
+        public Image Borislav;
+        private Image click_b;
+        public Image Enid;
+        private Image click_e;
+        public Image Lena;
+        private Image click_l;
+        public Image Adela;
+        private Image click_a;
+        public Vector2 origin;
+
         public float duration;
         public UnityEvent onEnable;
         public UnityEvent onDisable;
@@ -37,7 +47,51 @@ namespace UITween
 
         void Start()
         {
+            click_b = Borislav.transform.FindChild("Click").GetComponent<Image>();
+            click_e = Enid.transform.FindChild("Click").GetComponent<Image>();
+            click_l = Lena.transform.FindChild("Click").GetComponent<Image>();
+            click_a = Adela.transform.FindChild("Click").GetComponent<Image>();
+            origin = click_b.rectTransform.sizeDelta;
+            
+            click_b.color = Color.clear;
+            click_e.color = Color.clear;
+            click_l.color = Color.clear;
+            click_a.color = Color.clear;
+
             lobbyMainPanel.myAllCharacters.SetActive(false);
+        }
+        void Update()
+        { }
+        public void Click(RectTransform rect)
+        {
+            Vector2 b = rect.sizeDelta * 1.2f;
+            rect.DOSizeDelta(b,0.1f);
+        }
+
+        public void UnSelect(RectTransform rect)
+        {
+            rect.DOSizeDelta(origin,0.1f);
+        }
+        public void Select()
+        {
+            if (PlayerInfo.PI.mySelectedCharacter == 0)
+            {
+                Vector2 b = click_b.rectTransform.sizeDelta * 1.3f;
+                click_b.color =Color.white;
+                Sequence mySequence = DOTween.Sequence();
+                Tweener s1 = click_b.rectTransform.DOSizeDelta(b, duration);
+                Tweener s2 = click_b.DOFade(1, duration);
+                Tweener s3 = click_b.DOFade(0, duration/2);
+                //Tweener showtext = loginText.DOText(logintextstring, StretchDuration).Pause();
+                mySequence.Append(s1).Join(s2).Append(s3);
+                
+            }
+            else if (PlayerInfo.PI.mySelectedCharacter == 1)
+            { }
+            else if (PlayerInfo.PI.mySelectedCharacter == 2)
+            { }
+            else if (PlayerInfo.PI.mySelectedCharacter == 3)
+            { }
         }
         void OnEnable()
         {
