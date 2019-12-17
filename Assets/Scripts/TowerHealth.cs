@@ -19,15 +19,11 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     public OccupiedTest occupied;
     public float enemyHpValue = -5f;
     [Header("Result Settings")]
-    public GameObject resultUI;
-    public Text tempText;
     private ActorManager[] allActor;
     // Use this for initialization
     void Awake()
     {
         PV = GetComponent<PhotonView>();
-        if (resultUI != null)
-        { resultUI.SetActive(false); }
         health = maxhealth;
         fov = GetComponent<FieldOfView>();
         allActor = FindObjectsOfType<ActorManager>();
@@ -138,12 +134,12 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
         {//red = Yellow , blue = Purple
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.red)
             {
-                tempText.text = "Yellow Team Lose";
+                GameManager.Instance.GameMenu.ShowWinOrLose(false);
                 SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
             }
             else if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.blue)
             {
-                tempText.text = "Purple Team Win";
+                GameManager.Instance.GameMenu.ShowWinOrLose(true);
                 SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Win);
             }
         }
@@ -151,12 +147,12 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.red)
             {
-                tempText.text = "Yellow Team Win";
+                GameManager.Instance.GameMenu.ShowWinOrLose(true);
                 SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Win);
             }
             else if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.blue)
             {
-                tempText.text = "Purple Team Lose";
+                GameManager.Instance.GameMenu.ShowWinOrLose(false);
                 SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
             }
         }

@@ -4436,7 +4436,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 5
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4471,7 +4471,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4928,8 +4928,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114719799792810466}
   - {fileID: 114376165227488104}
-  viewIdField: 0
-  InstantiationId: 17
+  viewIdField: 8
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114218383465573066
 MonoBehaviour:
@@ -5561,7 +5561,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114678461351947774}
-  viewIdField: 0
+  viewIdField: 9
   InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114513486353133422
@@ -5642,8 +5642,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114999152103625804}
-  viewIdField: 0
-  InstantiationId: 8
+  viewIdField: 17
+  InstantiationId: 17
   isRuntimeInstantiated: 0
 --- !u!114 &114544707042811110
 MonoBehaviour:

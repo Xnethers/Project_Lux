@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using Fungus;
+
 public class InGameMenu : MonoBehaviour
 {
     public ActorManager PlayerAm;
@@ -13,10 +15,18 @@ public class InGameMenu : MonoBehaviour
 	private Vector2 size;
     public bool isMenu;
     public bool isTab;
+
+    [Header("Win/Lose Image")]
+	public Image WinorLoseImg;
+	public Sprite WinSprite;
+	public Sprite LoseSprite;
+    private Vector2 ExpandSize;
     public virtual void Start()
     {
         size = PlayersListPanel.sizeDelta;
 		SettlementPanelDisable();
+        ExpandSize = WinorLoseImg.GetComponent<RectTransform>().sizeDelta;
+        WinorLoseImg.rectTransform.sizeDelta = Vector2.one;
 		EscPanel.SetActive(false);
         ResultPanel.SetActive(false); 
     }
@@ -93,5 +103,24 @@ public class InGameMenu : MonoBehaviour
     }
     public void SettlementPanelEnable(){
 		PlayersListPanel.sizeDelta=size;
+    }
+    public void ShowWinOrLose(bool iswinteam)
+    {
+        if (iswinteam)
+        {
+            WinorLoseImg.sprite = WinSprite;
+            Sequence mySequence = DOTween.Sequence();
+            Tweener scale1 = WinorLoseImg.rectTransform.DOSizeDelta(ExpandSize * 2, duration * 0.5F);
+            Tweener scale2 = WinorLoseImg.rectTransform.DOSizeDelta(ExpandSize, duration);
+            mySequence.Append(scale1).Append(scale2);
+        }
+        else
+        {
+            WinorLoseImg.sprite = LoseSprite;
+            Sequence mySequence = DOTween.Sequence();
+            Tweener scale1 = WinorLoseImg.rectTransform.DOSizeDelta(ExpandSize * 2, duration * 0.5F);
+            Tweener scale2 = WinorLoseImg.rectTransform.DOSizeDelta(ExpandSize, duration);
+            mySequence.Append(scale1).Append(scale2);
+        }
     }
 }

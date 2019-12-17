@@ -58,6 +58,9 @@ namespace Photon.Pun.Demo.Asteroids
         public GameObject MyTeamPanel;
         public GameObject OtherTeamPanel;
 
+        [Header("Loading Panel ")]
+        public GameObject LoadingPanel;
+
         private Dictionary<string, RoomInfo> cachedRoomList;
         private Dictionary<string, GameObject> roomListEntries;
         private Dictionary<int, GameObject> playerListEntries;
