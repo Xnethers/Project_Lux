@@ -2085,7 +2085,7 @@ MonoBehaviour:
   onExitMessages:
   - OnArmourExit
   - InitializeAbsorbDamage
-  - destoryQEffect
+  - destoryQingEffect
 --- !u!114 &114672559168214764
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2717,7 +2717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onExitMessages:
   - OnArmourExit
-  - creatQEffect
+  - creatQingEffect
 --- !u!114 &114918636038414128
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -5626,7 +5626,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.20100424
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0

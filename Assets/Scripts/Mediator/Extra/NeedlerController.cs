@@ -40,6 +40,7 @@ public class NeedlerController : ICareerController
     public AudioClip gunFire;
     public AudioClip repelAttack;
     public AudioClip pickSword;
+    public AudioClip storage;
     void Start()
     {
         muzzle = transform.DeepFind("Muzzle");
@@ -152,6 +153,7 @@ public class NeedlerController : ICareerController
                 UseSkill(5,ac.am.sm.ATK);
                 StartCD(skillForce,careerValue.ForceCD);
                 ac.am.sm.isForcingAim=false;
+                SoundManager.Instance.StopEffectSound();
             }
         } 
         if(ki.attackML)
@@ -248,6 +250,7 @@ public class NeedlerController : ICareerController
     }
     public override void ForceAttack()//蓄力
 	{
+        SoundManager.Instance.PlayEffectSound(storage);
         Instantiate(AccumulateVFX,muzzle.position,muzzle.rotation);
         float t=0.1f;
         for(int i =0;i<7;i++){

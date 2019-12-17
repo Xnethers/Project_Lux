@@ -40,6 +40,7 @@ public class SniperController : ICareerController
     [Header("===== AudioClip Settings =====")]
     public AudioClip gunFire;
     public AudioClip repelAttack;
+    public AudioClip storage;
     void Start()
     {
         muzzle = transform.DeepFind("Muzzle");
@@ -167,6 +168,7 @@ public class SniperController : ICareerController
                 UseSkill(5, ac.am.sm.ATK);
                 StartCD(skillForce, careerValue.ForceCD);
                 ac.am.sm.isForcingAim = false;
+                SoundManager.Instance.StopEffectSound();
             }
         }
         if (ki.attackML)
@@ -259,7 +261,10 @@ public class SniperController : ICareerController
         else
         { photonView.RPC("RPC_Creatcube", RpcTarget.All); }
     }
-
+    public void OnForcingEnter()
+    {
+        SoundManager.Instance.PlayEffectSound(storage);
+    }
     public override void ForceAttack()//蓄力(0.7s)
     {
         CreateGunFire();
@@ -268,7 +273,7 @@ public class SniperController : ICareerController
         photonView.RPC("RPC_Projectile", RpcTarget.All, muzzle.position, RayAim(), ThrowerPower);
         magazine--;
     }
-
+    
     public void magazineOperation() //確認是否填彈
     {
         if (magazine <= 0 && !isFill)

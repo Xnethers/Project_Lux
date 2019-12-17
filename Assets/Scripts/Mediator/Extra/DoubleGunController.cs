@@ -49,8 +49,8 @@ public class DoubleGunController : ICareerController
     public AudioClip Adela_Q;
     public AudioClip Adela_Battery;
     public AudioClip repelAttack;
-
-
+    public AudioClip storage;
+    public AudioClip Adela_Leg;
     void Start()
     {
         muzzles[0] = transform.DeepFind("MuzzleL");
@@ -161,6 +161,7 @@ public class DoubleGunController : ICareerController
                 UseSkill(5, ac.am.sm.ATK);
                 StartCD(skillForce, careerValue.ForceCD);
                 ac.am.sm.isForcingAim = false;
+                SoundManager.Instance.StopEffectSound();
             }
         }
 
@@ -251,6 +252,7 @@ public class DoubleGunController : ICareerController
     {
         ki.inputEnabled = false;
         ac.camcon.isHorizontalView = true;
+        SoundManager.Instance.PlayEffectSound(storage);
     }
     public override void ForceAttack()//蓄力(0.7s)
     {
@@ -319,7 +321,7 @@ public class DoubleGunController : ICareerController
     {
         Obj_magazine.SetActive(true);
     }
-    public void CreateGunFire()
+    public void CreateGunFire0()
     {
         if (VFX_Adela_gunFire != null)
         {
@@ -345,6 +347,9 @@ public class DoubleGunController : ICareerController
             vfx.transform.SetParent(trans);
         }
         SoundManager.Instance.PlayEffectSound(Adela_Shot);
+    }
+    public void LegSound(){
+        SoundManager.Instance.PlayEffectSound(Adela_Leg);
     }
     #endregion
 

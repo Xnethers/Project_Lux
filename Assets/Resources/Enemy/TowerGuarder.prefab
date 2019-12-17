@@ -160,6 +160,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  isWatch: 0
+  Watching: {fileID: 8300000, guid: bfed5f44971933d409a7dedbcd400a10, type: 3}
+  Fire: {fileID: 8300000, guid: 7b883f32f9f5d5d4da9cbd8ddf65a254, type: 3}
 --- !u!114 &114973013835822362
 MonoBehaviour:
   m_ObjectHideFlags: 1

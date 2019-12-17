@@ -193,8 +193,8 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'Bip001 L
-      Thigh' : position error = 2.105997 mm\n\t'Bip001 R Thigh' : position error =
-      16.548435 mm\n"
+      Thigh' : position error = 2.100276 mm\n\t'Bip001 R Thigh' : position error =
+      16.503805 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -286,6 +286,13 @@ ModelImporter:
       - time: 0.17355089
         functionName: OnSendMsg
         data: SecondAttack
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.42767298
+        functionName: OnSendMsg
+        data: LegSound
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

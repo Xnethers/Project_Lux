@@ -32,6 +32,10 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     private PhotonView pv;
     public MyTimer Timer = new MyTimer();
     private Animator animator;
+    [Header("===== Audio Settings =====")]
+    public bool isWatch;
+    public AudioClip Watching;
+	public AudioClip Fire;
 
 
     // Use this for initialization
@@ -59,6 +63,10 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                 {
                     if (CheckPlayerExist())
                     {
+                        if(!isWatch){
+                            SoundManager.Instance.PlayEffectSound(Watching);
+                            isWatch=true;
+                        }
                         meshRenderer.sharedMaterial = aim;
                         transform.LookAt(dl.destination);
                         dl.Appear(0.02f);
@@ -116,6 +124,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                 }
             case status.finished:
                 {
+                    isWatch=false;
                     if (Timer.state == MyTimer.STATE.RUN)
                     { }
                     else if (Timer.state == MyTimer.STATE.IDLE)
@@ -175,6 +184,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         bullet.GetComponentInChildren<TrackingProjectile>().setTrack(dl.destination, projectileSpeed);
         bullet.transform.LookAt(dl.destination);
         bullet.GetComponentInChildren<Projectile>().Initialize(this.tag, projectileAtk, projectileSpeed, dl.destination.position);
+        SoundManager.Instance.PlayEffectSound(Fire);
     }
 
     // public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

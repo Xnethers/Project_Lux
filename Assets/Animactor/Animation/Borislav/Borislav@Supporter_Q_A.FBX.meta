@@ -157,8 +157,8 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'Bip001 L
-      Thigh' : position error = 8.805009 mm\n\t'Bip001 R Thigh' : position error =
-      8.816737 mm\n"
+      Thigh' : position error = 8.805016 mm\n\t'Bip001 R Thigh' : position error =
+      8.816708 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -246,7 +246,14 @@ ModelImporter:
           preInfinity: 2
           postInfinity: 2
           rotationOrder: 4
-      events: []
+      events:
+      - time: 0.3427673
+        functionName: OnSendMsg
+        data: QstartSound
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
