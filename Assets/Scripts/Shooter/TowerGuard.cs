@@ -23,7 +23,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     private SkinnedMeshRenderer meshRenderer;
 
     enum status
-    { aim, shoot, search, finished }
+    { aim, shoot, search, finished}
     [SerializeField]
     private status Status;
     private BattleManager bm;
@@ -36,8 +36,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     public bool isWatch;
     public AudioClip Watching;
 	public AudioClip Fire;
-
-
+    public Rigidbody rb;
     // Use this for initialization
     void Start()
     {
@@ -50,6 +49,8 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         dl.Disappear();
         meshRenderer = GetComponent<SkinnedMeshRenderer>();
         this.tag = transform.parent.tag;
+        rb=GetComponent<Rigidbody>();
+        rb.useGravity = false;
     }
 
     // Update is called once per frame
@@ -57,6 +58,14 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     {
         Playerlist = Physics.OverlapSphere(transform.position, radius, layer);
         Timer.Tick();
+        if (GameManager.Instance.isResult)
+        { 
+            meshRenderer.sharedMaterial = usual;
+            rb.useGravity = true;
+            animator.enabled=false;
+            return; 
+        }
+        
         switch (Status)
         {
             case status.aim:

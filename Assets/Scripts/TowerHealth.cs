@@ -20,6 +20,8 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     public float enemyHpValue = -5f;
     [Header("Result Settings")]
     private ActorManager[] allActor;
+    public GameObject mainTower;
+    public Animator[] French_Fries;
     // Use this for initialization
     void Awake()
     {
@@ -129,6 +131,12 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
     private void SetResult()
     {
         // resultUI.SetActive(true);
+        Material mat = mainTower.GetComponent<Renderer>().material;
+        mat.DisableKeyword("_EMISSION");
+        mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+        mat.SetColor("_EmissionColor", Color.black);
+        foreach(Animator fries in French_Fries)
+            fries.enabled=false;
         GameManager.Instance.GameMenu.isMenu=true;
         if (this.tag == "Red")
         {//red = Yellow , blue = Purple
