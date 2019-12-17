@@ -30,7 +30,7 @@ public class InGameMenu : MonoBehaviour
         WinorLoseImg.rectTransform.sizeDelta = Vector2.one;
 		EscPanel.SetActive(false);
         ResultPanel.SetActive(false); 
-        PlayersListCanvasGroup = PlayersListPanel.GetComponent<CanvasGroup>();
+        PlayersListCanvasGroup = PlayersListPanel.GetComponentInChildren<CanvasGroup>();
     }
     public virtual void Update()
     {
