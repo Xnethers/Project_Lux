@@ -2269,6 +2269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnterMessages:
   - OnArmourEnter
+  - useBuffSound
 --- !u!114 &114725644357526968
 MonoBehaviour:
   m_ObjectHideFlags: 1

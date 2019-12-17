@@ -18,6 +18,7 @@ public class SupporterController : ICareerController {
 	public AudioClip Qlightning;
 	public AudioClip forceSlash;
 	public AudioClip storage;
+	public AudioClip useBuff;
 
 	[Header("===== Others VFX Settings =====")]
 	public GameObject VFX_Borislav_Qstart;
@@ -320,6 +321,9 @@ public class SupporterController : ICareerController {
 	}
 	public void QstartSound(){
 		SoundManager.Instance.PlayEffectSound(Qstart);
+	}
+	public void useBuffSound(){
+		SoundManager.Instance.PlayEffectSound(useBuff);
 	}
 	[PunRPC]
 	public void RPC_ChangeBuffType(){

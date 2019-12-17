@@ -60,8 +60,10 @@ public class ActorController : IActorManagerInterface {
     [Header("===== Latent Settings =====")]
     public LatentType latentType;
     public int latentCount = 0;
-    
-    
+    public GameObject VFX_LatentOutIn_Y;
+    public GameObject VFX_LatentOutIn_P;
+    public GameObject VFX_Latenting_Y;
+    public GameObject VFX_Latenting_P;
     // Use this for initialization
     public void Awake() {
         IUserInput[] inputs = GetComponents<IUserInput>();
@@ -442,6 +444,10 @@ public class ActorController : IActorManagerInterface {
         model.transform.GetChild(0).gameObject.SetActive(!pi.isLatent);
         latentType = am.im.overlapEcastms[0].latentType;
         // foreach(GameObject mesh in model.GetComponentsInChildren<GameObject>()){}
+        if(this.tag == "Red")
+            Instantiate(VFX_LatentOutIn_Y,am.bm.bcL.transform.GetChild(0).position,am.bm.bcL.transform.rotation);
+        else if(this.tag == "Blue")
+            Instantiate(VFX_LatentOutIn_P,am.bm.bcL.transform.GetChild(0).position,am.bm.bcL.transform.rotation);
     }
     public void CloseLatentCol(){
         am.im.overlapEcastms[0].ColliderObj.SetActive(false);

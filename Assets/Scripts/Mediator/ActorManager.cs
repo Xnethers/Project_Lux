@@ -165,6 +165,8 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             am.bm.bcH.tag = "Red";
             am.bm.bcB.tag = "Red";
             am.bm.bcL.tag = "Red";
+            ac.VFX_Latenting_Y.SetActive(true);
+            ac.VFX_Latenting_P.SetActive(false);
             // am.wm.wcL.transform.GetChild(0).tag = "Red";
             // am.wm.wcR.transform.GetChild(0).tag = "Red";
         }
@@ -174,6 +176,8 @@ public class ActorManager : MonoBehaviourPunCallbacks {
             am.bm.bcH.tag = "Blue";
             am.bm.bcB.tag = "Blue";
             am.bm.bcL.tag = "Blue";
+            ac.VFX_Latenting_P.SetActive(true);
+            ac.VFX_Latenting_Y.SetActive(false);
             // am.wm.wcL.transform.GetChild(0).tag = "Blue";
             // am.wm.wcR.transform.GetChild(0).tag = "Blue";
         }
