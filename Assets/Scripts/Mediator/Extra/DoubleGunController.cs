@@ -318,12 +318,21 @@ public class DoubleGunController : ICareerController
     {
         Obj_magazine.SetActive(true);
     }
-    public void CreateGunFire(int i)
+    public void CreateGunFire()
     {
         if (VFX_Adela_gunFire != null)
         {
-            GameObject vfx = Instantiate(VFX_Adela_gunFire, muzzles[i].position, muzzles[i].rotation) as GameObject;
-            vfx.transform.SetParent(muzzles[i]);
+            GameObject vfx = Instantiate(VFX_Adela_gunFire, muzzles[0].position, muzzles[0].rotation) as GameObject;
+            vfx.transform.SetParent(muzzles[0]);
+        }
+        SoundManager.Instance.PlayEffectSound(Adela_Shot);
+    }
+    public void CreateGunFire1()
+    {
+        if (VFX_Adela_gunFire != null)
+        {
+            GameObject vfx = Instantiate(VFX_Adela_gunFire, muzzles[1].position, muzzles[1].rotation) as GameObject;
+            vfx.transform.SetParent(muzzles[1]);
         }
         SoundManager.Instance.PlayEffectSound(Adela_Shot);
     }

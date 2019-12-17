@@ -126,6 +126,7 @@ MonoBehaviour:
   headBuff: 1
   comboBuff: 1
   timeToLive: 3
+  Explosion: {fileID: 8300000, guid: 83a21ed58fad1794eb182912411a5ea8, type: 3}
   range: 5
   mask:
     serializedVersion: 2
