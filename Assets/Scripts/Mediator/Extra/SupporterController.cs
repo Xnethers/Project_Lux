@@ -20,6 +20,7 @@ public class SupporterController : ICareerController {
 	public AudioClip storage;
 
 	[Header("===== Others VFX Settings =====")]
+	public GameObject VFX_Borislav_Qstart;
     public GameObject VFX_Borislav_Q;
 	public GameObject shakeVFX;
 	public GameObject changeBuffVFX;
@@ -134,8 +135,8 @@ public class SupporterController : ICareerController {
 								if(CheckCD(skillF)){
 									ac.SetBool("fullBody",true);
 									UseSkill(2,careerValue.SecondDamage);
-									photonView.RPC("RPC_Buff", RpcTarget.All,0);
 									StartCD(skillF,careerValue.SecondCD);
+									photonView.RPC("RPC_Buff", RpcTarget.All,0);
 								}  
 							}
 							if(ki.attackQ && ac.am.sm.RP>=100){//開啟霸體
@@ -143,7 +144,6 @@ public class SupporterController : ICareerController {
 								// photonView.RPC("PS_creatQEffect", RpcTarget.All);
 								ac.SetBool("isArmour", true);
 								ac.am.sm.RP=0;
-								photonView.RPC("RPC_Buff", RpcTarget.All,1);
 							}
 						}
 					}
@@ -215,6 +215,9 @@ public class SupporterController : ICareerController {
 		ac.canAttack=true;
 		ac.anim.SetInteger("attackSkill", -1);
 	}
+	public void QstartVFX(){
+		
+	}
 	[PunRPC]
 	public void DisableBuffRange(){
 		FieldOfViewBuff fovb=GetComponentInChildren<FieldOfViewBuff>();
@@ -276,19 +279,26 @@ public class SupporterController : ICareerController {
 		SoundManager.Instance.PlayEffectSound(airGround);
 		Instantiate(shakeVFX,transform.position,transform.rotation);
 	}
-	public void OnForcingEnter() {
-        ki.inputEnabled = false;
-		ac.camcon.isHorizontalView=true;
-		SoundManager.Instance.PlayEffectSound(storage);
-		// ki.inputMouseEnabled = false;
-        //lockPlanar = true;
-        //lerpTarget = 1.0f;
-        
-    }
 	public void LockInput(){
 		ac.pi.inputEnabled=false;
 		ac.pi.inputMouseEnabled=false;
 	}
+	public void OnForcingEnter() {
+        ki.inputEnabled = false;
+		ac.camcon.isHorizontalView=true;
+		SoundManager.Instance.PlayEffectSound(storage);
+		float t=0.1f;
+        for(int i =0;i<7;i++){
+            Invoke("Invoke_AddATK",t);
+            t+=0.1f;
+        }
+    }
+	public void Invoke_AddATK()
+    {
+        if(ki.forcingML){
+            ac.am.sm.ATK += careerValue.ForceDifferenceDamage;
+        }
+    }
 	public override void ForceAttack()//蓄力
 	{
 		SoundManager.Instance.PlayEffectSound(forceSlash);
@@ -304,6 +314,10 @@ public class SupporterController : ICareerController {
 	public void OnRunUpdate() {
         ac.anim.SetLayerWeight(ac.anim.GetLayerIndex("run"), ac.anim.GetLayerWeight(ac.anim.GetLayerIndex("attack")));
     }
+	public  void createQstartEffect(){
+		GameObject vfx = Instantiate(VFX_Borislav_Qstart,transform.position,transform.rotation);
+		vfx.transform.parent=transform;
+	}
 	public void QstartSound(){
 		SoundManager.Instance.PlayEffectSound(Qstart);
 	}
@@ -340,6 +354,7 @@ public class SupporterController : ICareerController {
     {
 		SoundManager.Instance.PlayEffectSound(Qlightning);
         GameObject vfx = Instantiate(VFX_Borislav_Q,muzzleR);
+		RPC_Buff(1);
     }
 	void destoryQingEffect()
     {

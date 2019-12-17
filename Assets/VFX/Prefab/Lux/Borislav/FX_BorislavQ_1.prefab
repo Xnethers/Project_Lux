@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4443485364060796}
   - component: {fileID: 198903967798968138}
   - component: {fileID: 199416810408786470}
+  - component: {fileID: 114490142816119776}
   m_Layer: 0
   m_Name: FX_BorislavQ_1
   m_TagString: Untagged
@@ -103,6 +104,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114490142816119776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1577163528216168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d574e2e24206f40a03119e8a4a92ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loopVFX: 0
+  destoryParent: 0
 --- !u!198 &198232392400541318
 ParticleSystem:
   m_ObjectHideFlags: 1

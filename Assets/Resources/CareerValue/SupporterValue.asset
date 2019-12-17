@@ -11,17 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49a43f1c22ca3e4ea3ece8b2aa1b739, type: 3}
   m_Name: SupporterValue
   m_EditorClassIdentifier: 
-  normalDamage: 9
-  firstDamage: 9
-  secondDamage: 25
+  normalDamage: 20
+  firstDamage: 0
+  secondDamage: 0
   rushDamage: 20
-  rushAddDamage: 3
-  airDamage: 15
-  forceMinDamage: 10
-  forceDifferenceDamage: 1
+  rushAddDamage: 0
+  airDamage: 50
+  forceMinDamage: 25
+  forceDifferenceDamage: 2
   firstCD: 1
-  secondCD: 15
+  secondCD: 5
   rushingCD: 6
   airCD: 6
-  forceCD: 3
+  forceCD: 6
   forcingCD: 0.7

@@ -1827,6 +1827,7 @@ MonoBehaviour:
   onEnterMessages:
   - OnArmourEnter
   - InitializeAbsorbDamage
+  - createQstartEffect
 --- !u!114 &114557399467730064
 MonoBehaviour:
   m_ObjectHideFlags: 3
