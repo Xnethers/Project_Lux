@@ -50,7 +50,8 @@ namespace Photon.Pun.Demo.Asteroids
 
         [Header("Players List Panel ")]
         public GameObject PlayersListPanel;
-        public GameObject PlayerListEntryPrefab;
+        public GameObject MyPlayerListEntryPrefab;
+        public GameObject OtherPlayerListEntryPrefab;
 
         [Header("Teams Panel ")]
 
@@ -200,13 +201,17 @@ namespace Photon.Pun.Demo.Asteroids
 
                 foreach (Player p in PhotonNetwork.PlayerList)
                 {
-
-                    GameObject entry = Instantiate(PlayerListEntryPrefab);
-
+                    GameObject entry = null;
                     if (p.GetTeam() == PhotonNetwork.LocalPlayer.GetTeam())
-                    { entry.transform.SetParent(MyTeamPanel.transform); }
+                    {
+                        entry = Instantiate(MyPlayerListEntryPrefab);
+                        entry.transform.SetParent(MyTeamPanel.transform);
+                    }
                     else if (p.GetTeam() != PhotonNetwork.LocalPlayer.GetTeam())
-                    { entry.transform.SetParent(OtherTeamPanel.transform); }
+                    { 
+                        entry = Instantiate(OtherPlayerListEntryPrefab);
+                        entry.transform.SetParent(OtherTeamPanel.transform);
+                    }
 
                     entry.transform.localScale = Vector3.one;
                     entry.GetComponent<RectTransform>().localPosition = Vector3.zero;
@@ -243,13 +248,17 @@ namespace Photon.Pun.Demo.Asteroids
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
-            GameObject entry = Instantiate(PlayerListEntryPrefab);
-
+            GameObject entry = null;
             if (newPlayer.GetTeam() == PhotonNetwork.LocalPlayer.GetTeam())
-            { entry.transform.SetParent(MyTeamPanel.transform); }
+            {
+                entry = Instantiate(MyPlayerListEntryPrefab);
+                entry.transform.SetParent(MyTeamPanel.transform);
+            }
             else if (newPlayer.GetTeam() != PhotonNetwork.LocalPlayer.GetTeam())
-            { entry.transform.SetParent(OtherTeamPanel.transform); }
-
+            {
+                entry = Instantiate(OtherPlayerListEntryPrefab);
+                entry.transform.SetParent(OtherTeamPanel.transform);
+            }
             entry.transform.localScale = Vector3.one;
             entry.GetComponent<RectTransform>().localPosition = Vector3.zero;
             entry.GetComponent<PlayerListEntry>().Initialize(newPlayer.ActorNumber, newPlayer.NickName);
