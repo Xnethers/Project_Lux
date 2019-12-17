@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23037955135240234}
   - component: {fileID: 54746390365221732}
   - component: {fileID: 65945268525015442}
+  - component: {fileID: 114812850257379362}
   m_Layer: 0
   m_Name: Enid_Bullet
   m_TagString: Untagged
@@ -113,3 +114,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.050093085, y: 0.08805379, z: 0.08805378}
   m_Center: {x: -0.000000006519258, y: 0.000000009313226, z: 0.000000018626451}
+--- !u!114 &114812850257379362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1477701450782538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777b87b61800bc445b1ae3c3aa982139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _time: 2

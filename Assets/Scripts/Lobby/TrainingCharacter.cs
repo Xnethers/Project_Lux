@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 public class TrainingCharacter : InGameMenu {
 	public GameObject TrainingPanel;
 	public GameObject PlayerUI;	
@@ -51,4 +52,18 @@ public class TrainingCharacter : InGameMenu {
 		GameManager.Instance.CreateCharacter();
 		isTab = !isTab;
 	}
+
+	Tweener c;
+
+	public void Click(RectTransform rect)
+    {
+        Vector2 b = rect.sizeDelta * 1.2f;
+        c =rect.DOSizeDelta(b, 0.1f);
+    }
+
+    public void UnSelect(RectTransform rect)
+    {
+		c.Rewind(false);
+        //rect.DOSizeDelta(origin, 0.1f);
+    }
 }

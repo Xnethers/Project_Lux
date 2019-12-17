@@ -126,6 +126,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
             skill[0].fillAmount = (careercon.careerValue.SecondCD-careercon.skillF.atkTimer.elapsedTime) / careercon.careerValue.SecondCD;
             skill[2].fillAmount = (careercon.careerValue.AirCD-careercon.skillAir.atkTimer.elapsedTime) / careercon.careerValue.AirCD;
             skill[3].fillAmount = (careercon.careerValue.ForceCD-careercon.skillForce.atkTimer.elapsedTime) / careercon.careerValue.ForceCD;
+            skill[4].fillAmount = (careercon.careerValue.FirstCD-careercon.skillMR.atkTimer.elapsedTime) / careercon.careerValue.FirstCD;
             skill[1].fillAmount = sm.RP / sm.RPMax;
         }
         forcingAim.enabled = sm.isForcingAim;
