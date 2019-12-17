@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip Occupation;
     public AudioClip Win;
     public AudioClip Lose;
+    public AudioClip Bounce;
 
     private void Awake()
     {
@@ -45,6 +46,11 @@ public class SoundManager : MonoBehaviour
     {
         EffectsSource.PlayOneShot(clip);
     }
+    public void StopEffectSound()//停止個人音效
+    {
+        EffectsSource.Stop();
+    }
+
 
     // Play a single clip through the music source.
     public void PlaySceneEffect(AudioClip clip)//全場景音效

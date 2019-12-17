@@ -48,6 +48,7 @@ public class DoubleGunController : ICareerController
     public AudioClip Adela_Speedup;
     public AudioClip Adela_Q;
     public AudioClip Adela_Battery;
+    public AudioClip repelAttack;
 
 
     void Start()
@@ -208,7 +209,7 @@ public class DoubleGunController : ICareerController
 
     public override void SecondAttack()//F
     {
-        //SoundManager.Instance.PlayEffectSound(repelAttack);
+        SoundManager.Instance.PlayEffectSound(repelAttack);
         if (!photonView.IsMine)
             return;
         photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[2].position, RayAim(), 0f);

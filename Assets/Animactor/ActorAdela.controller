@@ -1770,9 +1770,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 7
     m_ConditionEvent: attackSkill
     m_EventTreshold: 3
-  - m_ConditionMode: 7
-    m_ConditionEvent: attackSkill
-    m_EventTreshold: 4
   m_DstStateMachine: {fileID: 1107911042523779644}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -3735,7 +3732,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102174079177713560}
-    m_Position: {x: 348, y: 324, z: 0}
+    m_Position: {x: 348, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102808712453741642}
     m_Position: {x: 348, y: -84, z: 0}

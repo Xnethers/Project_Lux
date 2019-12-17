@@ -157,6 +157,7 @@ MonoBehaviour:
   Occupation: {fileID: 8300000, guid: 38581aa74e58384478a4f4baf861d6e9, type: 3}
   Win: {fileID: 8300000, guid: b5c0e53990f5ec8499daaef7dca78b5d, type: 3}
   Lose: {fileID: 8300000, guid: 09666a934099bbd449e29633093642cf, type: 3}
+  Bounce: {fileID: 8300000, guid: 1d44d8f938a277148bf1f2a6968ce8b9, type: 3}
 --- !u!114 &114527657840335276
 MonoBehaviour:
   m_ObjectHideFlags: 1

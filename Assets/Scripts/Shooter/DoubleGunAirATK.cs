@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoubleGunAirATK : Projectile {
 	private FieldOfViewAttack fova;
+	public AudioClip explosion;
 	public override void Initialize(ActorManager am,float speed,Vector3 targetPoint){
 		base.Initialize(am,speed,targetPoint);
 		// fov = GetComponent<FieldOfView>();
@@ -11,6 +12,7 @@ public class DoubleGunAirATK : Projectile {
 	}
 	void Start()
 	{
+		SoundManager.Instance.PlayEffectSound(explosion);
 		fova = GetComponent<FieldOfViewAttack>();
 	}
 	void Update()

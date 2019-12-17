@@ -39,6 +39,7 @@ public class NeedlerController : ICareerController
     [Header("===== AudioClip Settings =====")]
     public AudioClip gunFire;
     public AudioClip repelAttack;
+    public AudioClip pickSword;
     void Start()
     {
         muzzle = transform.DeepFind("Muzzle");
@@ -311,6 +312,7 @@ public class NeedlerController : ICareerController
     public void NeedleHand() {
         BigNeedleSetParent(handBone);
         VFX_Lena_SwordTrail.gameObject.SetActive(true);
+        SoundManager.Instance.PlayEffectSound(pickSword);
     }
 
     public void NeedleWaist()

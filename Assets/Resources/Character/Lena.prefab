@@ -5615,7 +5615,7 @@ MonoBehaviour:
   - {fileID: 114548938312941780}
   - {fileID: 114563665013848676}
   viewIdField: 0
-  InstantiationId: 3
+  InstantiationId: 16
   isRuntimeInstantiated: 0
 --- !u!114 &114332189232120192
 MonoBehaviour:
@@ -5922,6 +5922,7 @@ MonoBehaviour:
   VFX_Lena_Q: {fileID: 1261318996572886, guid: 929c7c2b27a8ac047b9ad5f2ca2a8ca0, type: 2}
   gunFire: {fileID: 8300000, guid: 9d4459f74faaf024f8a44eb864649f27, type: 3}
   repelAttack: {fileID: 8300000, guid: 2f7026f85bdc05e40adf507615b5308a, type: 3}
+  pickSword: {fileID: 8300000, guid: 698054a69daa28541872f5e9c42c5321, type: 3}
 --- !u!114 &114405581192941098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6068,7 +6069,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114868378893170068}
   viewIdField: 0
-  InstantiationId: 16
+  InstantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114463430959289854
 MonoBehaviour:

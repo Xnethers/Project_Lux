@@ -9,6 +9,13 @@ public class SupporterController : ICareerController {
 	public ActorController AC{get{return ac;}}
 	// private FieldOfViewHeight fovh;
 	public CameraShake cameraShake;
+	[Header("===== Audio Settings =====")]
+	public AudioClip normalSlash;
+	public AudioClip airGround;
+	public AudioClip Qend;
+	public AudioClip Qlightning;
+	public AudioClip forceSlash;
+
 	[Header("===== Others VFX Settings =====")]
     public GameObject VFX_Borislav_Q;
 	public GameObject shakeVFX;
@@ -172,18 +179,21 @@ public class SupporterController : ICareerController {
         //anim.SetLayerWeight(anim.GetLayerIndex("attack"), Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("attack")), lerpTarget, 0.4f));
     }
 	public void OneAttack(){
+		SoundManager.Instance.PlayEffectSound(normalSlash);
 		Debug.Log("第一連擊");
 		if (!photonView.IsMine)
             return;
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position, 0);
 	}
 	public void TwoAttack(){
+		SoundManager.Instance.PlayEffectSound(normalSlash);
 		Debug.Log("第二連擊");
 		if (!photonView.IsMine)
             return;
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position, 1);
 	}
 	public void ThreeAttack(){
+		SoundManager.Instance.PlayEffectSound(normalSlash);
 		Debug.Log("第三連擊");
 		if (!photonView.IsMine)
             return;
@@ -215,7 +225,7 @@ public class SupporterController : ICareerController {
 		absorbDamage=0;
 	}
 	public void RushArmourAttack(){
-        // SoundManager.Instance.PlayEffectSound(gunFire);
+        SoundManager.Instance.PlayEffectSound(Qend);
         if (!photonView.IsMine)
             return;
 		photonView.RPC("RPC_NearProjectile", RpcTarget.All,transform.position+transform.forward*2.12f, ac.anim.GetInteger("attackSkill"));//3
@@ -256,6 +266,7 @@ public class SupporterController : ICareerController {
 		
 	}
 	public void AirAttackVFX(){
+		SoundManager.Instance.PlayEffectSound(airGround);
 		Instantiate(shakeVFX,transform.position,transform.rotation);
 	}
 	public void OnForcingEnter() {
@@ -272,6 +283,7 @@ public class SupporterController : ICareerController {
 	}
 	public override void ForceAttack()//蓄力
 	{
+		SoundManager.Instance.PlayEffectSound(forceSlash);
 		if (!photonView.IsMine)
             return;
 		photonView.RPC("RPC_Projectile", RpcTarget.All,muzzleR.position,new Vector3(RayAim().x,muzzleR.position.y,RayAim().z) ,ThrowerPower);//muzzleR.position, RayAim()
@@ -312,10 +324,12 @@ public class SupporterController : ICareerController {
 	}
     void creatQEffect()
     {
+		SoundManager.Instance.PlayEffectSound(Qlightning);
         GameObject vfx = Instantiate(VFX_Borislav_Q,muzzleR);
     }
 	void destoryQEffect()
     {
+		SoundManager.Instance.StopEffectSound();
 		DestoryPS vfx = muzzleR.GetComponentInChildren<DestoryPS>();
 		if(vfx!=null)
         	Destroy(vfx.gameObject);

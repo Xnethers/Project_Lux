@@ -6554,6 +6554,7 @@ MonoBehaviour:
   Adela_Speedup: {fileID: 8300000, guid: 7fba274d473fbe5479ca3ca3b585c242, type: 3}
   Adela_Q: {fileID: 8300000, guid: addb6ca925b55664cb69f91c389e2fb9, type: 3}
   Adela_Battery: {fileID: 8300000, guid: 44a053e671266f14fbc1e8f11852cf5a, type: 3}
+  repelAttack: {fileID: 8300000, guid: 2f7026f85bdc05e40adf507615b5308a, type: 3}
 --- !u!114 &114718266323099268
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -19,6 +19,7 @@ public class BounceTest : MonoBehaviour {
 		ActorManager am = other.GetComponent<ActorManager>();
 		if(am != null)
 		{
+			SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Bounce);
 			//am.ac.pi.inputEnabled = true;
 			am.ac.BounceTrigger(bonceVelocity);
 			// am.ac._velocity=Vector3.zero;
