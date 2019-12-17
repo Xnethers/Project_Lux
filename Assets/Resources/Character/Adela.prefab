@@ -5567,8 +5567,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114216248428490776}
-  viewIdField: 0
-  InstantiationId: 15
+  viewIdField: 5
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114330328575038568
 MonoBehaviour:
@@ -5638,8 +5638,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114563342176842012}
-  viewIdField: 0
-  InstantiationId: 5
+  viewIdField: 4
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114373766132593892
 MonoBehaviour:
@@ -5990,8 +5990,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114502605480114190}
   - {fileID: 114856973316791092}
-  viewIdField: 0
-  InstantiationId: 4
+  viewIdField: 15
+  InstantiationId: 15
   isRuntimeInstantiated: 0
 --- !u!114 &114502605480114190
 MonoBehaviour:
@@ -6550,8 +6550,10 @@ MonoBehaviour:
   - {fileID: 1991885479071320}
   - {fileID: 1838701653100568}
   isForce: 0
-  gunFire: {fileID: 0}
-  repelAttack: {fileID: 0}
+  Adela_Shot: {fileID: 8300000, guid: aa1eccf9cdd426b4994248e0340e6606, type: 3}
+  Adela_Speedup: {fileID: 8300000, guid: 7fba274d473fbe5479ca3ca3b585c242, type: 3}
+  Adela_Q: {fileID: 8300000, guid: addb6ca925b55664cb69f91c389e2fb9, type: 3}
+  Adela_Battery: {fileID: 8300000, guid: 44a053e671266f14fbc1e8f11852cf5a, type: 3}
 --- !u!114 &114718266323099268
 MonoBehaviour:
   m_ObjectHideFlags: 1

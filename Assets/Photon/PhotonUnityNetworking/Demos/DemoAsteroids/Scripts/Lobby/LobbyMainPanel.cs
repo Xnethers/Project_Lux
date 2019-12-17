@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UITween;
-using DG.Tweening;
 using Photon.Pun.UtilityScripts;
 
 namespace Photon.Pun.Demo.Asteroids
@@ -60,7 +59,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         [Header("Loading Panel ")]
         public GameObject LoadingPanel;
-
+        private const byte LOADINGPANEL_ACTIVE = 0;
         private Dictionary<string, RoomInfo> cachedRoomList;
         private Dictionary<string, GameObject> roomListEntries;
         private Dictionary<int, GameObject> playerListEntries;
@@ -68,6 +67,7 @@ namespace Photon.Pun.Demo.Asteroids
         private GameObject[] myCharacter;
         private GameObject[] myCharacterUI;
         private GameObject[] lockCharacterUI;
+         
 
         #region UNITY
 
@@ -174,10 +174,18 @@ namespace Photon.Pun.Demo.Asteroids
             if (Global.Level <= 0)
             {
                 if (Global.Level == -1)
+                {
+                    if (LoadingPanel)
+                    { LoadingPanel.SetActive(true); }
                     PhotonNetwork.LoadLevel("NoviceTeaching");
+                }
 
                 else if (Global.Level == 0)
+                {
+                    if (LoadingPanel)
+                    { LoadingPanel.SetActive(true); }
                     PhotonNetwork.LoadLevel("Training");
+                }
             }
             else
             {
@@ -394,7 +402,20 @@ namespace Photon.Pun.Demo.Asteroids
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
+            // if (LoadingPanel)
+            // {
+            //     LoadingPanel.SetActive(true);
+            //     PhotonView photonView = new PhotonView();
+            //     photonView.RPC("RPC_OpenLoadindPanel",RpcTarget.Others);
+            // }
             PhotonNetwork.LoadLevel("Room for " + Global.Level);
+        }
+
+        [PunRPC]
+        void RPC_OpenLoadindPanel()
+        {
+             if (LoadingPanel)
+            { LoadingPanel.SetActive(true); }
         }
 
         public void OnTeachButtonClicked()//新手教學

@@ -44,8 +44,12 @@ public class DoubleGunController : ICareerController
 
     public bool isForce;
     [Header("===== AudioClip Settings =====")]
-    public AudioClip gunFire;
-    public AudioClip repelAttack;
+    public AudioClip Adela_Shot;
+    public AudioClip Adela_Speedup;
+    public AudioClip Adela_Q;
+    public AudioClip Adela_Battery;
+
+
     void Start()
     {
         muzzles[0] = transform.DeepFind("MuzzleL");
@@ -119,6 +123,7 @@ public class DoubleGunController : ICareerController
             if (ki.attackQ && ac.am.sm.RP >= 100)
             {
                 UseSkill(3, careerValue.RushDamage);
+                SoundManager.Instance.PlayEffectSound(Adela_Q);
                 StartCD(skillQ, careerValue.RushingCD);
                 ac.am.sm.RP = 0;
             }
@@ -191,7 +196,7 @@ public class DoubleGunController : ICareerController
 
     public override void FirstAttack()//
     {
-        //SoundManager.Instance.PlayEffectSound(gunFire);
+        SoundManager.Instance.PlayEffectSound(Adela_Speedup);
         GameObject vfx = Instantiate(VFX_Adela_B1, transform.position,VFX_Adela_B1.transform.rotation) as GameObject;
         vfx.transform.SetParent(transform);
         SendMessage("AddBuff", "isSpeedup");
@@ -203,7 +208,7 @@ public class DoubleGunController : ICareerController
 
     public override void SecondAttack()//F
     {
-        SoundManager.Instance.PlayEffectSound(repelAttack);
+        //SoundManager.Instance.PlayEffectSound(repelAttack);
         if (!photonView.IsMine)
             return;
         photonView.RPC("RPC_Projectile", RpcTarget.All, muzzles[2].position, RayAim(), 0f);
@@ -248,6 +253,7 @@ public class DoubleGunController : ICareerController
     }
     public override void ForceAttack()//蓄力(0.7s)
     {
+        SoundManager.Instance.PlayEffectSound(Adela_Battery);
         foreach (var item in Beam)
         {
             item.SetActive(true);
@@ -312,6 +318,15 @@ public class DoubleGunController : ICareerController
     {
         Obj_magazine.SetActive(true);
     }
+    public void CreateGunFire(int i)
+    {
+        if (VFX_Adela_gunFire != null)
+        {
+            GameObject vfx = Instantiate(VFX_Adela_gunFire, muzzles[i].position, muzzles[i].rotation) as GameObject;
+            vfx.transform.SetParent(muzzles[i]);
+        }
+        SoundManager.Instance.PlayEffectSound(Adela_Shot);
+    }
     public void CreateGunFire(Transform trans)
     {
         if (VFX_Adela_gunFire != null)
@@ -319,7 +334,7 @@ public class DoubleGunController : ICareerController
             GameObject vfx = Instantiate(VFX_Adela_gunFire, trans.position, trans.rotation) as GameObject;
             vfx.transform.SetParent(trans);
         }
-        SoundManager.Instance.PlayEffectSound(gunFire);
+        SoundManager.Instance.PlayEffectSound(Adela_Shot);
     }
     #endregion
 

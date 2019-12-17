@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class RangeProjectile : Projectile
 {
+    public AudioClip Explosion;
     [Header("===== Settings =====")]
     public float range = 5;
     public LayerMask mask;
@@ -12,11 +13,14 @@ public class RangeProjectile : Projectile
     public attackType attackType;
     public float Damage;
 
+    
+
     // Use this for initialization
     public void Start()
     {
         cols = Physics.OverlapSphere(transform.position, range, LayerMask.NameToLayer("Body"));
         Damage = am.ac.careercon.careerValue.GetDamageByString(attackType);
+        SoundManager.Instance.PlayEffectSound(Explosion);
         Invoke("Invoke_RangeDamage", 0);
     }
 
