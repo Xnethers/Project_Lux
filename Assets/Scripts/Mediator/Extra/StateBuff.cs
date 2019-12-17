@@ -81,7 +81,8 @@ public class StateBuff : MonoBehaviourPunCallbacks
         if(FindBuff("isRepel"))
         {
             //photonView.RPC("RPC_SetTrigger", RpcTarget.All, "hit");
-            sm.am.ac.RPC_SetTrigger("hit");
+            if(!sm.isDie)
+                sm.am.ac.RPC_SetTrigger("hit");
             RemoveBuff("isRepel");
         }
         if (!photonView.IsMine)

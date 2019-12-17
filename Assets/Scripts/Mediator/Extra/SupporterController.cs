@@ -11,12 +11,16 @@ public class SupporterController : ICareerController {
 	public CameraShake cameraShake;
 	[Header("===== Audio Settings =====")]
 	public AudioClip normalSlash;
+	public AudioClip changeBuff;
 	public AudioClip airGround;
+	public AudioClip Qstart;
 	public AudioClip Qend;
 	public AudioClip Qlightning;
 	public AudioClip forceSlash;
+	public AudioClip storage;
 
 	[Header("===== Others VFX Settings =====")]
+	public GameObject VFX_Borislav_Qstart;
     public GameObject VFX_Borislav_Q;
 	public GameObject shakeVFX;
 	public GameObject changeBuffVFX;
@@ -155,6 +159,7 @@ public class SupporterController : ICareerController {
                 UseSkill(5,ac.am.sm.ATK);
                 StartCD(skillForce,careerValue.ForceCD);
                 ac.am.sm.isForcingAim=false;
+				SoundManager.Instance.StopEffectSound();
             }
         } 
 		if(ki.attackML)
@@ -272,6 +277,7 @@ public class SupporterController : ICareerController {
 	public void OnForcingEnter() {
         ki.inputEnabled = false;
 		ac.camcon.isHorizontalView=true;
+		SoundManager.Instance.PlayEffectSound(storage);
 		// ki.inputMouseEnabled = false;
         //lockPlanar = true;
         //lerpTarget = 1.0f;
@@ -296,7 +302,9 @@ public class SupporterController : ICareerController {
 	public void OnRunUpdate() {
         ac.anim.SetLayerWeight(ac.anim.GetLayerIndex("run"), ac.anim.GetLayerWeight(ac.anim.GetLayerIndex("attack")));
     }
-	
+	public void QstartSound(){
+		SoundManager.Instance.PlayEffectSound(Qstart);
+	}
 	[PunRPC]
 	public void RPC_ChangeBuffType(){
 		int type = (int)buffType;
@@ -308,6 +316,7 @@ public class SupporterController : ICareerController {
 		buffType = (BuffType)type;
 		GameObject vfx = Instantiate(changeBuffVFX,transform.position,transform.rotation);
 		vfx.transform.parent=transform;
+		SoundManager.Instance.PlayEffectSound(changeBuff);
 	}
 	[PunRPC]
 	public void RPC_Buff(int fovSkill){
@@ -322,12 +331,12 @@ public class SupporterController : ICareerController {
             return;
 		absorbDamage+=damage;
 	}
-    void creatQEffect()
+    void creatQingEffect()
     {
 		SoundManager.Instance.PlayEffectSound(Qlightning);
         GameObject vfx = Instantiate(VFX_Borislav_Q,muzzleR);
     }
-	void destoryQEffect()
+	void destoryQingEffect()
     {
 		SoundManager.Instance.StopEffectSound();
 		DestoryPS vfx = muzzleR.GetComponentInChildren<DestoryPS>();

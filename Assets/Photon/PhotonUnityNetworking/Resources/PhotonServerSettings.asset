@@ -117,4 +117,5 @@ MonoBehaviour:
   - CreateShakeVFX
   - DisableBuffRange
   - RPC_OpenLoadindPanel
+  - StopForcingSound
   DisableAutoOpenWizard: 1

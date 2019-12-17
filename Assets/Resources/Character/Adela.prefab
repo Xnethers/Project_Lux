@@ -6555,6 +6555,8 @@ MonoBehaviour:
   Adela_Q: {fileID: 8300000, guid: addb6ca925b55664cb69f91c389e2fb9, type: 3}
   Adela_Battery: {fileID: 8300000, guid: 44a053e671266f14fbc1e8f11852cf5a, type: 3}
   repelAttack: {fileID: 8300000, guid: 2f7026f85bdc05e40adf507615b5308a, type: 3}
+  storage: {fileID: 8300000, guid: af3b4d5f684889c4e88d0f1735155dd8, type: 3}
+  Adela_Leg: {fileID: 8300000, guid: ba2872f83132ec747b2593211b7067fa, type: 3}
 --- !u!114 &114718266323099268
 MonoBehaviour:
   m_ObjectHideFlags: 1
