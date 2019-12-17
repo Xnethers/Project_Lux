@@ -37,6 +37,12 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     public AudioClip Watching;
 	public AudioClip Fire;
     public Rigidbody rb;
+
+    [Header("===== VFX Settings =====")]
+    public GameObject VFX_Watch;
+    public GameObject VFX_WatchFire;
+    private Transform muzzle;
+
     // Use this for initialization
     void Start()
     {
@@ -48,6 +54,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         dl.destination = this.transform;
         dl.Disappear();
         meshRenderer = GetComponent<SkinnedMeshRenderer>();
+        muzzle = transform.GetChild(0);
         this.tag = transform.parent.tag;
         rb=GetComponent<Rigidbody>();
         rb.useGravity = false;
@@ -70,12 +77,19 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         {
             case status.aim:
                 {
+                    GameObject vfx = null ;
                     if (CheckPlayerExist())
                     {
                         if(!isWatch){
                             SoundManager.Instance.PlayEffectSound(Watching);
                             isWatch=true;
                         }
+                        if (muzzle.childCount < 1)
+                        {
+                            vfx = GameObject.Instantiate(VFX_Watch, muzzle.position, muzzle.rotation);
+                            vfx.transform.SetParent(muzzle);
+                        }
+
                         meshRenderer.sharedMaterial = aim;
                         transform.LookAt(dl.destination);
                         dl.Appear(0.02f);
@@ -93,6 +107,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     else
                     {
                         Status = status.search;
+                        DestroyImmediate(vfx);
                         animator.SetBool("Aim", false);
                         Timer.Reset();
                     }
@@ -104,6 +119,10 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     { return; }
                     else
                     {
+
+                        GameObject vfx = GameObject.Instantiate(VFX_WatchFire, muzzle.position, transform.rotation);
+                        vfx.transform.SetParent(muzzle);
+
                         transform.LookAt(dl.destination);
                         dl.Disappear();
                         // dl.SetLineEnabled(false);

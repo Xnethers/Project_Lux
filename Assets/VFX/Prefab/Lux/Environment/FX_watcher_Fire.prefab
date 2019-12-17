@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4849668958507328}
   - component: {fileID: 198718606722661492}
   - component: {fileID: 199987304393591772}
+  - component: {fileID: 114894121634894290}
   m_Layer: 10
   m_Name: FX_watcher_Fire
   m_TagString: Untagged
@@ -103,6 +104,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114894121634894290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402715573109514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d574e2e24206f40a03119e8a4a92ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destoryParent: 0
 --- !u!198 &198068838648926168
 ParticleSystem:
   m_ObjectHideFlags: 1
