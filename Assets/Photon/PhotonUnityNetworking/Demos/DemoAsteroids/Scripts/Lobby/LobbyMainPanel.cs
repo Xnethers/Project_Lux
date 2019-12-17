@@ -96,10 +96,12 @@ namespace Photon.Pun.Demo.Asteroids
             for (int i = 0; i < charactersCount; i++)
             {
                 myCharacter[i] = myAllCharacters.transform.GetChild(i).gameObject;
-                if (i < 3)
+                if (i < 2)
                     myCharacterUI[i] = myAllCamps[0].transform.GetChild(i).gameObject;
-                else
-                    myCharacterUI[i] = myAllCamps[1].transform.GetChild(i - 3).gameObject;
+                else if (i < 4)
+                    myCharacterUI[i] = myAllCamps[1].transform.GetChild(i - 2).gameObject;
+                else if (i < 6)
+                    myCharacterUI[i] = myAllCamps[2].transform.GetChild(i - 4).gameObject;
                 lockCharacterUI[i] = myCharacterUI[i].transform.GetChild(0).gameObject;
             }
             //myCharacter = SetRoomObj(myAllCharacters);

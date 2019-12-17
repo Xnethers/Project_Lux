@@ -33,7 +33,7 @@ public class SniperUI : PlayerUI
             aimUI.gameObject.SetActive(false);
             //aimUI.localPosition = hide;
         }
-        magazineText.text = "Bullets : "+sc.magazine;
+        magazineText.text = sc.magazine.ToString();
     }
 
 }

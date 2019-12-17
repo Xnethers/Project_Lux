@@ -69,13 +69,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831427833664504}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: -0.028946389, y: 0.023907347, z: -0.10021191, w: 0.9942576}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4753058596614508}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: -176.975, y: 183.062, z: -191.592}
 --- !u!4 &4619854481900976
 Transform:
   m_ObjectHideFlags: 1
@@ -147,6 +147,7 @@ MonoBehaviour:
   isHit: 0
   isVFX: 0
   isBullet: 0
+  isKinematic: 1
   buffsName:
   - isRepel
   - isBlind

@@ -22,7 +22,7 @@ public class DoubleGunUI : PlayerUI
     new void Update()
     {
         base.Update();
-        magazineText.text = "Bullets : " + dc.magazine;
+        magazineText.text = dc.magazine.ToString();
     }
 
 }
