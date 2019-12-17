@@ -125,4 +125,7 @@ public class InGameMenu : MonoBehaviour
             mySequence.Append(scale1).Append(scale2);
         }
     }
+
+    public void CloseEsc()
+    { isMenu = false; }
 }

@@ -50,4 +50,6 @@ public class FightSettlement : InGameMenu {
 			// GameManager.Instance.DestroySettlement();
 		}
 	}
+
+
 }
