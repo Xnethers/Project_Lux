@@ -3634,7 +3634,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114214462689860372}
   - {fileID: 114414971300417562}
-  viewIdField: 7
+  viewIdField: 0
   InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114083748814543258
@@ -4552,7 +4552,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 114200996963877352}
-  viewIdField: 6
+  viewIdField: 0
   InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114547997086919342

@@ -25,7 +25,8 @@ using Photon.Pun.UtilityScripts;
         public InGameMenu GameMenu;
         [Header("Result")]
         public bool isResult;
-        public GameObject ResultPlayerListEntry;
+        public GameObject MTResultPlayerListEntry;
+        public GameObject OTResultPlayerListEntry;
         public GameObject MyTeamPanel;
         public GameObject OtherTeamPanel;
         public List<ResultListEntry> playersResult = new List<ResultListEntry>();
@@ -148,12 +149,17 @@ using Photon.Pun.UtilityScripts;
             // GameMenu.SettlementPanelDisable();
             // GameMenu.PlayersListPanel.gameObject.SetActive(false);
             foreach(Player p in PhotonNetwork.PlayerList){
-                GameObject entry = Instantiate(ResultPlayerListEntry);
-
+                GameObject entry = null;
                 if (p.GetTeam() == PhotonNetwork.LocalPlayer.GetTeam())
-                { entry.transform.SetParent(MyTeamPanel.transform); }
+                { 
+                    entry = Instantiate(MTResultPlayerListEntry);
+                    entry.transform.SetParent(MyTeamPanel.transform); 
+                }
                 else if (p.GetTeam() != PhotonNetwork.LocalPlayer.GetTeam())
-                { entry.transform.SetParent(OtherTeamPanel.transform); }
+                {
+                    entry = Instantiate(OTResultPlayerListEntry); 
+                    entry.transform.SetParent(OtherTeamPanel.transform); 
+                }
 
                 entry.transform.localScale = Vector3.one;
                 entry.GetComponent<RectTransform>().localPosition = Vector3.zero;

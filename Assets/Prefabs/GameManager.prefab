@@ -1076,7 +1076,9 @@ MonoBehaviour:
   BlueRelivePoint: {fileID: 114030715077520470}
   GameMenu: {fileID: 0}
   isResult: 0
-  ResultPlayerListEntry: {fileID: 1019766232367994, guid: f288ff7d8896041449e99707806487d1,
+  MTResultPlayerListEntry: {fileID: 1019766232367994, guid: b430347c612432047a88a9a336e29e5a,
+    type: 2}
+  OTResultPlayerListEntry: {fileID: 1019766232367994, guid: f288ff7d8896041449e99707806487d1,
     type: 2}
   MyTeamPanel: {fileID: 1671469369637100}
   OtherTeamPanel: {fileID: 1955976469600604}
