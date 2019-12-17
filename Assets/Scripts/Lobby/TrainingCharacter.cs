@@ -54,16 +54,17 @@ public class TrainingCharacter : InGameMenu {
 	}
 
 	Tweener c;
+	Vector2 b;
+
 
 	public void Click(RectTransform rect)
     {
-        Vector2 b = rect.sizeDelta * 1.2f;
-        c =rect.DOSizeDelta(b, 0.1f);
+        b = rect.localScale ;
+        c =rect.DOScale(b* 1.2f, 0.1f);
     }
 
     public void UnSelect(RectTransform rect)
     {
-		c.Rewind(false);
-        //rect.DOSizeDelta(origin, 0.1f);
+		rect.DOScale(b, 0.1f);
     }
 }

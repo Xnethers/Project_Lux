@@ -31,13 +31,15 @@ namespace UITween
         [Header("My All Character")]
 
         public Image Borislav;
-        private Image click_b;
         public Image Enid;
-        private Image click_e;
         public Image Lena;
-        private Image click_l;
         public Image Adela;
+
+        private Image click_b;
+        private Image click_l;
+        private Image click_e;
         private Image click_a;
+
         public Vector2 origin;
 
         public float duration;
@@ -52,7 +54,7 @@ namespace UITween
             click_l = Lena.transform.FindChild("Click").GetComponent<Image>();
             click_a = Adela.transform.FindChild("Click").GetComponent<Image>();
             origin = click_b.rectTransform.sizeDelta;
-            
+
             click_b.color = Color.clear;
             click_e.color = Color.clear;
             click_l.color = Color.clear;
@@ -62,29 +64,29 @@ namespace UITween
         }
         void Update()
         { }
+        Tweener c;
+        Vector2 b;
         public void Click(RectTransform rect)
         {
-            Vector2 b = rect.sizeDelta * 1.2f;
-            rect.DOSizeDelta(b,0.1f);
+            b = rect.localScale ;
+            c = rect.DOScale(b*1.2f, 0.1f);
         }
 
         public void UnSelect(RectTransform rect)
-        {
-            rect.DOSizeDelta(origin,0.1f);
-        }
+        {rect.DOScale(b, 0.1f); }
         public void Select()
         {
             if (PlayerInfo.PI.mySelectedCharacter == 0)
             {
-                Vector2 b = click_b.rectTransform.sizeDelta * 1.3f;
-                click_b.color =Color.white;
+                Vector2 b = click_b.rectTransform.sizeDelta * 5f;
+                click_b.color = Color.white;
                 Sequence mySequence = DOTween.Sequence();
-                Tweener s1 = click_b.rectTransform.DOSizeDelta(b, duration);
+                Tweener s1 = click_b.rectTransform.DOScale(0.5f, duration);
                 Tweener s2 = click_b.DOFade(1, duration);
-                Tweener s3 = click_b.DOFade(0, duration/2);
+                Tweener s3 = click_b.DOFade(0, duration / 2);
                 //Tweener showtext = loginText.DOText(logintextstring, StretchDuration).Pause();
                 mySequence.Append(s1).Join(s2).Append(s3);
-                
+
             }
             else if (PlayerInfo.PI.mySelectedCharacter == 1)
             { }
