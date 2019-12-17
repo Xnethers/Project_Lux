@@ -20,10 +20,10 @@ public class SupporterController : ICareerController {
 	public AudioClip storage;
 
 	[Header("===== Others VFX Settings =====")]
-	public GameObject VFX_Borislav_Qstart;
     public GameObject VFX_Borislav_Q;
 	public GameObject shakeVFX;
 	public GameObject changeBuffVFX;
+	public GameObject[] buffsVFX;
 	[Header("===== Buff Settings =====")]
 	public GameObject[] buffObj;
 	public float atkBuff = 1.5f;//Attack
@@ -50,6 +50,9 @@ public class SupporterController : ICareerController {
 		ki = GetComponent<KICareer>();
 		// fovh = GetComponent<FieldOfViewHeight>();
 		cameraShake = ac.camcon.GetComponentInParent<CameraShake>();
+		foreach(GameObject bvfx in buffsVFX)
+			bvfx.SetActive(false);
+		buffsVFX[(int)buffType].SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -72,7 +75,6 @@ public class SupporterController : ICareerController {
 			ac.SetBool("isArmour", false);
 			return;
 		}
-			
 		if(ac.CheckStateTag("armour") && CheckCD(skillQ)){//解除霸體
             // ac.SetBool("isArmour", false);
 			ki.attackML=true;
@@ -307,6 +309,8 @@ public class SupporterController : ICareerController {
 	}
 	[PunRPC]
 	public void RPC_ChangeBuffType(){
+		foreach(GameObject bvfx in buffsVFX)
+			bvfx.SetActive(false);
 		int type = (int)buffType;
 		type++;
 		if(type>System.Enum.GetNames (buffType.GetType ()).Length-1){
@@ -317,6 +321,7 @@ public class SupporterController : ICareerController {
 		GameObject vfx = Instantiate(changeBuffVFX,transform.position,transform.rotation);
 		vfx.transform.parent=transform;
 		SoundManager.Instance.PlayEffectSound(changeBuff);
+		buffsVFX[type].SetActive(true);
 	}
 	[PunRPC]
 	public void RPC_Buff(int fovSkill){

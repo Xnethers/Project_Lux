@@ -387,8 +387,12 @@ public class DoubleGunController : ICareerController
         }
     }
     #endregion
-
-
+    public void butt(){
+        ac.anim.SetLayerWeight(ac.anim.GetLayerIndex("butt"), Mathf.Lerp(ac.anim.GetLayerWeight(ac.anim.GetLayerIndex("butt")), 0.7f, 0.4f));
+    }
+    public void buttNone(){
+        ac.anim.SetLayerWeight(ac.anim.GetLayerIndex("butt"), Mathf.Lerp(ac.anim.GetLayerWeight(ac.anim.GetLayerIndex("butt")), 0f, 0.4f));
+    }
 
     #region other method
 
