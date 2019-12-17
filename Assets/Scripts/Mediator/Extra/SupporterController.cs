@@ -177,7 +177,7 @@ public class SupporterController : ICareerController {
 		if (!photonView.IsMine)
             return;
 		photonView.RPC("RPC_ChangeBuffType", RpcTarget.All);
-		buffText.text = buffType.ToString();
+		// buffText.text = buffType.ToString();
 	}
     public void OnAttack1hAUpdate() {
         ac.thrustVec = ac.model.transform.forward * ac.anim.GetFloat("attack1hAVelocity");
