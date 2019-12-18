@@ -447,7 +447,7 @@ public class ActorController : IActorManagerInterface {
         if(team == "Red")
             Instantiate(VFX_LatentOutIn_Y,am.bm.bcL.transform.GetChild(0).position,am.bm.bcL.transform.rotation);
         else if(team == "Blue")
-            Instantiate(VFX_LatentOutIn_P,am.bm.bcL.transform.GetChild(0).position,am.bm.bcL.transform.rotation);
+            Instantiate(VFX_LatentOutIn_P,am.bm.bcL.transform.GetChild(1).position,am.bm.bcL.transform.rotation);
     }
     public void CloseLatentCol(){
         am.im.overlapEcastms[0].ColliderObj.SetActive(false);
