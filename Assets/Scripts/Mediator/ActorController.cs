@@ -101,7 +101,7 @@ public class ActorController : IActorManagerInterface {
         if(pi.latent && am.im.overlapEcastms.Count!=0 && am.sm.isLocomotion){//按下潛光按鍵(暫定e鍵)
             if(am.im.overlapEcastms[0].tag == tag){
                 //InteractionManager im為偵測有無物件(帶有EventCasterManager)
-                photonView.RPC("RPC_SetLatent", RpcTarget.All);
+                photonView.RPC("RPC_SetLatent", RpcTarget.All,this.tag);
                 lockPlanar = false;
                 //camcon.tempEulerX= 0;//攝影機UpDown角度歸零
                 
@@ -435,7 +435,7 @@ public class ActorController : IActorManagerInterface {
         anim.SetTrigger(triggerName);
     }
     [PunRPC]
-    public void RPC_SetLatent(){
+    public void RPC_SetLatent(string team){
         pi.isLatent = ! pi.isLatent;//是否潛光中
         SetBool("lock",pi.isLatent);//鎖人物動作狀態
         camcon.isHorizontalView=pi.isLatent;
@@ -444,9 +444,9 @@ public class ActorController : IActorManagerInterface {
         model.transform.GetChild(0).gameObject.SetActive(!pi.isLatent);
         latentType = am.im.overlapEcastms[0].latentType;
         // foreach(GameObject mesh in model.GetComponentsInChildren<GameObject>()){}
-        if(this.tag == "Red")
+        if(team == "Red")
             Instantiate(VFX_LatentOutIn_Y,am.bm.bcL.transform.GetChild(0).position,am.bm.bcL.transform.rotation);
-        else if(this.tag == "Blue")
+        else if(team == "Blue")
             Instantiate(VFX_LatentOutIn_P,am.bm.bcL.transform.GetChild(0).position,am.bm.bcL.transform.rotation);
     }
     public void CloseLatentCol(){

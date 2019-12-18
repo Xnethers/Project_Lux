@@ -805,6 +805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onUpdateMessages:
   - OnAttackUpdate
+  - buttNone
 --- !u!114 &114932238659755310
 MonoBehaviour:
   m_ObjectHideFlags: 3
