@@ -450,7 +450,8 @@ public class ActorController : IActorManagerInterface {
         am.bm.bcL.gameObject.SetActive(pi.isLatent);
         am.bm.SetChacontrollerSize(pi.isLatent);
         model.transform.GetChild(0).gameObject.SetActive(!pi.isLatent);
-        latentType = am.im.overlapEcastms[0].latentType;
+        if(am.im.overlapEcastms.Count>0)
+            latentType = am.im.overlapEcastms[0].latentType;
         // foreach(GameObject mesh in model.GetComponentsInChildren<GameObject>()){}
         if(team == "Red")
             Instantiate(VFX_LatentOutIn_Y,am.bm.bcL.transform.GetChild(0).position,am.bm.bcL.transform.rotation);
