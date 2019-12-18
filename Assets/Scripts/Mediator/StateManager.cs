@@ -54,9 +54,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
         //AddHP(0);
         HP = HPMax;
         //RP=0;
-        SmSetReLife();
-    }
-    public void SmSetReLife(){
+
         if (am.ac.pi.isAI)
         {
             photonView.RPC("RPC_ReLive", RpcTarget.All, transform.position.x, transform.position.z);
@@ -91,7 +89,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
         {
             // Debug.LogError("die");
             if(am.ac.pi.isLatent){
-                photonView.RPC("RPC_SetLatent", RpcTarget.All,this.tag);
+                photonView.RPC("RPC_SetLatent", RpcTarget.All);
                 if(photonView.IsMine)
                     am.ac.CloseLatentCol();
             }//退出潛光

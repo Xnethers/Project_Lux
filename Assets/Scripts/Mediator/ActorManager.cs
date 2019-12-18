@@ -35,14 +35,6 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         if(ac.pi.isAI)
             return;
         DontDestroyOnLoad(this.gameObject);
-        AmSetTag();
-        if(photonView.IsMine){
-            SoundManager.Instance.EffectsSource = GetComponent<AudioSource>();
-        }
-    }
-    public void AmSetTag(){
-        if(ac.pi.isAI)
-            return;
         ActorManager[] PMs=FindObjectsOfType<ActorManager>();
         List<ActorManager> playerAm = new List<ActorManager>();
         foreach(ActorManager tempAm in PMs){
@@ -52,12 +44,15 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         foreach(Player p in PhotonNetwork.PlayerList){
             Debug.Log("playrID"+p.ActorNumber);
             Debug.Log("photonViewid"+photonView.Owner.ActorNumber);
-
+            
             foreach(ActorManager pm in playerAm){
                 if(p.ActorNumber==pm.photonView.Owner.ActorNumber){
                     SetTag(p,pm);
                 }
             }
+        }
+        if(photonView.IsMine){
+            SoundManager.Instance.EffectsSource = GetComponent<AudioSource>();
         }
     }
     private T Bind<T>(GameObject go) where T : IActorManagerInterface {

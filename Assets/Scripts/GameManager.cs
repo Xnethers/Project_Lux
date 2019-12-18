@@ -111,10 +111,6 @@ using Photon.Pun.UtilityScripts;
                 }
                 if(count == PhotonNetwork.PlayerList.Length){
                     Settlement();
-                    foreach(ActorManager tempAm in PMs){
-                        tempAm.AmSetTag();
-                        // tempAm.sm.SmSetReLife();
-                    }
                     GameStart = true;
                 }
             }
