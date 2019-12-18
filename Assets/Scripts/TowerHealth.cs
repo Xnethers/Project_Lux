@@ -138,17 +138,19 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
         foreach(Animator fries in French_Fries)
             fries.enabled=false;
         GameManager.Instance.GameMenu.isMenu=true;
+        SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.TowerFall);
+        Invoke("FinishGameAudio",2f);
         if (this.tag == "Red")
         {//red = Yellow , blue = Purple
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.red)
             {
                 GameManager.Instance.GameMenu.ShowWinOrLose(false);
-                SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
+                // SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
             }
             else if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.blue)
             {
                 GameManager.Instance.GameMenu.ShowWinOrLose(true);
-                SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Win);
+                // SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Win);
             }
         }
         else if (this.tag == "Blue")
@@ -156,17 +158,19 @@ public class TowerHealth : MonoBehaviourPunCallbacks, IPunObservable
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.red)
             {
                 GameManager.Instance.GameMenu.ShowWinOrLose(true);
-                SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Win);
+                // SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Win);
             }
             else if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.blue)
             {
                 GameManager.Instance.GameMenu.ShowWinOrLose(false);
-                SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
+                // SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Lose);
             }
         }
         // GameManager.Instance.Settlement();
         GameManager.Instance.GameMenu.SettlementPanelDisable();
     }
-
+    public void FinishGameAudio(){
+        SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.FinishGame);
+    }
 
 }

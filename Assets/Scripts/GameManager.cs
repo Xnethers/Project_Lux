@@ -85,13 +85,19 @@ using Photon.Pun.UtilityScripts;
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                     //if(PlayerInfo.PI.mySelectedCharacter!=-1)
-                    SoundManager.Instance.FadeOutBGM();
+                    
                     CreateCharacter();
                 }
                 // else
                 // {
                 //     Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 // }
+            }
+            if(Global.Level <=0){
+                SoundManager.Instance.PlaySceneBGM(SoundManager.Instance.TeachBGM);
+            }
+            else{
+                SoundManager.Instance.FadeOutBGM();
             }
         }
         void Update(){

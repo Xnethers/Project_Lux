@@ -813,15 +813,19 @@ Prefab:
       propertyPath: viewIdField
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114328057667495044, guid: b965aba08cb0f9a4e8f00a13438a3d01,
+    - target: {fileID: 114344360510898874, guid: b965aba08cb0f9a4e8f00a13438a3d01,
         type: 2}
       propertyPath: viewIdField
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114344360510898874, guid: b965aba08cb0f9a4e8f00a13438a3d01,
+    - target: {fileID: 114328057667495044, guid: b965aba08cb0f9a4e8f00a13438a3d01,
         type: 2}
       propertyPath: viewIdField
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595332062839686, guid: b965aba08cb0f9a4e8f00a13438a3d01, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224409638938510584, guid: b965aba08cb0f9a4e8f00a13438a3d01,
         type: 2}
@@ -902,10 +906,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: -463.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1595332062839686, guid: b965aba08cb0f9a4e8f00a13438a3d01, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b965aba08cb0f9a4e8f00a13438a3d01, type: 2}

@@ -14,7 +14,7 @@ public class DoubleGunUI : PlayerUI
     new void Start()
     {
         base.Start();
-        aimUI.gameObject.SetActive(false);
+        // aimUI.gameObject.SetActive(false);
         //hide = new Vector2(0, 300);
     }
 

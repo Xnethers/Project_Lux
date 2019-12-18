@@ -21,10 +21,13 @@ public class SoundManager : MonoBehaviour
     public float fadeTime = 1;
 	public AudioClip ClikUI;
     public AudioClip BGM;
+    public AudioClip TeachBGM;
     public AudioClip Occupation;
     public AudioClip Win;
     public AudioClip Lose;
+    public AudioClip TowerFall;
     public AudioClip Bounce;
+    public AudioClip FinishGame;
 
     private void Awake()
     {
@@ -56,6 +59,11 @@ public class SoundManager : MonoBehaviour
     public void PlaySceneEffect(AudioClip clip)//全場景音效
     {
         SceneAudioSource.PlayOneShot(clip);
+    }
+    public void PlaySceneBGM(AudioClip clip){
+        SceneAudioSource.Stop();
+        SceneAudioSource.clip = clip;
+        SceneAudioSource.Play();
     }
 
     public void FadeOutBGM()

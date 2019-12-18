@@ -49,6 +49,7 @@ public class InGameMenu : MonoBehaviour
                     mySequence.Append(scale1).Append(scale2);
                 }
                 if (Input.anyKeyDown &&  PlayersListPanel.sizeDelta == size){//mySequence.IsComplete()
+                    SoundManager.Instance.FadeOutBGM();
                     if(Global.Level == -1){
                         if(!FindObjectOfType<Flowchart>().GetBooleanVariable("isTalking")){
                             GameManager.Instance.LeaveRoom();
@@ -108,10 +109,11 @@ public class InGameMenu : MonoBehaviour
     }
     public void ShowWinOrLose(bool iswinteam)
     {
+        Sequence mySequence = DOTween.Sequence();
+
         if (iswinteam)
         {
             WinorLoseImg.sprite = WinSprite;
-            Sequence mySequence = DOTween.Sequence();
             Tweener scale1 = WinorLoseImg.rectTransform.DOSizeDelta(ExpandSize * 2, duration * 0.5F);
             Tweener scale2 = WinorLoseImg.rectTransform.DOSizeDelta(ExpandSize, duration);
             mySequence.Append(scale1).Append(scale2);
@@ -119,7 +121,6 @@ public class InGameMenu : MonoBehaviour
         else
         {
             WinorLoseImg.sprite = LoseSprite;
-            Sequence mySequence = DOTween.Sequence();
             Tweener scale1 = WinorLoseImg.rectTransform.DOSizeDelta(ExpandSize * 2, duration * 0.5F);
             Tweener scale2 = WinorLoseImg.rectTransform.DOSizeDelta(ExpandSize, duration);
             mySequence.Append(scale1).Append(scale2);

@@ -153,11 +153,14 @@ MonoBehaviour:
   EffectsSource: {fileID: 0}
   fadeTime: 1
   ClikUI: {fileID: 8300000, guid: e8b81f3913f41b140bb86c93535f7f0c, type: 3}
-  BGM: {fileID: 8300000, guid: 048475dc0301df7449020222fa4642d7, type: 3}
+  BGM: {fileID: 8300000, guid: dcd35085ba3b2d244b3a3e3f306a6286, type: 3}
+  TeachBGM: {fileID: 8300000, guid: ee9334e7c43c65c479abd5ca62634574, type: 3}
   Occupation: {fileID: 8300000, guid: 38581aa74e58384478a4f4baf861d6e9, type: 3}
   Win: {fileID: 8300000, guid: b5c0e53990f5ec8499daaef7dca78b5d, type: 3}
   Lose: {fileID: 8300000, guid: 09666a934099bbd449e29633093642cf, type: 3}
+  TowerFall: {fileID: 8300000, guid: 317e7fe721730104887b6a209da9da59, type: 3}
   Bounce: {fileID: 8300000, guid: 1d44d8f938a277148bf1f2a6968ce8b9, type: 3}
+  FinishGame: {fileID: 8300000, guid: 1dc19a218ad0d1749abe8e1d94a3c0a7, type: 3}
 --- !u!114 &114527657840335276
 MonoBehaviour:
   m_ObjectHideFlags: 1
