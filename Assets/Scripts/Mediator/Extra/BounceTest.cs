@@ -19,11 +19,13 @@ public class BounceTest : MonoBehaviour {
 		ActorManager am = other.GetComponent<ActorManager>();
 		if(am != null)
 		{
-			SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Bounce);
-			//am.ac.pi.inputEnabled = true;
-			am.ac.BounceTrigger(bonceVelocity);
-			// am.ac._velocity=Vector3.zero;
-			// am.ac._velocity.y += Mathf.Sqrt(bonceVelocity * -0.5f * Physics.gravity.y);
+			if(!am.sm.isDie){
+				SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.Bounce);
+				//am.ac.pi.inputEnabled = true;
+				am.ac.BounceTrigger(bonceVelocity);
+				// am.ac._velocity=Vector3.zero;
+				// am.ac._velocity.y += Mathf.Sqrt(bonceVelocity * -0.5f * Physics.gravity.y);
+			}
 		}
 	}
 }
