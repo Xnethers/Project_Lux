@@ -106,7 +106,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
         }
         if(isDie ){//在高處降落至地才死亡動畫
             am.ac.OnDieEnter();//不能行動
-            if(am.ac.height<1f && !die){//isGround
+            if(!die &&(isGround || am.ac.height<1f)){//isGround
                 Die();
                 die = true;
             }
