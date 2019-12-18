@@ -93,6 +93,14 @@ public class ActorController : IActorManagerInterface {
     protected void Update() {
         if(pi.isAI)
             return;
+        if(this.tag == "Red"){
+            VFX_Latenting_Y.SetActive(true);
+            VFX_Latenting_P.SetActive(false);
+        }
+        else if(this.tag == "Blue"){
+            VFX_Latenting_P.SetActive(true);
+            VFX_Latenting_Y.SetActive(false);
+        }
         if(!photonView.IsMine)
             return;
             

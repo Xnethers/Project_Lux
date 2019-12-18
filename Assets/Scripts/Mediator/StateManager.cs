@@ -89,7 +89,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
         {
             // Debug.LogError("die");
             if(am.ac.pi.isLatent){
-                photonView.RPC("RPC_SetLatent", RpcTarget.All);
+                photonView.RPC("RPC_SetLatent", RpcTarget.All,this.tag);
                 if(photonView.IsMine)
                     am.ac.CloseLatentCol();
             }//退出潛光
