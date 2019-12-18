@@ -3098,8 +3098,8 @@ MonoBehaviour:
   isMenu: 0
   isTab: 0
   WinorLoseImg: {fileID: 114821090284837742}
-  WinSprite: {fileID: 21300000, guid: 2e33a3f531b6adc4f9d8a99c83e2ba2d, type: 3}
-  LoseSprite: {fileID: 21300000, guid: c207de86481ff7d48a2fba2fcc374723, type: 3}
+  WinSprite: {fileID: 21300000, guid: 13daea61cab14894094be386d8f9b59c, type: 3}
+  LoseSprite: {fileID: 21300000, guid: 19679aa45f6bbca4dacc9c517cb0efa3, type: 3}
 --- !u!114 &114933987187884706
 MonoBehaviour:
   m_ObjectHideFlags: 1
