@@ -113,7 +113,7 @@ using Photon.Pun.UtilityScripts;
                     Settlement();
                     foreach(ActorManager tempAm in PMs){
                         tempAm.AmSetTag();
-                        tempAm.sm.SmSetReLife();
+                        // tempAm.sm.SmSetReLife();
                     }
                     GameStart = true;
                 }

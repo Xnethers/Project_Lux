@@ -54,6 +54,7 @@ public class StateManager : IActorManagerInterface, IPunObservable
         //AddHP(0);
         HP = HPMax;
         //RP=0;
+        SmSetReLife();
     }
     public void SmSetReLife(){
         if (am.ac.pi.isAI)

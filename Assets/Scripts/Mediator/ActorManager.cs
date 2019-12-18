@@ -35,6 +35,7 @@ public class ActorManager : MonoBehaviourPunCallbacks {
         if(ac.pi.isAI)
             return;
         DontDestroyOnLoad(this.gameObject);
+        AmSetTag();
         if(photonView.IsMine){
             SoundManager.Instance.EffectsSource = GetComponent<AudioSource>();
         }
