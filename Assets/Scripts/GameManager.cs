@@ -97,7 +97,9 @@ using Photon.Pun.UtilityScripts;
                 SoundManager.Instance.PlaySceneBGM(SoundManager.Instance.TeachBGM);
             }
             else{
-                SoundManager.Instance.FadeOutBGM();
+                // SoundManager.Instance.FadeOutBGM();
+                SoundManager.Instance.StopSceneBSound();
+                Debug.Log("000");
             }
         }
         void Update(){
@@ -122,7 +124,9 @@ using Photon.Pun.UtilityScripts;
 
         public void LeaveRoom()
         {
-            SoundManager.Instance.PlaySceneBGM(SoundManager.Instance.BGM);
+            // SoundManager.Instance.PlaySceneBGM(SoundManager.Instance.BGM);
+            // SoundManager.Instance.FadeOutBGM();
+            SoundManager.Instance.StopSceneBSound();
             PhotonNetwork.LeaveRoom();
         }
 

@@ -77,22 +77,23 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         {
             case status.aim:
                 {
-                    GameObject vfx = null ;
+                    
                     if (CheckPlayerExist())
                     {
                         if(!isWatch){
                             SoundManager.Instance.PlayEffectSound(Watching);
                             isWatch=true;
                         }
-                        if (muzzle.childCount < 1)
-                        {
-                            vfx = GameObject.Instantiate(VFX_Watch, muzzle.position, muzzle.rotation);
-                            vfx.transform.SetParent(muzzle);
-                        }
 
                         meshRenderer.sharedMaterial = aim;
                         transform.LookAt(dl.destination);
                         dl.Appear(0.02f);
+                                               
+                        if (muzzle.childCount == 0)
+                        {
+                            GameObject vfx = GameObject.Instantiate(VFX_Watch, muzzle.position, muzzle.rotation);
+                            vfx.transform.SetParent(muzzle);
+                        }
 
                         if (Timer.state == MyTimer.STATE.RUN)
                         { }
@@ -107,7 +108,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     else
                     {
                         Status = status.search;
-                        DestroyImmediate(vfx);
+                        // Destroy();
                         animator.SetBool("Aim", false);
                         Timer.Reset();
                     }

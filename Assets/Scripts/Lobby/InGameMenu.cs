@@ -49,8 +49,8 @@ public class InGameMenu : MonoBehaviour
                     mySequence.Append(scale1).Append(scale2);
                 }
                 if (Input.anyKeyDown &&  PlayersListPanel.sizeDelta == size){//mySequence.IsComplete()
-                    // SoundManager.Instance.FadeOutBGM();
-                    SoundManager.Instance.PlaySceneBGM(SoundManager.Instance.BGM);
+                    SoundManager.Instance.StopSceneBSound();
+                    // SoundManager.Instance.PlaySceneBGM(SoundManager.Instance.BGM);
                     if(Global.Level == -1){
                         if(!FindObjectOfType<Flowchart>().GetBooleanVariable("isTalking")){
                             GameManager.Instance.LeaveRoom();

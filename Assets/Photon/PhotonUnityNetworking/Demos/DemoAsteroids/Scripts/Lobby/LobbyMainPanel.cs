@@ -105,6 +105,7 @@ namespace Photon.Pun.Demo.Asteroids
                 lockCharacterUI[i] = myCharacterUI[i].transform.GetChild(0).gameObject;
             }
             //myCharacter = SetRoomObj(myAllCharacters);
+            SoundManager.Instance.FadeInBGM();
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.BGM);
         }
         void Update()

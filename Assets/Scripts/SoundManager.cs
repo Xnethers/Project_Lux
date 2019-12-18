@@ -66,7 +66,10 @@ public class SoundManager : MonoBehaviour
         SceneAudioSource.clip = clip;
         SceneAudioSource.Play();
     }
-
+    public void StopSceneBSound()//停止個人音效
+    {
+        SceneAudioSource.Stop();
+    }
     public void FadeOutBGM()
     {
         StartCoroutine(lerpBGMvolumeScale(fadeTime, "Out"));

@@ -7213,8 +7213,8 @@ MonoBehaviour:
     type: 2}
   VFX_LatentOutIn_P: {fileID: 1971069871081430, guid: 90df84d71ddfdc8418f0ad32ac8378f5,
     type: 2}
-  VFX_Latenting_Y: {fileID: 0}
-  VFX_Latenting_P: {fileID: 0}
+  VFX_Latenting_Y: {fileID: 1972327734083324}
+  VFX_Latenting_P: {fileID: 1696456603452864}
 --- !u!114 &114926318356447440
 MonoBehaviour:
   m_ObjectHideFlags: 1

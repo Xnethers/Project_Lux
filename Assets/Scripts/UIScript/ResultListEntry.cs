@@ -38,6 +38,11 @@ public class ResultListEntry : MonoBehaviour {
 			PlayerKillText.text = am.sm.AllKill.ToString();
 			PlayerDeadText.text = am.sm.AllDead.ToString();
 		}
+		else{
+			if(Global.Level<=0){
+				am = GameManager.Instance.GameMenu.PlayerAm;
+			}
+		}
 		// else{
 		// 	if(!GameManager.Instance.isResult)
 		// 		Destroy(gameObject);
