@@ -61,6 +61,7 @@ public class SoundManager : MonoBehaviour
         SceneAudioSource.PlayOneShot(clip);
     }
     public void PlaySceneBGM(AudioClip clip){
+        FadeInBGM();
         SceneAudioSource.Stop();
         SceneAudioSource.clip = clip;
         SceneAudioSource.Play();

@@ -122,7 +122,7 @@ using Photon.Pun.UtilityScripts;
 
         public void LeaveRoom()
         {
-
+            SoundManager.Instance.PlaySceneBGM(SoundManager.Instance.BGM);
             PhotonNetwork.LeaveRoom();
         }
 
