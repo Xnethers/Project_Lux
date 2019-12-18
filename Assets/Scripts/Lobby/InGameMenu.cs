@@ -48,7 +48,7 @@ public class InGameMenu : MonoBehaviour
                     Tweener scale2 = PlayersListPanel.DOSizeDelta(size, duration);
                     mySequence.Append(scale1).Append(scale2);
                 }
-                if (Input.anyKeyDown &&  PlayersListPanel.sizeDelta == size){//mySequence.IsComplete()
+                if (Input.anyKeyDown && Vector2.Distance(PlayersListPanel.sizeDelta,size)<1){//mySequence.IsComplete() PlayersListPanel.sizeDelta == size
                     SoundManager.Instance.StopSceneBSound();
                     // SoundManager.Instance.PlaySceneBGM(SoundManager.Instance.BGM);
                     if(Global.Level == -1){

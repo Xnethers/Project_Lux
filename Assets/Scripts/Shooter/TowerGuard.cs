@@ -91,7 +91,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                                                
                         if (muzzle.childCount == 0)
                         {
-                            GameObject vfx = GameObject.Instantiate(VFX_Watch, muzzle.position, muzzle.rotation);
+                            GameObject vfx = Instantiate(VFX_Watch, muzzle.position, muzzle.rotation);
                             vfx.transform.SetParent(muzzle);
                         }
 
@@ -108,7 +108,12 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     else
                     {
                         Status = status.search;
-                        // Destroy();
+
+                        DestoryPS vfx = muzzle.GetComponentInChildren<DestoryPS>();
+                        if (vfx != null)
+                        {
+                            Destroy(vfx.gameObject);
+                        }
                         animator.SetBool("Aim", false);
                         Timer.Reset();
                     }

@@ -99,7 +99,6 @@ using Photon.Pun.UtilityScripts;
             else{
                 // SoundManager.Instance.FadeOutBGM();
                 SoundManager.Instance.StopSceneBSound();
-                Debug.Log("000");
             }
         }
         void Update(){
@@ -115,6 +114,8 @@ using Photon.Pun.UtilityScripts;
                     GameStart = true;
                 }
             }
+            if(Input.GetKeyDown(KeyCode.P))
+            {LeaveRoom();}
         }
         #endregion
 
