@@ -68,7 +68,7 @@ namespace Photon.Pun.Demo.Asteroids
         private GameObject[] myCharacter;
         private GameObject[] myCharacterUI;
         private GameObject[] lockCharacterUI;
-         
+
 
         #region UNITY
 
@@ -93,6 +93,7 @@ namespace Photon.Pun.Demo.Asteroids
             myCharacter = new GameObject[charactersCount];
             myCharacterUI = new GameObject[charactersCount];
             lockCharacterUI = new GameObject[charactersCount];
+            //展示模型
             for (int i = 0; i < charactersCount; i++)
             {
                 myCharacter[i] = myAllCharacters.transform.GetChild(i).gameObject;
@@ -166,9 +167,9 @@ namespace Photon.Pun.Demo.Asteroids
         public override void OnJoinedRoom()
         {
             CalculateTeamToStartOn();
-            if(PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
             {
-                Hashtable roominfo = new Hashtable{{"Global.Level" ,Global.Level}};
+                Hashtable roominfo = new Hashtable { { "Global.Level", Global.Level } };
                 PhotonNetwork.CurrentRoom.SetCustomProperties(roominfo);
                 Debug.Log(PhotonNetwork.CurrentRoom.CustomProperties["Global.Level"]);
             }
@@ -211,7 +212,7 @@ namespace Photon.Pun.Demo.Asteroids
                         entry.transform.SetParent(MyTeamPanel.transform);
                     }
                     else if (p.GetTeam() != PhotonNetwork.LocalPlayer.GetTeam())
-                    { 
+                    {
                         entry = Instantiate(OtherPlayerListEntryPrefab);
                         entry.transform.SetParent(OtherTeamPanel.transform);
                     }
@@ -426,7 +427,7 @@ namespace Photon.Pun.Demo.Asteroids
         [PunRPC]
         void RPC_OpenLoadindPanel()
         {
-             if (LoadingPanel)
+            if (LoadingPanel)
             { LoadingPanel.SetActive(true); }
         }
 
@@ -437,10 +438,10 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 playerListEntries = new Dictionary<int, GameObject>();
             }
-            
+
             RoomOptions options = new RoomOptions { MaxPlayers = 1, IsVisible = false, IsOpen = false };
             PhotonNetwork.CreateRoom("Teaching", options, null);
-           
+
             // PhotonNetwork.JoinOrCreateRoom("Teaching", options, null);
             // PhotonNetwork.LocalPlayer.SetCharacter(0);
 
@@ -455,15 +456,16 @@ namespace Photon.Pun.Demo.Asteroids
             }
             RoomOptions options = new RoomOptions { MaxPlayers = 1, IsVisible = false, IsOpen = false };
             PhotonNetwork.CreateRoom("Training", options, null);
-            
+
             // PhotonNetwork.JoinOrCreateRoom("Training", options, null);
             // PhotonNetwork.LocalPlayer.SetCharacter(0);
-            
+
             // if (PhotonNetwork.IsMasterClient){ }
         }
 
         public void OnClickCamp(int whichCamp)
-        {//選擇隊伍
+        {
+            //選擇隊伍
             SoundManager.Instance.PlaySceneEffect(SoundManager.Instance.ClikUI);
             //顯示所選隊伍(角色)
             ObjVisiable(myAllCamps, whichCamp);
@@ -476,19 +478,21 @@ namespace Photon.Pun.Demo.Asteroids
                 return;
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.red)
             {
-                if (FindObjectOfType<ChooseCharacter>().isRedChooseCharacter[whichCharacter]){
+                if (FindObjectOfType<ChooseCharacter>().isRedChooseCharacter[whichCharacter])
+                {
                     PhotonNetwork.LocalPlayer.SetCharacter(ChooseCharacter.RandomInt(whichCharacter));
                     return;
                 }
-                    
+
             }
             if (PhotonNetwork.LocalPlayer.GetTeam() == PunTeams.Team.blue)
             {
-                if (FindObjectOfType<ChooseCharacter>().isBlueChooseCharacter[whichCharacter]){
+                if (FindObjectOfType<ChooseCharacter>().isBlueChooseCharacter[whichCharacter])
+                {
                     PhotonNetwork.LocalPlayer.SetCharacter(ChooseCharacter.RandomInt(whichCharacter));
                     return;
                 }
-                    
+
             }
             PhotonNetwork.LocalPlayer.SetCharacter(whichCharacter);
         }
@@ -509,7 +513,7 @@ namespace Photon.Pun.Demo.Asteroids
         #region CHOOSE CHARACTERS
         private void UpdateCharacterObj()
         {
-            int tempVisible = PhotonNetwork.LocalPlayer.GetCharacter();//玩家所選角色
+            int tempVisible = Global.selectCharacterID = PhotonNetwork.LocalPlayer.GetCharacter();//玩家所選角色
             //ObjSclae(myCharacterUI, tempVisible);//放大所選角色
             ObjVisiable(myCharacter, tempVisible);//顯示3D角色模型
             PlayerInfo.PI.mySelectedCharacter = tempVisible;
@@ -682,4 +686,5 @@ namespace Photon.Pun.Demo.Asteroids
 public class Global
 {
     public static int Level;
+    public static int selectCharacterID;
 }

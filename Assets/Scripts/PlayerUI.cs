@@ -2,9 +2,11 @@
 using UnityEngine.UI;
 using System.Collections;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System.Text;
 using UITween;
 using DG.Tweening;
+
 public class PlayerUI : MonoBehaviourPunCallbacks
 {
     #region Private Fields
@@ -19,10 +21,11 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     [Tooltip("UI Slider to display Player's Health")]
     [SerializeField]
     private Slider playerHealthSlider;
+    private Image fill;
     [SerializeField]
     private RectTransform CurveBlood;
-    public Vector3 bloodLatentRot = new Vector3(0f,35f,0f);
-    public Vector3 bloodLatentVec = new Vector3(0f,0.44f,-1.4f);
+    public Vector3 bloodLatentRot = new Vector3(0f, 35f, 0f);
+    public Vector3 bloodLatentVec = new Vector3(0f, 0.44f, -1.4f);
 
     // [SerializeField] private PlayerManager target;
     //new
@@ -37,8 +40,8 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     public Text ReLiveTime;
     public Image[] Buffs;
     private RectTransform[] BuffsRectTrans = new RectTransform[3];
-    public float duration=0.6f;
-    public Vector2 buffOutPos= new Vector2(-275,0);
+    public float duration = 0.6f;
+    public Vector2 buffOutPos = new Vector2(-275, 0);
 
     #endregion
 
@@ -70,10 +73,20 @@ public class PlayerUI : MonoBehaviourPunCallbacks
             ScreenCanvas.SetActive(false);
             return;
         }
+
+        //敵對血條紅色，同隊綠色
+        fill = playerHealthSlider.transform.DeepFind("Fill").GetComponent<Image>();
+        if (PhotonNetwork.LocalPlayer.GetTeam() == photonView.Owner.GetTeam())
+        { fill.color = Color.green; }
+        else
+        { fill.color = Color.red; }
+
+
         occupied = FindObjectOfType<OccupiedTest>();
         ReLiveTime.text = sm.deadTime.ToString();
-        for(int i= 0; i<Buffs.Length;i++){
-            BuffsRectTrans[i]=Buffs[i].GetComponent<RectTransform>();
+        for (int i = 0; i < Buffs.Length; i++)
+        {
+            BuffsRectTrans[i] = Buffs[i].GetComponent<RectTransform>();
             BuffsRectTrans[i].anchoredPosition = buffOutPos;
             Buffs[i].DOFade(0, duration);
             // Buffs[i].enabled = false; 
@@ -96,24 +109,27 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         if (textTag != null)
         {//red = Yellow , blue = Purple
             if (transform.tag == "Red")
-                textTag.text = "Team:Yellow";
+            { textTag.text = "Team:Yellow"; }
             else if (transform.tag == "Blue")
-                textTag.text = "Team:Purple";
+            { textTag.text = "Team:Purple"; }
             else
-                textTag.text = "Team:AI";
+            { textTag.text = "Team:AI"; }
             //textTag.text ="Team:" + transform.tag.ToString();
         }
-        if(CurveBlood!=null){
-            if(sm.am.ac.pi.isLatent){
+        if (CurveBlood != null)
+        {
+            if (sm.am.ac.pi.isLatent)
+            {
                 CurveBlood.localPosition = bloodLatentVec;
                 CurveBlood.localRotation = Quaternion.Euler(bloodLatentRot);
             }
-            else{
+            else
+            {
                 CurveBlood.localPosition = Vector3.zero;
                 CurveBlood.localRotation = Quaternion.Euler(Vector3.zero);
             }
         }
-        
+
         if (sm.am.ac.pi.isAI)
             return;
         if (!photonView.IsMine)
@@ -123,10 +139,10 @@ public class PlayerUI : MonoBehaviourPunCallbacks
             // skill[0].enabled = !careercon.CheckCD(careercon.skillF);
             // skill[2].enabled = !careercon.CheckCD(careercon.skillAir);
             // skill[3].enabled = !careercon.CheckCD(careercon.skillForce);
-            skill[0].fillAmount = (careercon.careerValue.SecondCD-careercon.skillF.atkTimer.elapsedTime) / careercon.careerValue.SecondCD;
-            skill[2].fillAmount = (careercon.careerValue.AirCD-careercon.skillAir.atkTimer.elapsedTime) / careercon.careerValue.AirCD;
-            skill[3].fillAmount = (careercon.careerValue.ForceCD-careercon.skillForce.atkTimer.elapsedTime) / careercon.careerValue.ForceCD;
-            skill[4].fillAmount = (careercon.careerValue.FirstCD-careercon.skillMR.atkTimer.elapsedTime) / careercon.careerValue.FirstCD;
+            skill[0].fillAmount = (careercon.careerValue.SecondCD - careercon.skillF.atkTimer.elapsedTime) / careercon.careerValue.SecondCD;
+            skill[2].fillAmount = (careercon.careerValue.AirCD - careercon.skillAir.atkTimer.elapsedTime) / careercon.careerValue.AirCD;
+            skill[3].fillAmount = (careercon.careerValue.ForceCD - careercon.skillForce.atkTimer.elapsedTime) / careercon.careerValue.ForceCD;
+            skill[4].fillAmount = (careercon.careerValue.FirstCD - careercon.skillMR.atkTimer.elapsedTime) / careercon.careerValue.FirstCD;
             skill[1].fillAmount = sm.RP / sm.RPMax;
         }
         forcingAim.enabled = sm.isForcingAim;
@@ -148,19 +164,23 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         }
         else
             ReLiveTime.gameObject.SetActive(false);
-        if(Buffs.Length>0){
-            SetBuffsUI(sm.ATKBuff,Buffs[0],BuffsRectTrans[0]);
-            SetBuffsUI(sm.DEFBuff,Buffs[1],BuffsRectTrans[1]);
-            SetBuffsUI(sm.HOTBuff,Buffs[2],BuffsRectTrans[2]);
-        } 
+        if (Buffs.Length > 0)
+        {
+            SetBuffsUI(sm.ATKBuff, Buffs[0], BuffsRectTrans[0]);
+            SetBuffsUI(sm.DEFBuff, Buffs[1], BuffsRectTrans[1]);
+            SetBuffsUI(sm.HOTBuff, Buffs[2], BuffsRectTrans[2]);
+        }
     }
-    void SetBuffsUI(float buffValue,Image buffImg,RectTransform buffRect){
-        if(buffValue != 1){
+    void SetBuffsUI(float buffValue, Image buffImg, RectTransform buffRect)
+    {
+        if (buffValue != 1)
+        {
             // buffObj.enabled = true;
             buffImg.DOFade(1, duration);
             buffRect.DOAnchorPos(Vector2.zero, duration);
         }
-        else{
+        else
+        {
             // buffObj.enabled = false;
             buffImg.DOFade(0, duration);
             buffRect.DOAnchorPos(buffOutPos, duration);
@@ -168,3 +188,4 @@ public class PlayerUI : MonoBehaviourPunCallbacks
     }
     #endregion
 }
+

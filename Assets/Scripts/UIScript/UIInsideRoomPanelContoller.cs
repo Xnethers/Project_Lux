@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using DG.Tweening;
 
 namespace UITween
 {
+    [System.Serializable]
+    public class selectCharacter
+    {
+        public Sprite nomal;
+        public Sprite choose;
+        public int ID;
+        public Button bt;
+    }
     public class UIInsideRoomPanelContoller : UIManager
     {
         [HideInInspector]
@@ -29,81 +38,55 @@ namespace UITween
         private Vector2 originpos = new Vector2(0, -1080);
 
         [Header("My All Character")]
-
+        public selectCharacter[] AllCharacterUI;
         public Image Borislav;
         public Image Enid;
         public Image Lena;
         public Image Adela;
-
-        private Image click_b;
-        private Image click_l;
-        private Image click_e;
-        private Image click_a;
-
-        public Vector2 origin;
-
+        [Space(10)]
         public float duration;
-        public UnityEvent onEnable;
-        public UnityEvent onDisable;
 
+        #region private 
+        private Vector2 originScale;
+        #endregion
 
         void Start()
         {
-            click_b = Borislav.transform.FindChild("Click").GetComponent<Image>();
-            click_e = Enid.transform.FindChild("Click").GetComponent<Image>();
-            click_l = Lena.transform.FindChild("Click").GetComponent<Image>();
-            click_a = Adela.transform.FindChild("Click").GetComponent<Image>();
-            origin = click_b.rectTransform.sizeDelta;
-
-            click_b.color = Color.clear;
-            click_e.color = Color.clear;
-            click_l.color = Color.clear;
-            click_a.color = Color.clear;
-
             lobbyMainPanel.myAllCharacters.SetActive(false);
+            eventSystem = GameObject.FindObjectOfType<EventSystem>();
+            originScale = AllCharacterUI[0].bt.GetComponent<RectTransform>().localScale;
         }
         void Update()
-        { }
-        Tweener c;
-        Vector2 b;
+        {
+            // foreach (selectCharacter item in AllCharacterUI)
+            // {
+            //     if (Global.selectCharacterID == item.ID)
+            //     {
+            //         if (eventSystem.currentSelectedGameObject != item.bt.gameObject && eventSystem.alreadySelecting)
+            //         { eventSystem.SetSelectedGameObject(item.bt.gameObject); }
+            //         else if (!eventSystem.alreadySelecting)
+            //         {
+            //             item.bt.gameObject.GetComponent<Image>().sprite = item.choose;
+            //             item.bt.gameObject.GetComponent<RectTransform>().localScale = originScale * 1.2f;
+            //         }
+            //     }
+            //     else
+            //     {
+
+            //     }
+            // }
+        }
+
+
+
+        EventSystem eventSystem;
         public void Click(RectTransform rect)
         {
-            b = rect.localScale ;
-            c = rect.DOScale(b*1.2f, 0.1f);
+            Tweener c = rect.DOScale(originScale * 1.2f, 0.1f);
         }
 
         public void UnSelect(RectTransform rect)
-        {rect.DOScale(b, 0.1f); }
-        public void Select()
-        {
-            if (PlayerInfo.PI.mySelectedCharacter == 0)
-            {
-                Vector2 b = click_b.rectTransform.sizeDelta * 5f;
-                click_b.color = Color.white;
-                Sequence mySequence = DOTween.Sequence();
-                Tweener s1 = click_b.rectTransform.DOScale(0.5f, duration);
-                Tweener s2 = click_b.DOFade(1, duration);
-                Tweener s3 = click_b.DOFade(0, duration / 2);
-                //Tweener showtext = loginText.DOText(logintextstring, StretchDuration).Pause();
-                mySequence.Append(s1).Join(s2).Append(s3);
-
-            }
-            else if (PlayerInfo.PI.mySelectedCharacter == 1)
-            { }
-            else if (PlayerInfo.PI.mySelectedCharacter == 2)
-            { }
-            else if (PlayerInfo.PI.mySelectedCharacter == 3)
-            { }
-        }
-        void OnEnable()
-        {
-            onEnable.Invoke();
-        }
-
-        void OnDisable()
-        {
-            onDisable.Invoke();
-        }
+        { rect.DOScale(originScale, 0.1f); }
 
         public void ShowCampGroup(bool isYellow)
         {
@@ -119,6 +102,11 @@ namespace UITween
 
             lobbyMainPanel.myAllCharacters.SetActive(true);
             mySequence.Append(s1).Join(s2).Join(s3).Join(s4);
+
+            if (isYellow)
+            { eventSystem.SetSelectedGameObject(Borislav.gameObject); }
+            else
+            { eventSystem.SetSelectedGameObject(Lena.gameObject); }
         }
 
         public void BackToSelectCamp(bool isYellow)
