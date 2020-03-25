@@ -1,5 +1,5 @@
 ﻿//Unitychan Toon Shader ver.2.0
-//UTS2GUI.cs for UTS2 v.2.0.7.2
+//UTS2GUI.cs for UTS2 v.2.0.7.5
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -35,8 +35,10 @@ namespace UnityChan
         public GUILayoutOption[] middleButtonStyle = new GUILayoutOption[]{ GUILayout.Width(130) }; 
 
         //各種設定保持用.
+        //UTS2のバージョン.
+        static float _UTS2VersionNumber = 2.075f; 
+        //
         static int _StencilNo_Setting;
-        static bool _HasOutline = true;
         static bool _OriginalInspector = false;
         static bool _SimpleUI = false; 
         //メッセージ表示用.
@@ -333,10 +335,10 @@ namespace UnityChan
             m_MaterialEditor = materialEditor;
             Material material = materialEditor.target as Material;
 
-            //v.2.0.7.2
+            //v.2.0.7.2 / v.2.0.7.4
             //v.2.0.4.3p1以前のBaseMap名との互換性対策、および_utsVersionの更新をおこなう.
             //shader側で新規設定されるのは、_utsVersion = 2.07fなので、CustomGUI側でサブバージョンを付ける.
-            if(material.GetFloat("_utsVersion") < 2.072f)
+            if(material.GetFloat("_utsVersion") < _UTS2VersionNumber)
             {
                 //_MainTexを使っている世代は、_BaseMapにはテクスチャ情報はない.
                 if(material.GetTexture("_BaseMap") != null)
@@ -344,10 +346,10 @@ namespace UnityChan
                     //v.2.0.4.3p1以前は_BaseMapにテクスチャ情報があるので、_MainTexにコピー.
                     material.SetTexture("_MainTex",material.GetTexture("_BaseMap"));
                     //処理が終わったので、_utsVersionを更新して設定.
-                    material.SetFloat("_utsVersion", 2.072f);
+                    material.SetFloat("_utsVersion", _UTS2VersionNumber);
                 }else{
                     //処理が不要な場合も、_utsVersionを更新して設定.
-                    material.SetFloat("_utsVersion", 2.072f);
+                    material.SetFloat("_utsVersion", _UTS2VersionNumber);
                 }
             }
             //ここまで.
@@ -501,7 +503,6 @@ namespace UnityChan
             EditorGUILayout.Space();
 
             if(material.HasProperty("_OUTLINE")){
-                _HasOutline = true;
                 _Outline_Foldout = Foldout(_Outline_Foldout, "【Outline Settings】");
                 if (_Outline_Foldout)
                 {
@@ -511,8 +512,6 @@ namespace UnityChan
                     EditorGUI.indentLevel--;
                 }
                 EditorGUILayout.Space();
-            }else{
-                _HasOutline = false;
             }
 
             if(material.HasProperty("_TessEdgeLength")){
@@ -815,15 +814,14 @@ namespace UnityChan
             if(material.HasProperty("_AngelRing")){//AngelRingがある場合.
                 material.SetFloat("_Is_LightColor_AR",1);
             }
+            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+            {
+                material.SetFloat("_Is_LightColor_Outline",1);
+            }
             material.SetFloat("_Set_SystemShadowsToBase",1);
             material.SetFloat("_Is_Filter_HiCutPointLightColor",1);
-
             material.SetFloat("_CameraRolling_Stabilizer",1);
             material.SetFloat("_Is_Ortho",0);
-
-            if(_HasOutline){
-                material.SetFloat("_Is_BlendBaseColor",1);
-            }
             material.SetFloat("_GI_Intensity",0);
             material.SetFloat("_Unlit_Intensity",1);
             material.SetFloat("_Is_Filter_LightColor",1);
@@ -1851,6 +1849,25 @@ namespace UnityChan
                     }
                 EditorGUILayout.EndHorizontal();
             }
+
+            if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Outline");
+                //GUILayout.Space(60);
+                    if(material.GetFloat("_Is_LightColor_Outline") == 0){
+                        if (GUILayout.Button("Off",shortButtonStyle))
+                        {
+                            material.SetFloat("_Is_LightColor_Outline",1);
+                        }
+                    }else{
+                        if (GUILayout.Button("Active",shortButtonStyle))
+                        {
+                            material.SetFloat("_Is_LightColor_Outline",0);
+                        }
+                    }
+                EditorGUILayout.EndHorizontal();
+            }
             EditorGUILayout.Space();
         }
 
@@ -1869,6 +1886,10 @@ namespace UnityChan
                         material.SetFloat("_Is_LightColor_Base",1);
                         material.SetFloat("_Is_LightColor_1st_Shade",1);
                         material.SetFloat("_Is_LightColor_2nd_Shade",1);
+                        if(material.HasProperty("_OUTLINE"))//OUTLINEがある場合.
+                        {
+                            material.SetFloat("_Is_LightColor_Outline",1);
+                        }
                     }
                 }else{
                     if (GUILayout.Button("Active",shortButtonStyle))

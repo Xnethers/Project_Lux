@@ -23,7 +23,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     private SkinnedMeshRenderer meshRenderer;
 
     enum status
-    { aim, shoot, search, finished}
+    { aim, shoot, search, finished }
     [SerializeField]
     private status Status;
     private BattleManager bm;
@@ -35,7 +35,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
     [Header("===== Audio Settings =====")]
     public bool isWatch;
     public AudioClip Watching;
-	public AudioClip Fire;
+    public AudioClip Fire;
     public Rigidbody rb;
 
     [Header("===== VFX Settings =====")]
@@ -56,7 +56,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         meshRenderer = GetComponent<SkinnedMeshRenderer>();
         muzzle = transform.GetChild(0);
         this.tag = transform.parent.tag;
-        rb=GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
     }
 
@@ -66,29 +66,30 @@ public class TowerGuard : MonoBehaviourPunCallbacks
         Playerlist = Physics.OverlapSphere(transform.position, radius, layer);
         Timer.Tick();
         if (GameManager.Instance.isResult)
-        { 
+        {
             meshRenderer.sharedMaterial = usual;
             rb.useGravity = true;
-            animator.enabled=false;
-            return; 
+            animator.enabled = false;
+            return;
         }
-        
+
         switch (Status)
         {
             case status.aim:
                 {
-                    
+
                     if (CheckPlayerExist())
                     {
-                        if(!isWatch){
+                        if (!isWatch)
+                        {
                             SoundManager.Instance.PlayEffectSound(Watching);
-                            isWatch=true;
+                            isWatch = true;
                         }
 
                         meshRenderer.sharedMaterial = aim;
                         transform.LookAt(dl.destination);
                         dl.Appear(0.02f);
-                                               
+
                         if (muzzle.childCount == 0)
                         {
                             GameObject vfx = Instantiate(VFX_Watch, muzzle.position, muzzle.rotation);
@@ -125,6 +126,11 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                     { return; }
                     else
                     {
+                        if (muzzle.childCount != 0)
+                        {
+                            foreach (Transform child in muzzle.transform)
+                            { GameObject.Destroy(child.gameObject); }
+                        }
 
                         GameObject vfx = GameObject.Instantiate(VFX_WatchFire, muzzle.position, transform.rotation);
                         vfx.transform.SetParent(muzzle);
@@ -144,8 +150,13 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                 }
             case status.search:
                 {
-                    Vector3 relativePos = new Vector3( transform.parent.position.x ,transform.position.y,transform.parent.position.z) - transform.position;
-                    transform.rotation =Quaternion.LookRotation(relativePos)*Quaternion.Euler(0,90*-rotateAngle,0);
+                    if (muzzle.childCount != 0)
+                    {
+                        foreach (Transform child in muzzle.transform)
+                        { GameObject.Destroy(child.gameObject); }
+                    }
+                    Vector3 relativePos = new Vector3(transform.parent.position.x, transform.position.y, transform.parent.position.z) - transform.position;
+                    transform.rotation = Quaternion.LookRotation(relativePos) * Quaternion.Euler(0, 90 * -rotateAngle, 0);
                     dl.destination = null;
                     dl.Disappear();
                     transform.RotateAround(transform.parent.position, Vector3.up, rotateAngle);
@@ -158,7 +169,7 @@ public class TowerGuard : MonoBehaviourPunCallbacks
                 }
             case status.finished:
                 {
-                    isWatch=false;
+                    isWatch = false;
                     if (Timer.state == MyTimer.STATE.RUN)
                     { }
                     else if (Timer.state == MyTimer.STATE.IDLE)

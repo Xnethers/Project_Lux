@@ -80,7 +80,7 @@ public class PlayerUI : MonoBehaviourPunCallbacks
         { fill.color = Color.green; }
         else
         { fill.color = Color.red; }
-
+        textTag.text = "";
 
         occupied = FindObjectOfType<OccupiedTest>();
         ReLiveTime.text = sm.deadTime.ToString();
@@ -106,16 +106,16 @@ public class PlayerUI : MonoBehaviourPunCallbacks
             playerHealthSlider.value = sm.HP / sm.HPMax;
         }
         textRP.text = "RP:" + sm.RP.ToString();
-        if (textTag != null)
-        {//red = Yellow , blue = Purple
-            if (transform.tag == "Red")
-            { textTag.text = "Team:Yellow"; }
-            else if (transform.tag == "Blue")
-            { textTag.text = "Team:Purple"; }
-            else
-            { textTag.text = "Team:AI"; }
-            //textTag.text ="Team:" + transform.tag.ToString();
-        }
+        // if (textTag != null)
+        // {//red = Yellow , blue = Purple
+        //     if (transform.tag == "Red")
+        //     { textTag.text = "Team:Yellow"; }
+        //     else if (transform.tag == "Blue")
+        //     { textTag.text = "Team:Purple"; }
+        //     else
+        //     { textTag.text = "Team:AI"; }
+        //     //textTag.text ="Team:" + transform.tag.ToString();
+        // }
         if (CurveBlood != null)
         {
             if (sm.am.ac.pi.isLatent)

@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
+[System.Serializable]
+public class selectCharacter
+{
+    public Sprite nomal;
+    public Sprite choose;
+    public int ID;
+    public Button bt;
+}
+
 namespace UITween
 {
-    [System.Serializable]
-    public class selectCharacter
-    {
-        public Sprite nomal;
-        public Sprite choose;
-        public int ID;
-        public Button bt;
-    }
+
     public class UIInsideRoomPanelContoller : UIManager
     {
         [HideInInspector]
@@ -39,10 +40,7 @@ namespace UITween
 
         [Header("My All Character")]
         public selectCharacter[] AllCharacterUI;
-        public Image Borislav;
-        public Image Enid;
-        public Image Lena;
-        public Image Adela;
+
         [Space(10)]
         public float duration;
 
@@ -58,32 +56,26 @@ namespace UITween
         }
         void Update()
         {
-            // foreach (selectCharacter item in AllCharacterUI)
-            // {
-            //     if (Global.selectCharacterID == item.ID)
-            //     {
-            //         if (eventSystem.currentSelectedGameObject != item.bt.gameObject && eventSystem.alreadySelecting)
-            //         { eventSystem.SetSelectedGameObject(item.bt.gameObject); }
-            //         else if (!eventSystem.alreadySelecting)
-            //         {
-            //             item.bt.gameObject.GetComponent<Image>().sprite = item.choose;
-            //             item.bt.gameObject.GetComponent<RectTransform>().localScale = originScale * 1.2f;
-            //         }
-            //     }
-            //     else
-            //     {
-
-            //     }
-            // }
+            foreach (selectCharacter item in AllCharacterUI)
+            {
+                if (Global.selectCharacterID == item.ID)
+                {
+                    item.bt.gameObject.GetComponent<Image>().sprite = item.choose;
+                    Click(item.bt.gameObject.GetComponent<RectTransform>());
+                }
+                else
+                {
+                    item.bt.gameObject.GetComponent<Image>().sprite = item.nomal;
+                    UnSelect(item.bt.gameObject.GetComponent<RectTransform>());
+                }
+            }
         }
 
 
 
         EventSystem eventSystem;
         public void Click(RectTransform rect)
-        {
-            Tweener c = rect.DOScale(originScale * 1.2f, 0.1f);
-        }
+        { Tweener c = rect.DOScale(originScale * 1.2f, 0.1f); }
 
         public void UnSelect(RectTransform rect)
         { rect.DOScale(originScale, 0.1f); }
@@ -104,9 +96,9 @@ namespace UITween
             mySequence.Append(s1).Join(s2).Join(s3).Join(s4);
 
             if (isYellow)
-            { eventSystem.SetSelectedGameObject(Borislav.gameObject); }
+            { eventSystem.SetSelectedGameObject(AllCharacterUI[0].bt.gameObject); }
             else
-            { eventSystem.SetSelectedGameObject(Lena.gameObject); }
+            { eventSystem.SetSelectedGameObject(AllCharacterUI[3].bt.gameObject); }
         }
 
         public void BackToSelectCamp(bool isYellow)
