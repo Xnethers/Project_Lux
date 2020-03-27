@@ -1180,7 +1180,7 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114501911608815854, guid: 506d54d3568634443a7a7f03529465ac,
+    - target: {fileID: 114543563784366302, guid: 506d54d3568634443a7a7f03529465ac,
         type: 2}
       propertyPath: viewIdField
       value: 12
@@ -1190,7 +1190,7 @@ Prefab:
       propertyPath: viewIdField
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 114543563784366302, guid: 506d54d3568634443a7a7f03529465ac,
+    - target: {fileID: 114501911608815854, guid: 506d54d3568634443a7a7f03529465ac,
         type: 2}
       propertyPath: viewIdField
       value: 14

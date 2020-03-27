@@ -71,8 +71,8 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-    m_MixedBakeMode: 2
-    m_BakeBackend: 1
+    m_MixedBakeMode: 0
+    m_BakeBackend: 0
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 256
@@ -91,7 +91,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 112000002, guid: 26a65d98243c2f242852ae680e50fba3,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 15329242}
   - component: {fileID: 15329241}
   - component: {fileID: 15329240}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 51740588}
   - component: {fileID: 51740587}
   - component: {fileID: 51740586}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: TextRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1162,7 +1162,7 @@ GameObject:
   - component: {fileID: 54915783}
   - component: {fileID: 54915781}
   - component: {fileID: 54915780}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26818,7 +26818,7 @@ GameObject:
   - component: {fileID: 429961978}
   - component: {fileID: 429961977}
   - component: {fileID: 429961976}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27402,7 +27402,7 @@ GameObject:
   - component: {fileID: 455408022}
   - component: {fileID: 455408021}
   - component: {fileID: 455408020}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32835,6 +32835,30 @@ Transform:
   m_Father: {fileID: 1348536171}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &513218834
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/OutlineCommandBuffer
+  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &513944231
 GameObject:
   m_ObjectHideFlags: 0
@@ -38196,7 +38220,7 @@ GameObject:
   - component: {fileID: 575970354}
   - component: {fileID: 575970353}
   - component: {fileID: 575970352}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: TextRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38364,6 +38388,48 @@ Transform:
   m_Father: {fileID: 576465829}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &579171748
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &581664255
 GameObject:
   m_ObjectHideFlags: 0
@@ -47375,6 +47441,30 @@ MonoBehaviour:
   m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
+--- !u!21 &791131421
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/KawaseBlurPostProcess
+  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &792945700
 GameObject:
   m_ObjectHideFlags: 0
@@ -59281,7 +59371,7 @@ GameObject:
   - component: {fileID: 966039993}
   - component: {fileID: 966039992}
   - component: {fileID: 966039991}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: newCurveBlood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60011,7 +60101,7 @@ GameObject:
   - component: {fileID: 1023430181}
   - component: {fileID: 1023430180}
   - component: {fileID: 1023430179}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: TextTag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66041,7 +66131,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1067960134}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81618,9 +81708,9 @@ MonoBehaviour:
   interation: 1
   offset: 1
   colorIntensity: 3
-  postMat: {fileID: 1913344851}
-  flatColor: {fileID: 1777578198}
-  blur: {fileID: 1345904455}
+  postMat: {fileID: 513218834}
+  flatColor: {fileID: 1277133105}
+  blur: {fileID: 791131421}
   bufferEvent: 17
 --- !u!124 &1161763576
 Behaviour:
@@ -87266,7 +87356,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1222928898}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88294,6 +88384,30 @@ Transform:
   m_Father: {fileID: 921152969}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1277133105
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hidden/FlatColor
+  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
 --- !u!1 &1277651728
 GameObject:
   m_ObjectHideFlags: 0
@@ -94018,30 +94132,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!21 &1345904455
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/KawaseBlurPostProcess
-  m_Shader: {fileID: 4800000, guid: e84dd8d2e939592468dfc76691a61c44, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1347646900
 GameObject:
   m_ObjectHideFlags: 0
@@ -99590,7 +99680,7 @@ GameObject:
   - component: {fileID: 1413243803}
   - component: {fileID: 1413243802}
   - component: {fileID: 1413243801}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99842,7 +99932,7 @@ GameObject:
   - component: {fileID: 1428167582}
   - component: {fileID: 1428167580}
   - component: {fileID: 1428167579}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105165,76 +105255,6 @@ RectTransform:
   m_AnchoredPosition: {x: -199, y: 66}
   m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &1489497366
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942891078543984, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1500696006343676, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827350041643904, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1866315003334216, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1499714252516784, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1058830966576222, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1798739004020326, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1194079980190354, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 4f3016ef58b90f240bd9d04f5c2276ee, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1490173481
 GameObject:
   m_ObjectHideFlags: 0
@@ -106018,7 +106038,7 @@ GameObject:
   - component: {fileID: 1541467984}
   - component: {fileID: 1541467983}
   - component: {fileID: 1541467982}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: newCurveBlood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106660,7 +106680,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1594092770}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111656,7 +111676,7 @@ GameObject:
   - component: {fileID: 1644513302}
   - component: {fileID: 1644513301}
   - component: {fileID: 1644513300}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: PlayerNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124242,30 +124262,6 @@ Transform:
   m_Father: {fileID: 2006205887}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1777578198
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/FlatColor
-  m_Shader: {fileID: 4800000, guid: 6e679ac5cbf30dc4c8a697b375ed55f9, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1784409561
 GameObject:
   m_ObjectHideFlags: 0
@@ -124811,7 +124807,7 @@ GameObject:
   - component: {fileID: 1830944724}
   - component: {fileID: 1830944727}
   - component: {fileID: 1830944726}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124990,7 +124986,7 @@ GameObject:
   - component: {fileID: 1841358164}
   - component: {fileID: 1841358163}
   - component: {fileID: 1841358162}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: TextTag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125591,7 +125587,7 @@ GameObject:
   - component: {fileID: 1843752975}
   - component: {fileID: 1843752974}
   - component: {fileID: 1843752973}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: PlayerNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131724,7 +131720,7 @@ GameObject:
   - component: {fileID: 1904919578}
   - component: {fileID: 1904919577}
   - component: {fileID: 1904919576}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131954,30 +131950,6 @@ Transform:
   m_Father: {fileID: 236239991}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1913344851
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Hidden/OutlineCommandBuffer
-  m_Shader: {fileID: 4800000, guid: f5d3053c6c69cce43a16269309a4b99d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
 --- !u!1 &1919934673
 GameObject:
   m_ObjectHideFlags: 0
@@ -132078,7 +132050,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1931486120}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

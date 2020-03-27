@@ -46,8 +46,9 @@ public class Projectile : MonoBehaviourPunCallbacks
         this.originVec3 = transform.position;
         this.targetPoint = targetPoint;
         rb = GetComponent<Rigidbody>();
-        rb.velocity = rb.transform.forward * speed;
-        //this.speed=speed;
+        this.speed=speed;
+        Invoke("speedC",0.1f);
+        
     }
     public virtual void Initialize(string tag, float atk, float speed, Vector3 targetPoint)
     {
@@ -56,8 +57,11 @@ public class Projectile : MonoBehaviourPunCallbacks
         this.originVec3 = transform.position;
         this.targetPoint = targetPoint;
         rb = GetComponent<Rigidbody>();
-        rb.velocity = rb.transform.forward * speed;
+        this.speed=speed;
+        Invoke("speedC",0.1f);
     }
+    void speedC(){ rb.velocity = rb.transform.forward * speed;}
+    
     public virtual void Awake()
     {
         Destroy(transform.root.gameObject, timeToLive);
@@ -86,7 +90,7 @@ public class Projectile : MonoBehaviourPunCallbacks
         if (isHit)
             return;
         if (isKinematic)
-            rb.isKinematic = true;
+            {rb.isKinematic = true;}
         if (isBullet)
         {
             transform.GetChild(0).gameObject.SetActive(false);
