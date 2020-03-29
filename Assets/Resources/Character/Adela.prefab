@@ -5545,7 +5545,7 @@ MonoBehaviour:
   offsetZDistance: 2.5
   offsetZAimDis: 0.5
   offsetYDistance: 1.6
-  offsetYAimDis: 1.3
+  offsetYAimDis: 1.35
   offsetXDistance: 0.6
   offestDampValue: 0.2
   offestYDampValue: 0.05
@@ -5561,6 +5561,8 @@ MonoBehaviour:
   isHorizontalView: 0
   doAim: 0
   offestY: 0
+  latentHalfAngle: 100
+  angle: 0
 --- !u!114 &114196746182035128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5836,7 +5838,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114216248428490776}
   viewIdField: 0
-  InstantiationId: 9
+  InstantiationId: 11
   isRuntimeInstantiated: 0
 --- !u!114 &114330328575038568
 MonoBehaviour:
@@ -6389,7 +6391,7 @@ MonoBehaviour:
   - {fileID: 114502605480114190}
   - {fileID: 114856973316791092}
   viewIdField: 0
-  InstantiationId: 11
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114482910827535800
 MonoBehaviour:

@@ -2113,6 +2113,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onExitMessages:
   - FootIKEnable
+--- !u!114 &114677168293756600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be6c93ddb36a3c48a2463d52672907d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnterMessages:
+  - LockInput
 --- !u!114 &114690227421685878
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -8812,7 +8825,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.20958704
+  m_TransitionDuration: 0.14912194
   m_TransitionOffset: 0
   m_ExitTime: 0.74999994
   m_HasExitTime: 0
@@ -11565,7 +11578,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101912581072898610}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114677168293756600}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

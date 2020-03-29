@@ -5682,7 +5682,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114678461351947774}
   viewIdField: 0
-  InstantiationId: 14
+  InstantiationId: 12
   isRuntimeInstantiated: 0
 --- !u!114 &114513486353133422
 MonoBehaviour:
@@ -5763,7 +5763,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999152103625804}
   viewIdField: 0
-  InstantiationId: 12
+  InstantiationId: 14
   isRuntimeInstantiated: 0
 --- !u!114 &114544707042811110
 MonoBehaviour:
@@ -6562,6 +6562,9 @@ MonoBehaviour:
   isHorizontalView: 0
   doAim: 0
   offestY: 0
+  latentHalfAngle: 100
+  angle: 0
+  offsetYLatentDis: 1.35
 --- !u!114 &114862703041327708
 MonoBehaviour:
   m_ObjectHideFlags: 1

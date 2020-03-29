@@ -5048,7 +5048,7 @@ MonoBehaviour:
   - {fileID: 114707027252949322}
   - {fileID: 114839645063806294}
   viewIdField: 0
-  InstantiationId: 10
+  InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &114047698886280978
 MonoBehaviour:
@@ -5662,7 +5662,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114758960382991668}
   viewIdField: 0
-  InstantiationId: 14
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114324447699644704
 MonoBehaviour:
@@ -5815,7 +5815,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114896299942052946}
   viewIdField: 0
-  InstantiationId: 11
+  InstantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114408497414426628
 MonoBehaviour:
@@ -6007,7 +6007,7 @@ MonoBehaviour:
   offsetZDistance: 2.5
   offsetZAimDis: 0.5
   offsetYDistance: 1.6
-  offsetYAimDis: 1.3
+  offsetYAimDis: 1.35
   offsetXDistance: 0.6
   offestDampValue: 0.16
   offestYDampValue: 0.05
@@ -6023,6 +6023,8 @@ MonoBehaviour:
   isHorizontalView: 0
   doAim: 0
   offestY: 0
+  latentHalfAngle: 100
+  angle: 0
 --- !u!114 &114514447109062414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6437,7 +6439,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114211621104466414}
   viewIdField: 0
-  InstantiationId: 12
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114659728391947564
 MonoBehaviour:
@@ -7299,7 +7301,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114125785196014762}
   viewIdField: 0
-  InstantiationId: 13
+  InstantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114952398460573516
 MonoBehaviour:

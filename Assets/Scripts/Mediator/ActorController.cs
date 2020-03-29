@@ -113,17 +113,17 @@ public class ActorController : IActorManagerInterface {
                 lockPlanar = false;
                 //camcon.tempEulerX= 0;//攝影機UpDown角度歸零
                 
-                pi.inputMouseEnabled = !pi.inputMouseEnabled;//鎖攝影機操作
+                //pi.inputMouseEnabled = !pi.inputMouseEnabled;//鎖攝影機操作
                 //人與潛光平行(轉角度)
                 // Debug.Log(am.im.overlapEcastms[0].transform.eulerAngles.y);
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x,am.im.overlapEcastms[0].transform.eulerAngles.y-180f,transform.eulerAngles.z);
+                //transform.eulerAngles = new Vector3(transform.eulerAngles.x,am.im.overlapEcastms[0].transform.eulerAngles.y,transform.eulerAngles.z);//-180f
                 //開關潛光collider
                 am.im.overlapEcastms[0].ColliderObj.SetActive(pi.isLatent);
                 if(pi.isLatent){
                     pi.inputEnabled = true;
                     transform.position -= am.im.overlapEcastms[0].transform.forward*am.im.overlapEcastms[0].offset;
                     latentCount++;
-                }    
+                } 
             }
         }
         
@@ -170,7 +170,7 @@ public class ActorController : IActorManagerInterface {
             photonView.RPC("RPC_SetTrigger",RpcTarget.All,"jump");
         }
         anim.SetBool("isBounce",isBounce);
-        if(Physics.CheckBox(transform.position+transform.up*chacon.height,Vector3.one*0.25f,transform.rotation,layerMask)){
+        if(Physics.CheckBox(transform.position+transform.up*chacon.height,Vector3.one*0.25f,transform.rotation,layerMask)){//撞到空中走廊
             isBounce = false;
             // _velocity.y=0;
             
@@ -304,10 +304,17 @@ public class ActorController : IActorManagerInterface {
         lerpTarget = 0f;
     }
     public void OnPopUpUpdate(){
+        Vector3 direction = Vector3.zero;
+        if(camcon.angle>camcon.latentHalfAngle){
+            direction = -transform.forward;
+        }
+        else{
+            direction = transform.forward;
+        }
         if(latentType == LatentType.Vertical)
-            thrustVec = transform.forward * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity") /6;
+            thrustVec = direction * anim.GetFloat("repelVelocity")+transform.up * popUpVelocity * anim.GetFloat("upVelocity") /6;
         else if(latentType == LatentType.Horizontal) 
-            thrustVec = transform.forward * anim.GetFloat("repelVelocity") /2+transform.up * popUpVelocity * anim.GetFloat("upVelocity") * Time.deltaTime;
+            thrustVec = direction * anim.GetFloat("repelVelocity") /2+transform.up * popUpVelocity * anim.GetFloat("upVelocity") * Time.deltaTime;
         pi.inputEnabled = false;
         pi.inputMouseEnabled = false;
     }
@@ -446,7 +453,7 @@ public class ActorController : IActorManagerInterface {
     public void RPC_SetLatent(string team){
         pi.isLatent = ! pi.isLatent;//是否潛光中
         SetBool("lock",pi.isLatent);//鎖人物動作狀態
-        camcon.isHorizontalView=pi.isLatent;
+        //camcon.isHorizontalView=pi.isLatent;
         am.bm.bcL.gameObject.SetActive(pi.isLatent);
         am.bm.SetChacontrollerSize(pi.isLatent);
         model.transform.GetChild(0).gameObject.SetActive(!pi.isLatent);

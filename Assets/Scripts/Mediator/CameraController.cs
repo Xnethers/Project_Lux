@@ -58,7 +58,11 @@ public class CameraController : MonoBehaviourPunCallbacks {
     public bool doAim;
     [SerializeField]private float offestY;
     private float offestYDampVelocity;
-    
+    [Space(10)]
+    [Header("===== Latent Settings =====")]
+    public float latentHalfAngle=100f;
+    public float angle;
+    public float offsetYLatentDis =1.35f;
 	// Use this for initialization
 	void Start () {
         cameraHandle = transform.parent.gameObject;
@@ -93,6 +97,21 @@ public class CameraController : MonoBehaviourPunCallbacks {
         }
         //攝影機旋轉
         playerHandle.transform.Rotate(Vector3.up, pi.Jright * HorizontalSpeed * Time.fixedDeltaTime);//直接旋轉玩家水平角度
+        /*if(ac.pi.isLatent){
+            // if(ac.am.im.overlapEcastms[0].latentType == LatentType.Vertical)
+            // Vector3 relative = playerHandle.transform.InverseTransformPoint (ac.am.im.overlapEcastms[0].transform.position);
+            // float angle = Mathf.Atan2 (relative.x, relative.z) * Mathf.Rad2Deg;
+            
+            // float angle=Mathf.Acos( Vector3.Dot(playerHandle.transform.forward,-ac.am.im.overlapEcastms[0].transform.forward))*Mathf.Rad2Deg;
+            float angle = Vector3.Angle(playerHandle.transform.forward,-ac.am.im.overlapEcastms[0].transform.forward);
+            Debug.Log("角度"+angle+",轉向"+pi.Jright);
+            
+            if(Mathf.Abs(angle)<latentHalfAngle || (angle>=latentHalfAngle && pi.Jright>0) || (angle<=-latentHalfAngle && pi.Jright<0))
+                playerHandle.transform.Rotate(Vector3.up, pi.Jright * HorizontalSpeed * Time.fixedDeltaTime);//直接旋轉玩家水平角度
+        }
+        else{
+            playerHandle.transform.Rotate(Vector3.up, pi.Jright * HorizontalSpeed * Time.fixedDeltaTime);//直接旋轉玩家水平角度
+        }*/
         if(!ac.am.sm.isDie){//isDieChange
             tempEulerX -= pi.Jup * VerticalSpeed * Time.fixedDeltaTime;
             tempEulerX = Mathf.Clamp(tempEulerX, minVerAngle, maxVerAngle);
@@ -120,8 +139,19 @@ public class CameraController : MonoBehaviourPunCallbacks {
                 offestZ = Mathf.SmoothDamp(transform.localPosition.z, -tempHitDistance, ref offestZDampVelocity, offestDampValue);
             }
         }
-        
-        offestZ = Mathf.Clamp(offestZ, -offsetZDistance, 0);
+        if(ac.pi.isLatent){
+            angle = Vector3.Angle(playerHandle.transform.forward,-ac.am.im.overlapEcastms[0].transform.forward);
+            // Debug.Log("角度"+angle);
+            if(angle>latentHalfAngle){
+                offsetZDistance = Mathf.Lerp(offsetZDistance,-0.5f,.3f);
+            }
+            else
+                offsetZDistance = Mathf.Lerp(offsetZDistance,2.5f,.3f);
+        }
+        else{
+            offsetZDistance=2.5f;
+        }
+        offestZ = Mathf.Clamp(offestZ, -offsetZDistance, 1);//0
 
         transform.localPosition = new Vector3(0, 0, offestZ);
         
@@ -197,11 +227,16 @@ public class CameraController : MonoBehaviourPunCallbacks {
         Mathf.SmoothDamp(cameraHandle.transform.localPosition.y,offestY, ref offestYDampVelocity, offestYDampValue), cameraHandle.transform.localPosition.z);//cameraHandle.transform.localPosition.y
     }
     public void SetOffestY(){
-        if(!doAim){
-            offestY = Mathf.Lerp(offestY,offsetYDistance,.1f);
+        if(ac.pi.isLatent){
+            offestY = Mathf.Lerp(offestY,offsetYLatentDis,.1f);
         }
         else{
-            offestY = Mathf.Lerp(offestY,offsetYAimDis,.1f);
+            if(!doAim){
+                offestY = Mathf.Lerp(offestY,offsetYDistance,.1f);
+            }
+            else{
+                offestY = Mathf.Lerp(offestY,offsetYAimDis,.1f);
+            }
         }
     }
     private void CameraRay()//AutoDetection
