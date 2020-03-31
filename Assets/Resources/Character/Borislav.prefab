@@ -4640,6 +4640,7 @@ MonoBehaviour:
   CurrentSpeed: 0
   walkVerticalSpeed: 2.2
   walkHorizontalSpeed: 1.6
+  walkLatentSpeed: 2.4
   upSpeed: 1
   runMultiplier: 2
   jumpVelocity: 8
