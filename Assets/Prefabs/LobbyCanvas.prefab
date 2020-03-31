@@ -943,7 +943,6 @@ GameObject:
   - component: {fileID: 224281060088830076}
   - component: {fileID: 222646546104443348}
   - component: {fileID: 114419655237758914}
-  - component: {fileID: 114572380290753298}
   - component: {fileID: 114379520362005910}
   m_Layer: 5
   m_Name: Borislav
@@ -5042,7 +5041,6 @@ GameObject:
   - component: {fileID: 224354180436882700}
   - component: {fileID: 222578661681843608}
   - component: {fileID: 114370747558831952}
-  - component: {fileID: 114780529191369114}
   - component: {fileID: 114124737277821984}
   m_Layer: 5
   m_Name: Lena
@@ -8284,7 +8282,6 @@ GameObject:
   - component: {fileID: 224770820765077246}
   - component: {fileID: 222811769657804316}
   - component: {fileID: 114323682933979572}
-  - component: {fileID: 114401579742186252}
   - component: {fileID: 114409503221039700}
   m_Layer: 5
   m_Name: Enid
@@ -11545,7 +11542,6 @@ GameObject:
   - component: {fileID: 224436496252954518}
   - component: {fileID: 222586746007798704}
   - component: {fileID: 114535057512471038}
-  - component: {fileID: 114534907636019342}
   - component: {fileID: 114976514843227642}
   m_Layer: 5
   m_Name: Adela
@@ -25019,8 +25015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 10
+    m_Right: 10
     m_Top: 15
     m_Bottom: 0
   m_ChildAlignment: 2
@@ -25056,88 +25052,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114401579742186252
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1629804726704848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114821020377136226}
-          m_MethodName: Click
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 224770820765077246}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 114323682933979572}
-          m_MethodName: set_sprite
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: cd3440439a46cd14981cff2d72e77252,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 114272524210743062}
-          m_MethodName: OnClickCharacter
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114821020377136226}
-          m_MethodName: UnSelect
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 224770820765077246}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 114323682933979572}
-          m_MethodName: set_sprite
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: 990cd425b4090174ca293b027c7050aa,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &114408500838319546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25370,8 +25284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 10
+    m_Right: 10
     m_Top: 15
     m_Bottom: 0
   m_ChildAlignment: 2
@@ -25623,6 +25537,7 @@ MonoBehaviour:
   CreatRoomPanel: {fileID: 224590602980259378}
   RoomListPanel: {fileID: 224932331370026444}
   NoviceTeachingPanel: {fileID: 224388995160431756}
+  InsideRoomPanel: {fileID: 224064720728383276}
   StretchSize: {x: 1182, y: 900}
   StretchDuration: 0.5
   onEnable:
@@ -25887,88 +25802,6 @@ MonoBehaviour:
   color: {r: 0.6650944, g: 0.95009243, b: 1, a: 1}
   duration: 0.1
   endScale: {x: 0.6, y: 0.6, z: 0}
---- !u!114 &114534907636019342
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1925702706431016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114821020377136226}
-          m_MethodName: Click
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 224436496252954518}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 114535057512471038}
-          m_MethodName: set_sprite
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: ad794090fb84ebf499040a6faf27a114,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 114272524210743062}
-          m_MethodName: OnClickCharacter
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114821020377136226}
-          m_MethodName: UnSelect
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 224436496252954518}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 114535057512471038}
-          m_MethodName: set_sprite
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: a002af127c0beed499ca9614573f4bdd,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &114535057512471038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26190,88 +26023,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114572380290753298
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087341242686050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114821020377136226}
-          m_MethodName: Click
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 224281060088830076}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 114419655237758914}
-          m_MethodName: set_sprite
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: 6a4adaff8d3e296478a17d7431d21d9c,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 114272524210743062}
-          m_MethodName: OnClickCharacter
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114821020377136226}
-          m_MethodName: UnSelect
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 224281060088830076}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 114419655237758914}
-          m_MethodName: set_sprite
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: 054aad3020eaca14bac97dea8ab36fd8,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &114574203448769296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27898,88 +27649,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114780529191369114
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409601984227526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114821020377136226}
-          m_MethodName: Click
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 224354180436882700}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 114370747558831952}
-          m_MethodName: set_sprite
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: cbe6bd3f1b2139141871b4a1752d38dc,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 114272524210743062}
-          m_MethodName: OnClickCharacter
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114821020377136226}
-          m_MethodName: UnSelect
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 224354180436882700}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 114370747558831952}
-          m_MethodName: set_sprite
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: a99705689b55de648b2aa1ff481383f5,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &114782840616974882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28180,10 +27849,6 @@ MonoBehaviour:
     choose: {fileID: 21300000, guid: ad794090fb84ebf499040a6faf27a114, type: 3}
     ID: 3
     bt: {fileID: 114976514843227642}
-  Borislav: {fileID: 114419655237758914}
-  Enid: {fileID: 114323682933979572}
-  Lena: {fileID: 114370747558831952}
-  Adela: {fileID: 114535057512471038}
   duration: 0.5
 --- !u!114 &114821486753650206
 MonoBehaviour:
@@ -33575,7 +33240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 555, y: -37.5}
+  m_AnchoredPosition: {x: 535, y: -37.5}
   m_SizeDelta: {x: 150, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224045270518413070
@@ -33777,8 +33442,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 21.449999, y: -45}
-  m_SizeDelta: {x: 715, y: 60}
+  m_AnchoredPosition: {x: 30.850006, y: -45}
+  m_SizeDelta: {x: 695, y: 60}
   m_Pivot: {x: 0.03, y: 0.5}
 --- !u!224 &224114488065448546
 RectTransform:
@@ -33831,7 +33496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 665, y: -37.5}
+  m_AnchoredPosition: {x: 645, y: -37.5}
   m_SizeDelta: {x: 50, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224175393356879140
@@ -33984,8 +33649,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 285, y: -37.5}
-  m_SizeDelta: {x: 370.00003, y: 55}
+  m_AnchoredPosition: {x: 275, y: -37.5}
+  m_SizeDelta: {x: 350.00003, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224257883621702780
 RectTransform:
@@ -34007,7 +33672,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 357.5, y: -132.5}
-  m_SizeDelta: {x: 715, y: 75}
+  m_SizeDelta: {x: 695, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224270120983295580
 RectTransform:
@@ -34302,7 +33967,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713634041247562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000008919787}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224614179899938362}
@@ -34310,8 +33975,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 21.449999, y: -45}
-  m_SizeDelta: {x: 715, y: 60}
+  m_AnchoredPosition: {x: 30.850006, y: -45}
+  m_SizeDelta: {x: 695, y: 60}
   m_Pivot: {x: 0.03, y: 0.5}
 --- !u!224 &224429872839615296
 RectTransform:
@@ -34477,7 +34142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 555, y: -37.5}
+  m_AnchoredPosition: {x: 535, y: -37.5}
   m_SizeDelta: {x: 150, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224547996033342242
@@ -35047,7 +34712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -231.90039, y: 101}
+  m_AnchoredPosition: {x: -231.90234, y: 101}
   m_SizeDelta: {x: 463.9, y: 202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224812978300229330
@@ -35121,7 +34786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 665, y: -37.5}
+  m_AnchoredPosition: {x: 645, y: -37.5}
   m_SizeDelta: {x: 50, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224823720499766398
@@ -35331,7 +34996,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 357.5, y: -132.5}
-  m_SizeDelta: {x: 715, y: 75}
+  m_SizeDelta: {x: 695, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224945475478960556
 RectTransform:
@@ -35420,8 +35085,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 285, y: -37.5}
-  m_SizeDelta: {x: 370.00003, y: 55}
+  m_AnchoredPosition: {x: 275, y: -37.5}
+  m_SizeDelta: {x: 350.00003, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224996927492499174
 RectTransform:

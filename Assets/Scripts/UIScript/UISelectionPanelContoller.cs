@@ -30,6 +30,7 @@ namespace UITween
         public RectTransform CreatRoomPanel;
         public RectTransform RoomListPanel;
         public RectTransform NoviceTeachingPanel;
+        public RectTransform InsideRoomPanel;
         public Vector2 StretchSize = new Vector2(1182, 900);
         public float StretchDuration;
         [Space(10)]
@@ -81,6 +82,7 @@ namespace UITween
             JBrect.anchoredPosition = JBrectoriginPos;
             RBrect.anchoredPosition = RBrectoriginPos;
             NTrect.anchoredPosition = NTrectoriginPos;
+            ResetPanelSize(); 
         }
 
         public void ButtonClickedToMove()
