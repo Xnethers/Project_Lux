@@ -4075,6 +4075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAI: 0
   isLatent: 0
+  isLatentHSpecialAngle: 0
   Dup: 0
   Dright: 0
   Dmag: 0
@@ -4588,7 +4589,9 @@ MonoBehaviour:
   isHorizontalView: 0
   doAim: 0
   offestY: 0
-  latentHalfAngle: 100
+  latentHalfAngle: 85
+  latentMinSpecialAngle: 65
+  latentMaxSpecialAngle: 90
   angle: 0
   offsetYLatentDis: 1.35
 --- !u!114 &114568255459027422

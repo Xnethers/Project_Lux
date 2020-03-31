@@ -13,6 +13,7 @@ public class ActorController : IActorManagerInterface {
     [SerializeField]private float CurrentSpeed;
     public float walkVerticalSpeed = 2.4f;
     public float walkHorizontalSpeed = 2.4f;
+    public float walkLatentSpeed = 2.4f;
     public float upSpeed = 1;
     public float runMultiplier = 2.0f;
     public float jumpVelocity = 5.5f;
@@ -151,7 +152,10 @@ public class ActorController : IActorManagerInterface {
             else if(!pi.isHorizontal && pi.isVertical){
                 CurrentSpeed = Mathf.Lerp(CurrentSpeed,walkVerticalSpeed,.5f);
             }
-            planarVec = pi.Dvec * CurrentSpeed * runMultiplier * upSpeed ;//((pi.run) ? runMultiplier : 1.0f
+            if(!pi.isLatent)
+                planarVec = pi.Dvec * CurrentSpeed * runMultiplier * upSpeed ;//((pi.run) ? runMultiplier : 1.0f
+            else
+                planarVec = pi.Dvec * walkLatentSpeed * runMultiplier;
         }
         else{
             //planarVec = (pi.Dvec * walkSpeed * runMultiplier)/1.2f ;

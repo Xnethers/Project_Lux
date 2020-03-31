@@ -100,7 +100,10 @@ public class KeyboardInput : IUserInput
             Dvec = Dright2 * transform.right + Dup2 * transform.forward;
         else{
             //潛光移動軸向為up,right
-            Dvec = Dright2 * transform.right + Dup2 * transform.up;
+            if(!isLatentHSpecialAngle)
+                Dvec = Dright2 * transform.right + Dup2 * transform.up;
+            else
+                Dvec = Dright2 * transform.right + Dup2 * transform.forward;
         }
             
 

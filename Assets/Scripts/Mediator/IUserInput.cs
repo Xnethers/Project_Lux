@@ -6,6 +6,7 @@ using Photon.Pun;
 public abstract class IUserInput : MonoBehaviourPunCallbacks {
     public bool isAI;
     public bool isLatent = false;
+    public bool isLatentHSpecialAngle = false;//LatentHorizontal
     [Header("===== Output signals =====")]
     public float Dup;
     public float Dright;

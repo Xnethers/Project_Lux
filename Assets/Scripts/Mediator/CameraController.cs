@@ -60,7 +60,9 @@ public class CameraController : MonoBehaviourPunCallbacks {
     private float offestYDampVelocity;
     [Space(10)]
     [Header("===== Latent Settings =====")]
-    public float latentHalfAngle=100f;
+    public float latentHalfAngle=85f;
+    public float latentMinSpecialAngle=65f;
+    public float latentMaxSpecialAngle=90f;
     public float angle;
     public float offsetYLatentDis =1.35f;
 	// Use this for initialization
@@ -147,6 +149,11 @@ public class CameraController : MonoBehaviourPunCallbacks {
             }
             else
                 offsetZDistance = Mathf.Lerp(offsetZDistance,2.5f,.3f);
+            //移動方向
+            if(ac.am.im.overlapEcastms[0].latentType == LatentType.Horizontal)
+                ac.pi.isLatentHSpecialAngle=true;
+            else
+                ac.pi.isLatentHSpecialAngle=false;
         }
         else{
             offsetZDistance=2.5f;
